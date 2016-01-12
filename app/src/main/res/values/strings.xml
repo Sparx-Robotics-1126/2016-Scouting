@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">SparX Scouting 2016</string>
+    <string name="action_settings">Settings</string>
+    <string-array name="spinnerValues" id="@/spinnerArray">
+        <item>Yes</item>
+        <item>No</item>
+        <item>Maybe</item>
+        <item>Maybe not</item>
+    </string-array>
+</resources>
