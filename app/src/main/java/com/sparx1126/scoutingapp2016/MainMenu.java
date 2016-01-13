@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import static android.R.layout.simple_spinner_dropdown_item;
 import static android.R.layout.simple_spinner_item;
 
 public class MainMenu extends AppCompatActivity {
@@ -18,7 +19,7 @@ public class MainMenu extends AppCompatActivity {
         // ArrayAdapter<CharSequence> dataAdapter = ArrayAdapter.createFromResource(this, R.array.spinnerValues, android.R.layout.simple_spinner_dropdown_item);
         ArrayAdapter<String> dataAdapter;
         dataAdapter = new ArrayAdapter<String>(this, simple_spinner_item, EventInfo.getEventNames());
-        dataAdapter.setDropDownViewResource(simple_spinner_item);
+        dataAdapter.setDropDownViewResource(simple_spinner_dropdown_item);
         eventPicker.setAdapter(dataAdapter);
     }
 

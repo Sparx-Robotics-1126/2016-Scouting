@@ -14,8 +14,8 @@
         android:id="@+id/textView" />
 
     <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:id="@+id/eventPicker"
         android:layout_below="@+id/textView"
         android:layout_alignParentLeft="true"

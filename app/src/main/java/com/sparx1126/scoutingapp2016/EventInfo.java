@@ -9,13 +9,13 @@ import java.util.List;
 import java.util.ListIterator;
 
 /**
- * @author Dan
+ * @author Dan Martin
  * provides the info for events `
  */
 public class EventInfo {
     /**
      * gets event names from a source
-     * @return an array that contains all event names
+     * @return an array that contains all event names (or event data, not sure yet)
      */
     public static ArrayList<String> getEventNames(){
         /**
