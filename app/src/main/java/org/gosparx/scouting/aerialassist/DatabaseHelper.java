@@ -275,7 +275,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         if(c != null && c.moveToNext())
             retVal = c.getInt(0) > 0;
-
+        if(c!=null)
         c.close();
         return retVal;
     }
@@ -314,8 +314,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 Log.e(TAG, "Could not parse Event's end date.", e);
             }
         }
-
-        c.close();
+        if(c!=null) {
+            c.close();
+        }
         return event;
     }
 
@@ -354,8 +355,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         if(c != null && c.moveToNext())
             retVal = c.getInt(0) > 0;
-
-        c.close();
+        if(c!=null) {
+            c.close();
+        }
         return retVal;
     }
 
@@ -388,8 +390,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         while(c != null && c.moveToNext()){
             team.getEvents().add(getEvent(c.getString(c.getColumnIndex(TABLE_E2T_EVENT))));
         }
-
-        c.close();
+            if (c != null) {
+                c.close();
+            }
         return team;
     }
 
@@ -425,7 +428,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if(c != null && c.moveToNext())
             retVal = c.getInt(0) > 0;
 
-        c.close();
+        if (c != null) {
+            c.close();
+        }
         return retVal;
     }
 
@@ -466,7 +471,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if(c != null && c.moveToNext())
             retVal = c.getInt(0) > 0;
 
-        c.close();
+        if (c != null) {
+            c.close();
+        }
         return retVal;
     }
 
@@ -510,7 +517,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             red.getTeams().add(c.getString(c.getColumnIndex(TABLE_MATCHES_RED_THREE)));
         }
 
-        c.close();
+        if (c != null) {
+            c.close();
+        }
         return match;
     }
 
@@ -540,7 +549,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if(c != null && c.moveToNext())
             retVal = c.getInt(0);
 
-        c.close();
+        if (c != null) {
+            c.close();
+        }
 
         return retVal;
     }
@@ -605,7 +616,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if(c != null && c.moveToNext())
             retVal = c.getInt(0) > 0;
 
-        c.close();
+        if (c != null) {
+            c.close();
+        }
         return retVal;
     }
 
@@ -633,7 +646,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             scouting.add(mapScouting(c));
         }
 
-        c.close();
+        if (c != null) {
+            c.close();
+        }
         return scouting;
     }
 
@@ -653,7 +668,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             scouting.add(mapScouting(c));
         }
 
-        c.close();
+        if (c != null) {
+            c.close();
+        }
         return scouting;
     }
 
@@ -693,7 +710,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         while (c != null && c.moveToNext())
             retVal.add(mapScouting(c));
 
-        c.close();
+        if (c != null) {
+            c.close();
+        }
         return retVal;
     }
 
