@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/select_event"
-        android:textSize="32sp"
+        android:textSize="@dimen/text_size"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp" />
     <Spinner
@@ -21,6 +21,34 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@android:drawable/btn_dropdown"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp" />
+        android:layout_marginLeft="@dimen/horiz_margin"
+        android:layout_marginRight="@dimen/horiz_margin" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/horiz_margin"
+        android:layout_marginRight="@dimen/horiz_margin"
+        android:layout_marginTop="@dimen/text_margin_top"
+        android:text="@string/select_match"
+        android:textSize="@dimen/text_size" />
+
+    <Spinner
+        android:id="@+id/matchPicker"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/btn_dropdown"
+        android:layout_marginLeft="@dimen/horiz_margin"
+        android:layout_marginRight="@dimen/horiz_margin" />
+
+    <Button android:id="@+id/begin_scouting"
+        android:layout_height="@dimen/button_height"
+        android:layout_width="fill_parent"
+        android:layout_marginTop="@dimen/button_margin"
+        android:text="@string/begin_scouting"
+        android:background="@android:drawable/btn_default"
+        android:enabled="true"
+        android:focusable="false"
+        android:nestedScrollingEnabled="false"
+        android:singleLine="false"
+        android:textStyle="bold" />
 </LinearLayout>

@@ -3,26 +3,36 @@ package com.sparx1126.scoutingapp2016;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.gosparx.scouting.aerialassist.DatabaseHelper;
+import org.gosparx.scouting.aerialassist.dto.Event;
 import org.gosparx.scouting.aerialassist.networking.*;
 
+import static android.app.PendingIntent.getActivity;
 import static org.gosparx.scouting.aerialassist.networking.NetworkHelper.isNetworkAvailable;
 
-public class MainMenu extends AppCompatActivity
+public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSelectedListener
 {
 
     private SimpleCursorAdapter cursorAdapterRegionalNames;
     private SimpleCursorAdapter cursorAdapterMatches;
     private SimpleCursorAdapter cursorAdapterTeams;
+    private BlueAlliance blueAlliance;
+    private DatabaseHelper dbHelper;
+    Spinner eventPicker;
+    Spinner matchPicker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +40,7 @@ public class MainMenu extends AppCompatActivity
         setContentView(R.layout.activity_main_menu);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        DownloadEventSpinnerDataIfNecessary();
+        downloadEventSpinnerDataIfNecessary();
     }
 
     @Override
@@ -53,7 +63,7 @@ public class MainMenu extends AppCompatActivity
         }
         else if (id == R.id.action_download)
         {
-            DownloadEventSpinnerData();
+            downloadEventSpinnerData();
         }
 
         return super.onOptionsItemSelected(item);
@@ -80,25 +90,25 @@ public class MainMenu extends AppCompatActivity
     /**
      * check if data needs to be downloaded
      */
-    private void DownloadEventSpinnerDataIfNecessary()
+    private void downloadEventSpinnerDataIfNecessary()
     {
         if(isNetworkAvailable(this) && NetworkHelper.needToLoadEventList(this)) {
-            DownloadEventSpinnerData();
+            downloadEventSpinnerData();
         }
         else {
-            SetupEventSpinner();
+            setupEventSpinner();
         }
     }
 
     /**
      * get data to populate spinner
      */
-    private void DownloadEventSpinnerData()
+    private void downloadEventSpinnerData()
     {
         final Dialog alert = createDialog();
         alert.show();
-        BlueAlliance ba = BlueAlliance.getInstance(this);
-        ba.loadEventList(2016, new NetworkCallback() {
+        blueAlliance = BlueAlliance.getInstance(this);
+        blueAlliance.loadEventList(2016, new NetworkCallback() {
             @Override
             public void handleFinishDownload(final boolean success) {
                 MainMenu.this.runOnUiThread(new Runnable() {
@@ -107,8 +117,28 @@ public class MainMenu extends AppCompatActivity
                         if (!success)
                             Toast.makeText(MainMenu.this, "Did not successfully download event list!", Toast.LENGTH_LONG).show();
                         alert.dismiss();
-                        SetupEventSpinner();
+                        setupEventSpinner();
 //                            mNavigationDrawerFragment.updateDrawerData();
+                    }
+                });
+            }
+        });
+    }
+    private void downloadMatchSpinnerData(){
+        final Dialog alert = createDialog();
+        alert.show();
+        BlueAlliance ba =  BlueAlliance.getInstance(this);
+        ba.loadEventList(2016, new NetworkCallback() {
+            @Override
+            public void handleFinishDownload(final boolean success) {
+                MainMenu.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (!success)
+                            Toast.makeText(MainMenu.this, "Did not successfully download match list!", Toast.LENGTH_LONG).show();
+                        alert.dismiss();
+
+                        setupMatchSpinner(getSelectedEvent());
                     }
                 });
             }
@@ -125,9 +155,8 @@ public class MainMenu extends AppCompatActivity
     /**
      * creates the spinner with values supplied by BlueAlliance
      */
-    public void SetupEventSpinner()
+    public void setupEventSpinner()
     {
-        DatabaseHelper dbHelper;
         dbHelper = DatabaseHelper.getInstance(this);
         Spinner eventPicker = (Spinner)findViewById(R.id.eventPicker);
         cursorAdapterRegionalNames = new SimpleCursorAdapter(
@@ -136,6 +165,55 @@ public class MainMenu extends AppCompatActivity
                 dbHelper.createEventNameCursor(),
                 new String[]{"title"},
                 new int[]{android.R.id.text1}, 0);
+        cursorAdapterRegionalNames.setViewBinder(
+                new SimpleCursorAdapter.ViewBinder() {
+                    @Override
+                    public boolean setViewValue(View view, Cursor cursor, int i) {
+                        view.setTag(cursor.getString(cursor.getColumnIndex("key")));
+                        if(view instanceof TextView){
+                            ((TextView)view).setText(cursor.getString(i));
+                        }
+                        return true;
+                    }
+                }
+
+        );
+        eventPicker.setOnItemSelectedListener(this);
+
         eventPicker.setAdapter(cursorAdapterRegionalNames);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        Event current = getSelectedEvent();
+        switch (parent.getId()) {
+            case R.id.eventPicker:
+                if (current != null) {
+                    blueAlliance.loadMatches(current, new NetworkCallback() {
+                        @Override
+                        public void handleFinishDownload(boolean success) {
+
+                        }
+                    });
+                    System.out.println(">FKHE:KFH");
+                }
+                setupMatchSpinner(current);
+        }
+    }
+    @Override
+    public void onNothingSelected(AdapterView<?> a){};
+
+        public Event getSelectedEvent(){
+            Event current = null;
+            if(eventPicker != null && eventPicker.getSelectedView() != null)
+                current= dbHelper.getEvent((String) eventPicker.getSelectedView().getTag());
+            return current;
+        }
+    public void setupMatchSpinner(Event event){
+        dbHelper = DatabaseHelper.getInstance(this);
+        Spinner matchPicker = (Spinner)findViewById(R.id.matchPicker);
+
+
+        matchPicker.setAdapter(cursorAdapterMatches);
     }
 }
