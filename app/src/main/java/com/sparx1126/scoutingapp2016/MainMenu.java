@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -108,7 +109,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
         final Dialog alert = createDialog();
         alert.show();
         blueAlliance = BlueAlliance.getInstance(this);
-        blueAlliance.loadEventList(2016, new NetworkCallback() {
+        blueAlliance.loadEventList(2015, new NetworkCallback() {
             @Override
             public void handleFinishDownload(final boolean success) {
                 MainMenu.this.runOnUiThread(new Runnable() {
@@ -127,8 +128,9 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
     private void downloadMatchSpinnerData(){
         final Dialog alert = createDialog();
         alert.show();
+        final Event e = getSelectedEvent();
         BlueAlliance ba =  BlueAlliance.getInstance(this);
-        ba.loadEventList(2016, new NetworkCallback() {
+        ba.loadMatches(e, new NetworkCallback() {
             @Override
             public void handleFinishDownload(final boolean success) {
                 MainMenu.this.runOnUiThread(new Runnable() {
@@ -138,7 +140,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
                             Toast.makeText(MainMenu.this, "Did not successfully download match list!", Toast.LENGTH_LONG).show();
                         alert.dismiss();
 
-                        setupMatchSpinner(getSelectedEvent());
+                        setupMatchSpinner(e);
                     }
                 });
             }
@@ -158,7 +160,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
     public void setupEventSpinner()
     {
         dbHelper = DatabaseHelper.getInstance(this);
-        Spinner eventPicker = (Spinner)findViewById(R.id.eventPicker);
+        eventPicker = (Spinner)findViewById(R.id.eventPicker);
         cursorAdapterRegionalNames = new SimpleCursorAdapter(
                 this,
                 android.R.layout.simple_spinner_item,
@@ -170,8 +172,8 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
                     @Override
                     public boolean setViewValue(View view, Cursor cursor, int i) {
                         view.setTag(cursor.getString(cursor.getColumnIndex("key")));
-                        if(view instanceof TextView){
-                            ((TextView)view).setText(cursor.getString(i));
+                        if (view instanceof TextView) {
+                            ((TextView) view).setText(cursor.getString(i));
                         }
                         return true;
                     }
@@ -189,31 +191,75 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
         switch (parent.getId()) {
             case R.id.eventPicker:
                 if (current != null) {
+                    try{
                     blueAlliance.loadMatches(current, new NetworkCallback() {
                         @Override
                         public void handleFinishDownload(boolean success) {
+                            Toast.makeText(MainMenu.this, "Did not successfully download match list!", Toast.LENGTH_LONG).show();
 
                         }
                     });
-                    System.out.println(">FKHE:KFH");
                 }
-                setupMatchSpinner(current);
+                    catch(Exception e) {
+                        Log.println(1010, "error", "This shouldn't happen");
+                    }
+
+                    }
+                downloadMatchSpinnerData();
         }
     }
     @Override
     public void onNothingSelected(AdapterView<?> a){};
 
-        public Event getSelectedEvent(){
-            Event current = null;
-            if(eventPicker != null && eventPicker.getSelectedView() != null)
-                current= dbHelper.getEvent((String) eventPicker.getSelectedView().getTag());
-            return current;
+    public Event getSelectedEvent(){
+        Event current = null;
+
+        if(eventPicker != null && eventPicker.getSelectedView() != null)
+
+        {
+            current = dbHelper.getEvent((String) eventPicker.getSelectedView().getTag());
         }
+
+        return current;
+
+    }
     public void setupMatchSpinner(Event event){
+
         dbHelper = DatabaseHelper.getInstance(this);
-        Spinner matchPicker = (Spinner)findViewById(R.id.matchPicker);
 
+        matchPicker = (Spinner)findViewById(R.id.matchPicker);
+        cursorAdapterMatches = new SimpleCursorAdapter(this,
+                android.R.layout.simple_spinner_item,
+                dbHelper.createMatchCursor(event),
+                new String[]{"key"},
+                new int[]{android.R.id.text1},
+                0);
+        cursorAdapterMatches.setViewBinder(new SimpleCursorAdapter.ViewBinder() {
+            @Override
+            public boolean setViewValue(View view, Cursor cursor, int i) {
+                StringBuilder matchString = new StringBuilder();
+                String compLevel = cursor.getString(cursor.getColumnIndex("comp_level"));
+                int setNumber = cursor.getInt(cursor.getColumnIndex("set_number"));
+                if ("qm".equals(compLevel))
+                    matchString.append("Qual ");
+                else if ("qf".equals(compLevel)) {
+                    matchString.append("Q/F: ");
+                    matchString.append(setNumber);
+                } else if ("sf".equals(compLevel)) {
+                    matchString.append("S/F: ");
+                    matchString.append(setNumber);
+                } else if ("f".equals(compLevel)) {
+                    matchString.append("Final: ");
+                    matchString.append(setNumber);
+                }
+                matchString.append(" Match: ").append(cursor.getInt(cursor.getColumnIndex("match_number")));
 
+                ((TextView) view).setText(matchString.toString());
+                view.setTag(R.id.match_key, cursor.getString(cursor.getColumnIndex("key")));
+
+                return true;
+            }
+        });
         matchPicker.setAdapter(cursorAdapterMatches);
     }
 }
