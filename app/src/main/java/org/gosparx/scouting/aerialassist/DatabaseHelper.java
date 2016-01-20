@@ -569,10 +569,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(TABLE_SCOUTING_NAME, scouting.getNameOfScouter());
 
         if (scoutingAuto != null) {
-            values.put(TABLE_SCOUTING_AUTO_STARTING_LOCATION_X, scoutingAuto.getStartingLocationX());
-            values.put(TABLE_SCOUTING_AUTO_STARTING_LOCATION_Y, scoutingAuto.getStartingLocationY());
-            values.put(TABLE_SCOUTING_AUTO_ENDING_LOCATION_X, scoutingAuto.getEndingLocationX());
-            values.put(TABLE_SCOUTING_AUTO_ENDING_LOCATION_Y, scoutingAuto.getEndingLocationY());
+//            values.put(TABLE_SCOUTING_AUTO_STARTING_LOCATION_X, scoutingAuto.getStartingLocationX());
+ //           values.put(TABLE_SCOUTING_AUTO_STARTING_LOCATION_Y, scoutingAuto.getStartingLocationY());
+  //          values.put(TABLE_SCOUTING_AUTO_ENDING_LOCATION_X, scoutingAuto.getEndingLocationX());
+  //          values.put(TABLE_SCOUTING_AUTO_ENDING_LOCATION_Y, scoutingAuto.getEndingLocationY());
         }
         if (scoutingTele != null) {
  //           values.put(TABLE_SCOUTING_TELE_TOTES_STACKED_1, scoutingTele.getTotesStacked1());
@@ -684,10 +684,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         ScoutingAuto auto = new ScoutingAuto();
         data.setAuto(auto);
-        auto.setStartingLocationX(c.getInt(c.getColumnIndex(TABLE_SCOUTING_AUTO_STARTING_LOCATION_X)));
-        auto.setStartingLocationY(c.getInt(c.getColumnIndex(TABLE_SCOUTING_AUTO_STARTING_LOCATION_Y)));
-        auto.setEndingLocationX(c.getInt(c.getColumnIndex(TABLE_SCOUTING_AUTO_ENDING_LOCATION_X)));
-        auto.setEndingLocationY(c.getInt(c.getColumnIndex(TABLE_SCOUTING_AUTO_ENDING_LOCATION_Y)));
+      //  auto.setStartingLocationX(c.getInt(c.getColumnIndex(TABLE_SCOUTING_AUTO_STARTING_LOCATION_X)));
+     //   auto.setStartingLocationY(c.getInt(c.getColumnIndex(TABLE_SCOUTING_AUTO_STARTING_LOCATION_Y)));
+     //   auto.setEndingLocationX(c.getInt(c.getColumnIndex(TABLE_SCOUTING_AUTO_ENDING_LOCATION_X)));
+     //   auto.setEndingLocationY(c.getInt(c.getColumnIndex(TABLE_SCOUTING_AUTO_ENDING_LOCATION_Y)));
 
         ScoutingTele tele = new ScoutingTele();
         data.setTele(tele);
