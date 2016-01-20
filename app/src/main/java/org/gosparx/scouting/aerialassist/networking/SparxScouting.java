@@ -74,7 +74,7 @@ public class SparxScouting {
         };
 
         for (final Scouting scouting : scoutingList) {
-            ion.with(context)
+            Ion.with(context)
                     .load(request)
                     .setJsonPojoBody(scouting)
                     .asString()
@@ -116,7 +116,7 @@ public class SparxScouting {
     }
 
     private void getScouting(String request, final NetworkCallback callback){
-        ion.with(context)
+        Ion.with(context)
         .load(request)
         .as(new TypeToken<List<Scouting>>(){})
         .setCallback(new FutureCallback<List<Scouting>>() {
