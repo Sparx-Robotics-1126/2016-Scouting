@@ -3,8 +3,11 @@ package com.sparx1126.scoutingapp2016;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -19,21 +22,26 @@ import android.widget.Toast;
 
 import org.gosparx.scouting.aerialassist.DatabaseHelper;
 import org.gosparx.scouting.aerialassist.dto.Event;
-import org.gosparx.scouting.aerialassist.networking.*;
+import org.gosparx.scouting.aerialassist.dto.Match;
+import org.gosparx.scouting.aerialassist.networking.BlueAlliance;
+import org.gosparx.scouting.aerialassist.networking.NetworkCallback;
+import org.gosparx.scouting.aerialassist.networking.NetworkHelper;
 
-import static android.app.PendingIntent.getActivity;
 import static org.gosparx.scouting.aerialassist.networking.NetworkHelper.isNetworkAvailable;
 
 public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSelectedListener
-{
-
+, Parcelable{
+    Spinner eventPicker;
+    Spinner matchPicker;
     private SimpleCursorAdapter cursorAdapterRegionalNames;
     private SimpleCursorAdapter cursorAdapterMatches;
     private SimpleCursorAdapter cursorAdapterTeams;
     private BlueAlliance blueAlliance;
     private DatabaseHelper dbHelper;
-    Spinner eventPicker;
-    Spinner matchPicker;
+
+
+    private MainMenu(Parcel in){
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,9 +69,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
-        }
-        else if (id == R.id.action_download)
-        {
+        } else if (id == R.id.action_download) {
             downloadEventSpinnerData();
         }
 
@@ -72,9 +78,10 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
 
     /**
      * notify the user about data download
+     *
      * @return message about download
      */
-    private AlertDialog createDialog(){
+    private AlertDialog createDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.downloading_data);
         builder.setMessage(R.string.please_wait_while_data_downloads);
@@ -91,12 +98,10 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
     /**
      * check if data needs to be downloaded
      */
-    private void downloadEventSpinnerDataIfNecessary()
-    {
-        if(isNetworkAvailable(this) && NetworkHelper.needToLoadEventList(this)) {
+    private void downloadEventSpinnerDataIfNecessary() {
+        if (isNetworkAvailable(this) && NetworkHelper.needToLoadEventList(this)) {
             downloadEventSpinnerData();
-        }
-        else {
+        } else {
             setupEventSpinner();
         }
     }
@@ -104,8 +109,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
     /**
      * get data to populate spinner
      */
-    private void downloadEventSpinnerData()
-    {
+    private void downloadEventSpinnerData() {
         final Dialog alert = createDialog();
         alert.show();
         blueAlliance = BlueAlliance.getInstance(this);
@@ -125,11 +129,12 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
             }
         });
     }
-    private void downloadMatchSpinnerData(){
+
+    private void downloadMatchSpinnerData() {
         final Dialog alert = createDialog();
         alert.show();
         final Event e = getSelectedEvent();
-        BlueAlliance ba =  BlueAlliance.getInstance(this);
+        BlueAlliance ba = BlueAlliance.getInstance(this);
         ba.loadMatches(e, new NetworkCallback() {
             @Override
             public void handleFinishDownload(final boolean success) {
@@ -137,7 +142,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
                     @Override
                     public void run() {
                         if (!success)
-                            Toast.makeText(MainMenu.this, "Did not successfully download match list!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(MainMenu.this, "Did not successfully download match list!", Toast.LENGTH_SHORT).show();
                         alert.dismiss();
 
                         setupMatchSpinner(e);
@@ -157,10 +162,9 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
     /**
      * creates the spinner with values supplied by BlueAlliance
      */
-    public void setupEventSpinner()
-    {
+    public void setupEventSpinner() {
         dbHelper = DatabaseHelper.getInstance(this);
-        eventPicker = (Spinner)findViewById(R.id.eventPicker);
+        eventPicker = (Spinner) findViewById(R.id.eventPicker);
         cursorAdapterRegionalNames = new SimpleCursorAdapter(
                 this,
                 android.R.layout.simple_spinner_item,
@@ -191,30 +195,31 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
         switch (parent.getId()) {
             case R.id.eventPicker:
                 if (current != null) {
-                    try{
-                    blueAlliance.loadMatches(current, new NetworkCallback() {
-                        @Override
-                        public void handleFinishDownload(boolean success) {
-                            Toast.makeText(MainMenu.this, "Did not successfully download match list!", Toast.LENGTH_LONG).show();
+                    try {
+                        blueAlliance.loadMatches(current, new NetworkCallback() {
+                            @Override
+                            public void handleFinishDownload(boolean success) {
+                                Toast.makeText(MainMenu.this, "Did not successfully download match list!", Toast.LENGTH_LONG).show();
 
-                        }
-                    });
-                }
-                    catch(Exception e) {
+                            }
+                        });
+                    } catch (Exception e) {
                         Log.println(1010, "error", "This shouldn't happen");
                     }
 
-                    }
+                }
                 downloadMatchSpinnerData();
         }
     }
-    @Override
-    public void onNothingSelected(AdapterView<?> a){};
 
-    public Event getSelectedEvent(){
+    @Override
+    public void onNothingSelected(AdapterView<?> a) {
+    }
+
+    public Event getSelectedEvent() {
         Event current = null;
 
-        if(eventPicker != null && eventPicker.getSelectedView() != null)
+        if (eventPicker != null && eventPicker.getSelectedView() != null)
 
         {
             current = dbHelper.getEvent((String) eventPicker.getSelectedView().getTag());
@@ -223,11 +228,23 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
         return current;
 
     }
-    public void setupMatchSpinner(Event event){
+
+    /**
+     * called when transitioning between main menu and submenus (scouting / data view)
+     * @return the vurrently selected match
+     */
+    public Match getSelectedMatch(){
+        Match match = null;
+        if(matchPicker != null && matchPicker.getSelectedView() != null){
+            match = dbHelper.getMatch((String) matchPicker.getSelectedView().getTag());
+        }
+        return match;
+    }
+    public void setupMatchSpinner(Event event) {
 
         dbHelper = DatabaseHelper.getInstance(this);
 
-        matchPicker = (Spinner)findViewById(R.id.matchPicker);
+        matchPicker = (Spinner) findViewById(R.id.matchPicker);
         cursorAdapterMatches = new SimpleCursorAdapter(this,
                 android.R.layout.simple_spinner_item,
                 dbHelper.createMatchCursor(event),
@@ -261,5 +278,31 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
             }
         });
         matchPicker.setAdapter(cursorAdapterMatches);
+    }
+        public static final Parcelable.Creator<MainMenu> CREATOR = new Parcelable.Creator<MainMenu>() {
+            public MainMenu createFromParcel(Parcel in) {
+                return new MainMenu(in);
+            }
+            public MainMenu[] newArray(int size) {
+                return new MainMenu[size];
+            }
+    };
+
+
+    public void writeToParcel(Parcel out, int flags) {
+        out.writeString(getSelectedMatch().getCompetitionLevel());
+        out.writeString(getSelectedMatch().getEventKey());
+        out.writeString(getSelectedMatch().getKey());
+        out.writeInt(getSelectedMatch().getSetNumber());
+        out.writeInt(getSelectedMatch().getMatchNumber());
+    }
+    @Override
+    public int describeContents(){
+        return 0;
+    }
+    public void beginScouting(View view){
+        Intent i = new Intent(this, ScoutingTeamSelect.class);
+        final Match currentMatch = getSelectedMatch();
+
     }
 }
