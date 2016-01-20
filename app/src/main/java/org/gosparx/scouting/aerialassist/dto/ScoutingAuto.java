@@ -1,116 +1,247 @@
 package org.gosparx.scouting.aerialassist.dto;
 
-/**
- * Created by jbass on 3/1/14.
+/*
+** Information to collect during Autonomous
  */
 public class ScoutingAuto {
 
-    private double startingLocationX;
-    private double startingLocationY;
-    private boolean startedWithBall;
-    private int ballsAcquired = -1;
-    private int ballsShot = -1;
-    private int ballsScored = -1;
-    private int ballsScoredHotHigh = -1;
-    private int ballsScoredHotLow = -1;
-    private int ballsScoredHigh = -1;
-    private int ballsScoredLow = -1;
-    private double endingLocationX;
-    private double endingLocationY;
+    // positions of the various defenses
+    // note: lowbar is always in position 1 and so has no variable
+    // 0 = not present on field; 2 - 5 = position number
+    private int portcullisPosition = 0;
+    private int chevalPosition = 0;
+    private int moatPosition = 0;
+    private int rampartsPosition = 0;
+    private int drawbridgePosition = 0;
+    private int sallyportPosition = 0;
+    private int rockwallPosition = 0;
+    private int roughterrainPosition = 0;
+    // whether or not each defense was crossed
+    private Boolean portcullisCrossed = false;
+    private Boolean chevalCrossed = false;
+    private Boolean moatCrossed = false;
+    private Boolean rampartsCrossed = false;
+    private Boolean drawbridgeCrossed = false;
+    private Boolean sallyportCrossed = false;
+    private Boolean rockwallCrossed = false;
+    private Boolean roughterrainCrossed = false;
+    private Boolean lowbarCrossed = false;
+    // whether or not the robot picked up a boulder
+    private Boolean boudlerPickedUp = false;
+    // whether or not the robot scored in the hight goal
+    private Boolean robotScoredHigh = false;
+    // whether or not the robot scored in the low goal
+    private Boolean robotScoredLow = false;
+    // which zone the robot ended in (courtyard/neutral)
+    private String endingPosition = "unknown";
+    // whether or not the robot achieived a reach
+    private Boolean reachAchieved = false;
+    // whether or not a reach was part of a cross attempt
+    private Boolean reachWasCrossAttempt = false;
+    // whether or not the robot started in the spy position
+    private Boolean startedAsSpy = false;
 
-    public double getStartingLocationX() {
-        return startingLocationX;
+    public int getPortcullisPosition() {
+        return portcullisPosition;
     }
 
-    public void setStartingLocationX(double startingLocationX) {
-        this.startingLocationX = startingLocationX;
+    public void setPortcullisPosition(int portcullisPosition) {
+        this.portcullisPosition = portcullisPosition;
     }
 
-    public double getStartingLocationY() {
-        return startingLocationY;
+    public int getChevalPosition() {
+        return chevalPosition;
     }
 
-    public void setStartingLocationY(double startingLocationY) {
-        this.startingLocationY = startingLocationY;
+    public void setChevalPosition(int chevalPosition) {
+        this.chevalPosition = chevalPosition;
     }
 
-    public boolean isStartedWithBall() {
-        return startedWithBall;
+    public int getMoatPosition() {
+        return moatPosition;
     }
 
-    public void setStartedWithBall(boolean startedWithBall) {
-        this.startedWithBall = startedWithBall;
+    public void setMoatPosition(int moatPosition) {
+        this.moatPosition = moatPosition;
     }
 
-    public int getBallsAcquired() {
-        return ballsAcquired;
+    public int getRampartsPosition() {
+        return rampartsPosition;
     }
 
-    public void setBallsAcquired(int ballsAcquired) {
-        this.ballsAcquired = ballsAcquired;
+    public void setRampartsPosition(int rampartsPosition) {
+        this.rampartsPosition = rampartsPosition;
     }
 
-    public int getBallsShot() {
-        return ballsShot;
+    public int getDrawbridgePosition() {
+        return drawbridgePosition;
     }
 
-    public void setBallsShot(int ballsShot) {
-        this.ballsShot = ballsShot;
+    public void setDrawbridgePosition(int drawbridgePosition) {
+        this.drawbridgePosition = drawbridgePosition;
     }
 
-    public int getBallsScored() {
-        return ballsScored;
+    public int getSallyportPosition() {
+        return sallyportPosition;
     }
 
-    public void setBallsScored(int ballsScored) {
-        this.ballsScored = ballsScored;
+    public void setSallyportPosition(int sallyportPosition) {
+        this.sallyportPosition = sallyportPosition;
     }
 
-    public int getBallsScoredHotHigh() {
-        return ballsScoredHotHigh;
+    public int getRockwallPosition() {
+        return rockwallPosition;
     }
 
-    public void setBallsScoredHotHigh(int ballsScoredHotHigh) {
-        this.ballsScoredHotHigh = ballsScoredHotHigh;
+    public void setRockwallPosition(int rockwallPosition) {
+        this.rockwallPosition = rockwallPosition;
     }
 
-    public int getBallsScoredHotLow() {
-        return ballsScoredHotLow;
+    public int getRoughterrainPosition() {
+        return roughterrainPosition;
     }
 
-    public void setBallsScoredHotLow(int ballsScoredHotLow) {
-        this.ballsScoredHotLow = ballsScoredHotLow;
+    public void setRoughterrainPosition(int roughterrainPosition) {
+        this.roughterrainPosition = roughterrainPosition;
     }
 
-    public int getBallsScoredHigh() {
-        return ballsScoredHigh;
+    public Boolean getPortcullisCrossed() {
+        return portcullisCrossed;
     }
 
-    public void setBallsScoredHigh(int ballsScoredHigh) {
-        this.ballsScoredHigh = ballsScoredHigh;
+    public void setPortcullisCrossed(Boolean portcullisCrossed) {
+        this.portcullisCrossed = portcullisCrossed;
     }
 
-    public int getBallsScoredLow() {
-        return ballsScoredLow;
+    public Boolean getChevalCrossed() {
+        return chevalCrossed;
     }
 
-    public void setBallsScoredLow(int ballsScoredLow) {
-        this.ballsScoredLow = ballsScoredLow;
+    public void setChevalCrossed(Boolean chevalCrossed) {
+        this.chevalCrossed = chevalCrossed;
     }
 
-    public double getEndingLocationX() {
-        return endingLocationX;
+    public Boolean getMoatCrossed() {
+        return moatCrossed;
     }
 
-    public void setEndingLocationX(double endingLocationX) {
-        this.endingLocationX = endingLocationX;
+    public void setMoatCrossed(Boolean moatCrossed) {
+        this.moatCrossed = moatCrossed;
     }
 
-    public double getEndingLocationY() {
-        return endingLocationY;
+    public Boolean getRampartsCrossed() {
+        return rampartsCrossed;
     }
 
-    public void setEndingLocationY(double endingLocationY) {
-        this.endingLocationY = endingLocationY;
+    public void setRampartsCrossed(Boolean rampartsCrossed) {
+        this.rampartsCrossed = rampartsCrossed;
     }
+
+    public Boolean getDrawbridgeCrossed() {
+        return drawbridgeCrossed;
+    }
+
+    public void setDrawbridgeCrossed(Boolean drawbridgeCrossed) {
+        this.drawbridgeCrossed = drawbridgeCrossed;
+    }
+
+    public Boolean getSallyportCrossed() {
+        return sallyportCrossed;
+    }
+
+    public void setSallyportCrossed(Boolean sallyportCrossed) {
+        this.sallyportCrossed = sallyportCrossed;
+    }
+
+    public Boolean getRockwallCrossed() {
+        return rockwallCrossed;
+    }
+
+    public void setRockwallCrossed(Boolean rockwallCrossed) {
+        this.rockwallCrossed = rockwallCrossed;
+    }
+
+    public Boolean getRoughterrainCrossed() {
+        return roughterrainCrossed;
+    }
+
+    public void setRoughterrainCrossed(Boolean roughterrainCrossed) {
+        this.roughterrainCrossed = roughterrainCrossed;
+    }
+
+    public Boolean getLowbarCrossed() {
+        return lowbarCrossed;
+    }
+
+    public void setLowbarCrossed(Boolean lowbarCrossed) {
+        this.lowbarCrossed = lowbarCrossed;
+    }
+
+    public Boolean getBoudlerPickedUp() {
+        return boudlerPickedUp;
+    }
+
+    public void setBoudlerPickedUp(Boolean boudlerPickedUp) {
+        this.boudlerPickedUp = boudlerPickedUp;
+    }
+
+    public Boolean getRobotScoredHigh() {
+        return robotScoredHigh;
+    }
+
+    public void setRobotScoredHigh(Boolean robotScoredHigh) {
+        this.robotScoredHigh = robotScoredHigh;
+    }
+
+    public Boolean getRobotScoredLow() {
+        return robotScoredLow;
+    }
+
+    public void setRobotScoredLow(Boolean robotScoredLow) {
+        this.robotScoredLow = robotScoredLow;
+    }
+
+    public String getEndingPosition() {
+        return endingPosition;
+    }
+
+    public void setEndingPosition(String endingPosition) {
+        this.endingPosition = endingPosition;
+    }
+
+    public Boolean getReachAchieved() {
+        return reachAchieved;
+    }
+
+    public void setReachAchieved(Boolean reachAchieved) {
+        this.reachAchieved = reachAchieved;
+    }
+
+    public Boolean getReachWasCrossAttempt() {
+        return reachWasCrossAttempt;
+    }
+
+    public void setReachWasCrossAttempt(Boolean reachWasCrossAttempt) {
+        this.reachWasCrossAttempt = reachWasCrossAttempt;
+    }
+
+    public Boolean getStartedAsSpy() {
+        return startedAsSpy;
+    }
+
+    public void setStartedAsSpy(Boolean startedAsSpy) {
+        this.startedAsSpy = startedAsSpy;
+    }
+
+    public Boolean getStartedWithBoulder() {
+        return startedWithBoulder;
+    }
+
+    public void setStartedWithBoulder(Boolean startedWithBoulder) {
+        this.startedWithBoulder = startedWithBoulder;
+    }
+
+    // whether or not the robot started with a boulder
+    private Boolean startedWithBoulder = false;
+
 }

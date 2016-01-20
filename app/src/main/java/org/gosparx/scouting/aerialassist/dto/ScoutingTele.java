@@ -1,107 +1,167 @@
 package org.gosparx.scouting.aerialassist.dto;
 
-/**
- * Created by jbass on 3/1/14.
+/*
+** Information to collect during Autonomous
  */
 public class ScoutingTele {
 
-    private int ballsAcquiredFromFloor = -1;
-    private int completedAssistsFromFloor = -1;
-    private int ballsAcquiredFromHuman = -1;
-    private int completedAssistsFromHuman = -1;
-    private int shotHigh = -1;
-    private int scoredHigh = -1;
-    private int shotLow = -1;
-    private int scoredLow = -1;
-    private int ballsCaughtOverTruss = -1;
-    private int ballsThrownOverTruss = -1;
-    private String stayedInZone;
+    // goal attempts and successes
+    private int highGoalAttempts = 0;
+    private int highGoalsScored = 0;
+    private int lowGoalAttempts = 0;
+    private int lowGoalsScored = 0;
+    // count of defense crosses
+    private int portcullisCrosses = 0;
+    private int chevalCrosses = 0;
+    private int moatCrosses = 0;
+    private int rampartsCrosses = 0;
+    private int drawbridgeCrosses = 0;
+    private int sallyportCrosses = 0;
+    private int rockwallCrosses = 0;
+    private int roughterrainCrosses = 0;
+    private int lowbarCrosses = 0;
+    // whether or not this robot plays defense
+    private Boolean playsDefense = false;
+    // number of boulders picked up from floor
+    private int bouldersPickedUp = 0;
+    // number of boulders taken to opponent courtyard
+    private int bouldersTakenToCourtyard = 0;
+    // number of boulders received from brattice
+    private int bouldersReceivedFromBrattice = 0;
 
-    public int getBallsAcquiredFromFloor() {
-        return ballsAcquiredFromFloor;
+    public int getHighGoalAttempts() {
+        return highGoalAttempts;
     }
 
-    public void setBallsAcquiredFromFloor(int ballsAcquiredFromFloor) {
-        this.ballsAcquiredFromFloor = ballsAcquiredFromFloor;
+    public void setHighGoalAttempts(int highGoalAttempts) {
+        this.highGoalAttempts = highGoalAttempts;
     }
 
-    public int getCompletedAssistsFromFloor() {
-        return completedAssistsFromFloor;
+    public int getHighGoalsScored() {
+        return highGoalsScored;
     }
 
-    public void setCompletedAssistsFromFloor(int completedAssistsFromFloor) {
-        this.completedAssistsFromFloor = completedAssistsFromFloor;
+    public void setHighGoalsScored(int highGoalsScored) {
+        this.highGoalsScored = highGoalsScored;
     }
 
-    public int getBallsAcquiredFromHuman() {
-        return ballsAcquiredFromHuman;
+    public int getLowGoalAttempts() {
+        return lowGoalAttempts;
     }
 
-    public void setBallsAcquiredFromHuman(int ballsAcquiredFromHuman) {
-        this.ballsAcquiredFromHuman = ballsAcquiredFromHuman;
+    public void setLowGoalAttempts(int lowGoalAttempts) {
+        this.lowGoalAttempts = lowGoalAttempts;
     }
 
-    public int getCompletedAssistsFromHuman() {
-        return completedAssistsFromHuman;
+    public int getLowGoalsScored() {
+        return lowGoalsScored;
     }
 
-    public void setCompletedAssistsFromHuman(int completedAssistsFromHuman) {
-        this.completedAssistsFromHuman = completedAssistsFromHuman;
+    public void setLowGoalsScored(int lowGoalsScored) {
+        this.lowGoalsScored = lowGoalsScored;
     }
 
-    public int getShotHigh() {
-        return shotHigh;
+    public int getPortcullisCrosses() {
+        return portcullisCrosses;
     }
 
-    public void setShotHigh(int shotHigh) {
-        this.shotHigh = shotHigh;
+    public void setPortcullisCrosses(int portcullisCrosses) {
+        this.portcullisCrosses = portcullisCrosses;
     }
 
-    public int getScoredHigh() {
-        return scoredHigh;
+    public int getChevalCrosses() {
+        return chevalCrosses;
     }
 
-    public void setScoredHigh(int scoredHigh) {
-        this.scoredHigh = scoredHigh;
+    public void setChevalCrosses(int chevalCrosses) {
+        this.chevalCrosses = chevalCrosses;
     }
 
-    public int getShotLow() {
-        return shotLow;
+    public int getMoatCrosses() {
+        return moatCrosses;
     }
 
-    public void setShotLow(int shotLow) {
-        this.shotLow = shotLow;
+    public void setMoatCrosses(int moatCrosses) {
+        this.moatCrosses = moatCrosses;
     }
 
-    public int getScoredLow() {
-        return scoredLow;
+    public int getRampartsCrosses() {
+        return rampartsCrosses;
     }
 
-    public void setScoredLow(int scoredLow) {
-        this.scoredLow = scoredLow;
+    public void setRampartsCrosses(int rampartsCrosses) {
+        this.rampartsCrosses = rampartsCrosses;
     }
 
-    public int getBallsCaughtOverTruss() {
-        return ballsCaughtOverTruss;
+    public int getDrawbridgeCrosses() {
+        return drawbridgeCrosses;
     }
 
-    public void setBallsCaughtOverTruss(int ballsCaughtOverTruss) {
-        this.ballsCaughtOverTruss = ballsCaughtOverTruss;
+    public void setDrawbridgeCrosses(int drawbridgeCrosses) {
+        this.drawbridgeCrosses = drawbridgeCrosses;
     }
 
-    public int getBallsThrownOverTruss() {
-        return ballsThrownOverTruss;
+    public int getSallyportCrosses() {
+        return sallyportCrosses;
     }
 
-    public void setBallsThrownOverTruss(int ballsThrownOverTruss) {
-        this.ballsThrownOverTruss = ballsThrownOverTruss;
+    public void setSallyportCrosses(int sallyportCrosses) {
+        this.sallyportCrosses = sallyportCrosses;
     }
 
-    public String getStayedInZone() {
-        return stayedInZone;
+    public int getRockwallCrosses() {
+        return rockwallCrosses;
     }
 
-    public void setStayedInZone(String stayedInZone) {
-        this.stayedInZone = stayedInZone;
+    public void setRockwallCrosses(int rockwallCrosses) {
+        this.rockwallCrosses = rockwallCrosses;
+    }
+
+    public int getRoughterrainCrosses() {
+        return roughterrainCrosses;
+    }
+
+    public void setRoughterrainCrosses(int roughterrainCrosses) {
+        this.roughterrainCrosses = roughterrainCrosses;
+    }
+
+    public int getLowbarCrosses() {
+        return lowbarCrosses;
+    }
+
+    public void setLowbarCrosses(int lowbarCrosses) {
+        this.lowbarCrosses = lowbarCrosses;
+    }
+
+    public Boolean getPlaysDefense() {
+        return playsDefense;
+    }
+
+    public void setPlaysDefense(Boolean playsDefense) {
+        this.playsDefense = playsDefense;
+    }
+
+    public int getBouldersPickedUp() {
+        return bouldersPickedUp;
+    }
+
+    public void setBouldersPickedUp(int bouldersPickedUp) {
+        this.bouldersPickedUp = bouldersPickedUp;
+    }
+
+    public int getBouldersTakenToCourtyard() {
+        return bouldersTakenToCourtyard;
+    }
+
+    public void setBouldersTakenToCourtyard(int bouldersTakenToCourtyard) {
+        this.bouldersTakenToCourtyard = bouldersTakenToCourtyard;
+    }
+
+    public int getBouldersReceivedFromBrattice() {
+        return bouldersReceivedFromBrattice;
+    }
+
+    public void setBouldersReceivedFromBrattice(int bouldersReceivedFromBrattice) {
+        this.bouldersReceivedFromBrattice = bouldersReceivedFromBrattice;
     }
 }

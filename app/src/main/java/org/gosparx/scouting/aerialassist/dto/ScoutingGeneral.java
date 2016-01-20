@@ -1,24 +1,15 @@
 package org.gosparx.scouting.aerialassist.dto;
 
-/**
- * Created by jbass on 3/1/14.
+/*
+** Additional information to collect
  */
 public class ScoutingGeneral {
 
-    private boolean playsDefense;
     private int numberOfPenalties = -1;
     private String commentsOnPenalties;
     private int numberOfTechnicalFouls = -1;
     private String commentsOnTechnicalFouls;
     private String generalComments;
-
-    public boolean isPlaysDefense() {
-        return playsDefense;
-    }
-
-    public void setPlaysDefense(boolean playsDefense) {
-        this.playsDefense = playsDefense;
-    }
 
     public int getNumberOfPenalties() {
         return numberOfPenalties;
