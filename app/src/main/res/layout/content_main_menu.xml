@@ -16,6 +16,7 @@
         android:textSize="@dimen/text_size"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp" />
+
     <Spinner
         android:id="@+id/eventPicker"
         android:layout_width="fill_parent"
@@ -23,22 +24,68 @@
         android:background="@android:drawable/btn_dropdown"
         android:layout_marginLeft="@dimen/horiz_margin"
         android:layout_marginRight="@dimen/horiz_margin" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/horiz_margin"
-        android:layout_marginRight="@dimen/horiz_margin"
-        android:layout_marginTop="@dimen/text_margin_top"
-        android:text="@string/select_match"
-        android:textSize="@dimen/text_size" />
+    <RadioGroup android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:button="@android:drawable/btn_radio"
+            android:layout_height="@dimen/radio_height"
+            android:text="@string/match_scouting"
+            android:checked="true"
+            android:onClick="setScoutType"
+            android:id="@+id/matchScouting"
+            />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/radio_height"
+            android:button="@android:drawable/btn_radio"
+            android:text="@string/benchmarking"
+            android:onClick="setScoutType"
+            android:id="@+id/benchmarking"/>
 
-    <Spinner
-        android:id="@+id/matchPicker"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:drawable/btn_dropdown"
-        android:layout_marginLeft="@dimen/horiz_margin"
-        android:layout_marginRight="@dimen/horiz_margin" />
+    </RadioGroup>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:id="@+id/matchScoutLayout"
+        android:orientation="vertical">
+
+        <!--default visibility should be invisible in case benchmarking is chosen -->
+        <TextView
+            android:id="@+id/selectMatch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/horiz_margin"
+            android:layout_marginRight="@dimen/horiz_margin"
+            android:layout_marginTop="@dimen/text_margin_top"
+            android:text="@string/select_match"
+            android:textSize="@dimen/text_size" />
+
+        <!--default visibility should be invisible in case benchmarking is chosen -->
+        <Spinner
+            android:id="@+id/matchPicker"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/btn_dropdown"
+            android:layout_marginLeft="@dimen/horiz_margin"
+            android:layout_marginRight="@dimen/horiz_margin" />
+
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/teamScoutLayout">
+        <TextView android:id="@+id/selectTeam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/horiz_margin"
+            android:layout_marginRight="@dimen/horiz_margin"
+            android:layout_marginTop="@dimen/text_margin_top"
+            android:text="@string/select_team"
+            android:textSize="@dimen/text_size" />
+        <Spinner android:layout_height="wrap_content" android:layout_width="fill_parent"
+            android:id="@+id/teamPicker"
+            android:background="@android:drawable/btn_dropdown"
+            android:layout_marginLeft="@dimen/horiz_margin"
+            android:layout_marginRight="@dimen/horiz_margin"/>
+
+    </LinearLayout>
 
     <Button android:id="@+id/begin_scouting"
         android:layout_height="@dimen/button_height"
@@ -51,4 +98,5 @@
         android:nestedScrollingEnabled="false"
         android:singleLine="false"
         android:textStyle="bold" />
+
 </LinearLayout>

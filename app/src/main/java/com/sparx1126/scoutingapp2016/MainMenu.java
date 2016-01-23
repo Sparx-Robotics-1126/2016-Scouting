@@ -6,8 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -15,41 +13,63 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.gosparx.scouting.aerialassist.DatabaseHelper;
+import org.gosparx.scouting.aerialassist.dto.Alliance;
+import org.gosparx.scouting.aerialassist.dto.Alliances;
 import org.gosparx.scouting.aerialassist.dto.Event;
 import org.gosparx.scouting.aerialassist.dto.Match;
 import org.gosparx.scouting.aerialassist.networking.BlueAlliance;
 import org.gosparx.scouting.aerialassist.networking.NetworkCallback;
 import org.gosparx.scouting.aerialassist.networking.NetworkHelper;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import static org.gosparx.scouting.aerialassist.networking.NetworkHelper.isNetworkAvailable;
 
-public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSelectedListener
-, Parcelable{
+public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
+
     Spinner eventPicker;
     Spinner matchPicker;
+    private LinearLayout matchScout;
+    private LinearLayout teamScout;
     private SimpleCursorAdapter cursorAdapterRegionalNames;
     private SimpleCursorAdapter cursorAdapterMatches;
     private SimpleCursorAdapter cursorAdapterTeams;
+    private Button scout;
     private BlueAlliance blueAlliance;
+
     private DatabaseHelper dbHelper;
 
-
-    private MainMenu(Parcel in){
-    }
-
+    public static final String MATCH_INFO = "com.sparx1126.scouting2016.MATCH";
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         downloadEventSpinnerDataIfNecessary();
+        blueAlliance = BlueAlliance.getInstance(this);
+        matchScout = (LinearLayout) findViewById(R.id.matchScoutLayout);
+        matchScout.setVisibility(View.GONE);
+        teamScout = (LinearLayout) findViewById(R.id.teamScoutLayout);
+        teamScout.setVisibility(View.GONE);
+        scout = (Button)findViewById(R.id.begin_scouting);
+        scout.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View view) {
+                beginScouting(view);
+            }
+        });
     }
 
     @Override
@@ -196,20 +216,23 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
             case R.id.eventPicker:
                 if (current != null) {
                     try {
+
                         blueAlliance.loadMatches(current, new NetworkCallback() {
                             @Override
                             public void handleFinishDownload(boolean success) {
-                                Toast.makeText(MainMenu.this, "Did not successfully download match list!", Toast.LENGTH_LONG).show();
-
-                            }
+                                if(!success) {
+                                    Toast.makeText(MainMenu.this, "Did not successfully download match list!", Toast.LENGTH_LONG).show();
+                                }
+                                    }
                         });
+
                     } catch (Exception e) {
                         Log.println(1010, "error", "This shouldn't happen");
                     }
 
                 }
                 downloadMatchSpinnerData();
-        }
+                }
     }
 
     @Override
@@ -228,10 +251,24 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
         return current;
 
     }
-
+    public void setScoutType(View view){
+        switch(view.getId()){
+            case R.id.matchScouting:
+                if(matchScout.getVisibility() != View.VISIBLE)
+                    matchScout.setVisibility(View.VISIBLE);
+                if(teamScout.getVisibility() != View.GONE)
+                    teamScout.setVisibility(View.GONE);
+                break;
+            case R.id.benchmarking:
+                if(teamScout.getVisibility() != View.VISIBLE)
+                    teamScout.setVisibility(View.VISIBLE);
+                if(matchScout.getVisibility() != View.GONE)
+                    matchScout.setVisibility(View.GONE);
+        }
+    }
     /**
      * called when transitioning between main menu and submenus (scouting / data view)
-     * @return the vurrently selected match
+     * @return the currently selected match
      */
     public Match getSelectedMatch(){
         Match match = null;
@@ -239,6 +276,9 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
             match = dbHelper.getMatch((String) matchPicker.getSelectedView().getTag());
         }
         return match;
+    }
+    private Alliances getAlliances(){
+        return dbHelper.getMatch(getSelectedMatch().getKey()).getAlliances();
     }
     public void setupMatchSpinner(Event event) {
 
@@ -272,37 +312,27 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
                 matchString.append(" Match: ").append(cursor.getInt(cursor.getColumnIndex("match_number")));
 
                 ((TextView) view).setText(matchString.toString());
-                view.setTag(R.id.match_key, cursor.getString(cursor.getColumnIndex("key")));
+                view.setTag(cursor.getString(cursor.getColumnIndex("key")));
 
                 return true;
             }
         });
         matchPicker.setAdapter(cursorAdapterMatches);
     }
-        public static final Parcelable.Creator<MainMenu> CREATOR = new Parcelable.Creator<MainMenu>() {
-            public MainMenu createFromParcel(Parcel in) {
-                return new MainMenu(in);
-            }
-            public MainMenu[] newArray(int size) {
-                return new MainMenu[size];
-            }
-    };
-
-
-    public void writeToParcel(Parcel out, int flags) {
-        out.writeString(getSelectedMatch().getCompetitionLevel());
-        out.writeString(getSelectedMatch().getEventKey());
-        out.writeString(getSelectedMatch().getKey());
-        out.writeInt(getSelectedMatch().getSetNumber());
-        out.writeInt(getSelectedMatch().getMatchNumber());
+    private String convertMatch(Match match){
+        Gson gson = new GsonBuilder().create();
+        return gson.toJson(match);
     }
-    @Override
-    public int describeContents(){
-        return 0;
-    }
+
     public void beginScouting(View view){
         Intent i = new Intent(this, ScoutingTeamSelect.class);
-        final Match currentMatch = getSelectedMatch();
+        if(getSelectedMatch() != null) {
+            i.putExtra(MATCH_INFO, convertMatch(getSelectedMatch()));
+            startActivity(i);
+        }
+        else Toast.makeText(this, "Select a match first!", Toast.LENGTH_LONG).show();
+
 
     }
+
 }

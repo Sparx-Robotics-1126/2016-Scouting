@@ -1,5 +1,7 @@
 package org.gosparx.scouting.aerialassist.dto;
 
+import java.util.ArrayList;
+
 /**
  * Created by jbass on 3/1/14.
  */
@@ -22,4 +24,6 @@ public class Alliances {
     public void setRed(Alliance red) {
         this.red = red;
     }
+
 }
+
