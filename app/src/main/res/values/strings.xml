@@ -13,7 +13,11 @@
     <string name="select_team">Select Team</string>
     <string name="begin_scouting">Begin Scouting ></string>
     <string name="view_data">View Data</string>
-    <string name="title_activity_scouting_team_select">Scouting Team Select</string>
+    <string name="title_activity_scouting_team_select">ScoutingTeamSelect</string>
+    <string name="minus">-</string>
+    <string name="zero">0</string>
+    <string name="plus">+</string>
+   
     <string name="match_scouting">Scout Matches</string>
     <string name="benchmarking">Benchmark</string>
 </resources>
