@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -26,18 +27,23 @@ import org.gosparx.scouting.aerialassist.dto.Alliance;
 import org.gosparx.scouting.aerialassist.dto.Alliances;
 import org.gosparx.scouting.aerialassist.dto.Event;
 import org.gosparx.scouting.aerialassist.dto.Match;
+import org.gosparx.scouting.aerialassist.dto.Team;
 import org.gosparx.scouting.aerialassist.networking.BlueAlliance;
 import org.gosparx.scouting.aerialassist.networking.NetworkCallback;
 import org.gosparx.scouting.aerialassist.networking.NetworkHelper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.util.ArrayList;
+
 import static org.gosparx.scouting.aerialassist.networking.NetworkHelper.isNetworkAvailable;
 
 public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
-    Spinner eventPicker;
-    Spinner matchPicker;
+    private Spinner eventPicker;
+    private Spinner matchPicker;
+    private Spinner alliancePicker;
+    private Spinner teamPicker;
     private LinearLayout matchScout;
     private LinearLayout teamScout;
     private SimpleCursorAdapter cursorAdapterRegionalNames;
@@ -212,6 +218,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         Event current = getSelectedEvent();
+        Match currentMatch = getSelectedMatch();
         switch (parent.getId()) {
             case R.id.eventPicker:
                 if (current != null) {
@@ -232,6 +239,15 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
 
                 }
                 downloadMatchSpinnerData();
+                break;
+
+            case R.id.matchPicker:
+                if(currentMatch != null)
+                    try{
+                        setupAllianceSpinner();
+                    }
+                    catch(Exception e){System.out.print("Hi");}
+
                 }
     }
 
@@ -270,15 +286,22 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
      * called when transitioning between main menu and submenus (scouting / data view)
      * @return the currently selected match
      */
-    public Match getSelectedMatch(){
+    public Match getSelectedMatch() {
         Match match = null;
-        if(matchPicker != null && matchPicker.getSelectedView() != null){
+        if (matchPicker != null && matchPicker.getSelectedView() != null) {
             match = dbHelper.getMatch((String) matchPicker.getSelectedView().getTag());
         }
         return match;
     }
-    private Alliances getAlliances(){
-        return dbHelper.getMatch(getSelectedMatch().getKey()).getAlliances();
+    private String getTeamKey(int i){
+        Match m = dbHelper.getMatch(getSelectedMatch().getKey());
+        Alliances a = dbHelper.getMatch(getSelectedMatch().getKey()).getAlliances();
+        String team;
+        if(i < 3)
+            team =  a.getBlue().getTeams().get(i);
+        else
+            team= a.getRed().getTeams().get(i-3);
+        return team;
     }
     public void setupMatchSpinner(Event event) {
 
@@ -317,8 +340,28 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
                 return true;
             }
         });
+        matchPicker.setOnItemSelectedListener(this);
         matchPicker.setAdapter(cursorAdapterMatches);
     }
+
+    public void setupAllianceSpinner(){
+        int numTeams = 6;
+        alliancePicker = (Spinner)findViewById(R.id.alliancePicker);
+        String color;
+        ArrayList<String> teamList = new ArrayList<String>();
+        teamList.ensureCapacity(6);
+        for(int i=0; i < numTeams; i++){
+            if(i < 3)
+                color = "Blue";
+            else color = "Red";
+            teamList.add(color + " Alliance " + (i+1) + " (" + getTeamKey(i) + ")");
+        }
+        ArrayAdapter<String> adapter= new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,
+                teamList);
+        alliancePicker.setAdapter(adapter);
+
+    }
+
     private String convertMatch(Match match){
         Gson gson = new GsonBuilder().create();
         return gson.toJson(match);
