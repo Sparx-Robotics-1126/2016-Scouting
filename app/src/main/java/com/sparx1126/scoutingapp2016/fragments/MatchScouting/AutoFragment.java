@@ -7,8 +7,12 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Spinner;
+import android.widget.ToggleButton;
 
 import com.sparx1126.scoutingapp2016.R;
+
+import org.gosparx.scouting.aerialassist.dto.ScoutingAuto;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,31 +23,48 @@ import com.sparx1126.scoutingapp2016.R;
  * create an instance of this fragment.
  */
 public class AutoFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+    private ScoutingAuto sa;
+
+    // controls on the screen
+    private Spinner portcullisPositionSpinner;
+    private Spinner chevalPositionSpinner;
+    private Spinner moatPositionSpinner;
+    private Spinner rampartsPositionSpinner;
+    private Spinner drawbridgePositionSpinner;
+    private Spinner sallyportPositionSpinner;
+    private Spinner rockwallPositionSpinner;
+    private Spinner roughterrainPositionSpinner;
+    private ToggleButton portcullisPositionToggleButton;
+    private ToggleButton chevalPositionToggleButton;
+    private ToggleButton moatPositionToggleButton;
+    private ToggleButton rampartsPositionToggleButton;
+    private ToggleButton drawbridgePositionToggleButton;
+    private ToggleButton sallyportPositionToggleButton;
+    private ToggleButton rockwallPositionToggleButton;
+    private ToggleButton roughterrainPositionToggleButton;
+    private ToggleButton lowbarPositionToggleButton;
+
+    private ToggleButton pickedupboulderToggleButton;
+    private ToggleButton scoredinhighgoalToggleButton;
+    private ToggleButton scoredinlowgoalToggleButton;
+    private Spinner endingPositionSpinner;
+    private ToggleButton reachachievedToggleButton;
+    private ToggleButton reachwascrossattemptToggleButton;
+    private ToggleButton startedasspyToggleButton;
+    private ToggleButton startedwithboulderToggleButton;
 
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment AutoFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static AutoFragment newInstance(String param1, String param2) {
+    public static AutoFragment newInstance(ScoutingAuto sa) {
         AutoFragment fragment = new AutoFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        fragment.setScoutingAuto(sa);
         fragment.setArguments(args);
         return fragment;
     }
@@ -56,8 +77,7 @@ public class AutoFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+
         }
     }
 
@@ -65,7 +85,37 @@ public class AutoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_auto, container, false);
+        View result = inflater.inflate(R.layout.fragment_auto, container, false);
+
+        // connect up to UI elements
+        portcullisPositionSpinner = (Spinner)result.findViewById(R.id.auto_portcullis_position);
+        chevalPositionSpinner = (Spinner)result.findViewById(R.id.auto_cheval_position);
+        moatPositionSpinner = (Spinner)result.findViewById(R.id.auto_moat_position);
+        rampartsPositionSpinner = (Spinner)result.findViewById(R.id.auto_ramparts_position);
+        drawbridgePositionSpinner = (Spinner)result.findViewById(R.id.auto_drawbridge_position);
+        sallyportPositionSpinner = (Spinner)result.findViewById(R.id.auto_sallyport_position);
+        rockwallPositionSpinner = (Spinner)result.findViewById(R.id.auto_rockwall_position);
+        roughterrainPositionSpinner = (Spinner)result.findViewById(R.id.auto_roughterrain_position);
+        portcullisPositionToggleButton = (ToggleButton)result.findViewById(R.id.auto_portcullis_crossed);
+        chevalPositionToggleButton = (ToggleButton)result.findViewById(R.id.auto_cheval_crossed);
+        moatPositionToggleButton = (ToggleButton)result.findViewById(R.id.auto_moat_crossed);
+        rampartsPositionToggleButton = (ToggleButton)result.findViewById(R.id.auto_ramparts_crossed);
+        drawbridgePositionToggleButton = (ToggleButton)result.findViewById(R.id.auto_drawbridge_crossed);
+        sallyportPositionToggleButton = (ToggleButton)result.findViewById(R.id.auto_sallyport_crossed);
+        rockwallPositionToggleButton = (ToggleButton)result.findViewById(R.id.auto_rockwall_crossed);
+        roughterrainPositionToggleButton = (ToggleButton)result.findViewById(R.id.auto_rouchterrain_crossed);
+        lowbarPositionToggleButton = (ToggleButton)result.findViewById(R.id.auto_lowbar_crossed);
+
+        pickedupboulderToggleButton = (ToggleButton)result.findViewById(R.id.autoPickedUpBoulder);
+        scoredinhighgoalToggleButton = (ToggleButton)result.findViewById(R.id.autoScoredInHighGoal);
+        scoredinlowgoalToggleButton = (ToggleButton)result.findViewById(R.id.autoScoredInLowGoal);
+        endingPositionSpinner = (Spinner)result.findViewById(R.id.autoEndingPosition);
+        reachachievedToggleButton = (ToggleButton)result.findViewById(R.id.autoReachAchieved);
+        reachwascrossattemptToggleButton = (ToggleButton)result.findViewById(R.id.autoReachWasCrossAttempt);
+        startedasspyToggleButton = (ToggleButton)result.findViewById(R.id.autoStartedAsSpy);
+        startedwithboulderToggleButton = (ToggleButton)result.findViewById(R.id.autoStartedWithBoulder);
+        
+        return result;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -105,6 +155,16 @@ public class AutoFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
+    }
+
+    public void setScoutingAuto(ScoutingAuto sa){
+        this.sa = sa;
+    }
+
+    public ScoutingAuto getScoutingAuto(){
+        if(sa == null)
+            sa = new ScoutingAuto();
+        return sa;
     }
 
 }
