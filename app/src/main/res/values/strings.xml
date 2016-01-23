@@ -20,4 +20,18 @@
    
     <string name="match_scouting">Scout Matches</string>
     <string name="benchmarking">Benchmark</string>
+    <string-array name="defense_positions">
+        <item>0</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+    <string-array name="ending_positions">
+        <item>unknown</item>
+        <item>neutral</item>
+        <item>courtyard</item>
+    </string-array>
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
