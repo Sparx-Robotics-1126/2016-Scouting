@@ -14,6 +14,8 @@ import com.sparx1126.scoutingapp2016.R;
 
 import org.gosparx.scouting.aerialassist.dto.ScoutingAuto;
 
+import java.util.Arrays;
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -54,6 +56,8 @@ public class AutoFragment extends Fragment {
     private ToggleButton reachwascrossattemptToggleButton;
     private ToggleButton startedasspyToggleButton;
     private ToggleButton startedwithboulderToggleButton;
+
+    private Boolean wasCreated = false;
 
     /**
      * Use this factory method to create a new instance of
@@ -114,15 +118,72 @@ public class AutoFragment extends Fragment {
         reachwascrossattemptToggleButton = (ToggleButton)result.findViewById(R.id.autoReachWasCrossAttempt);
         startedasspyToggleButton = (ToggleButton)result.findViewById(R.id.autoStartedAsSpy);
         startedwithboulderToggleButton = (ToggleButton)result.findViewById(R.id.autoStartedWithBoulder);
-        
+
+        wasCreated = true;
+
         return result;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if(sa != null){
+            portcullisPositionToggleButton.setChecked(sa.getPortcullisCrossed());
+            portcullisPositionSpinner.setSelection(indexOfPositionValue(sa.getPortcullisPosition()));
+            chevalPositionSpinner.setSelection(indexOfPositionValue(sa.getChevalPosition()));
+            moatPositionSpinner.setSelection(indexOfPositionValue(sa.getMoatPosition()));
+            rampartsPositionSpinner.setSelection(indexOfPositionValue(sa.getRampartsPosition()));
+            drawbridgePositionSpinner.setSelection(indexOfPositionValue(sa.getDrawbridgePosition()));
+            sallyportPositionSpinner.setSelection(indexOfPositionValue(sa.getSallyportPosition()));
+            rockwallPositionSpinner.setSelection(indexOfPositionValue(sa.getRockwallPosition()));
+            roughterrainPositionSpinner.setSelection(indexOfPositionValue(sa.getRoughterrainPosition()));
+            portcullisPositionToggleButton.setChecked(sa.getPortcullisCrossed());
+            chevalPositionToggleButton.setChecked(sa.getChevalCrossed());
+            moatPositionToggleButton.setChecked(sa.getMoatCrossed());
+            rampartsPositionToggleButton.setChecked(sa.getRampartsCrossed());
+            drawbridgePositionToggleButton.setChecked(sa.getDrawbridgeCrossed());
+            sallyportPositionToggleButton.setChecked(sa.getSallyportCrossed());
+            rockwallPositionToggleButton.setChecked(sa.getRockwallCrossed());
+            roughterrainPositionToggleButton.setChecked(sa.getRoughterrainCrossed());
+            lowbarPositionToggleButton.setChecked(sa.getLowbarCrossed());
+
+            pickedupboulderToggleButton.setChecked(sa.getBoudlerPickedUp());
+            scoredinhighgoalToggleButton.setChecked(sa.getRobotScoredHigh());
+            scoredinlowgoalToggleButton.setChecked(sa.getRobotScoredLow());
+            endingPositionSpinner.setSelection(indexOfEndingPositionValue(sa.getEndingPosition()));
+            reachachievedToggleButton.setChecked(sa.getReachAchieved());
+            reachwascrossattemptToggleButton.setChecked(sa.getReachWasCrossAttempt());
+            startedasspyToggleButton.setChecked(sa.getStartedAsSpy());
+            startedwithboulderToggleButton.setChecked(sa.getStartedWithBoulder());
         }
+    }
+
+    private int indexOfPositionValue(int positionValue)
+    {
+        String positionString = Integer.toString(positionValue);
+        String[] positionValues = getResources().getStringArray(R.array.defense_positions);
+        int result = findIndexOfStringInArray(positionString, positionValues);
+        return result;
+    }
+
+    private int indexOfEndingPositionValue(String endingPosition)
+    {
+        String[] endingPositionValues = getResources().getStringArray(R.array.ending_positions);
+        int result = findIndexOfStringInArray(endingPosition, endingPositionValues);
+        return result;
+    }
+
+    private int findIndexOfStringInArray(String strValue, String[] stringArray)
+    {
+        int result = -1;
+        for (int i=0; i<stringArray.length; i++)
+            if (strValue.equals(stringArray[i]))
+            {
+                result = i;
+                break;
+            }
+        return result;
     }
 
     @Override
@@ -164,6 +225,37 @@ public class AutoFragment extends Fragment {
     public ScoutingAuto getScoutingAuto(){
         if(sa == null)
             sa = new ScoutingAuto();
+
+        if (wasCreated)
+        {
+            sa.setPortcullisPosition(Integer.valueOf(portcullisPositionSpinner.getSelectedItem().toString()));
+            sa.setChevalPosition(Integer.valueOf(chevalPositionSpinner.getSelectedItem().toString()));
+            sa.setMoatPosition(Integer.valueOf(moatPositionSpinner.getSelectedItem().toString()));
+            sa.setRampartsPosition(Integer.valueOf(rampartsPositionSpinner.getSelectedItem().toString()));
+            sa.setDrawbridgePosition(Integer.valueOf(drawbridgePositionSpinner.getSelectedItem().toString()));
+            sa.setSallyportPosition(Integer.valueOf(sallyportPositionSpinner.getSelectedItem().toString()));
+            sa.setRockwallPosition(Integer.valueOf(rockwallPositionSpinner.getSelectedItem().toString()));
+            sa.setRoughterrainPosition(Integer.valueOf(roughterrainPositionSpinner.getSelectedItem().toString()));
+            sa.setPortcullisCrossed(portcullisPositionToggleButton.isChecked());
+            sa.setChevalCrossed(chevalPositionToggleButton.isChecked());
+            sa.setMoatCrossed(moatPositionToggleButton.isChecked());
+            sa.setRampartsCrossed(rampartsPositionToggleButton.isChecked());
+            sa.setDrawbridgeCrossed(drawbridgePositionToggleButton.isChecked());
+            sa.setSallyportCrossed(sallyportPositionToggleButton.isChecked());
+            sa.setRockwallCrossed(rockwallPositionToggleButton.isChecked());
+            sa.setRoughterrainCrossed(roughterrainPositionToggleButton.isChecked());
+            sa.setLowbarCrossed(lowbarPositionToggleButton.isChecked());
+
+            sa.setBoudlerPickedUp(pickedupboulderToggleButton.isChecked());
+            sa.setRobotScoredHigh(scoredinhighgoalToggleButton.isChecked());
+            sa.setRobotScoredLow(scoredinlowgoalToggleButton.isChecked());
+            sa.setEndingPosition(endingPositionSpinner.getSelectedItem().toString());
+            sa.setReachAchieved(reachachievedToggleButton.isChecked());
+            sa.setReachWasCrossAttempt(reachwascrossattemptToggleButton.isChecked());
+            sa.setStartedAsSpy(startedasspyToggleButton.isChecked());
+            sa.setStartedWithBoulder(startedwithboulderToggleButton.isChecked());
+        }
+
         return sa;
     }
 
