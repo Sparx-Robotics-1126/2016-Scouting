@@ -26,7 +26,7 @@ public class BlueAlliance {
     private static final String GET_EVENT_LIST = "/api/v2/events/{YEAR}";
     private static final String GET_EVENT = "/api/v2/event/{EVENT_KEY}/";
     private static final String GET_MATCH_LIST = "/api/v2/event/{EVENT_KEY}/matches";
-    private static final String GET_TEAM_LIST = "/api/v2/event/{EVENT_KEY}/teams/";
+    private static final String GET_TEAM_LIST = "/api/v2/event/{EVENT_KEY}/teams";
 
     private Context context;
     private Ion ion;

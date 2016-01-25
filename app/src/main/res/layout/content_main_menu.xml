@@ -30,7 +30,6 @@
             android:button="@android:drawable/btn_radio"
             android:layout_height="@dimen/radio_height"
             android:text="@string/match_scouting"
-            android:checked="true"
             android:onClick="setScoutType"
             android:id="@+id/matchScouting"
             />
