@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ScoutingTeamSelect"
+            android:name=".MatchScouting"
             android:label="@string/title_activity_scouting_team_select"
             android:parentActivityName=".MainMenu"
             android:theme="@style/AppTheme.NoActionBar" >

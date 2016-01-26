@@ -16,7 +16,7 @@ import org.gosparx.scouting.aerialassist.dto.Match;
 
 import java.lang.reflect.Type;
 
-public class ScoutingTeamSelect extends AppCompatActivity {
+public class MatchScouting extends AppCompatActivity {
 
 
     private Match match;
@@ -32,15 +32,8 @@ public class ScoutingTeamSelect extends AppCompatActivity {
         Gson gson = new GsonBuilder().create();
         match = gson.fromJson(matchInfo, Match.class);
         Toast.makeText(this, match.toString(), Toast.LENGTH_SHORT).show();
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-    }
-
-
+    };
 }
+
+
+

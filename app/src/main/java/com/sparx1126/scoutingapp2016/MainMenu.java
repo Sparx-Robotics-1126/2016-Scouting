@@ -23,10 +23,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.gosparx.scouting.aerialassist.DatabaseHelper;
-import org.gosparx.scouting.aerialassist.dto.Alliance;
 import org.gosparx.scouting.aerialassist.dto.Alliances;
 import org.gosparx.scouting.aerialassist.dto.Event;
 import org.gosparx.scouting.aerialassist.dto.Match;
+import org.gosparx.scouting.aerialassist.dto.Scouting;
 import org.gosparx.scouting.aerialassist.dto.Team;
 import org.gosparx.scouting.aerialassist.networking.BlueAlliance;
 import org.gosparx.scouting.aerialassist.networking.NetworkCallback;
@@ -187,8 +187,8 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
             public void handleFinishDownload(final boolean success) {
                 MainMenu.this.runOnUiThread(new Runnable() {
                     @Override
-                public void run(){
-                        if(!success)
+                    public void run() {
+                        if (!success)
                             Toast.makeText(MainMenu.this, "Did not successfully download team data!", Toast.LENGTH_LONG).show();
                         alert.dismiss();
 
@@ -299,6 +299,9 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
 
     }
     public void setScoutType(View view){
+        if(scout.getVisibility() != View.VISIBLE ){
+            scout.setVisibility(View.VISIBLE);
+        }
         switch(view.getId()){
             case R.id.matchScouting:
                 if(matchScout.getVisibility() != View.VISIBLE)
@@ -320,9 +323,25 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
     public Match getSelectedMatch() {
         Match match = null;
         if (matchPicker != null && matchPicker.getSelectedView() != null) {
+            Object o = matchPicker.getSelectedView();
             match = dbHelper.getMatch((String) matchPicker.getSelectedView().getTag());
         }
         return match;
+    }
+
+    private Team getSelectedAllianceTeam(){
+        return (Team)(alliancePicker.getSelectedItem());
+    }
+
+
+    public Team getSelectedTeam() {
+        Team team = null;
+        if (teamPicker != null && teamPicker.getSelectedView() != null) {
+            Object o = teamPicker.getSelectedView();
+            String test = (String)teamPicker.getSelectedView().getTag();
+            team = dbHelper.getTeam(test);
+        }
+        return team;
     }
     private String getTeamKey(int i){
         Match m = dbHelper.getMatch(getSelectedMatch().getKey());
@@ -330,7 +349,6 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
         String team;
         if(i < 3)
             team =  a.getBlue().getTeams().get(i);
-        else
             team= a.getRed().getTeams().get(i-3);
         return team;
     }
@@ -340,7 +358,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
 
         matchPicker = (Spinner) findViewById(R.id.matchPicker);
         cursorAdapterMatches = new SimpleCursorAdapter(this,
-                android.R.layout.simple_spinner_item,
+                android.R.layout.simple_spinner_item ,
                 dbHelper.createMatchCursor(event),
                 new String[]{"key"},
                 new int[]{android.R.id.text1},
@@ -393,9 +411,23 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
 
     }
 
-    private String convertMatch(Match match){
-        Gson gson = new GsonBuilder().create();
-        return gson.toJson(match);
+    private String convertScouting() {
+        Scouting scouting = new Scouting();
+        if (getSelectedEvent() != null) {
+            scouting.setEventKey(getSelectedEvent().getKey());
+            if ((getSelectedTeam() != null && ((RadioButton) (findViewById(R.id.benchmarking)))
+                    .isSelected())) {
+                scouting.setTeamKey(getSelectedTeam().getKey());
+
+            } else if (getSelectedMatch() != null && ((RadioButton) findViewById(R.id.matchScouting))
+                    .isSelected()) {
+                scouting.setMatchKey(getSelectedMatch().getKey());
+                scouting.setTeamKey(getSelectedAllianceTeam().getKey());
+            }
+            Gson gson = new GsonBuilder().create();
+            return gson.toJson(scouting);
+        }
+        return null;
     }
 
     private void setupTeamSpinner(Event e){
@@ -404,27 +436,28 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
         cursorAdapterTeams = new SimpleCursorAdapter(this,
                 android.R.layout.simple_spinner_item,
                 dbHelper.createTeamCursor(e),
-                new String[]{"team_number", "nickname"},
+                new String[]{"team_number", "nickname", "key"},
                 new int[]{android.R.id.text1, android.R.id.text2},
                 0);
         cursorAdapterTeams.setViewBinder(new SimpleCursorAdapter.ViewBinder() {
             @Override
             public boolean setViewValue(View view, Cursor cursor, int i) {
                 String teamString = cursor.getString(cursor.getColumnIndex("team_number")) + " (" + cursor.getString(cursor.getColumnIndex("nickname")) + ")";
+                String tag = cursor.getString(cursor.getColumnIndex("key"));
+
                 ((TextView) view).setText(teamString);
-                view.setTag(cursor.getString(0));
+                view.setTag(cursor.getString(cursor.getColumnIndex("key")));
                 return true;
             }
         });
         teamPicker.setAdapter(cursorAdapterTeams);
     }
     public void beginScouting(View view){
-        Intent i = new Intent(this, ScoutingTeamSelect.class);
-        if(getSelectedMatch() != null) {
-            i.putExtra(MATCH_INFO, convertMatch(getSelectedMatch()));
+        Intent i = new Intent(this, MatchScouting.class);
+        if(convertScouting() != null) {
+            i.putExtra(MATCH_INFO, convertScouting());
             startActivity(i);
         }
-        else Toast.makeText(this, "Select a match first!", Toast.LENGTH_LONG).show();
 
 
     }
