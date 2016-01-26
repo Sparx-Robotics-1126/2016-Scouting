@@ -515,6 +515,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             red.getTeams().add(c.getString(c.getColumnIndex(TABLE_MATCHES_RED_ONE)));
             red.getTeams().add(c.getString(c.getColumnIndex(TABLE_MATCHES_RED_TWO)));
             red.getTeams().add(c.getString(c.getColumnIndex(TABLE_MATCHES_RED_THREE)));
+            match.setAlliances(alliances);
         }
 
         if (c != null) {

@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -26,18 +27,23 @@ import org.gosparx.scouting.aerialassist.dto.Alliance;
 import org.gosparx.scouting.aerialassist.dto.Alliances;
 import org.gosparx.scouting.aerialassist.dto.Event;
 import org.gosparx.scouting.aerialassist.dto.Match;
+import org.gosparx.scouting.aerialassist.dto.Team;
 import org.gosparx.scouting.aerialassist.networking.BlueAlliance;
 import org.gosparx.scouting.aerialassist.networking.NetworkCallback;
 import org.gosparx.scouting.aerialassist.networking.NetworkHelper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.util.ArrayList;
+
 import static org.gosparx.scouting.aerialassist.networking.NetworkHelper.isNetworkAvailable;
 
 public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
-    Spinner eventPicker;
-    Spinner matchPicker;
+    private Spinner eventPicker;
+    private Spinner matchPicker;
+    private Spinner alliancePicker;
+    private Spinner teamPicker;
     private LinearLayout matchScout;
     private LinearLayout teamScout;
     private SimpleCursorAdapter cursorAdapterRegionalNames;
@@ -171,6 +177,28 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
             }
         });
     }
+    private void downloadTeamData(){
+        final Dialog alert = createDialog();
+        alert.show();
+        final Event e = getSelectedEvent();
+        BlueAlliance ba = BlueAlliance.getInstance(this);
+        ba.loadTeams(e, new NetworkCallback() {
+            @Override
+            public void handleFinishDownload(final boolean success) {
+                MainMenu.this.runOnUiThread(new Runnable() {
+                    @Override
+                public void run(){
+                        if(!success)
+                            Toast.makeText(MainMenu.this, "Did not successfully download team data!", Toast.LENGTH_LONG).show();
+                        alert.dismiss();
+
+                        setupTeamSpinner(e);
+                    }
+
+                });
+            }
+        });
+    }
 
 /*
         Intent intent = new Intent(this, DisplayMessageActivity.class);
@@ -212,6 +240,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         Event current = getSelectedEvent();
+        Match currentMatch = getSelectedMatch();
         switch (parent.getId()) {
             case R.id.eventPicker:
                 if (current != null) {
@@ -226,12 +255,30 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
                                     }
                         });
 
+                        blueAlliance.loadTeams(current, new NetworkCallback() {
+                            @Override
+                            public void handleFinishDownload(boolean success) {
+                                if(!success)
+                                    Toast.makeText(MainMenu.this, "Did not successfully download team list!", Toast.LENGTH_LONG).show();
+                            }
+                        });
+
                     } catch (Exception e) {
                         Log.println(1010, "error", "This shouldn't happen");
                     }
 
                 }
                 downloadMatchSpinnerData();
+                downloadTeamData();
+                break;
+
+            case R.id.matchPicker:
+                if(currentMatch != null)
+                    try{
+                        setupAllianceSpinner();
+                    }
+                    catch(Exception e){System.out.print("Hi");}
+
                 }
     }
 
@@ -270,15 +317,22 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
      * called when transitioning between main menu and submenus (scouting / data view)
      * @return the currently selected match
      */
-    public Match getSelectedMatch(){
+    public Match getSelectedMatch() {
         Match match = null;
-        if(matchPicker != null && matchPicker.getSelectedView() != null){
+        if (matchPicker != null && matchPicker.getSelectedView() != null) {
             match = dbHelper.getMatch((String) matchPicker.getSelectedView().getTag());
         }
         return match;
     }
-    private Alliances getAlliances(){
-        return dbHelper.getMatch(getSelectedMatch().getKey()).getAlliances();
+    private String getTeamKey(int i){
+        Match m = dbHelper.getMatch(getSelectedMatch().getKey());
+        Alliances a = dbHelper.getMatch(getSelectedMatch().getKey()).getAlliances();
+        String team;
+        if(i < 3)
+            team =  a.getBlue().getTeams().get(i);
+        else
+            team= a.getRed().getTeams().get(i-3);
+        return team;
     }
     public void setupMatchSpinner(Event event) {
 
@@ -317,13 +371,53 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
                 return true;
             }
         });
+        matchPicker.setOnItemSelectedListener(this);
         matchPicker.setAdapter(cursorAdapterMatches);
     }
+
+    public void setupAllianceSpinner(){
+        int numTeams = 6;
+        alliancePicker = (Spinner)findViewById(R.id.alliancePicker);
+        String color;
+        ArrayList<String> teamList = new ArrayList<String>();
+        teamList.ensureCapacity(6);
+        for(int i=0; i < numTeams; i++){
+            if(i < 3)
+                color = "Blue";
+            else color = "Red";
+            teamList.add(color + " Alliance " + (i+1) + " (" + getTeamKey(i) + ")");
+        }
+        ArrayAdapter<String> adapter= new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,
+                teamList);
+        alliancePicker.setAdapter(adapter);
+
+    }
+
     private String convertMatch(Match match){
         Gson gson = new GsonBuilder().create();
         return gson.toJson(match);
     }
 
+    private void setupTeamSpinner(Event e){
+        dbHelper = dbHelper.getInstance(this);
+        teamPicker = (Spinner) findViewById(R.id.teamPicker);
+        cursorAdapterTeams = new SimpleCursorAdapter(this,
+                android.R.layout.simple_spinner_item,
+                dbHelper.createTeamCursor(e),
+                new String[]{"team_number", "nickname"},
+                new int[]{android.R.id.text1, android.R.id.text2},
+                0);
+        cursorAdapterTeams.setViewBinder(new SimpleCursorAdapter.ViewBinder() {
+            @Override
+            public boolean setViewValue(View view, Cursor cursor, int i) {
+                String teamString = cursor.getString(cursor.getColumnIndex("team_number")) + " (" + cursor.getString(cursor.getColumnIndex("nickname")) + ")";
+                ((TextView) view).setText(teamString);
+                view.setTag(cursor.getString(0));
+                return true;
+            }
+        });
+        teamPicker.setAdapter(cursorAdapterTeams);
+    }
     public void beginScouting(View view){
         Intent i = new Intent(this, ScoutingTeamSelect.class);
         if(getSelectedMatch() != null) {
