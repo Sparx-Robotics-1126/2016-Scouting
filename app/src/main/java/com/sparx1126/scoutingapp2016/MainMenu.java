@@ -384,7 +384,9 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
                 matchString.append(" Match: ").append(cursor.getInt(cursor.getColumnIndex("match_number")));
 
                 ((TextView) view).setText(matchString.toString());
-                view.setTag(cursor.getString(cursor.getColumnIndex("key")));
+                int keyColIndex = cursor.getColumnIndex("key");
+                String key = cursor.getString(keyColIndex);
+                view.setTag(key);
 
                 return true;
             }
@@ -443,10 +445,11 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
             @Override
             public boolean setViewValue(View view, Cursor cursor, int i) {
                 String teamString = cursor.getString(cursor.getColumnIndex("team_number")) + " (" + cursor.getString(cursor.getColumnIndex("nickname")) + ")";
-                String tag = cursor.getString(cursor.getColumnIndex("key"));
-
                 ((TextView) view).setText(teamString);
-                view.setTag(cursor.getString(cursor.getColumnIndex("key")));
+
+                int keyColIndex = cursor.getColumnIndex("team_key");
+                String key = cursor.getString(keyColIndex);
+                view.setTag(key);
                 return true;
             }
         });

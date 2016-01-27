@@ -399,7 +399,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor createTeamCursor(Event event){
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.query(TABLE_TEAMS+","+TABLE_E2T,
-                new String[]{"*", TABLE_TEAMS+".rowid AS _id"},
+                new String[]{"*", TABLE_TEAMS+".rowid AS _id", TABLE_TEAMS+".key AS team_key"},
                 TABLE_TEAMS+"."+TABLE_TEAMS_KEY+" = "+TABLE_E2T+"."+TABLE_E2T_TEAM
                 +" AND "+TABLE_E2T+"."+TABLE_E2T_EVENT+" = ?",
                 new String[]{event.getKey()},
