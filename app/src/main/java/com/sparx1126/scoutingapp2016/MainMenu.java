@@ -54,7 +54,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
 
     private DatabaseHelper dbHelper;
 
-    public static final String MATCH_INFO = "com.sparx1126.scouting2016.MATCH";
+    public static final String SCOUTING_INFO = "com.sparx1126.scouting2016.SCOUTING";
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -349,6 +349,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
         String team;
         if(i < 3)
             team =  a.getBlue().getTeams().get(i);
+        else
             team= a.getRed().getTeams().get(i-3);
         return team;
     }
@@ -436,17 +437,16 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
         cursorAdapterTeams = new SimpleCursorAdapter(this,
                 android.R.layout.simple_spinner_item,
                 dbHelper.createTeamCursor(e),
-                new String[]{"team_number", "nickname", "key"},
+                new String[]{"team_number", "nickname"},
                 new int[]{android.R.id.text1, android.R.id.text2},
                 0);
         cursorAdapterTeams.setViewBinder(new SimpleCursorAdapter.ViewBinder() {
             @Override
             public boolean setViewValue(View view, Cursor cursor, int i) {
                 String teamString = cursor.getString(cursor.getColumnIndex("team_number")) + " (" + cursor.getString(cursor.getColumnIndex("nickname")) + ")";
-                String tag = cursor.getString(cursor.getColumnIndex("key"));
 
                 ((TextView) view).setText(teamString);
-                view.setTag(cursor.getString(cursor.getColumnIndex("key")));
+                view.setTag(cursor.getString(cursor.getColumnIndex("team")));
                 return true;
             }
         });
@@ -455,7 +455,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
     public void beginScouting(View view){
         Intent i = new Intent(this, MatchScouting.class);
         if(convertScouting() != null) {
-            i.putExtra(MATCH_INFO, convertScouting());
+            i.putExtra(SCOUTING_INFO, convertScouting());
             startActivity(i);
         }
 
