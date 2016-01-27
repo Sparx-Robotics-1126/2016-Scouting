@@ -106,10 +106,11 @@
     </LinearLayout>
 
     <Button android:id="@+id/begin_scouting"
+        android:visibility="gone"
+        android:text="@string/begin_scouting"
         android:layout_height="@dimen/button_height"
         android:layout_width="fill_parent"
         android:layout_marginTop="@dimen/button_margin"
-        android:text="@string/begin_scouting"
         android:background="@android:drawable/btn_default"
         android:enabled="true"
         android:focusable="false"
