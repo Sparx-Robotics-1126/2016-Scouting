@@ -28,6 +28,9 @@ import org.gosparx.scouting.aerialassist.dto.Alliances;
 import org.gosparx.scouting.aerialassist.dto.Event;
 import org.gosparx.scouting.aerialassist.dto.Match;
 import org.gosparx.scouting.aerialassist.dto.Scouting;
+import org.gosparx.scouting.aerialassist.dto.ScoutingAuto;
+import org.gosparx.scouting.aerialassist.dto.ScoutingGeneral;
+import org.gosparx.scouting.aerialassist.dto.ScoutingTele;
 import org.gosparx.scouting.aerialassist.dto.Team;
 import org.gosparx.scouting.aerialassist.networking.BlueAlliance;
 import org.gosparx.scouting.aerialassist.networking.NetworkCallback;
@@ -495,7 +498,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
      *
      * @return a new String that contains data to create a scouting object in subactivities
      */
-    private String convertScouting() {
+    private void convertScouting() {
         Scouting scouting = new Scouting();
         //get a match up here; don't really want to keep calling getSelectedMatch()
         Match match = getSelectedMatch();
@@ -515,17 +518,17 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
                 scouting.setMatchKey(getSelectedMatch().getKey());
                 scouting.setTeamKey(getSelectedAllianceTeam().getKey());
             }
+            scouting.setGeneral(new ScoutingGeneral());
+            scouting.setAuto(new ScoutingAuto());
+            scouting.setTele(new ScoutingTele());
             if(getName().isEmpty())
                 Toast.makeText(this, "Please enter your name.", Toast.LENGTH_LONG).show();
             else {
                 scouting.setNameOfScouter(getName());
 
-                //convert the new object to a JSON string
-                Gson gson = new GsonBuilder().create();
-                return gson.toJson(scouting);
+                MatchScouting.scout = scouting;
             }
         }// somehow it failed
-        return null;
     }
 
     /**
@@ -562,11 +565,9 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
      */
     public void beginScouting(View view) {
         Intent i = new Intent(this, MatchScouting.class);
-        if (convertScouting() != null && alliancePicker != null) {
-            Gson gson = new GsonBuilder().create();
-            Scouting scout = gson.fromJson(convertScouting(), Scouting.class);
-            i.putExtra(SCOUTING_INFO, convertScouting());
+        if (alliancePicker != null) {
             i.putExtra(ALLIANCE_SELECTED, (String) alliancePicker.getSelectedItem());
+            convertScouting();
             startActivity(i);
         }
         else if(((RadioButton)findViewById(R.id.benchmarking)).isChecked()) Toast.makeText(this, "Benchmarking isn't ready yet!", Toast.LENGTH_LONG).show();

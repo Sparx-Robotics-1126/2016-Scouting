@@ -35,7 +35,7 @@ public class MatchScouting extends FragmentActivity implements GeneralFragment.O
         AutoFragment.OnFragmentInteractionListener, TeleFragment.OnFragmentInteractionListener{
 
 
-    private Scouting scout;
+    public static Scouting scout;
     private BlueAlliance blueAlliance;
     private DatabaseHelper dbHelper;
     private FragmentManager fm;
@@ -50,9 +50,7 @@ public class MatchScouting extends FragmentActivity implements GeneralFragment.O
         dbHelper = DatabaseHelper.getInstance(this);
         setContentView(R.layout.activity_match_scouting);
         Intent i = getIntent();
-        String scoutInfo = i.getStringExtra(MainMenu.SCOUTING_INFO);
-        Gson gson = new GsonBuilder().create();
-        scout = gson.fromJson(scoutInfo, Scouting.class);
+
 
         fm = getFragmentManager();
         if(dbHelper.doesScoutingExist(scout)){
@@ -115,6 +113,9 @@ public class MatchScouting extends FragmentActivity implements GeneralFragment.O
     public boolean onKeyDown(int keyCode, KeyEvent event){
         if(keyCode == KeyEvent.KEYCODE_BACK){
             Toast.makeText(this, "Saving...", Toast.LENGTH_SHORT).show();
+            scout.setAuto(autoFragment.getScoutingAuto());
+            scout.setTele(teleFragment.getScoutingTele());
+            scout.setGeneral(generalFragment.getScoutingGeneral());
             dbHelper.updateScouting(scout);
 
         }
