@@ -20,21 +20,24 @@
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:layout_weight=".33"
+            android:text="@string/auto"
             android:onClick="switchFragment"/>
         <Button android:id="@+id/tele"
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:layout_weight=".33"
+            android:text="@string/tele"
             android:onClick="switchFragment"/>
         <Button android:id="@+id/general"
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:layout_weight=".33"
+            android:text="@string/general"
             android:onClick="switchFragment"/>
     </LinearLayout>
     <LinearLayout android:id="@+id/fragContainer"
         android:layout_height="fill_parent"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:orientation="vertical" />
     </LinearLayout>
 </RelativeLayout>
