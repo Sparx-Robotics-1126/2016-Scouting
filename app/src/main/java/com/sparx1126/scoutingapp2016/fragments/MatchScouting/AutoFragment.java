@@ -229,7 +229,7 @@ public class AutoFragment extends Fragment {
     private int positionValueFromSpinnerString(String positionString)
     {
         int result = 0;
-        if (positionString == "Not Present")
+        if (positionString.equals("Not Present"))
             result = 0;
         else
             result = Integer.valueOf(positionString);
