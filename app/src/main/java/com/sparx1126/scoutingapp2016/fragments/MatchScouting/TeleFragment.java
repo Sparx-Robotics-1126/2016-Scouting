@@ -7,8 +7,12 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ToggleButton;
 
 import com.sparx1126.scoutingapp2016.R;
+import com.sparx1126.scoutingapp2016.controls.HorizontalNumberPicker;
+
+import org.gosparx.scouting.aerialassist.dto.ScoutingTele;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,31 +23,40 @@ import com.sparx1126.scoutingapp2016.R;
  * create an instance of this fragment.
  */
 public class TeleFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
+    private ScoutingTele st;
     private OnFragmentInteractionListener mListener;
+    
+    private ToggleButton playsDefenseTogglebutton;
+    private HorizontalNumberPicker highGoalAttemptsNumberPicker;
+    private HorizontalNumberPicker highGoalsScoredNumberPicker;
+    private HorizontalNumberPicker lowGoalAttemptsNumberPicker;
+    private HorizontalNumberPicker lowGoalsScoredNumberPicker;
+    private HorizontalNumberPicker portcullisCrossingsPicker;
+    private HorizontalNumberPicker chevalCrossingsPicker;
+    private HorizontalNumberPicker moatCrossingsPicker;
+    private HorizontalNumberPicker rampartsCrossingsPicker;
+    private HorizontalNumberPicker drawbridgeCrossingsPicker;
+    private HorizontalNumberPicker sallyportCrossingsPicker;
+    private HorizontalNumberPicker rockwallCrossingsPicker;
+    private HorizontalNumberPicker roughterrainCrossingsPicker;
+    private HorizontalNumberPicker lowbarCrossingsPicker;
+    private HorizontalNumberPicker bouldersPickedUpPicker;
+    private HorizontalNumberPicker bouldersTakenToCourtyardPicker;
+    private HorizontalNumberPicker bouldersFromBratticePicker;
 
+    private Boolean wasCreated = false;
+    
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment TeleFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static TeleFragment newInstance(String param1, String param2) {
+    public static TeleFragment newInstance(ScoutingTele st) {
         TeleFragment fragment = new TeleFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        fragment.setScoutingTele(st);
         fragment.setArguments(args);
         return fragment;
     }
@@ -56,8 +69,6 @@ public class TeleFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -65,7 +76,55 @@ public class TeleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tele, container, false);
+        View result = inflater.inflate(R.layout.fragment_tele, container, false);
+
+        // connect up to UI elements
+        playsDefenseTogglebutton = (ToggleButton)result.findViewById(R.id.telePlaysDefense);
+        highGoalAttemptsNumberPicker = (HorizontalNumberPicker)result.findViewById(R.id.teleHighGoalAttempts);
+        highGoalsScoredNumberPicker = (HorizontalNumberPicker)result.findViewById(R.id.teleHighGoalsScored);
+        lowGoalAttemptsNumberPicker = (HorizontalNumberPicker)result.findViewById(R.id.teleLowGoalAttempts);
+        lowGoalsScoredNumberPicker = (HorizontalNumberPicker)result.findViewById(R.id.teleLowGoalsScored);
+        portcullisCrossingsPicker = (HorizontalNumberPicker)result.findViewById(R.id.telePortcullisCrossings);
+        chevalCrossingsPicker = (HorizontalNumberPicker)result.findViewById(R.id.teleChevalCrossings);
+        moatCrossingsPicker = (HorizontalNumberPicker)result.findViewById(R.id.teleMoatCrossings);
+        rampartsCrossingsPicker = (HorizontalNumberPicker)result.findViewById(R.id.teleRampartCrossings);
+        drawbridgeCrossingsPicker = (HorizontalNumberPicker)result.findViewById(R.id.teleDrawbridgeCrossings);
+        sallyportCrossingsPicker = (HorizontalNumberPicker)result.findViewById(R.id.teleSallyPortCrossings);
+        rockwallCrossingsPicker = (HorizontalNumberPicker)result.findViewById(R.id.teleRockWallCrossings);
+        roughterrainCrossingsPicker = (HorizontalNumberPicker)result.findViewById(R.id.teleRoughTerrainCrossings);
+        lowbarCrossingsPicker = (HorizontalNumberPicker)result.findViewById(R.id.teleLowBarCrossings);
+        bouldersFromBratticePicker = (HorizontalNumberPicker)result.findViewById(R.id.teleBouldersReceivedFromBrattice);
+        bouldersPickedUpPicker = (HorizontalNumberPicker)result.findViewById(R.id.teleBouldersPickedUp);
+        bouldersTakenToCourtyardPicker = (HorizontalNumberPicker)result.findViewById(R.id.teleBouldersTakenToCourtyard);
+        
+        wasCreated = true;
+
+        return result;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if(st != null){
+            playsDefenseTogglebutton.setChecked(st.getPlaysDefense());
+            highGoalAttemptsNumberPicker.setValue(st.getHighGoalAttempts());
+            highGoalsScoredNumberPicker.setValue(st.getHighGoalsScored());
+            lowGoalAttemptsNumberPicker.setValue(st.getLowGoalAttempts());
+            lowGoalsScoredNumberPicker.setValue(st.getLowGoalsScored());
+            portcullisCrossingsPicker.setValue(st.getPortcullisCrosses());
+            chevalCrossingsPicker.setValue(st.getChevalCrosses());
+            moatCrossingsPicker.setValue(st.getMoatCrosses());
+            rampartsCrossingsPicker.setValue(st.getRampartsCrosses());
+            drawbridgeCrossingsPicker.setValue(st.getDrawbridgeCrosses());
+            sallyportCrossingsPicker.setValue(st.getSallyportCrosses());
+            rockwallCrossingsPicker.setValue(st.getRockwallCrosses());
+            roughterrainCrossingsPicker.setValue(st.getRoughterrainCrosses());
+            lowbarCrossingsPicker.setValue(st.getLowbarCrosses());
+            bouldersFromBratticePicker.setValue(st.getBouldersReceivedFromBrattice());
+            bouldersPickedUpPicker.setValue(st.getBouldersPickedUp());
+            bouldersTakenToCourtyardPicker.setValue(st.getBouldersTakenToCourtyard());
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -105,6 +164,41 @@ public class TeleFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
+    }
+
+    public void setScoutingTele(ScoutingTele sa){
+        this.st = st;
+    }
+
+    public ScoutingTele getScoutingTele(){
+        if(st == null)
+            st = new ScoutingTele();
+
+        if (wasCreated)
+        {
+            st.setPlaysDefense(playsDefenseTogglebutton.isChecked());
+
+            st.setHighGoalAttempts(highGoalAttemptsNumberPicker.getValue());
+            st.setHighGoalsScored(highGoalsScoredNumberPicker.getValue());
+            st.setLowGoalAttempts(lowGoalAttemptsNumberPicker.getValue());
+            st.setLowGoalsScored(lowGoalsScoredNumberPicker.getValue());
+
+            st.setPortcullisCrosses(portcullisCrossingsPicker.getValue());
+            st.setChevalCrosses(chevalCrossingsPicker.getValue());
+            st.setMoatCrosses(moatCrossingsPicker.getValue());
+            st.setRampartsCrosses(rampartsCrossingsPicker.getValue());
+            st.setDrawbridgeCrosses(drawbridgeCrossingsPicker.getValue());
+            st.setSallyportCrosses(sallyportCrossingsPicker.getValue());
+            st.setRockwallCrosses(rockwallCrossingsPicker.getValue());
+            st.setRoughterrainCrosses(roughterrainCrossingsPicker.getValue());
+            st.setLowbarCrosses(lowbarCrossingsPicker.getValue());
+
+            st.setBouldersPickedUp(bouldersPickedUpPicker.getValue());
+            st.setBouldersTakenToCourtyard(bouldersTakenToCourtyardPicker.getValue());
+            st.setBouldersReceivedFromBrattice(bouldersFromBratticePicker.getValue());
+        }
+
+        return st;
     }
 
 }
