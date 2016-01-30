@@ -21,7 +21,7 @@
     <string name="match_scouting">Scout Matches</string>
     <string name="benchmarking">Benchmark</string>
     <string-array name="defense_positions">
-        <item>0</item>
+        <item>Not Present</item>
         <item>2</item>
         <item>3</item>
         <item>4</item>

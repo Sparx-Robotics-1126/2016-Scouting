@@ -161,7 +161,11 @@ public class AutoFragment extends Fragment {
 
     private int indexOfPositionValue(int positionValue)
     {
-        String positionString = Integer.toString(positionValue);
+        String positionString = "";
+        if (positionValue == 0)
+            positionString = "Not Present";
+        else
+            positionString = Integer.toString(positionValue);
         String[] positionValues = getResources().getStringArray(R.array.defense_positions);
         int result = findIndexOfStringInArray(positionString, positionValues);
         return result;
@@ -222,20 +226,30 @@ public class AutoFragment extends Fragment {
         this.sa = sa;
     }
 
+    private int positionValueFromSpinnerString(String positionString)
+    {
+        int result = 0;
+        if (positionString == "Not Present")
+            result = 0;
+        else
+            result = Integer.valueOf(positionString);
+        return result;
+    }
+
     public ScoutingAuto getScoutingAuto(){
         if(sa == null)
             sa = new ScoutingAuto();
 
         if (wasCreated)
         {
-            sa.setPortcullisPosition(Integer.valueOf(portcullisPositionSpinner.getSelectedItem().toString()));
-            sa.setChevalPosition(Integer.valueOf(chevalPositionSpinner.getSelectedItem().toString()));
-            sa.setMoatPosition(Integer.valueOf(moatPositionSpinner.getSelectedItem().toString()));
-            sa.setRampartsPosition(Integer.valueOf(rampartsPositionSpinner.getSelectedItem().toString()));
-            sa.setDrawbridgePosition(Integer.valueOf(drawbridgePositionSpinner.getSelectedItem().toString()));
-            sa.setSallyportPosition(Integer.valueOf(sallyportPositionSpinner.getSelectedItem().toString()));
-            sa.setRockwallPosition(Integer.valueOf(rockwallPositionSpinner.getSelectedItem().toString()));
-            sa.setRoughterrainPosition(Integer.valueOf(roughterrainPositionSpinner.getSelectedItem().toString()));
+            sa.setPortcullisPosition(positionValueFromSpinnerString(portcullisPositionSpinner.getSelectedItem().toString()));
+            sa.setChevalPosition(positionValueFromSpinnerString(chevalPositionSpinner.getSelectedItem().toString()));
+            sa.setMoatPosition(positionValueFromSpinnerString(moatPositionSpinner.getSelectedItem().toString()));
+            sa.setRampartsPosition(positionValueFromSpinnerString(rampartsPositionSpinner.getSelectedItem().toString()));
+            sa.setDrawbridgePosition(positionValueFromSpinnerString(drawbridgePositionSpinner.getSelectedItem().toString()));
+            sa.setSallyportPosition(positionValueFromSpinnerString(sallyportPositionSpinner.getSelectedItem().toString()));
+            sa.setRockwallPosition(positionValueFromSpinnerString(rockwallPositionSpinner.getSelectedItem().toString()));
+            sa.setRoughterrainPosition(positionValueFromSpinnerString(roughterrainPositionSpinner.getSelectedItem().toString()));
             sa.setPortcullisCrossed(portcullisPositionToggleButton.isChecked());
             sa.setChevalCrossed(chevalPositionToggleButton.isChecked());
             sa.setMoatCrossed(moatPositionToggleButton.isChecked());
