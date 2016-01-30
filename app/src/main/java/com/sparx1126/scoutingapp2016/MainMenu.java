@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.SimpleCursorAdapter;
@@ -38,7 +39,7 @@ import java.util.ArrayList;
 
 import static org.gosparx.scouting.aerialassist.networking.NetworkHelper.isNetworkAvailable;
 
-public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
+public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private Spinner eventPicker;
     private Spinner matchPicker;
@@ -46,15 +47,17 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
     private Spinner teamPicker;
     private LinearLayout matchScout;
     private LinearLayout teamScout;
+    private EditText name;
     private SimpleCursorAdapter cursorAdapterRegionalNames;
     private SimpleCursorAdapter cursorAdapterMatches;
     private SimpleCursorAdapter cursorAdapterTeams;
     private Button scout;
     private BlueAlliance blueAlliance;
-
+    private String nameOfScouter;
     private DatabaseHelper dbHelper;
     public static final String SCOUTING_INFO = "com.sparx1126.scouting2016.SCOUTING";
     public static final String ALLIANCE_SELECTED = "com.spark1126.scouting2016.ALLIANCE";
+
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +72,8 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
         matchScout.setVisibility(View.GONE);
         teamScout = (LinearLayout) findViewById(R.id.teamScoutLayout);
         teamScout.setVisibility(View.GONE);
-        scout = (Button)findViewById(R.id.begin_scouting);
+        scout = (Button) findViewById(R.id.begin_scouting);
+        name = (EditText) findViewById(R.id.nameScouter);
         scout.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
@@ -187,7 +191,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
     /**
      * get team data for this event
      */
-    private void downloadTeamData(){
+    private void downloadTeamData() {
         final Dialog alert = createDialog();
         alert.show();
         //get the event
@@ -211,6 +215,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
             }
         });
     }
+
     /**
      * creates the event spinner with values supplied by BlueAlliance
      */
@@ -284,14 +289,16 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
                 break;
             //match spinner selected; set up alliance spinner
             case R.id.matchPicker:
-                if(currentMatch != null)
-                    try{
+                if (currentMatch != null)
+                    try {
                         setupAllianceSpinner();
                     }
                     //error occurred; this shouldn't happen
-                    catch(Exception e){System.out.print("Hi");}
+                    catch (Exception e) {
+                        System.out.print("Hi");
+                    }
 
-                }
+        }
     }
 
     @Override
@@ -300,6 +307,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
 
     /**
      * gets the current event in eventPicker
+     *
      * @return the selected event
      */
     public Event getSelectedEvent() {
@@ -319,29 +327,32 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
 
     /**
      * sets scouting type based on which radio button is selected
+     *
      * @param view the view that was clicked
      */
-    public void setScoutType(View view){
-        if(scout.getVisibility() != View.VISIBLE ){
+    public void setScoutType(View view) {
+        if (scout.getVisibility() != View.VISIBLE) {
             scout.setVisibility(View.VISIBLE);
         }
         // swap visibility of spinners depending on currently selected radio button
-        switch(view.getId()){
+        switch (view.getId()) {
             case R.id.matchScouting:
-                if(matchScout.getVisibility() != View.VISIBLE)
+                if (matchScout.getVisibility() != View.VISIBLE)
                     matchScout.setVisibility(View.VISIBLE);
-                if(teamScout.getVisibility() != View.GONE)
+                if (teamScout.getVisibility() != View.GONE)
                     teamScout.setVisibility(View.GONE);
                 break;
             case R.id.benchmarking:
-                if(teamScout.getVisibility() != View.VISIBLE)
+                if (teamScout.getVisibility() != View.VISIBLE)
                     teamScout.setVisibility(View.VISIBLE);
-                if(matchScout.getVisibility() != View.GONE)
+                if (matchScout.getVisibility() != View.GONE)
                     matchScout.setVisibility(View.GONE);
         }
     }
+
     /**
      * called when transitioning between main menu and submenus (scouting / data view)
+     *
      * @return the currently selected match
      */
     public Match getSelectedMatch() {
@@ -355,15 +366,17 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
 
     /**
      * get currently selected team from match scouting
+     *
      * @return the team currently selected in alliancePicker
      */
-    private Team getSelectedAllianceTeam(){
+    private Team getSelectedAllianceTeam() {
         return dbHelper.getTeam(getTeamKey(alliancePicker.getSelectedItemPosition()));
     }
 
 
     /**
      * gets the team currently selected in teamPicker
+     *
      * @return the currently selected team in teamPicker
      */
     public Team getSelectedTeam() {
@@ -371,29 +384,35 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
         Team team = null;
         if (teamPicker != null && teamPicker.getSelectedView() != null) {
             //set team to currently selected value in teamPicker, based on tag
-            team = dbHelper.getTeam((String)teamPicker.getSelectedView().getTag());
+            team = dbHelper.getTeam((String) teamPicker.getSelectedView().getTag());
         }
         return team;
     }
 
     /**
      * gets team key in an alliance based on position in BlueAlliance data
+     *
      * @param i the position of the team
      * @return the team's key
      */
-    private String getTeamKey(int i){
+    private String getTeamKey(int i) {
         Match m = dbHelper.getMatch(getSelectedMatch().getKey());
         Alliances a = dbHelper.getMatch(getSelectedMatch().getKey()).getAlliances();
         String team;
-        if(i < 3)
-            team =  a.getBlue().getTeams().get(i);
+        if (i < 3)
+            team = a.getBlue().getTeams().get(i);
         else
-            team= a.getRed().getTeams().get(i-3);
+            team = a.getRed().getTeams().get(i - 3);
         return team;
+    }
+
+    private String getName(){
+        return name.getText().toString();
     }
 
     /**
      * give matchPicker its values after downloading them, based on an event
+     *
      * @param event the event to get matches for; event != null
      */
     public void setupMatchSpinner(Event event) {
@@ -402,7 +421,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
 
         matchPicker = (Spinner) findViewById(R.id.matchPicker);
         cursorAdapterMatches = new SimpleCursorAdapter(this,
-                android.R.layout.simple_spinner_item ,
+                android.R.layout.simple_spinner_item,
                 dbHelper.createMatchCursor(event),
                 new String[]{"key"},
                 new int[]{android.R.id.text1},
@@ -445,25 +464,25 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
     /**
      * give alliancePicker its values
      */
-    public void setupAllianceSpinner(){
+    public void setupAllianceSpinner() {
         //number of teams in both alliances; I don't really feel like making this a constant so yeah
         int numTeams = 6;
-        alliancePicker = (Spinner)findViewById(R.id.alliancePicker);
+        alliancePicker = (Spinner) findViewById(R.id.alliancePicker);
         /**alliance color - red/blue
          */
         String color;
         ArrayList<String> teamList = new ArrayList<String>();
         //make sure the list has at least 6 spaces
         teamList.ensureCapacity(numTeams);
-        for(int i=0; i < numTeams; i++){
-            if(i < 3)
+        for (int i = 0; i < numTeams; i++) {
+            if (i < 3)
                 //set color to alliance color
                 color = "Blue";
             else color = "Red";
-            teamList.add(color + " Alliance " + (i+1) + " (" + getTeamKey(i) + ")");
+            teamList.add(color + " Alliance " + (i + 1) + " (" + getTeamKey(i) + ")");
         }
         //new adapter to store string values
-        ArrayAdapter<String> adapter= new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,
                 teamList);
         // set alliancePicker's adapter to the string adapter that was just created
         alliancePicker.setAdapter(adapter);
@@ -472,6 +491,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
 
     /**
      * coverts a new scouting object to a JSON string to pass to subactivities that need it
+     *
      * @return a new String that contains data to create a scouting object in subactivities
      */
     private String convertScouting() {
@@ -482,31 +502,37 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
         if (getSelectedEvent() != null) {
             scouting.setEventKey(getSelectedEvent().getKey());
 
- //benchmarking selected, so only need team
-           if ((getSelectedTeam() != null && ((RadioButton) (findViewById(R.id.benchmarking)))
+            //benchmarking selected, so only need team
+            if ((getSelectedTeam() != null && ((RadioButton) (findViewById(R.id.benchmarking)))
                     .isChecked())) {
                 scouting.setTeamKey(getSelectedTeam().getKey());
 
             }
-           //match scouting selected, so need match data and alliance team data
+            //match scouting selected, so need match data and alliance team data
             else if (match != null && ((RadioButton) findViewById(R.id.matchScouting))
                     .isChecked()) {
                 scouting.setMatchKey(getSelectedMatch().getKey());
                 scouting.setTeamKey(getSelectedAllianceTeam().getKey());
             }
-            //convert the new object to a JSON string
-            Gson gson = new GsonBuilder().create();
-            return gson.toJson(scouting);
-        }
-        // somehow it failed
+            if(getName().isEmpty())
+                Toast.makeText(this, "Please enter your name.", Toast.LENGTH_LONG).show();
+            else {
+                scouting.setNameOfScouter(getName());
+
+                //convert the new object to a JSON string
+                Gson gson = new GsonBuilder().create();
+                return gson.toJson(scouting);
+            }
+        }// somehow it failed
         return null;
     }
 
     /**
      * put team data from BlueAlliance into teamPicker -- benchmarking
+     *
      * @param e the event to get teams for
      */
-    private void setupTeamSpinner(Event e){
+    private void setupTeamSpinner(Event e) {
         dbHelper = dbHelper.getInstance(this);
         teamPicker = (Spinner) findViewById(R.id.teamPicker);
         cursorAdapterTeams = new SimpleCursorAdapter(this,
@@ -530,17 +556,20 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
 
     /**
      * start subactivities if there is enough valid data depending on which type is selected
+     *
      * @param view the view to call this on -- should only be called on begin scouting button
      */
-    public void beginScouting(View view){
+    public void beginScouting(View view) {
         Intent i = new Intent(this, MatchScouting.class);
-        if(convertScouting() != null) {
+        if (convertScouting() != null && alliancePicker != null) {
             i.putExtra(SCOUTING_INFO, convertScouting());
             i.putExtra(ALLIANCE_SELECTED, (String) alliancePicker.getSelectedItem());
             startActivity(i);
         }
+        else if(((RadioButton)findViewById(R.id.benchmarking)).isChecked()) Toast.makeText(this, "Benchmarking isn't ready yet!", Toast.LENGTH_LONG).show();
+        else Toast.makeText(this, "Select a match and team to scout first!", Toast.LENGTH_LONG).show();
 
 
     }
 
-}
+ }
