@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
@@ -26,6 +27,9 @@ import org.gosparx.scouting.aerialassist.dto.ScoutingAuto;
 import org.gosparx.scouting.aerialassist.dto.ScoutingGeneral;
 import org.gosparx.scouting.aerialassist.dto.ScoutingTele;
 import org.gosparx.scouting.aerialassist.networking.BlueAlliance;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MatchScouting extends FragmentActivity implements GeneralFragment.OnFragmentInteractionListener,
         AutoFragment.OnFragmentInteractionListener, TeleFragment.OnFragmentInteractionListener{
@@ -49,7 +53,16 @@ public class MatchScouting extends FragmentActivity implements GeneralFragment.O
         String scoutInfo = i.getStringExtra(MainMenu.SCOUTING_INFO);
         Gson gson = new GsonBuilder().create();
         scout = gson.fromJson(scoutInfo, Scouting.class);
+
         fm = getFragmentManager();
+        if(dbHelper.doesScoutingExist(scout)){
+
+            List<Scouting> scoutList= dbHelper.getScouting(scout.getEventKey(), scout.getTeamKey(), scout.getMatchKey(),
+                    scout.getNameOfScouter());
+            scout = scoutList.get(0);
+        }
+        else dbHelper.createScouting(scout);
+
         if(scout.getAuto() == null)
             scout.setAuto(new ScoutingAuto());
 
@@ -96,6 +109,16 @@ public class MatchScouting extends FragmentActivity implements GeneralFragment.O
             default:
         }
         ft.commit();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event){
+        if(keyCode == KeyEvent.KEYCODE_BACK){
+            Toast.makeText(this, "Saving...", Toast.LENGTH_SHORT).show();
+            dbHelper.updateScouting(scout);
+
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
 

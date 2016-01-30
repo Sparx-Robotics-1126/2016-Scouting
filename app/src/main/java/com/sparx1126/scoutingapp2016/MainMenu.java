@@ -36,6 +36,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.gosparx.scouting.aerialassist.networking.NetworkHelper.isNetworkAvailable;
 
@@ -562,6 +563,8 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
     public void beginScouting(View view) {
         Intent i = new Intent(this, MatchScouting.class);
         if (convertScouting() != null && alliancePicker != null) {
+            Gson gson = new GsonBuilder().create();
+            Scouting scout = gson.fromJson(convertScouting(), Scouting.class);
             i.putExtra(SCOUTING_INFO, convertScouting());
             i.putExtra(ALLIANCE_SELECTED, (String) alliancePicker.getSelectedItem());
             startActivity(i);
