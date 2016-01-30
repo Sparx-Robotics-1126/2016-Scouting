@@ -1,5 +1,6 @@
 package com.sparx1126.scoutingapp2016;
 
+import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -21,9 +22,13 @@ import com.sparx1126.scoutingapp2016.fragments.MatchScouting.TeleFragment;
 
 import org.gosparx.scouting.aerialassist.DatabaseHelper;
 import org.gosparx.scouting.aerialassist.dto.Scouting;
+import org.gosparx.scouting.aerialassist.dto.ScoutingAuto;
+import org.gosparx.scouting.aerialassist.dto.ScoutingGeneral;
+import org.gosparx.scouting.aerialassist.dto.ScoutingTele;
 import org.gosparx.scouting.aerialassist.networking.BlueAlliance;
 
-public class MatchScouting extends FragmentActivity implements GeneralFragment.OnFragmentInteractionListener, AutoFragment.OnFragmentInteractionListener, TeleFragment.OnFragmentInteractionListener{
+public class MatchScouting extends FragmentActivity implements GeneralFragment.OnFragmentInteractionListener,
+        AutoFragment.OnFragmentInteractionListener, TeleFragment.OnFragmentInteractionListener{
 
 
     private Scouting scout;
@@ -45,15 +50,26 @@ public class MatchScouting extends FragmentActivity implements GeneralFragment.O
         Gson gson = new GsonBuilder().create();
         scout = gson.fromJson(scoutInfo, Scouting.class);
         fm = getFragmentManager();
-        autoFragment = AutoFragment.newInstance(scout.getAuto());
+        if(scout.getAuto() == null)
+            scout.setAuto(new ScoutingAuto());
+
+            autoFragment = AutoFragment.newInstance(scout.getAuto());
+
+        if(scout.getTele() == null)
+            scout.setTele(new ScoutingTele());
+
         teleFragment = TeleFragment.newInstance(scout.getTele());
+
+        if(scout.getGeneral() == null)
+            scout.setGeneral(new ScoutingGeneral());
+
         generalFragment = GeneralFragment.newInstance(scout.getGeneral());
-        fm.beginTransaction().add(R.id.fragContainer, autoFragment).add(R.id.fragContainer, teleFragment).add(R.id.fragContainer, generalFragment).commit();
 
 
         // set title of activity to the team number
+        Toolbar toolbar = ((Toolbar)findViewById(R.id.toolbar));
+        toolbar.setTitle("Scouting for: " + i.getStringExtra(MainMenu.ALLIANCE_SELECTED));
 
-        this.setTitle("Scouting for: " + i.getStringExtra(MainMenu.ALLIANCE_SELECTED));
     }
     @Override
     public void onFragmentInteraction(Uri uri){{
@@ -62,7 +78,6 @@ public class MatchScouting extends FragmentActivity implements GeneralFragment.O
     public void switchFragment(View view){
         fm = getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        ft.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out);
 
         switch(view.getId()){
             case R.id.auto:

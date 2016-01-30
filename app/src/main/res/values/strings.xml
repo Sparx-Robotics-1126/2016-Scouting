@@ -17,7 +17,9 @@
     <string name="minus">-</string>
     <string name="zero">0</string>
     <string name="plus">+</string>
-   
+   <string name="auto">Auto</string>
+    <string name="tele">Tele</string>
+    <string name="general">General</string>
     <string name="match_scouting">Scout Matches</string>
     <string name="benchmarking">Benchmark</string>
     <string-array name="defense_positions">

@@ -258,16 +258,16 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
                         blueAlliance.loadMatches(current, new NetworkCallback() {
                             @Override
                             public void handleFinishDownload(boolean success) {
-                                if(!success) {
+                                if (!success) {
                                     Toast.makeText(MainMenu.this, "Did not successfully download match list!", Toast.LENGTH_LONG).show();
                                 }
-                                    }
+                            }
                         });
                         //set up teams for an event
                         blueAlliance.loadTeams(current, new NetworkCallback() {
                             @Override
                             public void handleFinishDownload(boolean success) {
-                                if(!success)
+                                if (!success)
                                     Toast.makeText(MainMenu.this, "Did not successfully download team list!", Toast.LENGTH_LONG).show();
                             }
                         });
@@ -276,10 +276,11 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
                         Log.println(1010, "error", "This shouldn't happen");
                     }
 
+
+                    //TODO change these to "if necessary" -- still need to write them above
+                    downloadMatchSpinnerData();
+                    downloadTeamData();
                 }
-                //TODO change these to "if necessary" -- still need to write them above
-                downloadMatchSpinnerData();
-                downloadTeamData();
                 break;
             //match spinner selected; set up alliance spinner
             case R.id.matchPicker:
