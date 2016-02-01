@@ -58,6 +58,7 @@ public class TeleFragment extends Fragment {
         Bundle args = new Bundle();
         fragment.setScoutingTele(st);
         fragment.setArguments(args);
+
         return fragment;
     }
 
@@ -185,7 +186,7 @@ public class TeleFragment extends Fragment {
         public void onFragmentInteraction(Uri uri);
     }
 
-    public void setScoutingTele(ScoutingTele sa){
+    public void setScoutingTele(ScoutingTele st){
         this.st = st;
     }
 

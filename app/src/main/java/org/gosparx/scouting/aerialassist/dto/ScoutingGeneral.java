@@ -5,9 +5,9 @@ package org.gosparx.scouting.aerialassist.dto;
  */
 public class ScoutingGeneral {
 
-    private int numberOfPenalties = -1;
+    private int numberOfPenalties = 0;
     private String commentsOnPenalties;
-    private int numberOfTechnicalFouls = -1;
+    private int numberOfTechnicalFouls;
     private String commentsOnTechnicalFouls;
     private String generalComments;
 

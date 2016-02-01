@@ -70,7 +70,15 @@ public class GeneralFragment extends Fragment {
         penaltyCommentsEditText = (EditText)result.findViewById(R.id.genPenaltyComments);
         techFoulCommentsEditText = (EditText)result.findViewById(R.id.genTechFoulComments);
         generalCommentsEditText = (EditText)result.findViewById(R.id.genComments);
-        
+
+
+        if(sg != null){
+            penaltyCountNumberPicker.setValue(sg.getNumberOfPenalties());
+            techFoulCountNumberPicker.setValue(sg.getNumberOfTechnicalFouls());
+            penaltyCommentsEditText.setText(sg.getCommentsOnPenalties());
+            techFoulCommentsEditText.setText(sg.getCommentsOnTechnicalFouls());
+            generalCommentsEditText.setText(sg.getGeneralComments());
+        }
         wasCreated = true;
         return result;
     }
@@ -128,7 +136,7 @@ public class GeneralFragment extends Fragment {
         public void onFragmentInteraction(Uri uri);
     }
 
-    public void setScoutingGeneral(ScoutingGeneral sa){
+    public void setScoutingGeneral(ScoutingGeneral sg){
         this.sg = sg;
     }
 
