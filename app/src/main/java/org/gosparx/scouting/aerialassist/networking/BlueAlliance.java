@@ -153,6 +153,7 @@ public class BlueAlliance {
 
                         if(callback != null)
                             callback.handleFinishDownload(true);
+                        NetworkHelper.setLoadedMatchList(context);
                     }
                 });
     }
@@ -185,6 +186,7 @@ public class BlueAlliance {
                         }
                         if(callback != null)
                             callback.handleFinishDownload(true);
+                        NetworkHelper.setLoadedTeams(context);
                     }
                 });
     }

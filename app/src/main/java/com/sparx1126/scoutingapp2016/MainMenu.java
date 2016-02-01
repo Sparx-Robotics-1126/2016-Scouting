@@ -141,6 +141,20 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
         }
     }
 
+    private void downloadMatchSpinnerDataIfNecessary(){
+        if(isNetworkAvailable(this) && NetworkHelper.needToLoadMatches(this)){
+            downloadMatchSpinnerData();
+        }
+        else setupMatchSpinner(getSelectedEvent());
+    }
+
+    private void downloadTeamDataIfNecessary(){
+        if(isNetworkAvailable(this) && NetworkHelper.needToLoadTeams(this)){
+            downloadTeamData();
+        }
+        else setupTeamSpinner(getSelectedEvent());
+    }
+
     /**
      * get data to populate spinner
      */
@@ -288,8 +302,8 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
 
 
                     //TODO change these to "if necessary" -- still need to write them above
-                    downloadMatchSpinnerData();
-                    downloadTeamData();
+                    downloadMatchSpinnerDataIfNecessary();
+                    downloadTeamDataIfNecessary();
                 }
                 break;
             //match spinner selected; set up alliance spinner
