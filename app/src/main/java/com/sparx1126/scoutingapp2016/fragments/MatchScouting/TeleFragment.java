@@ -96,7 +96,26 @@ public class TeleFragment extends Fragment {
         bouldersFromBratticePicker = (HorizontalNumberPicker)result.findViewById(R.id.teleBouldersReceivedFromBrattice);
         bouldersPickedUpPicker = (HorizontalNumberPicker)result.findViewById(R.id.teleBouldersPickedUp);
         bouldersTakenToCourtyardPicker = (HorizontalNumberPicker)result.findViewById(R.id.teleBouldersTakenToCourtyard);
-        
+
+        if(st != null){
+            playsDefenseTogglebutton.setChecked(st.getPlaysDefense());
+            highGoalAttemptsNumberPicker.setValue(st.getHighGoalAttempts());
+            highGoalsScoredNumberPicker.setValue(st.getHighGoalsScored());
+            lowGoalAttemptsNumberPicker.setValue(st.getLowGoalAttempts());
+            lowGoalsScoredNumberPicker.setValue(st.getLowGoalsScored());
+            portcullisCrossingsPicker.setValue(st.getPortcullisCrosses());
+            chevalCrossingsPicker.setValue(st.getChevalCrosses());
+            moatCrossingsPicker.setValue(st.getMoatCrosses());
+            rampartsCrossingsPicker.setValue(st.getRampartsCrosses());
+            drawbridgeCrossingsPicker.setValue(st.getDrawbridgeCrosses());
+            sallyportCrossingsPicker.setValue(st.getSallyportCrosses());
+            rockwallCrossingsPicker.setValue(st.getRockwallCrosses());
+            roughterrainCrossingsPicker.setValue(st.getRoughterrainCrosses());
+            lowbarCrossingsPicker.setValue(st.getLowbarCrosses());
+            bouldersFromBratticePicker.setValue(st.getBouldersReceivedFromBrattice());
+            bouldersPickedUpPicker.setValue(st.getBouldersPickedUp());
+            bouldersTakenToCourtyardPicker.setValue(st.getBouldersTakenToCourtyard());
+        }
         wasCreated = true;
 
         return result;

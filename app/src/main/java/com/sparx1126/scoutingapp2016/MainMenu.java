@@ -58,6 +58,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
     private Button scout;
     private BlueAlliance blueAlliance;
     private String nameOfScouter;
+    private Scouting scouting;
     private DatabaseHelper dbHelper;
     public static final String SCOUTING_INFO = "com.sparx1126.scouting2016.SCOUTING";
     public static final String ALLIANCE_SELECTED = "com.spark1126.scouting2016.ALLIANCE";
@@ -499,7 +500,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
      * @return a new String that contains data to create a scouting object in subactivities
      */
     private void convertScouting() {
-        Scouting scouting = new Scouting();
+        scouting = new Scouting();
         //get a match up here; don't really want to keep calling getSelectedMatch()
         Match match = getSelectedMatch();
         //this shouldn't happen, but just in case
@@ -565,9 +566,15 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
      */
     public void beginScouting(View view) {
         Intent i = new Intent(this, MatchScouting.class);
-        if (alliancePicker != null) {
-            i.putExtra(ALLIANCE_SELECTED, (String) alliancePicker.getSelectedItem());
+        if (scouting == null) {
             convertScouting();
+        }
+        if(alliancePicker != null) {
+            i.putExtra(ALLIANCE_SELECTED, (String) alliancePicker.getSelectedItem());
+            if(getName().isEmpty()){
+                Toast.makeText(this, "Please enter your name", Toast.LENGTH_LONG).show();
+            }
+            else
             startActivity(i);
         }
         else if(((RadioButton)findViewById(R.id.benchmarking)).isChecked()) Toast.makeText(this, "Benchmarking isn't ready yet!", Toast.LENGTH_LONG).show();

@@ -92,16 +92,39 @@ public class MatchScouting extends FragmentActivity implements GeneralFragment.O
 
         switch(view.getId()){
             case R.id.auto:
-                ft.replace(R.id.fragContainer, autoFragment, "auto");
+                if(generalFragment.isAdded()){
+                    ft.hide(generalFragment);
+                }
+                if(teleFragment.isAdded()){
+                    ft.hide(teleFragment);
+                }
+                if(!autoFragment.isAdded())
+                    ft.add(R.id.fragContainer, autoFragment);
                 ft.show(autoFragment);
 
                 break;
             case R.id.tele:
-                ft.replace(R.id.fragContainer, teleFragment, "tele");
+                if(autoFragment.isAdded()){
+                    ft.hide(autoFragment);
+                }
+                if(generalFragment.isAdded()){
+                    ft.hide(generalFragment);
+                }
+
+                if(!teleFragment.isAdded())
+                    ft.add(R.id.fragContainer, teleFragment);
                 ft.show(teleFragment);
                 break;
             case R.id.general:
-                ft.replace(R.id.fragContainer, generalFragment, "general");
+                if(autoFragment.isAdded()){
+                    ft.hide(autoFragment);
+                }
+                if(teleFragment.isAdded()){
+                    ft.hide(teleFragment);
+                }
+
+                if(!generalFragment.isAdded())
+                    ft.add(R.id.fragContainer, generalFragment);
                 ft.show(generalFragment);
                 break;
             default:
@@ -117,10 +140,14 @@ public class MatchScouting extends FragmentActivity implements GeneralFragment.O
             scout.setTele(teleFragment.getScoutingTele());
             scout.setGeneral(generalFragment.getScoutingGeneral());
             dbHelper.updateScouting(scout);
-
+            teleFragment = null;
+            generalFragment = null;
+            autoFragment = null;
+        this.finish();
         }
         return super.onKeyDown(keyCode, event);
     }
+
 }
 
 

@@ -66,7 +66,7 @@ public class GeneralFragment extends Fragment {
         View result = inflater.inflate(R.layout.fragment_general, container, false);
 
         penaltyCountNumberPicker = (HorizontalNumberPicker)result.findViewById(R.id.genPenatlies);
-        penaltyCountNumberPicker = (HorizontalNumberPicker)result.findViewById(R.id.genTechnicalFouls);
+        techFoulCountNumberPicker = (HorizontalNumberPicker)result.findViewById(R.id.genTechnicalFouls);
         penaltyCommentsEditText = (EditText)result.findViewById(R.id.genPenaltyComments);
         techFoulCommentsEditText = (EditText)result.findViewById(R.id.genTechFoulComments);
         generalCommentsEditText = (EditText)result.findViewById(R.id.genComments);
