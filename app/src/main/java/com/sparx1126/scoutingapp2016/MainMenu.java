@@ -514,36 +514,41 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
      * @return a new String that contains data to create a scouting object in subactivities
      */
     private void convertScouting() {
-        scouting = new Scouting();
-        //get a match up here; don't really want to keep calling getSelectedMatch()
-        Match match = getSelectedMatch();
-        //this shouldn't happen, but just in case
-        if (getSelectedEvent() != null) {
-            scouting.setEventKey(getSelectedEvent().getKey());
+        if(MatchScouting.scout == null) {
+            scouting = new Scouting();
+            //get a match up here; don't really want to keep calling getSelectedMatch()
+            Match match = getSelectedMatch();
+            //this shouldn't happen, but just in case
+            if (getSelectedEvent() != null) {
+                scouting.setEventKey(getSelectedEvent().getKey());
 
-            //benchmarking selected, so only need team
-            if ((getSelectedTeam() != null && ((RadioButton) (findViewById(R.id.benchmarking)))
-                    .isChecked())) {
-                scouting.setTeamKey(getSelectedTeam().getKey());
+                //benchmarking selected, so only need team
+                if ((getSelectedTeam() != null && ((RadioButton) (findViewById(R.id.benchmarking)))
+                        .isChecked())) {
+                    scouting.setTeamKey(getSelectedTeam().getKey());
 
-            }
-            //match scouting selected, so need match data and alliance team data
-            else if (match != null && ((RadioButton) findViewById(R.id.matchScouting))
-                    .isChecked()) {
-                scouting.setMatchKey(getSelectedMatch().getKey());
-                scouting.setTeamKey(getSelectedAllianceTeam().getKey());
-            }
-            scouting.setGeneral(new ScoutingGeneral());
-            scouting.setAuto(new ScoutingAuto());
-            scouting.setTele(new ScoutingTele());
-            if(getName().isEmpty())
-                Toast.makeText(this, "Please enter your name.", Toast.LENGTH_LONG).show();
-            else {
-                scouting.setNameOfScouter(getName());
+                }
+                //match scouting selected, so need match data and alliance team data
+                else if (match != null && ((RadioButton) findViewById(R.id.matchScouting))
+                        .isChecked()) {
+                    scouting.setMatchKey(getSelectedMatch().getKey());
+                    scouting.setTeamKey(getSelectedAllianceTeam().getKey());
+                }
+                scouting.setGeneral(new ScoutingGeneral());
+                scouting.setAuto(new ScoutingAuto());
+                scouting.setTele(new ScoutingTele());
+                if (getName().isEmpty())
+                    Toast.makeText(this, "Please enter your name.", Toast.LENGTH_LONG).show();
+                else {
+                    scouting.setNameOfScouter(getName());
 
-                MatchScouting.scout = scouting;
+                    MatchScouting.scout = scouting;
+                }
             }
-        }// somehow it failed
+        }
+            else if(!MatchScouting.scout.equals(scouting)){
+                MatchScouting.scout = dbHelper.getScouting(scouting.getEventKey(), scouting.getTeamKey(), scouting.getMatchKey(), scouting.getNameOfScouter()).get(0);
+        }
     }
 
     /**
@@ -580,9 +585,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
      */
     public void beginScouting(View view) {
         Intent i = new Intent(this, MatchScouting.class);
-        if (scouting == null) {
-            convertScouting();
-        }
+        convertScouting();
         if(alliancePicker != null) {
             i.putExtra(ALLIANCE_SELECTED, (String) alliancePicker.getSelectedItem());
             if(getName().isEmpty()){

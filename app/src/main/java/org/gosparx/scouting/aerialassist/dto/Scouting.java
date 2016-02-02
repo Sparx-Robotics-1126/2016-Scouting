@@ -70,4 +70,15 @@ public class Scouting {
     public void setGeneral(ScoutingGeneral general) {
         this.general = general;
     }
+
+    public boolean equals(Object obj){
+        if(!(obj instanceof Scouting)){
+            return false;
+        }
+        Scouting scouting = (Scouting)obj;
+        return (this.getEventKey() == scouting.getEventKey()
+                && this.getMatchKey() == scouting.getMatchKey()
+                && this.getNameOfScouter() == scouting.getNameOfScouter()
+                && this.getTeamKey() == scouting.getTeamKey());
+    }
 }
