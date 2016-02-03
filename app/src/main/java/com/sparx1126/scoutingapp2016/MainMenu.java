@@ -142,10 +142,15 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
     }
 
     private void downloadMatchSpinnerDataIfNecessary(){
-        if(isNetworkAvailable(this) && NetworkHelper.needToLoadMatches(this)){
-            downloadMatchSpinnerData();
+        // see if we have any matches for the selected event
+        Event selectedEvent = this.getSelectedEvent();
+        if (selectedEvent != null) {
+            int eventMatchCount = DatabaseHelper.getInstance(this).getMatchCount(selectedEvent);
+
+            if (isNetworkAvailable(this) && (NetworkHelper.needToLoadMatches(this) || (eventMatchCount == 0))) {
+                downloadMatchSpinnerData();
+            } else setupMatchSpinner(getSelectedEvent());
         }
-        else setupMatchSpinner(getSelectedEvent());
     }
 
     private void downloadTeamDataIfNecessary(){
@@ -389,7 +394,10 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
      * @return the team currently selected in alliancePicker
      */
     private Team getSelectedAllianceTeam() {
-        return dbHelper.getTeam(getTeamKey(alliancePicker.getSelectedItemPosition()));
+        int teamIndex = alliancePicker.getSelectedItemPosition();
+        String teamKey = getTeamKey(teamIndex);
+        Team result = dbHelper.getTeam(teamKey);
+        return result;
     }
 
 
@@ -514,40 +522,36 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
      * @return a new String that contains data to create a scouting object in subactivities
      */
     private void convertScouting() {
-        if(MatchScouting.scout == null) {
-            scouting = new Scouting();
-            //get a match up here; don't really want to keep calling getSelectedMatch()
-            Match match = getSelectedMatch();
-            //this shouldn't happen, but just in case
-            if (getSelectedEvent() != null) {
-                scouting.setEventKey(getSelectedEvent().getKey());
 
-                //benchmarking selected, so only need team
-                if ((getSelectedTeam() != null && ((RadioButton) (findViewById(R.id.benchmarking)))
-                        .isChecked())) {
-                    scouting.setTeamKey(getSelectedTeam().getKey());
+        scouting = new Scouting();
+        //get a match up here; don't really want to keep calling getSelectedMatch()
+        Match match = getSelectedMatch();
+        //this shouldn't happen, but just in case
+        if (getSelectedEvent() != null) {
+            scouting.setEventKey(getSelectedEvent().getKey());
 
-                }
-                //match scouting selected, so need match data and alliance team data
-                else if (match != null && ((RadioButton) findViewById(R.id.matchScouting))
-                        .isChecked()) {
-                    scouting.setMatchKey(getSelectedMatch().getKey());
-                    scouting.setTeamKey(getSelectedAllianceTeam().getKey());
-                }
-                scouting.setGeneral(new ScoutingGeneral());
-                scouting.setAuto(new ScoutingAuto());
-                scouting.setTele(new ScoutingTele());
-                if (getName().isEmpty())
-                    Toast.makeText(this, "Please enter your name.", Toast.LENGTH_LONG).show();
-                else {
-                    scouting.setNameOfScouter(getName());
+            //benchmarking selected, so only need team
+            if ((getSelectedTeam() != null && ((RadioButton) (findViewById(R.id.benchmarking)))
+                    .isChecked())) {
+                scouting.setTeamKey(getSelectedTeam().getKey());
 
-                    MatchScouting.scout = scouting;
-                }
             }
-        }
-            else if(!MatchScouting.scout.equals(scouting)){
-                MatchScouting.scout = dbHelper.getScouting(scouting.getEventKey(), scouting.getTeamKey(), scouting.getMatchKey(), scouting.getNameOfScouter()).get(0);
+            //match scouting selected, so need match data and alliance team data
+            else if (match != null && ((RadioButton) findViewById(R.id.matchScouting))
+                    .isChecked()) {
+                scouting.setMatchKey(getSelectedMatch().getKey());
+                scouting.setTeamKey(getSelectedAllianceTeam().getKey());
+            }
+            scouting.setGeneral(new ScoutingGeneral());
+            scouting.setAuto(new ScoutingAuto());
+            scouting.setTele(new ScoutingTele());
+            if (getName().isEmpty())
+                Toast.makeText(this, "Please enter your name.", Toast.LENGTH_LONG).show();
+            else {
+                scouting.setNameOfScouter(getName());
+
+                MatchScouting.scout = scouting;
+            }
         }
     }
 
