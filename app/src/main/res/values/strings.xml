@@ -8,9 +8,12 @@
     <string name="downloading_data">Downloading data</string>
     <string name="please_wait_while_data_downloads">Please wait while data downloads…</string>
     <string name="cancel">Cancel</string>
+    <string name="okay">Okay</string>
     <string name="select_event">Select Event</string>
     <string name="select_match">Select Match</string>
     <string name="select_team">Select Team</string>
+    <string name="scouter_name">Scouter Name</string>
+    <string name="select_mode">Select Mode</string>
     <string name="begin_scouting">Begin Scouting ></string>
     <string name="view_data">View Data</string>
     <string name="title_activity_scouting_team_select">ScoutingTeamSelect</string>

@@ -35,11 +35,8 @@ import org.gosparx.scouting.aerialassist.dto.Team;
 import org.gosparx.scouting.aerialassist.networking.BlueAlliance;
 import org.gosparx.scouting.aerialassist.networking.NetworkCallback;
 import org.gosparx.scouting.aerialassist.networking.NetworkHelper;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.gosparx.scouting.aerialassist.networking.NetworkHelper.isNetworkAvailable;
 
@@ -116,14 +113,32 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
      *
      * @return message about download
      */
-    private AlertDialog createDialog() {
+    private AlertDialog createDownloadDialog(String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.downloading_data);
-        builder.setMessage(R.string.please_wait_while_data_downloads);
+        builder.setMessage(message);
         builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 BlueAlliance.getInstance(MainMenu.this).cancelAll();
+                dialogInterface.dismiss();
+            }
+        });
+        return builder.create();
+    }
+
+    /**
+     * notify the user about something
+     *
+     * @return message about download
+     */
+    private AlertDialog alertUser(String title, String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(title);
+        builder.setMessage(message);
+        builder.setPositiveButton(R.string.okay, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
             }
         });
@@ -164,7 +179,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
      * get data to populate spinner
      */
     private void downloadEventSpinnerData() {
-        final Dialog alert = createDialog();
+        final Dialog alert = createDownloadDialog("Please wait while Event data is downloaded...");
         alert.show();
         blueAlliance = BlueAlliance.getInstance(this);
         //TODO change to 2015 when ready to use
@@ -174,9 +189,9 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
                 MainMenu.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if (!success)
-                            Toast.makeText(MainMenu.this, "Did not successfully download event list!", Toast.LENGTH_LONG).show();
                         alert.dismiss();
+                        if (!success)
+                            alertUser("Failure", "Did not successfully download event list!").show();
                         setupEventSpinner();
 //                            mNavigationDrawerFragment.updateDrawerData();
                     }
@@ -189,7 +204,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
      * downloads the data for matches of an event
      */
     private void downloadMatchSpinnerData() {
-        final Dialog alert = createDialog();
+        final Dialog alert = createDownloadDialog("Please wait while Match data is downloaded...");
         alert.show();
         //get the event
         final Event e = getSelectedEvent();
@@ -201,9 +216,9 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
                 MainMenu.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if (!success)
-                            Toast.makeText(MainMenu.this, "Did not successfully download match list!", Toast.LENGTH_SHORT).show();
                         alert.dismiss();
+                        if (!success)
+                            alertUser("Download Failure", "Did not successfully download match list!").show();
 
                         setupMatchSpinner(e);
                     }
@@ -216,7 +231,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
      * get team data for this event
      */
     private void downloadTeamData() {
-        final Dialog alert = createDialog();
+        final Dialog alert = createDownloadDialog("Please wait while Team data is downloaded...");
         alert.show();
         //get the event
         final Event e = getSelectedEvent();
@@ -228,9 +243,9 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
                 MainMenu.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if (!success)
-                            Toast.makeText(MainMenu.this, "Did not successfully download team data!", Toast.LENGTH_LONG).show();
                         alert.dismiss();
+                        if (!success)
+                            alertUser("Download Failure", "Did not successfully download team data!").show();
 
                         setupTeamSpinner(e);
                     }
@@ -283,6 +298,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
             case R.id.eventPicker:
                 if (current != null) {
                     try {
+                        // TODO: we don't always have to download here -- it may already be on the device.
                         //set up matches for an event
                         blueAlliance.loadMatches(current, new NetworkCallback() {
                             @Override
@@ -365,6 +381,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
                     matchScout.setVisibility(View.VISIBLE);
                 if (teamScout.getVisibility() != View.GONE)
                     teamScout.setVisibility(View.GONE);
+                downloadMatchSpinnerDataIfNecessary();
                 break;
             case R.id.benchmarking:
                 if (teamScout.getVisibility() != View.VISIBLE)
@@ -394,9 +411,12 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
      * @return the team currently selected in alliancePicker
      */
     private Team getSelectedAllianceTeam() {
-        int teamIndex = alliancePicker.getSelectedItemPosition();
-        String teamKey = getTeamKey(teamIndex);
-        Team result = dbHelper.getTeam(teamKey);
+        Team result = null;
+        if (alliancePicker != null) {
+            int teamIndex = alliancePicker.getSelectedItemPosition();
+            String teamKey = getTeamKey(teamIndex);
+            result = dbHelper.getTeam(teamKey);
+        }
         return result;
     }
 
@@ -423,14 +443,19 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
      * @return the team's key
      */
     private String getTeamKey(int i) {
-        Match m = dbHelper.getMatch(getSelectedMatch().getKey());
-        Alliances a = dbHelper.getMatch(getSelectedMatch().getKey()).getAlliances();
-        String team;
-        if (i < 3)
-            team = a.getBlue().getTeams().get(i);
-        else
-            team = a.getRed().getTeams().get(i - 3);
-        return team;
+        String result = null;
+        Match match = getSelectedMatch();
+        if (match != null)
+        {
+            Alliances a = match.getAlliances();
+            String team;
+            if (i < 3)
+                team = a.getBlue().getTeams().get(i);
+            else
+                team = a.getRed().getTeams().get(i - 3);
+            return team;
+        }
+        return result;
     }
 
     private String getName(){
@@ -546,7 +571,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
             scouting.setAuto(new ScoutingAuto());
             scouting.setTele(new ScoutingTele());
             if (getName().isEmpty())
-                Toast.makeText(this, "Please enter your name.", Toast.LENGTH_LONG).show();
+                alertUser("Name Required", "Please enter your name at the top of the screen.").show();
             else {
                 scouting.setNameOfScouter(getName());
 
@@ -588,20 +613,39 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
      * @param view the view to call this on -- should only be called on begin scouting button
      */
     public void beginScouting(View view) {
-        Intent i = new Intent(this, MatchScouting.class);
-        convertScouting();
-        if(alliancePicker != null) {
-            i.putExtra(ALLIANCE_SELECTED, (String) alliancePicker.getSelectedItem());
-            if(getName().isEmpty()){
-                Toast.makeText(this, "Please enter your name", Toast.LENGTH_LONG).show();
-            }
-            else
-            startActivity(i);
+        // make sure all the required selections have been made
+        Boolean okayToContinue = false;
+
+        // name has to be entered
+        if (getName().isEmpty())
+        {
+            alertUser("Enter Your Name", "Enter your first name at the top of the screen").show();
         }
-        else if(((RadioButton)findViewById(R.id.benchmarking)).isChecked()) Toast.makeText(this, "Benchmarking isn't ready yet!", Toast.LENGTH_LONG).show();
-        else Toast.makeText(this, "Select a match and team to scout first!", Toast.LENGTH_LONG).show();
-
-
+        else if (getSelectedEvent() == null)
+        {
+            alertUser("Select Event!", "Select an event from the list").show();
+        }
+        else if(((RadioButton)findViewById(R.id.benchmarking)).isChecked()) // Benchmarking mode
+        {
+            alertUser("Under Construction!", "Benchmarking isn't ready yet!").show();
+        }
+        else // match scouting mode
+        {
+            // match and team selections are required
+            Match match = getSelectedMatch();
+            Team team = getSelectedAllianceTeam();
+            if ((match == null) || (team == null))
+            {
+                alertUser("Selection Missing", "Please select a match and team from the lists.").show();
+            }
+            else // okay to scout!
+            {
+                Intent i = new Intent(this, MatchScouting.class);
+                convertScouting();
+                i.putExtra(ALLIANCE_SELECTED, (String) alliancePicker.getSelectedItem());
+                startActivity(i);
+            }
+        }
     }
 
  }
