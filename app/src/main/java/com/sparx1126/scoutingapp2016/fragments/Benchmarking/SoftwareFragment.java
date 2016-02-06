@@ -80,6 +80,15 @@ public class SoftwareFragment extends Fragment {
         return result;
     }
 
+    public void onResume(){
+        super.onResume();
+        if(si != null){
+            startSpy.setChecked(si.getAutoStartInSpyPosition());
+            startNeutral.setChecked(si.getAutoStartInSpyPosition());
+            autoActions.setText(si.getAutoCapabilitiesDescription());
+        }
+    }
+
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
