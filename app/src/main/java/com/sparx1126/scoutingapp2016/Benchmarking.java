@@ -1,6 +1,7 @@
 package com.sparx1126.scoutingapp2016;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.app.FragmentActivity;
 import android.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -19,7 +20,8 @@ import org.gosparx.scouting.aerialassist.dto.ScoutingInfo;
 
 import java.util.List;
 
-public class Benchmarking extends FragmentActivity {
+public class Benchmarking extends FragmentActivity implements DrivesFragment.OnFragmentInteractionListener, SoftwareFragment.OnFragmentInteractionListener,
+    AcquisitionFragment.OnFragmentInteractionListener, ScoringFragment.OnFragmentInteractionListener{
 
     public static ScoutingInfo info;
     private DatabaseHelper dbHelper;
@@ -61,6 +63,7 @@ public class Benchmarking extends FragmentActivity {
     }
 
 
+    public void onFragmentInteraction(Uri uri){}
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event){
         if(keyCode == KeyEvent.KEYCODE_BACK){
