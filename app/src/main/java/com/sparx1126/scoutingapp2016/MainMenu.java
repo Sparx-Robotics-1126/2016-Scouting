@@ -169,10 +169,15 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
     }
 
     private void downloadTeamDataIfNecessary(){
-        if(isNetworkAvailable(this) && NetworkHelper.needToLoadTeams(this)){
-            downloadTeamData();
+        Event selectedEvent = this.getSelectedEvent();
+        if (selectedEvent != null) {
+            int eventTeamCount = DatabaseHelper.getInstance(this).getEventTeamCount(selectedEvent);
+
+            if (isNetworkAvailable(this) && (NetworkHelper.needToLoadTeams(this) || (eventTeamCount == 0))) {
+                downloadTeamData();
+            }
+            else setupTeamSpinner(getSelectedEvent());
         }
-        else setupTeamSpinner(getSelectedEvent());
     }
 
     /**
@@ -297,32 +302,6 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
         switch (parent.getId()) {
             case R.id.eventPicker:
                 if (current != null) {
-                    try {
-                        // TODO: we don't always have to download here -- it may already be on the device.
-                        //set up matches for an event
-                        blueAlliance.loadMatches(current, new NetworkCallback() {
-                            @Override
-                            public void handleFinishDownload(boolean success) {
-                                if (!success) {
-                                    Toast.makeText(MainMenu.this, "Did not successfully download match list!", Toast.LENGTH_LONG).show();
-                                }
-                            }
-                        });
-                        //set up teams for an event
-                        blueAlliance.loadTeams(current, new NetworkCallback() {
-                            @Override
-                            public void handleFinishDownload(boolean success) {
-                                if (!success)
-                                    Toast.makeText(MainMenu.this, "Did not successfully download team list!", Toast.LENGTH_LONG).show();
-                            }
-                        });
-
-                    } catch (Exception e) {
-                        Log.println(1010, "error", "This shouldn't happen");
-                    }
-
-
-                    //TODO change these to "if necessary" -- still need to write them above
                     downloadMatchSpinnerDataIfNecessary();
                     downloadTeamDataIfNecessary();
                 }
@@ -445,8 +424,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
     private String getTeamKey(int i) {
         String result = null;
         Match match = getSelectedMatch();
-        if (match != null)
-        {
+        if (match != null) {
             Alliances a = match.getAlliances();
             String team;
             if (i < 3)
