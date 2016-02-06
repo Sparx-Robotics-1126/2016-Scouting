@@ -711,7 +711,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public List<Scouting> getScouting(String eventKey, String teamKey, String matchKey, String scouterName){
         SQLiteDatabase db = getReadableDatabase();
-        //TODO: Fix this section. It doesn't check ScoutingAuto, etc. objects.
+        //TODO: Fix this section. It doesn't check ScoutingAuto, etc. objects. I'm not even sure if this section is the problem, but it looks like it might be
         //Duane will have to do this, not really sure how to go about fixing this at the moment
         String selectStatement = "SELECT * FROM " + TABLE_SCOUTING
                 + " WHERE " + TABLE_SCOUTING_EVENT_KEY + " = ?"

@@ -5,8 +5,10 @@ package org.gosparx.scouting.aerialassist.dto;
  */
 public class ScoutingInfo {
 
+    //drives
+
     private String driveSystemDescription = "unknown";
-    private double approxSpeedFeetPerSecond = -1.0;
+    private double approxSpeedFeetPerSecond = 0.0;
     // which defenses the robot can cross
     private Boolean canCrossPortcullis = false;
     private Boolean canCrossCheval = false;
@@ -17,26 +19,40 @@ public class ScoutingInfo {
     private Boolean canCrossRockwall = false;
     private Boolean canCrossRoughterrain = false;
     private Boolean canCrossLowbar = false;
+    //does the robot extend beyond the transport config?
+    private Boolean doesExtendBeyondTransportConfig = false;
+
+    //auto
+
     // starting position in autonomous
     private Boolean autoStartInNeutralZone = false;
     private Boolean autoStartInSpyPosition = false;
     // what the robot can do in autonomous
     private String autoCapabilitiesDescription = "unknown";
     // where the robot can acquire boulders
+
+    //acquisition
+
     private Boolean acquiresBouldersFromFloor = false;
     private Boolean acquiresBouldersFromHumanPlayer = false;
     // boulder acquisition preference: "human" or "floor"
     private String preferredBoulderSource = "unknown";
     // whether or not boulders can be carried over defenses
     private Boolean canCarryBouldersOverDefenses = false;
+
+    //scoring
+
     // whether or not goals can be scored
     private Boolean canScoreInHighGoal = false;
     private Boolean canScoreInLowGoal = false;
-    private double averageHighGoalsPerMatch = -1.0;
-    private double averageLowGoalsPerMatch = -1.0;
+    private double averageHighGoalsPerMatch = 0.0;
+    private double averageLowGoalsPerMatch = 0.0;
     // scaling ability
     private Boolean canScale = false;
-
+    //cycle time
+    private double cycleTime = 0.0;
+    //defense
+    private Boolean playsDefense = false;
 
     public String getDriveSystemDescription() {
         return driveSystemDescription;
@@ -124,6 +140,14 @@ public class ScoutingInfo {
 
     public void setCanCrossLowbar(Boolean canCrossLowbar) {
         this.canCrossLowbar = canCrossLowbar;
+    }
+
+    public Boolean getDoesExtendBeyondTransportConfig() {
+        return doesExtendBeyondTransportConfig;
+    }
+
+    public void setDoesExtendBeyondTransportConfig(Boolean doesExtendBeyondTransportConfig) {
+        this.doesExtendBeyondTransportConfig = doesExtendBeyondTransportConfig;
     }
 
     public Boolean getAutoStartInNeutralZone() {
@@ -222,4 +246,22 @@ public class ScoutingInfo {
         this.canScale = canScale;
     }
 
+    public double getCycleTime() {
+        return cycleTime;
+    }
+
+    public void setCycleTime(double cycleTime) {
+        this.cycleTime = cycleTime;
+    }
+
+    public Boolean getPlaysDefense() {
+        return playsDefense;
+    }
+
+    public void setPlaysDefense(Boolean playsDefense) {
+        this.playsDefense = playsDefense;
+    }
+
+
 }
+
