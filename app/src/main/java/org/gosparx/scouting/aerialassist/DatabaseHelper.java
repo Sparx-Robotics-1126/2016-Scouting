@@ -184,7 +184,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_BENCHMARKING_SCORING_CAN_SCORE_LOW = "s_canScoreLow";
     private static final String TABLE_BENCHMARKING_SCORING_HIGH_GOALS_PER_MATCH = "s_matchHighGoals";
     private static final String TABLE_BENCHMARKING_SCORING_LOW_GOALS_PER_MATCH = "s_matchLowGoals";
-    private static final String TABLE_BENCHMARKING_SCORING_CAN_SCALE = "s_canScale";
+    private static final String TABLE_BENCHMARKING_SCORING_CAN_SCALE_AT_CENTER = "s_canScaleAtCenter";
+    private static final String TABLE_BENCHMARKING_SCORING_CAN_SCALE_ON_RIGHT = "s_canScaleOnRight";
+    private static final String TABLE_BENCHMARKING_SCORING_CAN_SCALE_ON_LEFT = "s_canScaleOnLeft";
+    private static final String TABLE_BENCHMARKING_SCORING_SCALE_HEIGHT_PERCENT = "s_scaleHeightPct";
     private static final String TABLE_BENCHMARKING_SCORING_CYCLE_TIME = "s_cycleTime";
     private static final String TABLE_BENCHMARKING_SCORING_PLAYS_DEFENSE = "s_playsDefense";
     
@@ -328,7 +331,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         + TABLE_BENCHMARKING_SCORING_CAN_SCORE_LOW + " BOOLEAN, "
         + TABLE_BENCHMARKING_SCORING_HIGH_GOALS_PER_MATCH + " REAL, "
         + TABLE_BENCHMARKING_SCORING_LOW_GOALS_PER_MATCH + " REAL, "
-        + TABLE_BENCHMARKING_SCORING_CAN_SCALE + " BOOLEAN, "
+        + TABLE_BENCHMARKING_SCORING_CAN_SCALE_AT_CENTER + " BOOLEAN, "
+        + TABLE_BENCHMARKING_SCORING_CAN_SCALE_ON_RIGHT + " BOOLEAN, "
+        + TABLE_BENCHMARKING_SCORING_CAN_SCALE_ON_LEFT + " BOOLEAN, "
+        + TABLE_BENCHMARKING_SCORING_SCALE_HEIGHT_PERCENT + " REAL, "
         + TABLE_BENCHMARKING_SCORING_CYCLE_TIME + " REAL, "
         + TABLE_BENCHMARKING_SCORING_PLAYS_DEFENSE + " BOOLEAN)";
 
@@ -987,7 +993,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(TABLE_BENCHMARKING_SCORING_CAN_SCORE_LOW, scouting.getCanScoreInLowGoal());
         values.put(TABLE_BENCHMARKING_SCORING_HIGH_GOALS_PER_MATCH, scouting.getAverageHighGoalsPerMatch());
         values.put(TABLE_BENCHMARKING_SCORING_LOW_GOALS_PER_MATCH, scouting.getAverageLowGoalsPerMatch());
-        values.put(TABLE_BENCHMARKING_SCORING_CAN_SCALE, scouting.getCanScale());
+        values.put(TABLE_BENCHMARKING_SCORING_CAN_SCALE_AT_CENTER, scouting.getCanScaleAtCenter());
+        values.put(TABLE_BENCHMARKING_SCORING_CAN_SCALE_ON_RIGHT, scouting.getCanScaleOnRight());
+        values.put(TABLE_BENCHMARKING_SCORING_CAN_SCALE_ON_LEFT, scouting.getCanScaleOnLeft());
+        values.put(TABLE_BENCHMARKING_SCORING_SCALE_HEIGHT_PERCENT, scouting.getScaleHeightPercent());
         values.put(TABLE_BENCHMARKING_SCORING_CYCLE_TIME, scouting.getCycleTime());
         values.put(TABLE_BENCHMARKING_SCORING_PLAYS_DEFENSE, scouting.getPlaysDefense());
 
@@ -1034,7 +1043,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         data.setCanScoreInLowGoal(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_SCORING_CAN_SCORE_LOW)));
         data.setAverageHighGoalsPerMatch(c.getDouble(c.getColumnIndex(TABLE_BENCHMARKING_SCORING_HIGH_GOALS_PER_MATCH)));
         data.setAverageLowGoalsPerMatch(c.getDouble(c.getColumnIndex(TABLE_BENCHMARKING_SCORING_LOW_GOALS_PER_MATCH)));
-        data.setCanScale(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_SCORING_CAN_SCALE)));
+        data.setCanScaleAtCenter(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_SCORING_CAN_SCALE_AT_CENTER)));
+        data.setCanScaleOnRight(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_SCORING_CAN_SCALE_ON_RIGHT)));
+        data.setCanScaleOnLeft(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_SCORING_CAN_SCALE_ON_LEFT)));
+        data.setScaleHeightPercent(c.getDouble(c.getColumnIndex(TABLE_BENCHMARKING_SCORING_SCALE_HEIGHT_PERCENT)));
         data.setCycleTime(c.getDouble(c.getColumnIndex(TABLE_BENCHMARKING_SCORING_CYCLE_TIME)));
         data.setPlaysDefense(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_SCORING_PLAYS_DEFENSE)));
         

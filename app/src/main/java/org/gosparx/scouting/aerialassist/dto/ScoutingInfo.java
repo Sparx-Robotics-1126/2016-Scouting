@@ -65,8 +65,12 @@ public class ScoutingInfo {
     private Boolean canScoreInLowGoal = false;
     private double averageHighGoalsPerMatch = 0.0;
     private double averageLowGoalsPerMatch = 0.0;
+
     // scaling ability
-    private Boolean canScale = false;
+    private Boolean canScaleAtCenter = false;
+    private Boolean canScaleOnRight = false;
+    private Boolean canScaleOnLeft = false;
+    private double scaleHeightPercent = 0.0;
     //cycle time
     private double cycleTime = 0.0;
     //defense
@@ -345,14 +349,6 @@ public class ScoutingInfo {
         this.averageLowGoalsPerMatch = averageLowGoalsPerMatch;
     }
 
-    public Boolean getCanScale() {
-        return canScale;
-    }
-
-    public void setCanScale(Boolean canScale) {
-        this.canScale = canScale;
-    }
-
     public double getCycleTime() {
         return cycleTime;
     }
@@ -386,6 +382,37 @@ public class ScoutingInfo {
         this.autoEndInNeutralZone = autoEndInNeutralZone;
     }
 
+    public Boolean getCanScaleAtCenter() {
+        return canScaleAtCenter;
+    }
+
+    public void setCanScaleAtCenter(Boolean canScaleAtCenter) {
+        this.canScaleAtCenter = canScaleAtCenter;
+    }
+
+    public Boolean getCanScaleOnRight() {
+        return canScaleOnRight;
+    }
+
+    public void setCanScaleOnRight(Boolean canScaleOnRight) {
+        this.canScaleOnRight = canScaleOnRight;
+    }
+
+    public Boolean getCanScaleOnLeft() {
+        return canScaleOnLeft;
+    }
+
+    public void setCanScaleOnLeft(Boolean canScaleOnLeft) {
+        this.canScaleOnLeft = canScaleOnLeft;
+    }
+
+    public double getScaleHeightPercent() {
+        return scaleHeightPercent;
+    }
+
+    public void setScaleHeightPercent(double scaleHeightPercent) {
+        this.scaleHeightPercent = scaleHeightPercent;
+    }
 
 }
 
