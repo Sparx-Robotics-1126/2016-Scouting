@@ -5,6 +5,9 @@ package org.gosparx.scouting.aerialassist.dto;
  */
 public class ScoutingInfo {
 
+    private String nameOfScouter;
+    private String teamKey;
+
     //drives
 
     private String driveSystemDescription = "unknown";
@@ -38,7 +41,15 @@ public class ScoutingInfo {
     // boulder acquisition preference: "human" or "floor"
     private String preferredBoulderSource = "unknown";
     // whether or not boulders can be carried over defenses
-    private Boolean canCarryBouldersOverDefenses = false;
+    private Boolean canCarryBouldersOverPortcullis = false;
+    private Boolean canCarryBouldersOverCheval = false;
+    private Boolean canCarryBouldersOverMoat = false;
+    private Boolean canCarryBouldersOverRamparts = false;
+    private Boolean canCarryBouldersOverDrawbridge = false;
+    private Boolean canCarryBouldersOverSallyport = false;
+    private Boolean canCarryBouldersOverRockwall = false;
+    private Boolean canCarryBouldersOverRoughterrain = false;
+    private Boolean canCarryBouldersOverLowbar = false;
 
     //scoring
 
@@ -53,6 +64,23 @@ public class ScoutingInfo {
     private double cycleTime = 0.0;
     //defense
     private Boolean playsDefense = false;
+
+
+    public String getNameOfScouter() {
+        return nameOfScouter;
+    }
+
+    public void setNameOfScouter(String nameOfScouter) {
+        this.nameOfScouter = nameOfScouter;
+    }
+
+    public String getTeamKey() {
+        return teamKey;
+    }
+
+    public void setTeamKey(String teamKey) {
+        this.teamKey = teamKey;
+    }
 
     public String getDriveSystemDescription() {
         return driveSystemDescription;
@@ -198,12 +226,76 @@ public class ScoutingInfo {
         this.preferredBoulderSource = preferredBoulderSource;
     }
 
-    public Boolean getCanCarryBouldersOverDefenses() {
-        return canCarryBouldersOverDefenses;
+    public Boolean getCanCarryBouldersOverPortcullis() {
+        return canCarryBouldersOverPortcullis;
     }
 
-    public void setCanCarryBouldersOverDefenses(Boolean canCarryBouldersOverDefenses) {
-        this.canCarryBouldersOverDefenses = canCarryBouldersOverDefenses;
+    public void setCanCarryBouldersOverPortcullis(Boolean canCarryBouldersOverPortcullis) {
+        this.canCarryBouldersOverPortcullis = canCarryBouldersOverPortcullis;
+    }
+
+    public Boolean getCanCarryBouldersOverCheval() {
+        return canCarryBouldersOverCheval;
+    }
+
+    public void setCanCarryBouldersOverCheval(Boolean canCarryBouldersOverCheval) {
+        this.canCarryBouldersOverCheval = canCarryBouldersOverCheval;
+    }
+
+    public Boolean getCanCarryBouldersOverMoat() {
+        return canCarryBouldersOverMoat;
+    }
+
+    public void setCanCarryBouldersOverMoat(Boolean canCarryBouldersOverMoat) {
+        this.canCarryBouldersOverMoat = canCarryBouldersOverMoat;
+    }
+
+    public Boolean getCanCarryBouldersOverRamparts() {
+        return canCarryBouldersOverRamparts;
+    }
+
+    public void setCanCarryBouldersOverRamparts(Boolean canCarryBouldersOverRamparts) {
+        this.canCarryBouldersOverRamparts = canCarryBouldersOverRamparts;
+    }
+
+    public Boolean getCanCarryBouldersOverDrawbridge() {
+        return canCarryBouldersOverDrawbridge;
+    }
+
+    public void setCanCarryBouldersOverDrawbridge(Boolean canCarryBouldersOverDrawbridge) {
+        this.canCarryBouldersOverDrawbridge = canCarryBouldersOverDrawbridge;
+    }
+
+    public Boolean getCanCarryBouldersOverSallyport() {
+        return canCarryBouldersOverSallyport;
+    }
+
+    public void setCanCarryBouldersOverSallyport(Boolean canCarryBouldersOverSallyport) {
+        this.canCarryBouldersOverSallyport = canCarryBouldersOverSallyport;
+    }
+
+    public Boolean getCanCarryBouldersOverRockwall() {
+        return canCarryBouldersOverRockwall;
+    }
+
+    public void setCanCarryBouldersOverRockwall(Boolean canCarryBouldersOverRockwall) {
+        this.canCarryBouldersOverRockwall = canCarryBouldersOverRockwall;
+    }
+
+    public Boolean getCanCarryBouldersOverRoughterrain() {
+        return canCarryBouldersOverRoughterrain;
+    }
+
+    public void setCanCarryBouldersOverRoughterrain(Boolean canCarryBouldersOverRoughterrain) {
+        this.canCarryBouldersOverRoughterrain = canCarryBouldersOverRoughterrain;
+    }
+
+    public Boolean getCanCarryBouldersOverLowbar() {
+        return canCarryBouldersOverLowbar;
+    }
+
+    public void setCanCarryBouldersOverLowbar(Boolean canCarryBouldersOverLowbar) {
+        this.canCarryBouldersOverLowbar = canCarryBouldersOverLowbar;
     }
 
     public Boolean getCanScoreInHighGoal() {

@@ -42,6 +42,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_E2T = "events_to_teams";
     private static final String TABLE_MATCHES = "matches";
     private static final String TABLE_SCOUTING = "scouting";
+    private static final String TABLE_BENCHMARKING = "benchmarking";
 
     // Events Column Names
     private static final String TABLE_EVENTS_KEY = "key";
@@ -142,6 +143,74 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_SCOUTING_GENERAL_COMMENTS_TECHNICAL_FOULS = "g_commentsOnTechnicalFouls";
     private static final String TABLE_SCOUTING_GENERAL_COMMENTS = "g_generalComments";
 
+    // Benchmarking Column Names
+    private static final String TABLE_BENCHMARKING_KEY = "key";
+    private static final String TABLE_BENCHMARKING_LAST_UPDATE = "last_updated";
+    private static final String TABLE_BENCHMARKING_LAST_SYNC = "last_sync";
+    private static final String TABLE_BENCHMARKING_TEAM_KEY = "team_key";
+    private static final String TABLE_BENCHMARKING_EVENT_KEY = "event_key";
+    private static final String TABLE_BENCHMARKING_NAME = "scouter_name";
+
+    private static final String TABLE_BENCHMARKING_DRIVES_DESCRIPTION = "d_description";
+    private static final String TABLE_BENCHMARKING_DRIVES_APPROX_SPEED = "d_approxSpeed";
+    private static final String TABLE_BENCHMARKING_DRIVES_CANCROSS_PORTCULLIS = "d_canCrossPortcullis";
+    private static final String TABLE_BENCHMARKING_DRIVES_CANCROSS_CHEVAL = "d_canCrossCheval";
+    private static final String TABLE_BENCHMARKING_DRIVES_CANCROSS_MOAT = "d_canCrossMoat";
+    private static final String TABLE_BENCHMARKING_DRIVES_CANCROSS_RAMPARTS = "d_canCrossRamparts";
+    private static final String TABLE_BENCHMARKING_DRIVES_CANCROSS_DRAWBRIDGE = "d_canCrossDrawbridge";
+    private static final String TABLE_BENCHMARKING_DRIVES_CANCROSS_SALLYPORT = "d_canCrosSsallyport";
+    private static final String TABLE_BENCHMARKING_DRIVES_CANCROSS_ROCKWALL = "d_canCrossRockwall";
+    private static final String TABLE_BENCHMARKING_DRIVES_CANCROSS_ROUGHTERRAIN = "d_canCrossRoughterrain";
+    private static final String TABLE_BENCHMARKING_DRIVES_CANCROSS_LOWBAR = "d_canCrossLowbar";
+    private static final String TABLE_BENCHMARKING_DRIVES_EXTENDS_PAST_TRANSPORT = "d_extendsPastTransport";
+    private static final String TABLE_BENCHMARKING_AUTO_STARTS_AS_SPY = "a_startsAsSpy";
+    private static final String TABLE_BENCHMARKING_AUTO_STARTS_IN_NEUTRAL_ZONE = "a_startsInNeutralZone";
+    private static final String TABLE_BENCHMARKING_AUTO_DESCRIPTION = "a_description";
+    private static final String TABLE_BENCHMARKING_ACQUISITION_FROM_FLOOR = "acq_fromFloor";
+    private static final String TABLE_BENCHMARKING_ACQUISITION_FROM_HUMAN = "acq_fromHumanPlayer";
+    private static final String TABLE_BENCHMARKING_ACQUISITION_PREFERREDSOURCE = "acq_preferredSource";
+    private static final String TABLE_BENCHMARKING_ACQUISITION_CARRYOVER_PORTCULLIS = "acq_carryOverPortcullis";
+    private static final String TABLE_BENCHMARKING_ACQUISITION_CARRYOVER_CHEVAL = "acq_carryOverCheval";
+    private static final String TABLE_BENCHMARKING_ACQUISITION_CARRYOVER_MOAT = "acq_carryOverMoat";
+    private static final String TABLE_BENCHMARKING_ACQUISITION_CARRYOVER_RAMPARTS = "acq_carryOverRamparts";
+    private static final String TABLE_BENCHMARKING_ACQUISITION_CARRYOVER_DRAWBRIDGE = "acq_carryOverDrawbridge";
+    private static final String TABLE_BENCHMARKING_ACQUISITION_CARRYOVER_SALLYPORT = "acq_carryOversallyport";
+    private static final String TABLE_BENCHMARKING_ACQUISITION_CARRYOVER_ROCKWALL = "acq_carryOverRockwall";
+    private static final String TABLE_BENCHMARKING_ACQUISITION_CARRYOVER_ROUGHTERRAIN = "acq_carryOverRoughterrain";
+    private static final String TABLE_BENCHMARKING_ACQUISITION_CARRYOVER_LOWBAR = "acq_carryOverLowbar";
+    
+
+
+    private static final String TABLE_BENCHMARKING_AUTO_BOULDER_PICKED_UP = "a_boudlerPickedUp";
+    private static final String TABLE_BENCHMARKING_AUTO_ROBOT_SCORED_HIGH = "a_robotScoredHigh";
+    private static final String TABLE_BENCHMARKING_AUTO_ROBOT_SCORED_LOW = "a_robotScoredLow";
+    private static final String TABLE_BENCHMARKING_AUTO_ENDING_POSITION = "a_endingPosition";
+    private static final String TABLE_BENCHMARKING_AUTO_REACH_ACHIEVED = "a_reachAchieved";
+    private static final String TABLE_BENCHMARKING_AUTO_REACH_WAS_CROSS_ATTEMPT = "a_reachWasCrossAttempt";
+    private static final String TABLE_BENCHMARKING_TELE_HIGH_GOAL_ATTEMPTS = "t_highGoalAttempts";
+    private static final String TABLE_BENCHMARKING_TELE_HIGH_GOALS_SCORED = "t_highGoalsScored";
+    private static final String TABLE_BENCHMARKING_TELE_LOW_GOAL_ATTEMPTS = "t_lowGoalAttempts";
+    private static final String TABLE_BENCHMARKING_TELE_LOW_GOALS_SCORED = "t_lowGoalsScored";
+    private static final String TABLE_BENCHMARKING_TELE_PORTCULLIS_CROSSES = "t_portcullisCrosses";
+    private static final String TABLE_BENCHMARKING_TELE_CHEVAL_CROSSES = "t_chevalCrosses";
+    private static final String TABLE_BENCHMARKING_TELE_MOAT_CROSSES = "t_moatCrosses";
+    private static final String TABLE_BENCHMARKING_TELE_RAMPART_CROSSES = "t_rampartsCrosses";
+    private static final String TABLE_BENCHMARKING_TELE_DRAWBRIDGE_CROSSES = "t_drawbridgeCrosses";
+    private static final String TABLE_BENCHMARKING_TELE_SALLYPORT_CROSSES = "t_sallyportCrosses";
+    private static final String TABLE_BENCHMARKING_TELE_ROCKWALL_CROSSES = "t_rockwallCrosses";
+    private static final String TABLE_BENCHMARKING_TELE_ROUGHTERRAIN_CROSSES = "t_roughterrainCrosses";
+    private static final String TABLE_BENCHMARKING_TELE_LOWBAR_CROSSES = "t_lowbarCrosses";
+    private static final String TABLE_BENCHMARKING_TELE_PLAYS_DEFENSE = "t_playsDefense";
+    private static final String TABLE_BENCHMARKING_TELE_BOULDERS_PICKED_UP = "t_bouldersPickedUp";
+    private static final String TABLE_BENCHMARKING_TELE_BOULDERS_TAKEN_TO_COURTYARD = "t_bouldersTakenToCourtyard";
+    private static final String TABLE_BENCHMARKING_TELE_BOULDERS_RECEIVED_FROM_BRATTICE = "t_bouldersReceivedFromBrattice";
+    private static final String TABLE_BENCHMARKING_GENERAL_NUMBER_OF_PENALTIES = "g_numberOfPenalties";
+    private static final String TABLE_BENCHMARKING_GENERAL_COMMENTS_PENALTIES = "g_commentsOnPenalties";
+    private static final String TABLE_BENCHMARKING_GENERAL_NUMBER_OF_TECHNICAL_FOULS = "g_numberOfTechnicalFouls";
+    private static final String TABLE_BENCHMARKING_GENERAL_COMMENTS_TECHNICAL_FOULS = "g_commentsOnTechnicalFouls";
+    private static final String TABLE_BENCHMARKING_GENERAL_COMMENTS = "g_generalComments";
+    
+    
     // Create Tables
     private static final String CREATE_TABLE_EVENTS = "CREATE TABLE " + TABLE_EVENTS + "("
             + TABLE_EVENTS_KEY + " TEXT PRIMARY KEY, "
