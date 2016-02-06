@@ -1,0 +1,250 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="org.gosparx.scouting.aerialassist.dto.AcquisitionFragment">
+
+    <LinearLayout android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_gravity="left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Where does this team get boulders?"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:textSize="@dimen/body_text_size" />
+        <LinearLayout android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_gravity="left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Human Player"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:textSize="@dimen/body_text_size" />
+            <ToggleButton android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOn="Yes"
+                android:textOff="No"
+                android:id="@+id/humanAcq"/>
+        </LinearLayout>
+
+        <LinearLayout android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_gravity="left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Floor"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:textSize="@dimen/body_text_size" />
+        <ToggleButton android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOn="Yes"
+            android:textOff="No"
+            android:id="@+id/floorAcq"/>
+    </LinearLayout>
+        <TextView
+            android:layout_gravity="left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Where does this team prefer to get boulders?"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:textSize="@dimen/body_text_size" />
+        <ToggleButton android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textOff="Human Player"
+            android:textOn="Floor"
+            android:id="@+id/preferredAcq"/>
+
+        <TextView
+            android:layout_gravity="left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="What defenses can this team carry a boulder over?"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:textSize="@dimen/body_text_size" />
+        <LinearLayout android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_gravity="left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Portcullis"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:textSize="@dimen/body_text_size" />
+            <ToggleButton android:layout_height="wrap_content" android:layout_width="wrap_content"
+                android:id="@+id/portcullisBoulder"
+                android:textOff="No"
+                android:textOn="Yes" />
+        </LinearLayout>
+        <LinearLayout android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_gravity="left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cheval"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:textSize="@dimen/body_text_size" />
+            <ToggleButton android:layout_height="wrap_content" android:layout_width="wrap_content"
+                android:id="@+id/chevalBoulder"
+                android:textOff="No"
+                android:textOn="Yes" />
+        </LinearLayout>
+        <LinearLayout android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_gravity="left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Moat"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:textSize="@dimen/body_text_size" />
+            <ToggleButton android:layout_height="wrap_content" android:layout_width="wrap_content"
+                android:id="@+id/moatBoulder"
+                android:textOff="No"
+                android:textOn="Yes" />
+        </LinearLayout>
+
+        <LinearLayout android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_gravity="left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ramparts"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:textSize="@dimen/body_text_size" />
+            <ToggleButton android:layout_height="wrap_content" android:layout_width="wrap_content"
+                android:id="@+id/rampartsBoulder"
+                android:textOff="No"
+                android:textOn="Yes" />
+        </LinearLayout>
+
+        <LinearLayout android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_gravity="left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Drawbridge"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:textSize="@dimen/body_text_size" />
+            <ToggleButton android:layout_height="wrap_content" android:layout_width="wrap_content"
+                android:id="@+id/drawbridgeBoulder"
+                android:textOff="No"
+                android:textOn="Yes" />
+        </LinearLayout>
+
+        <LinearLayout android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_gravity="left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sally Port"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:textSize="@dimen/body_text_size" />
+            <ToggleButton android:layout_height="wrap_content" android:layout_width="wrap_content"
+                android:id="@+id/sallyportBoulder"
+                android:textOff="No"
+                android:textOn="Yes" />
+        </LinearLayout>
+
+        <LinearLayout android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_gravity="left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rock Wall"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:textSize="@dimen/body_text_size" />
+            <ToggleButton android:layout_height="wrap_content" android:layout_width="wrap_content"
+                android:id="@+id/rockwallBoulder"
+                android:textOff="No"
+                android:textOn="Yes" />
+        </LinearLayout>
+
+        <LinearLayout android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_gravity="left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rough Terrain"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:textSize="@dimen/body_text_size" />
+            <ToggleButton android:layout_height="wrap_content" android:layout_width="wrap_content"
+                android:id="@+id/roughterrainBoulder"
+                android:textOff="No"
+                android:textOn="Yes" />
+        </LinearLayout>
+
+        <LinearLayout android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_gravity="left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Low Bar"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:textSize="@dimen/body_text_size" />
+            <ToggleButton android:layout_height="wrap_content" android:layout_width="wrap_content"
+                android:id="@+id/lowbarBoulder"
+                android:textOff="No"
+                android:textOn="Yes" />
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>
