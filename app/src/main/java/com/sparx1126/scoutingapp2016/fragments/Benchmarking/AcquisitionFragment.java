@@ -1,4 +1,4 @@
-package org.gosparx.scouting.aerialassist.dto;
+package com.sparx1126.scoutingapp2016.fragments.Benchmarking;
 
 import android.app.Activity;
 import android.net.Uri;
@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ToggleButton;
 
 import com.sparx1126.scoutingapp2016.R;
+
+import org.gosparx.scouting.aerialassist.dto.ScoutingInfo;
 
 /**
  * A simple {@link Fragment} subclass.
