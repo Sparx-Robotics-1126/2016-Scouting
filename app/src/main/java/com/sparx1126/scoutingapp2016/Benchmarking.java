@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.sparx1126.scoutingapp2016.fragments.Benchmarking.AcquisitionFragment;
 import com.sparx1126.scoutingapp2016.fragments.Benchmarking.DrivesFragment;
+import com.sparx1126.scoutingapp2016.fragments.Benchmarking.ScoringFragment;
 import com.sparx1126.scoutingapp2016.fragments.Benchmarking.SoftwareFragment;
 
 import org.gosparx.scouting.aerialassist.DatabaseHelper;
@@ -26,7 +27,7 @@ public class Benchmarking extends FragmentActivity {
     private DrivesFragment drivesFragment;
     private SoftwareFragment softwareFragment;
     private AcquisitionFragment acquisitionFragment;
-//    private ScoringFragment scoringFragment;
+    private ScoringFragment scoringFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,7 @@ public class Benchmarking extends FragmentActivity {
         drivesFragment = DrivesFragment.newInstance(info);
         softwareFragment = SoftwareFragment.newInstance(info);
         acquisitionFragment = AcquisitionFragment.newInstance(info);
+        scoringFragment = ScoringFragment.newInstance(info);
 
         // set title of activity to the team number
         Toolbar toolbar = ((Toolbar)findViewById(R.id.toolbar));
@@ -67,6 +69,7 @@ public class Benchmarking extends FragmentActivity {
             drivesFragment = null;
             acquisitionFragment = null;
             softwareFragment = null;
+            scoringFragment = null;
             this.finish();
         }
         return super.onKeyDown(keyCode, event);
