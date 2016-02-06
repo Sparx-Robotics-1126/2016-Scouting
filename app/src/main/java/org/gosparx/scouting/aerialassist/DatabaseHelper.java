@@ -14,6 +14,7 @@ import org.gosparx.scouting.aerialassist.dto.Match;
 import org.gosparx.scouting.aerialassist.dto.Scouting;
 import org.gosparx.scouting.aerialassist.dto.ScoutingAuto;
 import org.gosparx.scouting.aerialassist.dto.ScoutingGeneral;
+import org.gosparx.scouting.aerialassist.dto.ScoutingInfo;
 import org.gosparx.scouting.aerialassist.dto.ScoutingTele;
 import org.gosparx.scouting.aerialassist.dto.Team;
 
@@ -150,7 +151,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_BENCHMARKING_TEAM_KEY = "team_key";
     private static final String TABLE_BENCHMARKING_EVENT_KEY = "event_key";
     private static final String TABLE_BENCHMARKING_NAME = "scouter_name";
-
     private static final String TABLE_BENCHMARKING_DRIVES_DESCRIPTION = "d_description";
     private static final String TABLE_BENCHMARKING_DRIVES_APPROX_SPEED = "d_approxSpeed";
     private static final String TABLE_BENCHMARKING_DRIVES_CANCROSS_PORTCULLIS = "d_canCrossPortcullis";
@@ -178,38 +178,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_BENCHMARKING_ACQUISITION_CARRYOVER_ROCKWALL = "acq_carryOverRockwall";
     private static final String TABLE_BENCHMARKING_ACQUISITION_CARRYOVER_ROUGHTERRAIN = "acq_carryOverRoughterrain";
     private static final String TABLE_BENCHMARKING_ACQUISITION_CARRYOVER_LOWBAR = "acq_carryOverLowbar";
-    
-
-
-    private static final String TABLE_BENCHMARKING_AUTO_BOULDER_PICKED_UP = "a_boudlerPickedUp";
-    private static final String TABLE_BENCHMARKING_AUTO_ROBOT_SCORED_HIGH = "a_robotScoredHigh";
-    private static final String TABLE_BENCHMARKING_AUTO_ROBOT_SCORED_LOW = "a_robotScoredLow";
-    private static final String TABLE_BENCHMARKING_AUTO_ENDING_POSITION = "a_endingPosition";
-    private static final String TABLE_BENCHMARKING_AUTO_REACH_ACHIEVED = "a_reachAchieved";
-    private static final String TABLE_BENCHMARKING_AUTO_REACH_WAS_CROSS_ATTEMPT = "a_reachWasCrossAttempt";
-    private static final String TABLE_BENCHMARKING_TELE_HIGH_GOAL_ATTEMPTS = "t_highGoalAttempts";
-    private static final String TABLE_BENCHMARKING_TELE_HIGH_GOALS_SCORED = "t_highGoalsScored";
-    private static final String TABLE_BENCHMARKING_TELE_LOW_GOAL_ATTEMPTS = "t_lowGoalAttempts";
-    private static final String TABLE_BENCHMARKING_TELE_LOW_GOALS_SCORED = "t_lowGoalsScored";
-    private static final String TABLE_BENCHMARKING_TELE_PORTCULLIS_CROSSES = "t_portcullisCrosses";
-    private static final String TABLE_BENCHMARKING_TELE_CHEVAL_CROSSES = "t_chevalCrosses";
-    private static final String TABLE_BENCHMARKING_TELE_MOAT_CROSSES = "t_moatCrosses";
-    private static final String TABLE_BENCHMARKING_TELE_RAMPART_CROSSES = "t_rampartsCrosses";
-    private static final String TABLE_BENCHMARKING_TELE_DRAWBRIDGE_CROSSES = "t_drawbridgeCrosses";
-    private static final String TABLE_BENCHMARKING_TELE_SALLYPORT_CROSSES = "t_sallyportCrosses";
-    private static final String TABLE_BENCHMARKING_TELE_ROCKWALL_CROSSES = "t_rockwallCrosses";
-    private static final String TABLE_BENCHMARKING_TELE_ROUGHTERRAIN_CROSSES = "t_roughterrainCrosses";
-    private static final String TABLE_BENCHMARKING_TELE_LOWBAR_CROSSES = "t_lowbarCrosses";
-    private static final String TABLE_BENCHMARKING_TELE_PLAYS_DEFENSE = "t_playsDefense";
-    private static final String TABLE_BENCHMARKING_TELE_BOULDERS_PICKED_UP = "t_bouldersPickedUp";
-    private static final String TABLE_BENCHMARKING_TELE_BOULDERS_TAKEN_TO_COURTYARD = "t_bouldersTakenToCourtyard";
-    private static final String TABLE_BENCHMARKING_TELE_BOULDERS_RECEIVED_FROM_BRATTICE = "t_bouldersReceivedFromBrattice";
-    private static final String TABLE_BENCHMARKING_GENERAL_NUMBER_OF_PENALTIES = "g_numberOfPenalties";
-    private static final String TABLE_BENCHMARKING_GENERAL_COMMENTS_PENALTIES = "g_commentsOnPenalties";
-    private static final String TABLE_BENCHMARKING_GENERAL_NUMBER_OF_TECHNICAL_FOULS = "g_numberOfTechnicalFouls";
-    private static final String TABLE_BENCHMARKING_GENERAL_COMMENTS_TECHNICAL_FOULS = "g_commentsOnTechnicalFouls";
-    private static final String TABLE_BENCHMARKING_GENERAL_COMMENTS = "g_generalComments";
-    
+    private static final String TABLE_BENCHMARKING_SCORING_CAN_SCORE_HIGH = "s_canScoreHigh";
+    private static final String TABLE_BENCHMARKING_SCORING_CAN_SCORE_LOW = "s_canScoreLow";
+    private static final String TABLE_BENCHMARKING_SCORING_HIGH_GOALS_PER_MATCH = "s_matchHighGoals";
+    private static final String TABLE_BENCHMARKING_SCORING_LOW_GOALS_PER_MATCH = "s_matchLowGoals";
+    private static final String TABLE_BENCHMARKING_SCORING_CAN_SCALE = "s_canScale";
+    private static final String TABLE_BENCHMARKING_SCORING_CYCLE_TIME = "s_cycleTime";
+    private static final String TABLE_BENCHMARKING_SCORING_PLAYS_DEFENSE = "s_playsDefense";
     
     // Create Tables
     private static final String CREATE_TABLE_EVENTS = "CREATE TABLE " + TABLE_EVENTS + "("
@@ -311,6 +286,48 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + TABLE_SCOUTING_GENERAL_COMMENTS_TECHNICAL_FOULS + " TEXT, "
             + TABLE_SCOUTING_GENERAL_COMMENTS + " TEXT)";
 
+    private static final String CREATE_TABLE_BENCHMARKING = "CREATE TABLE " + TABLE_BENCHMARKING + "("
+        + TABLE_BENCHMARKING_KEY + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+        + TABLE_BENCHMARKING_LAST_UPDATE + " DATETIME DEFAULT CURRENT_TIMESTAMP, "
+        + TABLE_BENCHMARKING_LAST_SYNC + " DATETIME, "
+        + TABLE_BENCHMARKING_TEAM_KEY + " TEXT, "
+        + TABLE_BENCHMARKING_EVENT_KEY + " TEXT, "
+        + TABLE_BENCHMARKING_NAME + " TEXT, "
+        + TABLE_BENCHMARKING_DRIVES_DESCRIPTION + " TEXT, "
+        + TABLE_BENCHMARKING_DRIVES_APPROX_SPEED + " INTEGER, "
+        + TABLE_BENCHMARKING_DRIVES_CANCROSS_PORTCULLIS + " BOOLEAN, "
+        + TABLE_BENCHMARKING_DRIVES_CANCROSS_CHEVAL + " BOOLEAN, "
+        + TABLE_BENCHMARKING_DRIVES_CANCROSS_MOAT + " BOOLEAN, "
+        + TABLE_BENCHMARKING_DRIVES_CANCROSS_RAMPARTS + " BOOLEAN, "
+        + TABLE_BENCHMARKING_DRIVES_CANCROSS_DRAWBRIDGE + " BOOLEAN, "
+        + TABLE_BENCHMARKING_DRIVES_CANCROSS_SALLYPORT + " BOOLEAN, "
+        + TABLE_BENCHMARKING_DRIVES_CANCROSS_ROCKWALL + " BOOLEAN, "
+        + TABLE_BENCHMARKING_DRIVES_CANCROSS_ROUGHTERRAIN + " BOOLEAN, "
+        + TABLE_BENCHMARKING_DRIVES_CANCROSS_LOWBAR + " BOOLEAN, "
+        + TABLE_BENCHMARKING_DRIVES_EXTENDS_PAST_TRANSPORT + " BOOLEAN, "
+        + TABLE_BENCHMARKING_AUTO_STARTS_AS_SPY + " BOOLEAN, "
+        + TABLE_BENCHMARKING_AUTO_STARTS_IN_NEUTRAL_ZONE + " BOOLEAN, "
+        + TABLE_BENCHMARKING_AUTO_DESCRIPTION + " TEXT, "
+        + TABLE_BENCHMARKING_ACQUISITION_FROM_FLOOR + " BOOLEAN, "
+        + TABLE_BENCHMARKING_ACQUISITION_FROM_HUMAN + " BOOLEAN, "
+        + TABLE_BENCHMARKING_ACQUISITION_PREFERREDSOURCE + " TEXT, "
+        + TABLE_BENCHMARKING_ACQUISITION_CARRYOVER_PORTCULLIS + " BOOLEAN, "
+        + TABLE_BENCHMARKING_ACQUISITION_CARRYOVER_CHEVAL + " BOOLEAN, "
+        + TABLE_BENCHMARKING_ACQUISITION_CARRYOVER_MOAT + " BOOLEAN, "
+        + TABLE_BENCHMARKING_ACQUISITION_CARRYOVER_RAMPARTS + " BOOLEAN, "
+        + TABLE_BENCHMARKING_ACQUISITION_CARRYOVER_DRAWBRIDGE + " BOOLEAN, "
+        + TABLE_BENCHMARKING_ACQUISITION_CARRYOVER_SALLYPORT + " BOOLEAN, "
+        + TABLE_BENCHMARKING_ACQUISITION_CARRYOVER_ROCKWALL + " BOOLEAN, "
+        + TABLE_BENCHMARKING_ACQUISITION_CARRYOVER_ROUGHTERRAIN + " BOOLEAN, "
+        + TABLE_BENCHMARKING_ACQUISITION_CARRYOVER_LOWBAR + " BOOLEAN, "
+        + TABLE_BENCHMARKING_SCORING_CAN_SCORE_HIGH + " BOOLEAN, "
+        + TABLE_BENCHMARKING_SCORING_CAN_SCORE_LOW + " BOOLEAN, "
+        + TABLE_BENCHMARKING_SCORING_HIGH_GOALS_PER_MATCH + " INTEGER, "
+        + TABLE_BENCHMARKING_SCORING_LOW_GOALS_PER_MATCH + " INTEGER, "
+        + TABLE_BENCHMARKING_SCORING_CAN_SCALE + " BOOLEAN, "
+        + TABLE_BENCHMARKING_SCORING_CYCLE_TIME + " INTEGER, "
+        + TABLE_BENCHMARKING_SCORING_PLAYS_DEFENSE + " BOOLEAN)";
+
     public static SimpleDateFormat ISO6701_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     public static String getDateTime(){return ISO6701_FORMAT.format(new Date());}
 
@@ -333,6 +350,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_E2T);
         db.execSQL(CREATE_TABLE_MATCH);
         db.execSQL(CREATE_TABLE_SCOUTING);
+        db.execSQL(CREATE_TABLE_BENCHMARKING);
     }
 
     @Override
@@ -924,4 +942,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 +" = ? AND "+TABLE_SCOUTING_MATCH_KEY+" = ? AND "+TABLE_SCOUTING_NAME+" = ?",
                 new String[]{scouting.getTeamKey(), scouting.getEventKey(), scouting.getMatchKey(), scouting.getNameOfScouter()});
     }
+
+    private ContentValues mapBenchmarking(ScoutingInfo scouting){
+        ContentValues values = new ContentValues();
+        values.put(TABLE_BENCHMARKING_LAST_UPDATE, getDateTime());
+        values.put(TABLE_BENCHMARKING_TEAM_KEY, scouting.getTeamKey());
+        values.put(TABLE_BENCHMARKING_EVENT_KEY, scouting.getEventKey());
+        values.put(TABLE_BENCHMARKING_NAME, scouting.getNameOfScouter());
+        values.put(TABLE_BENCHMARKING_DRIVES_DESCRIPTION, scouting.getDriveSystemDescription());
+        values.put(TABLE_BENCHMARKING_DRIVES_APPROX_SPEED, scouting.getApproxSpeedFeetPerSecond());
+        values.put(TABLE_BENCHMARKING_DRIVES_CANCROSS_PORTCULLIS, scouting.getCanCrossPortcullis());
+        values.put(TABLE_BENCHMARKING_DRIVES_CANCROSS_CHEVAL, scouting.getCanCrossCheval());
+        values.put(TABLE_BENCHMARKING_DRIVES_CANCROSS_MOAT, scouting.getCanCrossMoat());
+        values.put(TABLE_BENCHMARKING_DRIVES_CANCROSS_RAMPARTS, scouting.getCanCrossRamparts());
+        values.put(TABLE_BENCHMARKING_DRIVES_CANCROSS_DRAWBRIDGE, scouting.getCanCrossDrawbridge());
+        values.put(TABLE_BENCHMARKING_DRIVES_CANCROSS_SALLYPORT, scouting.getCanCrossSallyport());
+        values.put(TABLE_BENCHMARKING_DRIVES_CANCROSS_ROCKWALL, scouting.getCanCrossRockwall());
+        values.put(TABLE_BENCHMARKING_DRIVES_CANCROSS_ROUGHTERRAIN, scouting.getCanCrossRoughterrain());
+        values.put(TABLE_BENCHMARKING_DRIVES_CANCROSS_LOWBAR, scouting.getCanCrossLowbar());
+        values.put(TABLE_BENCHMARKING_DRIVES_EXTENDS_PAST_TRANSPORT, scouting.getDoesExtendBeyondTransportConfig());
+
+        return values;
+    }
+
 }

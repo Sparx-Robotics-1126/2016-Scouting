@@ -6,6 +6,7 @@ package org.gosparx.scouting.aerialassist.dto;
 public class ScoutingInfo {
 
     private String nameOfScouter;
+    private String eventKey;
     private String teamKey;
 
     //drives
@@ -72,6 +73,14 @@ public class ScoutingInfo {
 
     public void setNameOfScouter(String nameOfScouter) {
         this.nameOfScouter = nameOfScouter;
+    }
+
+    public String getEventKey() {
+        return eventKey;
+    }
+
+    public void setEventKey(String eventKey) {
+        this.eventKey = eventKey;
     }
 
     public String getTeamKey() {
