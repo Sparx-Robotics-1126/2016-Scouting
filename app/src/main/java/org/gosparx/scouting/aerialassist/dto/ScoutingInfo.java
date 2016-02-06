@@ -24,6 +24,7 @@ public class ScoutingInfo {
     private Boolean canCrossRoughterrain = false;
     private Boolean canCrossLowbar = false;
     //does the robot extend beyond the transport config?
+    //TODO get clarification on this...
     private Boolean doesExtendBeyondTransportConfig = false;
 
     //auto

@@ -1,0 +1,123 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.sparx1126.scoutingapp2016.fragments.Benchmarking.SoftwareFragment">
+
+    <LinearLayout android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_gravity="left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Where does this team want to start in auto?"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:textSize="@dimen/body_text_size" />
+        <LinearLayout android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_gravity="left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Spy"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:textSize="@dimen/body_text_size" />
+            <ToggleButton android:layout_height="wrap_content" android:layout_width="wrap_content"
+                android:id="@+id/spy"
+                android:textOff="No"
+                android:textOn="Yes" />
+        </LinearLayout>
+
+        <LinearLayout android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_gravity="left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Neutral Zone"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:textSize="@dimen/body_text_size" />
+            <ToggleButton android:layout_height="wrap_content" android:layout_width="wrap_content"
+                android:id="@+id/neutralStart"
+                android:textOff="No"
+                android:textOn="Yes" />
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_gravity="left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Where does this team want to end in auto?"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:textSize="@dimen/body_text_size" />
+        <LinearLayout android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_gravity="left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Courtyard"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:textSize="@dimen/body_text_size" />
+            <ToggleButton android:layout_height="wrap_content" android:layout_width="wrap_content"
+                android:id="@+id/courtyard"
+                android:textOff="No"
+                android:textOn="Yes" />
+        </LinearLayout>
+        <LinearLayout android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_gravity="left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Neutral Zone"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:textSize="@dimen/body_text_size" />
+            <ToggleButton android:layout_height="wrap_content" android:layout_width="wrap_content"
+                android:id="@+id/neutralEnd"
+                android:textOff="No"
+                android:textOn="Yes" />
+        </LinearLayout>
+
+
+
+        <TextView
+            android:layout_gravity="left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="What can this team do in auto?"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:textSize="@dimen/body_text_size" />
+        <EditText android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:id="@+id/autoActions"
+            android:inputtype="text|textCapSentences|textMultiLine|textAutoCorrect"
+            android:hint="auto capabilities"/>
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -2,7 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.sparx1126.scoutingapp2016.fragments.Benchmarking.DrivesFragment">
-
     <LinearLayout android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:orientation="vertical"
@@ -32,13 +31,8 @@
             android:textSize="@dimen/body_text_size" />
         <EditText android:layout_height="wrap_content" android:layout_width="fill_parent"
             android:id="@+id/speed"
-            android:inputType="number"
+            android:inputType="number|phone"
             android:hint="Speed" />
-
-        <LinearLayout android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:orientation="horizontal"
-            >
         <TextView
             android:layout_gravity="left"
             android:layout_width="wrap_content"
@@ -52,7 +46,6 @@
             android:id="@+id/extend"
             android:textOff="No"
             android:textOn="Yes" />
-        </LinearLayout>
 
 
         <TextView
