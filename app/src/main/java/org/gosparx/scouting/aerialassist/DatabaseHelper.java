@@ -664,7 +664,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int retVal = 0;
         SQLiteDatabase db = getReadableDatabase();
 
-        Cursor c = db.rawQuery("SELECT COUNT(*) FROM " + TABLE_MATCHES +" WHERE "+TABLE_MATCHES_EVENT_KEY +" = ?", new String[]{event.getKey()});
+        Cursor c = db.rawQuery("SELECT COUNT(*) FROM " + TABLE_MATCHES + " WHERE " + TABLE_MATCHES_EVENT_KEY + " = ?", new String[]{event.getKey()});
 
         if(c != null && c.moveToNext())
             retVal = c.getInt(0);
@@ -681,7 +681,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int retVal = 0;
         SQLiteDatabase db = getReadableDatabase();
 
-        Cursor c = db.rawQuery("SELECT COUNT(*) FROM " + TABLE_E2T +" WHERE " + TABLE_E2T_EVENT +" = ?", new String[]{event.getKey()});
+        Cursor c = db.rawQuery("SELECT COUNT(*) FROM " + TABLE_E2T + " WHERE " + TABLE_E2T_EVENT + " = ?", new String[]{event.getKey()});
 
         if(c != null && c.moveToNext())
             retVal = c.getInt(0);
@@ -774,7 +774,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor c = db.query(TABLE_SCOUTING,
                 new String[]{"COUNT(*)"},
                 TABLE_SCOUTING_TEAM_KEY + " = ? AND " + TABLE_SCOUTING_MATCH_KEY + " = ? AND "
-                + TABLE_SCOUTING_NAME +" = ? AND " + TABLE_SCOUTING_EVENT_KEY + " = ?",
+                        + TABLE_SCOUTING_NAME + " = ? AND " + TABLE_SCOUTING_EVENT_KEY + " = ?",
                 new String[]{scouting.getTeamKey(), scouting.getMatchKey(), scouting.getNameOfScouter(), scouting.getEventKey()},
                 null, null, null);
 
@@ -925,7 +925,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public List<Scouting> getAllScoutingNeedingSyncing(){
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.query(TABLE_SCOUTING, new String[]{"*"},
-                TABLE_SCOUTING_LAST_UPDATE +" > "+TABLE_SCOUTING_LAST_SYNC,
+                TABLE_SCOUTING_LAST_UPDATE + " > " + TABLE_SCOUTING_LAST_SYNC,
                 null, null, null, null);
 
         List<Scouting> retVal = new ArrayList<Scouting>();
@@ -1040,6 +1040,64 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         
         return data;
     }
-    
+
+    public void createBenchmarking(ScoutingInfo scoutingInfo){
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = mapBenchmarking(scoutingInfo);
+        values.put(TABLE_BENCHMARKING_LAST_SYNC, "2000-01-01 00:00:00");
+        db.insert(TABLE_BENCHMARKING, null, values);
+    }
+
+    public boolean doesBenchmarkingExist(ScoutingInfo scoutingInfo){
+        boolean retVal = false;
+        SQLiteDatabase db = getReadableDatabase();
+
+        Cursor c = db.query(TABLE_BENCHMARKING,
+                new String[]{"COUNT(*)"},
+                TABLE_BENCHMARKING_TEAM_KEY + " = ? AND "
+                        + TABLE_BENCHMARKING_NAME + " = ? AND " + TABLE_BENCHMARKING_EVENT_KEY + " = ?",
+                new String[]{scoutingInfo.getTeamKey(), scoutingInfo.getNameOfScouter(), scoutingInfo.getEventKey()},
+                null, null, null);
+
+        if(c != null && c.moveToNext())
+            retVal = c.getInt(0) > 0;
+
+        if (c != null) {
+            c.close();
+        }
+        return retVal;
+    }
+
+    public void updateBenchmarking(ScoutingInfo scoutingInfo){
+        SQLiteDatabase db = getWritableDatabase();
+
+        db.update(TABLE_BENCHMARKING, mapBenchmarking(scoutingInfo),
+                TABLE_BENCHMARKING_EVENT_KEY + " = ? AND "
+                        + TABLE_BENCHMARKING_TEAM_KEY + " = ? AND "
+                        + TABLE_BENCHMARKING_NAME + " = ?",
+                new String[]{scoutingInfo.getEventKey(), scoutingInfo.getTeamKey(), scoutingInfo.getNameOfScouter()});
+    }
+
+    public List<ScoutingInfo> getBenchmarking(String eventKey, String teamKey, String scouterName){
+        SQLiteDatabase db = getReadableDatabase();
+        String selectStatement = "SELECT * FROM " + TABLE_BENCHMARKING
+                + " WHERE " + TABLE_BENCHMARKING_EVENT_KEY + " = ?"
+                + " AND " + TABLE_BENCHMARKING_TEAM_KEY + " = ?"
+                + " AND " + TABLE_BENCHMARKING_NAME + " = ?";
+
+        Cursor c = db.rawQuery(selectStatement, new String[]{eventKey, teamKey, scouterName});
+
+        List<ScoutingInfo> scoutingInfos = new ArrayList<ScoutingInfo>();
+
+        while (c != null && c.moveToNext()){
+            scoutingInfos.add(mapBenchmarking(c));
+        }
+
+        if (c != null) {
+            c.close();
+        }
+        return scoutingInfos;
+    }
+
 
 }
