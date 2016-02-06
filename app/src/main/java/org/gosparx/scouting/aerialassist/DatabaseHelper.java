@@ -968,9 +968,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(TABLE_BENCHMARKING_DRIVES_EXTENDS_PAST_TRANSPORT, scouting.getDoesExtendBeyondTransportConfig());
         values.put(TABLE_BENCHMARKING_AUTO_STARTS_AS_SPY, scouting.getAutoStartInSpyPosition());
         values.put(TABLE_BENCHMARKING_AUTO_STARTS_IN_NEUTRAL_ZONE, scouting.getAutoStartInNeutralZone());
-        values.put(TABLE_BENCHMARKING_AUTO_ENDS_IN_COURTYARD, "TODO");
-        values.put(TABLE_BENCHMARKING_AUTO_ENDS_IN_NEUTRAL_ZONE, "TODO");
-        values.put(TABLE_BENCHMARKING_AUTO_DESCRIPTION, scouting.setAutoCapabilitiesDescription());
+        values.put(TABLE_BENCHMARKING_AUTO_ENDS_IN_COURTYARD, scouting.getAutoEndInCourtyard());
+        values.put(TABLE_BENCHMARKING_AUTO_ENDS_IN_NEUTRAL_ZONE, scouting.getAutoEndInNeutralZone());
+        values.put(TABLE_BENCHMARKING_AUTO_DESCRIPTION, scouting.getAutoCapabilitiesDescription());
         values.put(TABLE_BENCHMARKING_ACQUISITION_FROM_FLOOR, scouting.getAcquiresBouldersFromFloor());
         values.put(TABLE_BENCHMARKING_ACQUISITION_FROM_HUMAN, scouting.getAcquiresBouldersFromHumanPlayer());
         values.put(TABLE_BENCHMARKING_ACQUISITION_PREFERREDSOURCE, scouting.getPreferredBoulderSource());
@@ -1015,8 +1015,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         data.setDoesExtendBeyondTransportConfig(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_DRIVES_EXTENDS_PAST_TRANSPORT)));
         data.setAutoStartInSpyPosition(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_AUTO_STARTS_AS_SPY)));
         data.setAutoStartInNeutralZone(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_AUTO_STARTS_IN_NEUTRAL_ZONE)));
-//        getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_AUTO_ENDS_IN_COURTYARD, "TODO");
-//        getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_AUTO_ENDS_IN_NEUTRAL_ZONE, "TODO");
+        data.setAutoEndInCourtyard(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_AUTO_ENDS_IN_COURTYARD)));
+        data.setAutoEndInNeutralZone(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_AUTO_ENDS_IN_NEUTRAL_ZONE)));
         data.setAutoCapabilitiesDescription(c.getString(c.getColumnIndex(TABLE_BENCHMARKING_AUTO_DESCRIPTION)));
         data.setAcquiresBouldersFromFloor(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_ACQUISITION_FROM_FLOOR)));
         data.setAcquiresBouldersFromHumanPlayer(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_ACQUISITION_FROM_HUMAN)));

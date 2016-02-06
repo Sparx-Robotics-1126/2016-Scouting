@@ -115,7 +115,7 @@
         <EditText android:layout_height="wrap_content"
             android:layout_width="fill_parent"
             android:id="@+id/autoActions"
-            android:inputtype="text|textCapSentences|textMultiLine|textAutoCorrect"
+            android:inputType="text|textCapSentences|textMultiLine|textAutoCorrect"
             android:hint="auto capabilities"/>
 
     </LinearLayout>
