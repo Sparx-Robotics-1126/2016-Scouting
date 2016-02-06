@@ -24,6 +24,7 @@ public class ScoutingInfo {
     private Boolean canCrossRoughterrain = false;
     private Boolean canCrossLowbar = false;
     //does the robot extend beyond the transport config?
+    //TODO get clarification on this...
     private Boolean doesExtendBeyondTransportConfig = false;
 
     //auto
@@ -31,6 +32,11 @@ public class ScoutingInfo {
     // starting position in autonomous
     private Boolean autoStartInNeutralZone = false;
     private Boolean autoStartInSpyPosition = false;
+    //ending position in autonomous
+    private Boolean autoEndInCourtyard = false;
+
+
+    private Boolean autoEndInNeutralZone = false;
     // what the robot can do in autonomous
     private String autoCapabilitiesDescription = "unknown";
     // where the robot can acquire boulders
@@ -361,6 +367,23 @@ public class ScoutingInfo {
 
     public void setPlaysDefense(Boolean playsDefense) {
         this.playsDefense = playsDefense;
+    }
+
+
+    public Boolean getAutoEndInCourtyard() {
+        return autoEndInCourtyard;
+    }
+
+    public void setAutoEndInCourtyard(Boolean autoEndInCourtyard) {
+        this.autoEndInCourtyard = autoEndInCourtyard;
+    }
+
+    public Boolean getAutoEndInNeutralZone() {
+        return autoEndInNeutralZone;
+    }
+
+    public void setAutoEndInNeutralZone(Boolean autoEndInNeutralZone) {
+        this.autoEndInNeutralZone = autoEndInNeutralZone;
     }
 
 
