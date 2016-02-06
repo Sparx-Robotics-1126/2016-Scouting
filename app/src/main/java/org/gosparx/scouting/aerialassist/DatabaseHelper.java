@@ -585,6 +585,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return retVal;
     }
 
+    public int getEventTeamCount(Event event)
+    {
+        int retVal = 0;
+        SQLiteDatabase db = getReadableDatabase();
+
+        Cursor c = db.rawQuery("SELECT COUNT(*) FROM " + TABLE_E2T +" WHERE " + TABLE_E2T_EVENT +" = ?", new String[]{event.getKey()});
+
+        if(c != null && c.moveToNext())
+            retVal = c.getInt(0);
+
+        if (c != null) {
+            c.close();
+        }
+
+        return retVal;
+    }
+
     private ContentValues mapScouting(Scouting scouting){
         ScoutingAuto scoutingAuto = scouting.getAuto();
         ScoutingTele scoutingTele = scouting.getTele();
