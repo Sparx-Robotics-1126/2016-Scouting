@@ -41,9 +41,10 @@ public class SoftwareFragment extends Fragment {
      * @return A new instance of fragment SoftwareFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static SoftwareFragment newInstance() {
+    public static SoftwareFragment newInstance(ScoutingInfo si) {
         SoftwareFragment fragment = new SoftwareFragment();
         Bundle args = new Bundle();
+        fragment.setScoutingInfo(si);
         fragment.setArguments(args);
         return fragment;
     }
@@ -75,6 +76,7 @@ public class SoftwareFragment extends Fragment {
             startNeutral.setChecked(si.getAutoStartInSpyPosition());
             autoActions.setText(si.getAutoCapabilitiesDescription());
         }
+        wasCreated = true;
         return result;
     }
 
@@ -115,6 +117,20 @@ public class SoftwareFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
+    }
+    private void setScoutingInfo(ScoutingInfo si){this.si = si;}
+
+    public ScoutingInfo getScoutingInfo(){
+        if(si == null){
+            si = new ScoutingInfo();
+        }
+        if(wasCreated){
+            si.setAutoStartInSpyPosition(startSpy.isChecked());
+            si.setAutoStartInNeutralZone(startNeutral.isChecked());
+            si.setAutoEndInCourtyard(endCourtyard.isChecked());
+            si.setAutoEndInNeutralZone(endNeutral.isChecked());
+        }
+        return si;
     }
 
 }

@@ -32,6 +32,26 @@ public class ScoutingInfo {
     // starting position in autonomous
     private Boolean autoStartInNeutralZone = false;
     private Boolean autoStartInSpyPosition = false;
+    //ending position in autonomous
+    private Boolean autoEndInCourtyard = false;
+
+    public Boolean getAutoEndInCourtyard() {
+        return autoEndInCourtyard;
+    }
+
+    public void setAutoEndInCourtyard(Boolean autoEndInCourtyard) {
+        this.autoEndInCourtyard = autoEndInCourtyard;
+    }
+
+    public boolean isAutoEndInNeutralZone() {
+        return autoEndInNeutralZone;
+    }
+
+    public void setAutoEndInNeutralZone(boolean autoEndInNeutralZone) {
+        this.autoEndInNeutralZone = autoEndInNeutralZone;
+    }
+
+    private boolean autoEndInNeutralZone = false;
     // what the robot can do in autonomous
     private String autoCapabilitiesDescription = "unknown";
     // where the robot can acquire boulders
