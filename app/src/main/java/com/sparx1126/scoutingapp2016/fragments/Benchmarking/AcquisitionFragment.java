@@ -155,6 +155,23 @@ public class AcquisitionFragment extends Fragment {
         }
         return si;
     }
+    public void onResume(){
+        super.onResume();
+        if(si != null){
+            humanAcq.setChecked(si.getAcquiresBouldersFromHumanPlayer());
+            floorAcq.setChecked(si.getAcquiresBouldersFromFloor());
+            prefAcq.setChecked(si.getPreferredBoulderSource() == prefAcq.getTextOn());
+            portcullisBoulder.setChecked(si.getCanCarryBouldersOverPortcullis());
+            chevalBoulder.setChecked(si.getCanCarryBouldersOverCheval());
+            moatBoulder.setChecked(si.getCanCarryBouldersOverMoat());
+            rampartsBoulder.setChecked(si.getCanCarryBouldersOverRamparts());
+            drawbridgeBoulder.setChecked(si.getCanCarryBouldersOverDrawbridge());
+            sallyportBoulder.setChecked(si.getCanCarryBouldersOverSallyport());
+            rockwallBoulder.setChecked(si.getCanCarryBouldersOverRockwall());
+            roughterrainBoulder.setChecked(si.getCanCarryBouldersOverRoughterrain());
+            lowbarBoulder.setChecked(si.getCanCarryBouldersOverLowbar());
+        }
 
+    }
 
 }
