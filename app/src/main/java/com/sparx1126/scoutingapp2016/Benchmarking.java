@@ -1,5 +1,7 @@
 package com.sparx1126.scoutingapp2016;
 
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.app.FragmentActivity;
@@ -8,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
+import android.view.View;
 import android.widget.Toast;
 
 import com.sparx1126.scoutingapp2016.fragments.Benchmarking.AcquisitionFragment;
@@ -62,8 +65,54 @@ public class Benchmarking extends FragmentActivity implements DrivesFragment.OnF
         toolbar.setTitle("Benchmarking for: " + info.getTeamKey());
     }
 
+    @Override
+    public void onFragmentInteraction(Uri uri){
+    }
 
-    public void onFragmentInteraction(Uri uri){}
+    private void showFragment(Fragment f)
+    {
+        fm = getFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        if(drivesFragment.isAdded()){
+            ft.hide(drivesFragment);
+        }
+        if(softwareFragment.isAdded()){
+            ft.hide(softwareFragment);
+        }
+        if(acquisitionFragment.isAdded()){
+            ft.hide(acquisitionFragment);
+        }
+        if (scoringFragment.isAdded()){
+            ft.hide(scoringFragment);
+        }
+
+        if(!f.isAdded())
+            ft.add(R.id.fragContainer, f);
+        ft.show(f);
+    }
+
+    public void switchFragment(View view){
+        fm = getFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+
+        switch(view.getId()){
+            case R.id.bench_drives:
+                showFragment(drivesFragment);
+                break;
+            case R.id.bench_sw_elec:
+                showFragment(softwareFragment);
+                break;
+            case R.id.bench_acq:
+                showFragment(acquisitionFragment);
+                break;
+            case R.id.bench_scoring:
+                showFragment(scoringFragment);
+                break;
+            default:
+        }
+        ft.commit();
+    }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event){
         if(keyCode == KeyEvent.KEYCODE_BACK){
