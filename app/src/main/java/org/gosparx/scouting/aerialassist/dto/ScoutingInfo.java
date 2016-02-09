@@ -11,8 +11,8 @@ public class ScoutingInfo {
 
     //drives
 
-    private String driveSystemDescription = "unknown";
-    private double approxSpeedFeetPerSecond = 0.0;
+    private String driveSystemDescription;
+    private double approxSpeedFeetPerSecond;
     // which defenses the robot can cross
     private Boolean canCrossPortcullis = false;
     private Boolean canCrossCheval = false;
@@ -38,7 +38,7 @@ public class ScoutingInfo {
 
     private Boolean autoEndInNeutralZone = false;
     // what the robot can do in autonomous
-    private String autoCapabilitiesDescription = "unknown";
+    private String autoCapabilitiesDescription;
     // where the robot can acquire boulders
 
     //acquisition
@@ -63,16 +63,16 @@ public class ScoutingInfo {
     // whether or not goals can be scored
     private Boolean canScoreInHighGoal = false;
     private Boolean canScoreInLowGoal = false;
-    private double averageHighGoalsPerMatch = 0.0;
-    private double averageLowGoalsPerMatch = 0.0;
+    private double averageHighGoalsPerMatch;
+    private double averageLowGoalsPerMatch;
 
     // scaling ability
     private Boolean canScaleAtCenter = false;
     private Boolean canScaleOnRight = false;
     private Boolean canScaleOnLeft = false;
-    private double scaleHeightPercent = 0.0;
+    private double scaleHeightPercent;
     //cycle time
-    private double cycleTime = 0.0;
+    private double cycleTime;
     //defense
     private Boolean playsDefense = false;
 

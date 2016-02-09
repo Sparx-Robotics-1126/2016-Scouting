@@ -9,6 +9,7 @@ import android.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Toast;
@@ -38,7 +39,7 @@ public class Benchmarking extends FragmentActivity implements DrivesFragment.OnF
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         dbHelper = DatabaseHelper.getInstance(this);
-        setContentView(R.layout.activity_match_scouting);
+        setContentView(R.layout.activity_benchmarking);
         Intent i = getIntent();
 
         fm = getFragmentManager();
@@ -73,21 +74,20 @@ public class Benchmarking extends FragmentActivity implements DrivesFragment.OnF
     {
         fm = getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        if(drivesFragment.isAdded()){
-            ft.hide(drivesFragment);
+        if(!drivesFragment.isAdded()){
+            ft.add(R.id.fragContainer, drivesFragment);}
+        ft.hide(drivesFragment);
+        if(!softwareFragment.isAdded()) {
+            ft.add(R.id.fragContainer, drivesFragment);
         }
-        if(softwareFragment.isAdded()){
-            ft.hide(softwareFragment);
+        ft.hide(softwareFragment);
+        if(!acquisitionFragment.isAdded()){
+            ft.add(R.id.fragContainer, acquisitionFragment);
         }
-        if(acquisitionFragment.isAdded()){
-            ft.hide(acquisitionFragment);
+        if (!scoringFragment.isAdded()){
+            ft.add(R.id.fragContainer, scoringFragment);
         }
-        if (scoringFragment.isAdded()){
-            ft.hide(scoringFragment);
-        }
-
-        if(!f.isAdded())
-            ft.add(R.id.fragContainer, f);
+        ft.hide(scoringFragment);
         ft.show(f);
     }
 
@@ -97,22 +97,66 @@ public class Benchmarking extends FragmentActivity implements DrivesFragment.OnF
 
         switch(view.getId()){
             case R.id.bench_drives:
-                showFragment(drivesFragment);
+                if(softwareFragment.isAdded()){
+                    ft.hide(softwareFragment);
+                }
+                if(acquisitionFragment.isAdded()){
+                    ft.hide(acquisitionFragment);
+                }
+                if(scoringFragment.isAdded()){
+                    ft.hide(scoringFragment);
+                }
+                if(!drivesFragment.isAdded())
+                    ft.add(R.id.fragContainer, drivesFragment);
+                ft.show(drivesFragment);
                 break;
+
             case R.id.bench_sw_elec:
-                showFragment(softwareFragment);
+                if(acquisitionFragment.isAdded()){
+                    ft.hide(acquisitionFragment);
+                }
+                if(scoringFragment.isAdded()){
+                    ft.hide(scoringFragment);
+                }
+                if(drivesFragment.isAdded())
+                    ft.hide(drivesFragment);
+                if(!softwareFragment.isAdded()){
+                    ft.add(R.id.fragContainer, softwareFragment);
+                }
+
+                ft.show(softwareFragment);
                 break;
             case R.id.bench_acq:
-                showFragment(acquisitionFragment);
+                if(softwareFragment.isAdded()){
+                    ft.hide(softwareFragment);
+                }
+                if(scoringFragment.isAdded()){
+                    ft.hide(scoringFragment);
+                }
+                if(drivesFragment.isAdded())
+                    ft.hide(drivesFragment);
+
+                if(!acquisitionFragment.isAdded()){
+                    ft.add(R.id.fragContainer, acquisitionFragment);
+                }
+                ft.show(acquisitionFragment);
                 break;
             case R.id.bench_scoring:
-                showFragment(scoringFragment);
-                break;
-            default:
-        }
+                if(softwareFragment.isAdded()){
+                    ft.hide(softwareFragment);
+                }
+                if(acquisitionFragment.isAdded()){
+                    ft.hide(acquisitionFragment);
+                }
+                if(drivesFragment.isAdded())
+                    ft.hide(drivesFragment);
+                if(!scoringFragment.isAdded()){
+                    ft.add(R.id.fragContainer, scoringFragment);
+                }
+
+                ft.show(scoringFragment);}
         ft.commit();
     }
-
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event){
         if(keyCode == KeyEvent.KEYCODE_BACK){

@@ -1084,7 +1084,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
 
         db.update(TABLE_BENCHMARKING, mapBenchmarking(scoutingInfo),
-                TABLE_BENCHMARKING_EVENT_KEY + " = ? AND "
+                TABLE_SCOUTING_EVENT_KEY + " = ? AND "
                         + TABLE_BENCHMARKING_TEAM_KEY + " = ? AND "
                         + TABLE_BENCHMARKING_NAME + " = ?",
                 new String[]{scoutingInfo.getEventKey(), scoutingInfo.getTeamKey(), scoutingInfo.getNameOfScouter()});
