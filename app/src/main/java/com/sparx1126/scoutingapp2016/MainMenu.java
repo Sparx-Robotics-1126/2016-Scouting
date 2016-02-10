@@ -30,6 +30,7 @@ import org.gosparx.scouting.aerialassist.dto.Match;
 import org.gosparx.scouting.aerialassist.dto.Scouting;
 import org.gosparx.scouting.aerialassist.dto.ScoutingAuto;
 import org.gosparx.scouting.aerialassist.dto.ScoutingGeneral;
+import org.gosparx.scouting.aerialassist.dto.ScoutingInfo;
 import org.gosparx.scouting.aerialassist.dto.ScoutingTele;
 import org.gosparx.scouting.aerialassist.dto.Team;
 import org.gosparx.scouting.aerialassist.networking.BlueAlliance;
@@ -59,6 +60,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
     private DatabaseHelper dbHelper;
     public static final String SCOUTING_INFO = "com.sparx1126.scouting2016.SCOUTING";
     public static final String ALLIANCE_SELECTED = "com.spark1126.scouting2016.ALLIANCE";
+    public static final String TEAM_NAME = "com.sparx1126.scouting2016.TEAM";
 
     @Override
 
@@ -605,7 +607,16 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
         }
         else if(((RadioButton)findViewById(R.id.benchmarking)).isChecked()) // Benchmarking mode
         {
-            alertUser("Under Construction!", "Benchmarking isn't ready yet!").show();
+            if(getSelectedTeam() == null){
+                alertUser("Selection Missing", "Please select a team from the list.");
+            }
+            else{
+                initializeBenchmarking();
+                Intent i = new Intent(this, Benchmarking.class);
+                i.putExtra(TEAM_NAME, getSelectedTeam().getKey());
+                startActivity(i);
+                return;
+            }
         }
         else // match scouting mode
         {
@@ -624,6 +635,13 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
                 startActivity(i);
             }
         }
+    }
+    private void initializeBenchmarking(){
+        Benchmarking.info = new ScoutingInfo();
+        ScoutingInfo si = Benchmarking.info;
+        si.setNameOfScouter(getName());
+        si.setEventKey(getSelectedEvent().getKey());
+        si.setTeamKey(getSelectedTeam().getKey());
     }
 
  }
