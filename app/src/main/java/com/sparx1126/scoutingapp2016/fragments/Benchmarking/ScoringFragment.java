@@ -45,6 +45,7 @@ public class ScoringFragment extends Fragment {
     // TODO: Rename and change types and number of parameters
     public static ScoringFragment newInstance(ScoutingInfo si) {
         ScoringFragment fragment = new ScoringFragment();
+        fragment.setScoutingInfo(si);
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -146,7 +147,7 @@ public class ScoringFragment extends Fragment {
         // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
     }
-    private void setScoitingInfo(ScoutingInfo si){this.si = si;}
+    private void setScoutingInfo(ScoutingInfo si){this.si = si;}
     public ScoutingInfo getScoutingInfo(){
         if(si == null)
             si = new ScoutingInfo();
