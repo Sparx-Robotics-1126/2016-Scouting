@@ -75,6 +75,7 @@ public class DrivesFragment extends Fragment {
         crossSallyPort = (ToggleButton) result.findViewById(R.id.sallyport);
         crossRockWall = (ToggleButton) result.findViewById(R.id.rockwall);
         crossRoughTerrain = (ToggleButton) result.findViewById(R.id.roughterrain);
+        crossLowBar = (ToggleButton) result.findViewById(R.id.lowbar);
 
         if(si != null){
             driveSystem.setText(si.getDriveSystemDescription());
@@ -88,6 +89,7 @@ public class DrivesFragment extends Fragment {
             crossSallyPort.setChecked(si.getCanCrossSallyport());
             crossRockWall.setChecked(si.getCanCrossRockwall());
             crossRoughTerrain.setChecked(si.getCanCrossRoughterrain());
+            crossLowBar.setChecked(si.getCanCrossLowbar());
         }
         wasCreated = true;
         return result;
@@ -114,6 +116,7 @@ public class DrivesFragment extends Fragment {
             crossSallyPort.setChecked(si.getCanCrossSallyport());
             crossRockWall.setChecked(si.getCanCrossRockwall());
             crossRoughTerrain.setChecked(si.getCanCrossRoughterrain());
+            crossLowBar.setChecked(si.getCanCrossLowbar());
         }
     }
     @Override

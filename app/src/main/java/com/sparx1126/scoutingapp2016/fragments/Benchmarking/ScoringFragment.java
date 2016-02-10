@@ -153,13 +153,33 @@ public class ScoringFragment extends Fragment {
         if(wasCreated){
             si.setCanScoreInHighGoal(highGoal.isChecked());
             si.setCanScoreInLowGoal(lowGoal.isChecked());
-            si.setAverageHighGoalsPerMatch(Double.parseDouble(avgHigh.getText().toString()));
+            try {
+                si.setAverageHighGoalsPerMatch(Double.parseDouble(avgHigh.getText().toString()));
+            }
+            catch(Exception e){
+                si.setAverageHighGoalsPerMatch(0.0);
+            }
+            try{
             si.setAverageLowGoalsPerMatch(Double.parseDouble(avgLow.getText().toString()));
-            si.setScaleHeightPercent(Double.parseDouble(scalePercent.getText().toString()));
+            }
+            catch(Exception e){
+                si.setAverageLowGoalsPerMatch(0.0);
+            }
+            try {
+                si.setScaleHeightPercent(Double.parseDouble(scalePercent.getText().toString()));
+            }
+            catch(Exception e){
+                si.setScaleHeightPercent(0.0);
+            }
             si.setCanScaleOnLeft(left.isChecked());
             si.setCanScaleOnRight(right.isChecked());
             si.setCanScaleAtCenter(center.isChecked());
-            si.setCycleTime(Double.parseDouble(cycleTime.getText().toString()));
+            try {
+                si.setCycleTime(Double.parseDouble(cycleTime.getText().toString()));
+            }
+            catch(Exception e){
+                si.setCycleTime(0.0);
+            }
             si.setPlaysDefense(defense.isChecked());
         }
         return si;

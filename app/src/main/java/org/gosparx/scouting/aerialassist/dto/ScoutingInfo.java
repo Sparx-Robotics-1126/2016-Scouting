@@ -12,7 +12,7 @@ public class ScoutingInfo {
     //drives
 
     private String driveSystemDescription;
-    private double approxSpeedFeetPerSecond;
+    private double approxSpeedFeetPerSecond = 0.0;
     // which defenses the robot can cross
     private Boolean canCrossPortcullis = false;
     private Boolean canCrossCheval = false;
@@ -63,16 +63,16 @@ public class ScoutingInfo {
     // whether or not goals can be scored
     private Boolean canScoreInHighGoal = false;
     private Boolean canScoreInLowGoal = false;
-    private double averageHighGoalsPerMatch;
-    private double averageLowGoalsPerMatch;
+    private double averageHighGoalsPerMatch = 0.0;
+    private double averageLowGoalsPerMatch = 0.0;
 
     // scaling ability
     private Boolean canScaleAtCenter = false;
     private Boolean canScaleOnRight = false;
     private Boolean canScaleOnLeft = false;
-    private double scaleHeightPercent;
+    private double scaleHeightPercent = 0.0;
     //cycle time
-    private double cycleTime;
+    private double cycleTime = 0.0;
     //defense
     private Boolean playsDefense = false;
 
