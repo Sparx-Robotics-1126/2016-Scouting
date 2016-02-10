@@ -117,6 +117,10 @@ public class Benchmarking extends FragmentActivity implements DrivesFragment.OnF
     public boolean onKeyDown(int keyCode, KeyEvent event){
         if(keyCode == KeyEvent.KEYCODE_BACK){
             Toast.makeText(this, "Saving...", Toast.LENGTH_SHORT).show();
+            drivesFragment.getScoutingInfo();
+            acquisitionFragment.getScoutingInfo();
+            scoringFragment.getScoutingInfo();
+            softwareFragment.getScoutingInfo();
             dbHelper.updateBenchmarking(info);
             drivesFragment = null;
             acquisitionFragment = null;
