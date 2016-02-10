@@ -45,6 +45,7 @@ public class AcquisitionFragment extends Fragment {
     public static AcquisitionFragment newInstance(ScoutingInfo si) {
         AcquisitionFragment fragment = new AcquisitionFragment();
         Bundle args = new Bundle();
+        fragment.setScoutingInfo(si);
         fragment.setArguments(args);
         return fragment;
     }
