@@ -25,14 +25,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b6a472ce-d483-43c5-b5f1-20bdee5d30a4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_acquisition.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_acquisition.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_drives.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_drives.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_scoring.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_scoring.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_software.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_software.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/fragments/Benchmarking/DrivesFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/fragments/Benchmarking/DrivesFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ScoutingApp2016.iws" />
@@ -112,11 +105,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DrivesFragment.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DrivesFragment.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/fragments/Benchmarking/DrivesFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="151" column="42" selection-start-line="151" selection-start-column="42" selection-end-line="151" selection-end-column="42" />
+            <state vertical-scroll-proportion="0.94984955">
+              <caret line="168" column="58" selection-start-line="168" selection-start-column="58" selection-end-line="168" selection-end-column="58" />
               <folding />
             </state>
           </provider>
@@ -184,11 +177,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fragment_software.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="fragment_software.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_software.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.13034411">
-              <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+            <state vertical-scroll-proportion="-20.394737">
+              <caret line="31" column="54" selection-start-line="31" selection-start-column="54" selection-end-line="31" selection-end-column="54" />
               <folding>
                 <element signature="e#1284#1305#0" expanded="true" />
                 <element signature="e#1601#1622#0" expanded="true" />
@@ -1761,7 +1754,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/org/gosparx/scouting/aerialassist/networking/BlueAlliance.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/org/gosparx/scouting/aerialassist/networking/NetworkHelper.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/org/gosparx/scouting/aerialassist/dto/Scouting.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/fragments/Benchmarking/DrivesFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/org/gosparx/scouting/aerialassist/dto/AcquisitionFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/fragments/Benchmarking/AcquisitionFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/fragments/Benchmarking/SoftwareFragment.java" />
@@ -1776,6 +1768,7 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_acquisition.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_drives.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_software.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/fragments/Benchmarking/DrivesFragment.java" />
       </list>
     </option>
   </component>
@@ -2608,7 +2601,13 @@
       <option name="project" value="LOCAL" />
       <updated>1454978590118</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Cleaned up UI; still need to work out saving issues">
+      <created>1455143762922</created>
+      <option name="number" value="00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1455143762922</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TodoView">
@@ -2622,7 +2621,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="2902" height="1766" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32906765" sideWeight="0.49649534" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32857144" sideWeight="0.44136462" order="3" side_tool="false" content_ui="tabs" />
@@ -2633,7 +2632,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32943925" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23181818" sideWeight="0.4392324" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32857144" sideWeight="0.47441363" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32857144" sideWeight="0.47441363" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32857144" sideWeight="0.48507464" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3299817" sideWeight="0.4969563" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977968" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -2696,7 +2695,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Radio Buttons and main menu changes" />
     <MESSAGE value="Push to master" />
     <MESSAGE value="Alliance Spinner working" />
     <MESSAGE value="Benchmarking spinner working" />
@@ -2721,7 +2719,8 @@
     <MESSAGE value="implemented interfaces for benchmarking fragments" />
     <MESSAGE value="basic layout for benchmarking done -- expand later" />
     <MESSAGE value="Benchmarking screen working -- need to clean up ui and test for database saves" />
-    <option name="LAST_COMMIT_MESSAGE" value="Benchmarking screen working -- need to clean up ui and test for database saves" />
+    <MESSAGE value="Cleaned up UI; still need to work out saving issues" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cleaned up UI; still need to work out saving issues" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -3092,14 +3091,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/fragments/Benchmarking/DrivesFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="151" column="42" selection-start-line="151" selection-start-column="42" selection-end-line="151" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_benchmarking.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-13.394737">
@@ -3244,8 +3235,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_software.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.13034411">
-          <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+        <state vertical-scroll-proportion="-20.394737">
+          <caret line="31" column="54" selection-start-line="31" selection-start-column="54" selection-end-line="31" selection-end-column="54" />
           <folding>
             <element signature="e#1284#1305#0" expanded="true" />
             <element signature="e#1601#1622#0" expanded="true" />
@@ -3260,6 +3251,14 @@
       </provider>
       <provider editor-type-id="android-designer">
         <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/fragments/Benchmarking/DrivesFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.94984955">
+          <caret line="168" column="58" selection-start-line="168" selection-start-column="58" selection-end-line="168" selection-end-column="58" />
+          <folding />
+        </state>
       </provider>
     </entry>
   </component>

@@ -66,7 +66,7 @@ public class DrivesFragment extends Fragment {
 
         driveSystem = (EditText) result.findViewById(R.id.drivesSystem);
         speed = (EditText) result.findViewById(R.id.speed);
-        this.extend = (ToggleButton) result.findViewById(R.id.extend);
+        extend = (ToggleButton) result.findViewById(R.id.extend);
         crossPortcullis = (ToggleButton) result.findViewById(R.id.portcullis);
         crossCheval = (ToggleButton) result.findViewById(R.id.cheval);
         crossMoat = (ToggleButton) result.findViewById(R.id.moat);
@@ -158,6 +158,15 @@ public class DrivesFragment extends Fragment {
             si.setDriveSystemDescription(driveSystem.getText().toString());
             si.setApproxSpeedFeetPerSecond(Double.parseDouble(speed.getText().toString()));
             si.setDoesExtendBeyondTransportConfig(extend.isChecked());
+            si.setCanCrossPortcullis(crossPortcullis.isChecked());
+            si.setCanCrossCheval(crossCheval.isChecked());
+            si.setCanCrossMoat(crossMoat.isChecked());
+            si.setCanCrossRamparts(crossRamparts.isChecked());
+            si.setCanCrossDrawbridge(crossDrawBridge.isChecked());
+            si.setCanCrossSallyport(crossSallyPort.isChecked());
+            si.setCanCrossRockwall(crossRockWall.isChecked());
+            si.setCanCrossRoughterrain(crossRoughTerrain.isChecked());
+            si.setCanCrossLowbar(crossLowBar.isChecked());
         }
         return si;
     }
