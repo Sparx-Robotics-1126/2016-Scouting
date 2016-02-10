@@ -25,7 +25,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b6a472ce-d483-43c5-b5f1-20bdee5d30a4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/fragments/Benchmarking/DrivesFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/fragments/Benchmarking/DrivesFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/fragments/Benchmarking/ScoringFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/fragments/Benchmarking/ScoringFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/fragments/Benchmarking/SoftwareFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/fragments/Benchmarking/SoftwareFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ScoutingApp2016.iws" />
@@ -95,36 +96,33 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ScoutingInfo.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/org/gosparx/scouting/aerialassist/dto/ScoutingInfo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.9545455">
-              <caret line="14" column="30" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DrivesFragment.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DrivesFragment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/fragments/Benchmarking/DrivesFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.94984955">
+            <state vertical-scroll-proportion="0.0">
               <caret line="168" column="58" selection-start-line="168" selection-start-column="58" selection-end-line="168" selection-end-column="58" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="content_benchmarking.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_benchmarking.xml">
+      <file leaf-file-name="SoftwareFragment.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/fragments/Benchmarking/SoftwareFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.394737">
-              <caret line="42" column="42" selection-start-line="42" selection-start-column="42" selection-end-line="42" selection-end-column="42" />
+            <state vertical-scroll-proportion="0.94984955">
+              <caret line="144" column="78" selection-start-line="144" selection-start-column="78" selection-end-line="144" selection-end-column="78" />
               <folding />
             </state>
           </provider>
-          <provider editor-type-id="android-designer">
-            <state />
+        </entry>
+      </file>
+      <file leaf-file-name="ScoringFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/fragments/Benchmarking/ScoringFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="162" column="52" selection-start-line="162" selection-start-column="52" selection-end-line="162" selection-end-column="52" />
+              <folding />
+            </state>
           </provider>
         </entry>
       </file>
@@ -132,7 +130,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/fragments/Benchmarking/AcquisitionFragment.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="70" column="66" selection-start-line="70" selection-start-column="66" selection-end-line="70" selection-end-column="66" />
+              <caret line="154" column="8" selection-start-line="154" selection-start-column="8" selection-end-line="154" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -1756,8 +1754,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/org/gosparx/scouting/aerialassist/dto/Scouting.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/org/gosparx/scouting/aerialassist/dto/AcquisitionFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/fragments/Benchmarking/AcquisitionFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/fragments/Benchmarking/SoftwareFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/fragments/Benchmarking/ScoringFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/org/gosparx/scouting/aerialassist/DatabaseHelper.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/MainMenu.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_benchmarking.xml" />
@@ -1769,6 +1765,8 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_drives.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_software.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/fragments/Benchmarking/DrivesFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/fragments/Benchmarking/ScoringFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/fragments/Benchmarking/SoftwareFragment.java" />
       </list>
     </option>
   </component>
@@ -2607,7 +2605,13 @@
       <option name="project" value="LOCAL" />
       <updated>1455143762922</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="drives fragment getscoutinginfo method update">
+      <created>1455145259329</created>
+      <option name="number" value="00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1455145259329</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TodoView">
@@ -2695,7 +2699,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Push to master" />
     <MESSAGE value="Alliance Spinner working" />
     <MESSAGE value="Benchmarking spinner working" />
     <MESSAGE value="Push for testing team tag code" />
@@ -2720,7 +2723,8 @@
     <MESSAGE value="basic layout for benchmarking done -- expand later" />
     <MESSAGE value="Benchmarking screen working -- need to clean up ui and test for database saves" />
     <MESSAGE value="Cleaned up UI; still need to work out saving issues" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cleaned up UI; still need to work out saving issues" />
+    <MESSAGE value="drives fragment getscoutinginfo method update" />
+    <option name="LAST_COMMIT_MESSAGE" value="drives fragment getscoutinginfo method update" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2968,16 +2972,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/fragments/Benchmarking/ScoringFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="108" column="9" selection-start-line="108" selection-start-column="9" selection-end-line="108" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/org/gosparx/scouting/aerialassist/DatabaseHelper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3041,14 +3035,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/fragments/Benchmarking/SoftwareFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="104" column="60" selection-start-line="104" selection-start-column="60" selection-end-line="104" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/fragments/MatchScouting/AutoFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3100,14 +3086,6 @@
       </provider>
       <provider editor-type-id="android-designer">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/fragments/Benchmarking/AcquisitionFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="70" column="66" selection-start-line="70" selection-start-column="66" selection-end-line="70" selection-end-column="66" />
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/Benchmarking.java">
@@ -3255,8 +3233,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/fragments/Benchmarking/DrivesFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.94984955">
+        <state vertical-scroll-proportion="0.0">
           <caret line="168" column="58" selection-start-line="168" selection-start-column="58" selection-end-line="168" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/fragments/Benchmarking/AcquisitionFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="154" column="8" selection-start-line="154" selection-start-column="8" selection-end-line="154" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/fragments/Benchmarking/ScoringFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="162" column="52" selection-start-line="162" selection-start-column="52" selection-end-line="162" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/fragments/Benchmarking/SoftwareFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.94984955">
+          <caret line="144" column="78" selection-start-line="144" selection-start-column="78" selection-end-line="144" selection-end-column="78" />
           <folding />
         </state>
       </provider>

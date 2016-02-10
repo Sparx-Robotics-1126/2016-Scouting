@@ -159,7 +159,8 @@ public class ScoringFragment extends Fragment {
             si.setCanScaleOnLeft(left.isChecked());
             si.setCanScaleOnRight(right.isChecked());
             si.setCanScaleAtCenter(center.isChecked());
-
+            si.setCycleTime(Double.parseDouble(cycleTime.getText().toString()));
+            si.setPlaysDefense(defense.isChecked());
         }
         return si;
     }
