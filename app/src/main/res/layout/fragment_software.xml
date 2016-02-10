@@ -16,43 +16,42 @@
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:textSize="@dimen/body_text_size" />
-        <LinearLayout android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:orientation="horizontal"
-            >
-            <TextView
+
+        <RelativeLayout android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="@android:drawable/divider_horizontal_bright">
+        <TextView
                 android:layout_gravity="left"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Spy"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
+                android:layout_marginLeft="@dimen/horiz_margin"
                 android:textSize="@dimen/body_text_size" />
             <ToggleButton android:layout_height="wrap_content" android:layout_width="wrap_content"
                 android:id="@+id/spy"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/horiz_margin"
                 android:textOff="No"
                 android:textOn="Yes" />
-        </LinearLayout>
+        </RelativeLayout>
 
-        <LinearLayout android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:orientation="horizontal"
-            >
+
+        <RelativeLayout android:layout_height="wrap_content"
+            android:layout_width="match_parent" >
             <TextView
                 android:layout_gravity="left"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Neutral Zone"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
+                android:layout_marginLeft="@dimen/horiz_margin"
                 android:textSize="@dimen/body_text_size" />
             <ToggleButton android:layout_height="wrap_content" android:layout_width="wrap_content"
                 android:id="@+id/neutralStart"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/horiz_margin"
                 android:textOff="No"
                 android:textOn="Yes" />
-        </LinearLayout>
+        </RelativeLayout>
 
 
         <TextView
@@ -64,42 +63,39 @@
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:textSize="@dimen/body_text_size" />
-        <LinearLayout android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:orientation="horizontal"
-            >
+        <RelativeLayout android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="@android:drawable/divider_horizontal_bright">
             <TextView
                 android:layout_gravity="left"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Courtyard"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
+                android:layout_marginLeft="@dimen/horiz_margin"
                 android:textSize="@dimen/body_text_size" />
             <ToggleButton android:layout_height="wrap_content" android:layout_width="wrap_content"
                 android:id="@+id/courtyard"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/horiz_margin"
                 android:textOff="No"
                 android:textOn="Yes" />
-        </LinearLayout>
-        <LinearLayout android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:orientation="horizontal"
-            >
+        </RelativeLayout>
+        <RelativeLayout android:layout_height="wrap_content"
+            android:layout_width="match_parent" >
             <TextView
                 android:layout_gravity="left"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Neutral Zone"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
+                android:layout_marginLeft="@dimen/horiz_margin"
                 android:textSize="@dimen/body_text_size" />
             <ToggleButton android:layout_height="wrap_content" android:layout_width="wrap_content"
                 android:id="@+id/neutralEnd"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/horiz_margin"
                 android:textOff="No"
                 android:textOn="Yes" />
-        </LinearLayout>
+        </RelativeLayout>
 
 
 

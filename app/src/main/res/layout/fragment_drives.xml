@@ -20,19 +20,27 @@
             android:inputType="text|textCapSentences|textMultiLine|textAutoCorrect"
             android:hint="Drives system info" />
 
+        <RelativeLayout android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="@android:drawable/divider_horizontal_bright">
         <TextView
             android:layout_gravity="left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="What is this team's average speed, in ft/s?"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
+            android:layout_marginLeft="@dimen/horiz_margin"
             android:textSize="@dimen/body_text_size" />
-        <EditText android:layout_height="wrap_content" android:layout_width="fill_parent"
+        <EditText android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/horiz_margin"
             android:id="@+id/speed"
             android:inputType="number|phone"
             android:hint="Speed" />
+        </RelativeLayout>
+        <RelativeLayout android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+
         <TextView
             android:layout_gravity="left"
             android:layout_width="wrap_content"
@@ -44,9 +52,11 @@
             android:textSize="@dimen/body_text_size" />
         <ToggleButton android:layout_height="wrap_content" android:layout_width="wrap_content"
             android:id="@+id/extend"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/horiz_margin"
             android:textOff="No"
             android:textOn="Yes" />
-
+        </RelativeLayout>
 
         <TextView
             android:layout_gravity="left"
@@ -57,9 +67,8 @@
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:textSize="@dimen/body_text_size" />
-        <LinearLayout android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:orientation="horizontal"
+        <RelativeLayout android:layout_height="wrap_content"
+            android:layout_width="match_parent"
             >
             <TextView
                 android:layout_gravity="left"
@@ -72,12 +81,14 @@
                 android:textSize="@dimen/body_text_size" />
             <ToggleButton android:layout_height="wrap_content" android:layout_width="wrap_content"
                 android:id="@+id/portcullis"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/horiz_margin"
                 android:textOff="No"
                 android:textOn="Yes" />
-        </LinearLayout>
-        <LinearLayout android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:orientation="horizontal"
+        </RelativeLayout>
+        <RelativeLayout android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="@android:drawable/divider_horizontal_bright"
             >
             <TextView
                 android:layout_gravity="left"
@@ -90,12 +101,14 @@
                 android:textSize="@dimen/body_text_size" />
             <ToggleButton android:layout_height="wrap_content" android:layout_width="wrap_content"
                 android:id="@+id/cheval"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/horiz_margin"
                 android:textOff="No"
                 android:textOn="Yes" />
-        </LinearLayout>
-        <LinearLayout android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:orientation="horizontal"
+        </RelativeLayout>
+        <RelativeLayout android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+
             >
             <TextView
                 android:layout_gravity="left"
@@ -108,14 +121,16 @@
                 android:textSize="@dimen/body_text_size" />
             <ToggleButton android:layout_height="wrap_content" android:layout_width="wrap_content"
                 android:id="@+id/moat"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/horiz_margin"
                 android:textOff="No"
                 android:textOn="Yes" />
-        </LinearLayout>
+        </RelativeLayout>
 
-        <LinearLayout android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:orientation="horizontal"
-            >
+        <RelativeLayout android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="@android:drawable/divider_horizontal_bright"
+            android:clickable="true">
             <TextView
                 android:layout_gravity="left"
                 android:layout_width="wrap_content"
@@ -127,13 +142,14 @@
                 android:textSize="@dimen/body_text_size" />
             <ToggleButton android:layout_height="wrap_content" android:layout_width="wrap_content"
                 android:id="@+id/ramparts"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/horiz_margin"
                 android:textOff="No"
                 android:textOn="Yes" />
-        </LinearLayout>
+        </RelativeLayout>
 
-        <LinearLayout android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:orientation="horizontal"
+        <RelativeLayout android:layout_height="wrap_content"
+            android:layout_width="match_parent"
             >
             <TextView
                 android:layout_gravity="left"
@@ -146,14 +162,15 @@
                 android:textSize="@dimen/body_text_size" />
             <ToggleButton android:layout_height="wrap_content" android:layout_width="wrap_content"
                 android:id="@+id/drawbridge"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/horiz_margin"
                 android:textOff="No"
                 android:textOn="Yes" />
-        </LinearLayout>
+        </RelativeLayout>
 
-        <LinearLayout android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:orientation="horizontal"
-            >
+        <RelativeLayout android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="@android:drawable/divider_horizontal_bright">
             <TextView
                 android:layout_gravity="left"
                 android:layout_width="wrap_content"
@@ -165,13 +182,14 @@
                 android:textSize="@dimen/body_text_size" />
             <ToggleButton android:layout_height="wrap_content" android:layout_width="wrap_content"
                 android:id="@+id/sallyport"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/horiz_margin"
                 android:textOff="No"
                 android:textOn="Yes" />
-        </LinearLayout>
+        </RelativeLayout>
 
-        <LinearLayout android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:orientation="horizontal"
+        <RelativeLayout android:layout_height="wrap_content"
+            android:layout_width="match_parent"
             >
             <TextView
                 android:layout_gravity="left"
@@ -184,14 +202,15 @@
                 android:textSize="@dimen/body_text_size" />
             <ToggleButton android:layout_height="wrap_content" android:layout_width="wrap_content"
                 android:id="@+id/rockwall"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/horiz_margin"
                 android:textOff="No"
                 android:textOn="Yes" />
-        </LinearLayout>
+        </RelativeLayout>
 
-        <LinearLayout android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:orientation="horizontal"
-            >
+        <RelativeLayout android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="@android:drawable/divider_horizontal_bright">
             <TextView
                 android:layout_gravity="left"
                 android:layout_width="wrap_content"
@@ -203,13 +222,14 @@
                 android:textSize="@dimen/body_text_size" />
             <ToggleButton android:layout_height="wrap_content" android:layout_width="wrap_content"
                 android:id="@+id/roughterrain"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/horiz_margin"
                 android:textOff="No"
                 android:textOn="Yes" />
-        </LinearLayout>
+        </RelativeLayout>
 
-        <LinearLayout android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:orientation="horizontal"
+        <RelativeLayout android:layout_height="wrap_content"
+            android:layout_width="match_parent"
             >
             <TextView
                 android:layout_gravity="left"
@@ -222,9 +242,11 @@
                 android:textSize="@dimen/body_text_size" />
             <ToggleButton android:layout_height="wrap_content" android:layout_width="wrap_content"
                 android:id="@+id/lowbar"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/horiz_margin"
                 android:textOff="No"
                 android:textOn="Yes" />
-        </LinearLayout>
+        </RelativeLayout>
 
 
 
