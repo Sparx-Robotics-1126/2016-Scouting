@@ -66,7 +66,7 @@ public class DrivesFragment extends Fragment {
 
         driveSystem = (EditText) result.findViewById(R.id.drivesSystem);
         speed = (EditText) result.findViewById(R.id.speed);
-        this.extend = (ToggleButton) result.findViewById(R.id.extend);
+        extend = (ToggleButton) result.findViewById(R.id.extend);
         crossPortcullis = (ToggleButton) result.findViewById(R.id.portcullis);
         crossCheval = (ToggleButton) result.findViewById(R.id.cheval);
         crossMoat = (ToggleButton) result.findViewById(R.id.moat);
@@ -75,6 +75,7 @@ public class DrivesFragment extends Fragment {
         crossSallyPort = (ToggleButton) result.findViewById(R.id.sallyport);
         crossRockWall = (ToggleButton) result.findViewById(R.id.rockwall);
         crossRoughTerrain = (ToggleButton) result.findViewById(R.id.roughterrain);
+        crossLowBar = (ToggleButton) result.findViewById(R.id.lowbar);
 
         if(si != null){
             driveSystem.setText(si.getDriveSystemDescription());
@@ -88,6 +89,7 @@ public class DrivesFragment extends Fragment {
             crossSallyPort.setChecked(si.getCanCrossSallyport());
             crossRockWall.setChecked(si.getCanCrossRockwall());
             crossRoughTerrain.setChecked(si.getCanCrossRoughterrain());
+            crossLowBar.setChecked(si.getCanCrossLowbar());
         }
         wasCreated = true;
         return result;
@@ -114,6 +116,7 @@ public class DrivesFragment extends Fragment {
             crossSallyPort.setChecked(si.getCanCrossSallyport());
             crossRockWall.setChecked(si.getCanCrossRockwall());
             crossRoughTerrain.setChecked(si.getCanCrossRoughterrain());
+            crossLowBar.setChecked(si.getCanCrossLowbar());
         }
     }
     @Override
@@ -158,6 +161,15 @@ public class DrivesFragment extends Fragment {
             si.setDriveSystemDescription(driveSystem.getText().toString());
             si.setApproxSpeedFeetPerSecond(Double.parseDouble(speed.getText().toString()));
             si.setDoesExtendBeyondTransportConfig(extend.isChecked());
+            si.setCanCrossPortcullis(crossPortcullis.isChecked());
+            si.setCanCrossCheval(crossCheval.isChecked());
+            si.setCanCrossMoat(crossMoat.isChecked());
+            si.setCanCrossRamparts(crossRamparts.isChecked());
+            si.setCanCrossDrawbridge(crossDrawBridge.isChecked());
+            si.setCanCrossSallyport(crossSallyPort.isChecked());
+            si.setCanCrossRockwall(crossRockWall.isChecked());
+            si.setCanCrossRoughterrain(crossRoughTerrain.isChecked());
+            si.setCanCrossLowbar(crossLowBar.isChecked());
         }
         return si;
     }

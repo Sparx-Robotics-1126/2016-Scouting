@@ -45,6 +45,7 @@ public class ScoringFragment extends Fragment {
     // TODO: Rename and change types and number of parameters
     public static ScoringFragment newInstance(ScoutingInfo si) {
         ScoringFragment fragment = new ScoringFragment();
+        fragment.setScoutingInfo(si);
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -146,20 +147,41 @@ public class ScoringFragment extends Fragment {
         // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
     }
-    private void setScoitingInfo(ScoutingInfo si){this.si = si;}
+    private void setScoutingInfo(ScoutingInfo si){this.si = si;}
     public ScoutingInfo getScoutingInfo(){
         if(si == null)
             si = new ScoutingInfo();
         if(wasCreated){
             si.setCanScoreInHighGoal(highGoal.isChecked());
             si.setCanScoreInLowGoal(lowGoal.isChecked());
-            si.setAverageHighGoalsPerMatch(Double.parseDouble(avgHigh.getText().toString()));
+            try {
+                si.setAverageHighGoalsPerMatch(Double.parseDouble(avgHigh.getText().toString()));
+            }
+            catch(Exception e){
+                si.setAverageHighGoalsPerMatch(0.0);
+            }
+            try{
             si.setAverageLowGoalsPerMatch(Double.parseDouble(avgLow.getText().toString()));
-            si.setScaleHeightPercent(Double.parseDouble(scalePercent.getText().toString()));
+            }
+            catch(Exception e){
+                si.setAverageLowGoalsPerMatch(0.0);
+            }
+            try {
+                si.setScaleHeightPercent(Double.parseDouble(scalePercent.getText().toString()));
+            }
+            catch(Exception e){
+                si.setScaleHeightPercent(0.0);
+            }
             si.setCanScaleOnLeft(left.isChecked());
             si.setCanScaleOnRight(right.isChecked());
             si.setCanScaleAtCenter(center.isChecked());
-
+            try {
+                si.setCycleTime(Double.parseDouble(cycleTime.getText().toString()));
+            }
+            catch(Exception e){
+                si.setCycleTime(0.0);
+            }
+            si.setPlaysDefense(defense.isChecked());
         }
         return si;
     }

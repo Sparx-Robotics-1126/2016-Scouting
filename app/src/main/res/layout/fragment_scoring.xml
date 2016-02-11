@@ -7,6 +7,10 @@
     <LinearLayout android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:orientation="vertical">
+
+        <RelativeLayout android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="@android:drawable/divider_horizontal_bright">
     <TextView
         android:layout_gravity="left"
         android:layout_width="wrap_content"
@@ -19,10 +23,16 @@
     <ToggleButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/horiz_margin"
         android:id="@+id/highGoal"
         android:textOn="Yes"
         android:textOff="No"/>
+        </RelativeLayout>
 
+
+        <RelativeLayout android:layout_height="wrap_content"
+            android:layout_width="match_parent">
     <TextView
         android:layout_gravity="left"
         android:layout_width="wrap_content"
@@ -34,40 +44,59 @@
         android:textSize="@dimen/body_text_size" />
     <ToggleButton android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/horiz_margin"
         android:id="@+id/lowGoal"
         android:textOn="Yes"
         android:textOff="No"/>
+        </RelativeLayout>
 
+        <RelativeLayout android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="@android:drawable/divider_horizontal_bright">
     <TextView
         android:layout_gravity="left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="What is this team's average amount of high goals per match?"
+        android:text="Average amount of high goals per match?"
         android:layout_marginTop="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:textSize="@dimen/body_text_size" />
     <EditText android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:hint="average"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/horiz_margin"
         android:inputType="number|phone"
         android:id="@+id/avgHigh"/>
+        </RelativeLayout>
+
+        <RelativeLayout android:layout_height="wrap_content"
+            android:layout_width="match_parent" >
     <TextView
         android:layout_gravity="left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="What is this team's average amount of low goals per match?"
+        android:text="Average amount of low goals per match?"
         android:layout_marginTop="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:textSize="@dimen/body_text_size" />
     <EditText android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:hint="average"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/horiz_margin"
         android:inputType="number|phone"
         android:id="@+id/avgLow"/>
+        </RelativeLayout>
 
-    <TextView
+
+        <RelativeLayout android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="@android:drawable/divider_horizontal_bright">
+            <TextView
         android:layout_gravity="left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -76,27 +105,26 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:textSize="@dimen/body_text_size" />
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="40dp"
         android:hint="average"
         android:inputType="number|phone"
         android:id="@+id/scalingHeight"/>
-
         <TextView
             android:layout_gravity="left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="%"
+            android:layout_alignParentRight="true"
             android:layout_marginTop="15dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:textSize="@dimen/body_text_size" />
-    </LinearLayout>
+        </RelativeLayout>
 
     <TextView
         android:layout_gravity="left"
@@ -107,10 +135,10 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:textSize="@dimen/body_text_size" />
-    <LinearLayout android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        android:orientation="horizontal">
 
+    <RelativeLayout android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:background="@android:drawable/divider_horizontal_bright">
         <TextView
             android:layout_gravity="left"
             android:layout_width="wrap_content"
@@ -123,14 +151,15 @@
         <ToggleButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/horiz_margin"
             android:textOn="Yes"
             android:textOff="No"
             android:id="@+id/scaleLeft"/>
-    </LinearLayout>
-    <LinearLayout android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        android:orientation="horizontal">
+    </RelativeLayout>
 
+    <RelativeLayout android:layout_height="wrap_content"
+        android:layout_width="match_parent">
         <TextView
             android:layout_gravity="left"
             android:layout_width="wrap_content"
@@ -143,14 +172,16 @@
         <ToggleButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/horiz_margin"
             android:textOn="Yes"
             android:textOff="No"
             android:id="@+id/scaleCenter"/>
-    </LinearLayout>
-    <LinearLayout android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        android:orientation="horizontal">
+    </RelativeLayout>
 
+    <RelativeLayout android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:background="@android:drawable/divider_horizontal_bright">
         <TextView
             android:layout_gravity="left"
             android:layout_width="wrap_content"
@@ -163,27 +194,30 @@
         <ToggleButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/horiz_margin"
             android:textOn="Yes"
             android:textOff="No"
             android:id="@+id/scaleRight"/>
-    </LinearLayout>
+    </RelativeLayout>
 
+
+    <RelativeLayout android:layout_height="wrap_content"
+        android:layout_width="match_parent">
     <TextView
         android:layout_gravity="left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="What is this team's average cycle time?"
+        android:text="Average cycle time?"
         android:layout_marginTop="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:textSize="@dimen/body_text_size" />
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:orientation="horizontal">
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="100dp"
         android:id="@+id/cycleTime"
         android:hint="average"/>
 
@@ -192,28 +226,33 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="second(s)"
+            android:layout_alignParentRight="true"
             android:layout_marginTop="15dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:textSize="@dimen/body_text_size" />
-    </LinearLayout>
+    </RelativeLayout>
 
 
+    <RelativeLayout android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:background="@android:drawable/divider_horizontal_bright">
     <TextView
         android:layout_gravity="left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Does this team block or play defense?"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
+        android:layout_marginLeft="@dimen/horiz_margin"
         android:textSize="@dimen/body_text_size" />
 
     <ToggleButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/playsDefense"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/horiz_margin"
         android:textOff="No"
         android:textOn="Yes"/>
+    </RelativeLayout>
     </LinearLayout>
 </FrameLayout>

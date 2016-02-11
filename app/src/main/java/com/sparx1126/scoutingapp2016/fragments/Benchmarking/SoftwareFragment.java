@@ -74,6 +74,8 @@ public class SoftwareFragment extends Fragment {
         if(si != null){
             startSpy.setChecked(si.getAutoStartInSpyPosition());
             startNeutral.setChecked(si.getAutoStartInSpyPosition());
+            endNeutral.setChecked(si.getAutoEndInNeutralZone());
+            endCourtyard.setChecked(si.getAutoEndInCourtyard());
             autoActions.setText(si.getAutoCapabilitiesDescription());
         }
         wasCreated = true;
@@ -85,6 +87,8 @@ public class SoftwareFragment extends Fragment {
         if(si != null){
             startSpy.setChecked(si.getAutoStartInSpyPosition());
             startNeutral.setChecked(si.getAutoStartInSpyPosition());
+            endNeutral.setChecked(si.getAutoEndInNeutralZone());
+            endCourtyard.setChecked(si.getAutoEndInCourtyard());
             autoActions.setText(si.getAutoCapabilitiesDescription());
         }
     }
@@ -138,6 +142,7 @@ public class SoftwareFragment extends Fragment {
             si.setAutoStartInNeutralZone(startNeutral.isChecked());
             si.setAutoEndInCourtyard(endCourtyard.isChecked());
             si.setAutoEndInNeutralZone(endNeutral.isChecked());
+            si.setAutoCapabilitiesDescription(autoActions.getText().toString());
         }
         return si;
     }
