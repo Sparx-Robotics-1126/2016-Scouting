@@ -34,13 +34,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.sparx1126.scoutingapp2016.MainMenu" />
         </activity>
-        <activity android:name=".Benchmarking" >
+        <activity android:name=".Benchmarking"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".ViewData"
             android:label="@string/title_activity_view_data"
             android:parentActivityName=".MainMenu"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.sparx1126.scoutingapp2016.MainMenu" />
