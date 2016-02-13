@@ -13,6 +13,7 @@ import org.gosparx.scouting.aerialassist.DatabaseHelper;
 import org.gosparx.scouting.aerialassist.dto.Event;
 import org.gosparx.scouting.aerialassist.dto.Match;
 import org.gosparx.scouting.aerialassist.dto.Scouting;
+import org.gosparx.scouting.aerialassist.dto.ScoutingInfo;
 import org.gosparx.scouting.aerialassist.dto.Team;
 
 import java.util.List;
@@ -24,6 +25,7 @@ public class SparxScouting {
     private static final String TAG = "SparxScouting";
     private static final String BASE_URL = "http://10.96.38.142:10080";
     private static final String POST_SCOUTING = "/api/2016/v1/ScoutingData";
+    private static final String POST_BENCHMARKING = "/api/2016/v1/BenchmarkingData";
     private static final String GET_SCOUTING_BY_TEAM = "/api/20165/v1/ScoutingData/{TEAM_KEY}";
     private static final String GET_SCOUTING_BY_TEAM_EVENT = "/api/2016/v1/ScoutingData/{TEAM_KEY}/{EVENT_KEY}";
     private static final String GET_SCOUTING_BY_TEAM_EVENT_MATCH = "/api/2016/v1/ScoutingData/{TEAM_KEY}/{EVENT_KEY}/{MATCH_KEY}";
@@ -81,7 +83,7 @@ public class SparxScouting {
                     .setCallback(new FutureCallback<String>() {
                         @Override
                         public void onCompleted(Exception e, String result) {
-                            if (e != null) {
+                            if ((e != null) || ((result != null) && (!result.isEmpty()))) {
                                 Log.e(TAG, "Issue saving to Server!", e);
                                 System.out.println("Server Error");
                                 subCallback.handleFinishDownload(false);
@@ -138,4 +140,52 @@ public class SparxScouting {
             }
         });
     }
+
+    public void postAllBenchmarking(final NetworkCallback callback) {
+        final List<ScoutingInfo> scoutingList = dbHelper.getAllBenchmarkingNeedingSyncing();
+        String request = (BASE_URL + POST_BENCHMARKING);
+        if(scoutingList.isEmpty())
+            callback.handleFinishDownload(true);
+        final NetworkCallback subCallback = new NetworkCallback() {
+            int size = scoutingList.size();
+            boolean hasFailed = false;
+            @Override
+            public void handleFinishDownload(boolean success) {
+                if(hasFailed) {
+                    return;
+                }
+                if(!success) {
+                    callback.handleFinishDownload(false);
+                    hasFailed = true;
+                    return;
+                }
+                size -= 1;
+                if(size <= 0) {
+                    callback.handleFinishDownload(true);
+                }
+            }
+        };
+
+        for (final ScoutingInfo scouting : scoutingList) {
+            Ion.with(context)
+                    .load(request)
+                    .setJsonPojoBody(scouting)
+                    .asString()
+                    .setCallback(new FutureCallback<String>() {
+                        @Override
+                        public void onCompleted(Exception e, String result) {
+                            if ((e != null) || ((result != null) && (!result.isEmpty()))) {
+                                Log.e(TAG, "Issue saving ScoutingInfo to Server!", e);
+                                System.out.println("Server Error");
+                                subCallback.handleFinishDownload(false);
+                            } else {
+                                dbHelper.setDoneSyncing(scouting);
+                                System.out.println("Uploading");
+                                subCallback.handleFinishDownload(true);
+                            }
+                        }
+                    });
+        }
+    }
+
 }

@@ -4,6 +4,8 @@ import logging
 import webapp2
 import json
 from aerialassist.model.scouting import Scouting, ScoutingAuto, ScoutingTele, ScoutingGeneral
+from aerialassist.model.scoutinginfo import ScoutingInfo
+from google.appengine.ext import ndb
 
 class GetScoutingData(webapp2.RequestHandler):
     def getMatchLevel(self, team_key, event_key, match_key):
@@ -51,7 +53,7 @@ class PostBenchmarkingData(webapp2.RequestHandler):
         jsonRoot = json.loads(self.request.body)
         scoutinginfo = ScoutingInfo()
         scoutinginfo.populate(**jsonRoot)
-        scouting.key = ndb.Key(ScoutingInfo, scoutinginfo.teamKey + '-' + scoutinginfo.eventKey + '-' + scoutinginfo.nameOfScouter)
+        scoutinginfo.key = ndb.Key(ScoutingInfo, scoutinginfo.teamKey + '-' + scoutinginfo.eventKey + '-' + scoutinginfo.nameOfScouter)
         scoutinginfo.put()
 
         self.response.status = 200

@@ -124,6 +124,27 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
                         alert.dismiss();
                         if (!success)
                             alertUser("Failure", "Did not successfully upload scouting data!").show();
+                        else
+                            uploadBenchmarkingData();
+                    }
+                });
+            }
+        });
+    }
+
+    private void uploadBenchmarkingData() {
+        final Dialog alert = createUploadDialog("Please wait while benchmarking data is uploaded...");
+        alert.show();
+        SparxScouting ss = SparxScouting.getInstance(this);
+        ss.postAllBenchmarking(new NetworkCallback() {
+            @Override
+            public void handleFinishDownload(final boolean success) {
+                MainMenu.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        alert.dismiss();
+                        if (!success)
+                            alertUser("Failure", "Did not successfully upload benchmarking data!").show();
                     }
                 });
             }

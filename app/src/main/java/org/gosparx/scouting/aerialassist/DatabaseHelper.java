@@ -942,6 +942,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return retVal;
     }
 
+    public List<ScoutingInfo> getAllBenchmarkingNeedingSyncing(){
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.query(TABLE_BENCHMARKING, new String[]{"*"},
+                TABLE_BENCHMARKING_LAST_UPDATE + " > " + TABLE_BENCHMARKING_LAST_SYNC,
+                null, null, null, null);
+
+        List<ScoutingInfo> retVal = new ArrayList<ScoutingInfo>();
+        while (c != null && c.moveToNext())
+            retVal.add(mapBenchmarking(c));
+
+        if (c != null) {
+            c.close();
+        }
+        return retVal;
+    }
+
     public void setDoneSyncing(Scouting scouting){
         SQLiteDatabase db = getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -949,6 +965,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.update(TABLE_SCOUTING, cv, TABLE_SCOUTING_TEAM_KEY+" = ? AND "+TABLE_SCOUTING_EVENT_KEY
                 +" = ? AND "+TABLE_SCOUTING_MATCH_KEY+" = ? AND "+TABLE_SCOUTING_NAME+" = ?",
                 new String[]{scouting.getTeamKey(), scouting.getEventKey(), scouting.getMatchKey(), scouting.getNameOfScouter()});
+    }
+
+    public void setDoneSyncing(ScoutingInfo scouting){
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(TABLE_BENCHMARKING_LAST_SYNC, getDateTime());
+        db.update(TABLE_BENCHMARKING, cv, TABLE_BENCHMARKING_TEAM_KEY+" = ? AND "+TABLE_BENCHMARKING_EVENT_KEY
+                        +" = ? AND "+TABLE_BENCHMARKING_NAME+" = ?",
+                new String[]{scouting.getTeamKey(), scouting.getEventKey(), scouting.getNameOfScouter()});
     }
 
     // returns a ContentValues (for saving to the database) containing the values from the given ScoutingInfo object.
