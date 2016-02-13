@@ -363,12 +363,24 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
                 if (teamScout.getVisibility() != View.GONE)
                     teamScout.setVisibility(View.GONE);
                 downloadMatchSpinnerDataIfNecessary();
+                scout.setText(R.string.begin_scouting);
                 break;
+            case R.id.dataview:
+                if (teamScout.getVisibility() != View.VISIBLE)
+                    teamScout.setVisibility(View.VISIBLE);
+                if (matchScout.getVisibility() != View.GONE)
+                    matchScout.setVisibility(View.GONE);
+                scout.setText(R.string.view_data);
+                break;
+
             case R.id.benchmarking:
                 if (teamScout.getVisibility() != View.VISIBLE)
                     teamScout.setVisibility(View.VISIBLE);
                 if (matchScout.getVisibility() != View.GONE)
                     matchScout.setVisibility(View.GONE);
+                scout.setText(R.string.begin_benchmarking);
+                break;
+
         }
     }
 
@@ -616,6 +628,15 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
                 i.putExtra(TEAM_NAME, getSelectedTeam().getKey());
                 startActivity(i);
                 return;
+            }
+        }
+        else if(((RadioButton)findViewById(R.id.dataview)).isChecked()){
+            if(getSelectedTeam() == null){
+                alertUser("Selection Missing", "Please select a team from the list.");
+            }
+            else{
+                Intent i = new Intent(this, ViewData.class);
+                i.putExtra(TEAM_NAME, getSelectedTeam().getKey());
             }
         }
         else // match scouting mode
