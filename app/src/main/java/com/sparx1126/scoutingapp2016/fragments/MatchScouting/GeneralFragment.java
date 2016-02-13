@@ -1,9 +1,9 @@
 package com.sparx1126.scoutingapp2016.fragments.MatchScouting;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +35,10 @@ public class GeneralFragment extends Fragment {
     private EditText techFoulCommentsEditText;
     private EditText generalCommentsEditText;
 
+    public GeneralFragment() {
+        // Required empty public constructor
+    }
+
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -46,10 +50,6 @@ public class GeneralFragment extends Fragment {
         fragment.setScoutingGeneral(sg);
         fragment.setArguments(args);
         return fragment;
-    }
-
-    public GeneralFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -65,14 +65,14 @@ public class GeneralFragment extends Fragment {
         // Inflate the layout for this fragment
         View result = inflater.inflate(R.layout.fragment_general, container, false);
 
-        penaltyCountNumberPicker = (HorizontalNumberPicker)result.findViewById(R.id.genPenatlies);
-        techFoulCountNumberPicker = (HorizontalNumberPicker)result.findViewById(R.id.genTechnicalFouls);
-        penaltyCommentsEditText = (EditText)result.findViewById(R.id.genPenaltyComments);
-        techFoulCommentsEditText = (EditText)result.findViewById(R.id.genTechFoulComments);
-        generalCommentsEditText = (EditText)result.findViewById(R.id.genComments);
+        penaltyCountNumberPicker = (HorizontalNumberPicker) result.findViewById(R.id.genPenatlies);
+        techFoulCountNumberPicker = (HorizontalNumberPicker) result.findViewById(R.id.genTechnicalFouls);
+        penaltyCommentsEditText = (EditText) result.findViewById(R.id.genPenaltyComments);
+        techFoulCommentsEditText = (EditText) result.findViewById(R.id.genTechFoulComments);
+        generalCommentsEditText = (EditText) result.findViewById(R.id.genComments);
 
 
-        if(sg != null){
+        if (sg != null) {
             penaltyCountNumberPicker.setValue(sg.getNumberOfPenalties());
             techFoulCountNumberPicker.setValue(sg.getNumberOfTechnicalFouls());
             penaltyCommentsEditText.setText(sg.getCommentsOnPenalties());
@@ -87,7 +87,7 @@ public class GeneralFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        if(sg != null){
+        if (sg != null) {
             penaltyCountNumberPicker.setValue(sg.getNumberOfPenalties());
             techFoulCountNumberPicker.setValue(sg.getNumberOfTechnicalFouls());
             penaltyCommentsEditText.setText(sg.getCommentsOnPenalties());
@@ -121,6 +121,25 @@ public class GeneralFragment extends Fragment {
         mListener = null;
     }
 
+    public ScoutingGeneral getScoutingGeneral() {
+        if (sg == null)
+            sg = new ScoutingGeneral();
+
+        if (wasCreated) {
+            sg.setNumberOfPenalties(penaltyCountNumberPicker.getValue());
+            sg.setNumberOfTechnicalFouls(techFoulCountNumberPicker.getValue());
+            sg.setCommentsOnPenalties(penaltyCommentsEditText.getText().toString());
+            sg.setCommentsOnTechnicalFouls(techFoulCommentsEditText.getText().toString());
+            sg.setGeneralComments(generalCommentsEditText.getText().toString());
+        }
+
+        return sg;
+    }
+
+    public void setScoutingGeneral(ScoutingGeneral sg) {
+        this.sg = sg;
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -134,25 +153,5 @@ public class GeneralFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
-    }
-
-    public void setScoutingGeneral(ScoutingGeneral sg){
-        this.sg = sg;
-    }
-
-    public ScoutingGeneral getScoutingGeneral(){
-        if(sg == null)
-            sg = new ScoutingGeneral();
-
-        if (wasCreated)
-        {
-            sg.setNumberOfPenalties(penaltyCountNumberPicker.getValue());
-            sg.setNumberOfTechnicalFouls(techFoulCountNumberPicker.getValue());
-            sg.setCommentsOnPenalties(penaltyCommentsEditText.getText().toString());
-            sg.setCommentsOnTechnicalFouls(techFoulCommentsEditText.getText().toString());
-            sg.setGeneralComments(generalCommentsEditText.getText().toString());
-        }
-
-        return sg;
     }
 }

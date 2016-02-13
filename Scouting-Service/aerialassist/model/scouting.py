@@ -25,6 +25,7 @@ class ScoutingAuto(ndb.Model):
       reachAchieved = ndb.BooleanProperty()
       reachWasCrossAttempt = ndb.BooleanProperty()
       startedAsSpy = ndb.BooleanProperty()
+      startedWithBoulder = ndb.BooleanProperty()
 
 class ScoutingTele(ndb.Model):
      highGoalAttempts = ndb.IntegerProperty() 
@@ -49,7 +50,7 @@ class ScoutingTele(ndb.Model):
 class ScoutingGeneral(ndb.Model): 
       numberOfPenalties = ndb.IntegerProperty()
       commentsOnPenalties = ndb.StringProperty()
-      numberOfTechnicalFouls = ndb.IntegerProperty
+      numberOfTechnicalFouls = ndb.IntegerProperty()
       commentsOnTechnicalFouls = ndb.StringProperty()
       generalComments = ndb.StringProperty()
 

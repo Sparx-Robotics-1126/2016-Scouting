@@ -8,7 +8,6 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,7 +20,6 @@ import android.widget.RadioButton;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.gosparx.scouting.aerialassist.DatabaseHelper;
 import org.gosparx.scouting.aerialassist.dto.Alliances;
@@ -44,6 +42,9 @@ import static org.gosparx.scouting.aerialassist.networking.NetworkHelper.isNetwo
 
 public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
+    public static final String SCOUTING_INFO = "com.sparx1126.scouting2016.SCOUTING";
+    public static final String ALLIANCE_SELECTED = "com.spark1126.scouting2016.ALLIANCE";
+    public static final String TEAM_NAME = "com.sparx1126.scouting2016.TEAM";
     private Spinner eventPicker;
     private Spinner matchPicker;
     private Spinner alliancePicker;
@@ -59,9 +60,6 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
     private String nameOfScouter;
     private Scouting scouting;
     private DatabaseHelper dbHelper;
-    public static final String SCOUTING_INFO = "com.sparx1126.scouting2016.SCOUTING";
-    public static final String ALLIANCE_SELECTED = "com.spark1126.scouting2016.ALLIANCE";
-    public static final String TEAM_NAME = "com.sparx1126.scouting2016.TEAM";
 
     @Override
 
@@ -200,7 +198,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
         }
     }
 
-    private void downloadMatchSpinnerDataIfNecessary(){
+    private void downloadMatchSpinnerDataIfNecessary() {
         // see if we have any matches for the selected event
         Event selectedEvent = this.getSelectedEvent();
         if (selectedEvent != null) {
@@ -212,15 +210,14 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
         }
     }
 
-    private void downloadTeamDataIfNecessary(){
+    private void downloadTeamDataIfNecessary() {
         Event selectedEvent = this.getSelectedEvent();
         if (selectedEvent != null) {
             int eventTeamCount = DatabaseHelper.getInstance(this).getEventTeamCount(selectedEvent);
 
             if (isNetworkAvailable(this) && (NetworkHelper.needToLoadTeams(this) || (eventTeamCount == 0))) {
                 downloadTeamData();
-            }
-            else setupTeamSpinner(getSelectedEvent());
+            } else setupTeamSpinner(getSelectedEvent());
         }
     }
 
@@ -405,12 +402,24 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
                 if (teamScout.getVisibility() != View.GONE)
                     teamScout.setVisibility(View.GONE);
                 downloadMatchSpinnerDataIfNecessary();
+                scout.setText(R.string.begin_scouting);
                 break;
+            case R.id.dataview:
+                if (teamScout.getVisibility() != View.VISIBLE)
+                    teamScout.setVisibility(View.VISIBLE);
+                if (matchScout.getVisibility() != View.GONE)
+                    matchScout.setVisibility(View.GONE);
+                scout.setText(R.string.view_data);
+                break;
+
             case R.id.benchmarking:
                 if (teamScout.getVisibility() != View.VISIBLE)
                     teamScout.setVisibility(View.VISIBLE);
                 if (matchScout.getVisibility() != View.GONE)
                     matchScout.setVisibility(View.GONE);
+                scout.setText(R.string.begin_benchmarking);
+                break;
+
         }
     }
 
@@ -480,7 +489,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
         return result;
     }
 
-    private String getName(){
+    private String getName() {
         return name.getText().toString();
     }
 
@@ -549,11 +558,15 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
         //make sure the list has at least 6 spaces
         teamList.ensureCapacity(numTeams);
         for (int i = 0; i < numTeams; i++) {
-            if (i < 3)
+            if (i < 3) {
                 //set color to alliance color
                 color = "Blue";
-            else color = "Red";
-            teamList.add(color + " Alliance " + (i + 1) + " (" + getTeamKey(i) + ")");
+                teamList.add(color + " Alliance " + (i + 1) + " (" + getTeamKey(i) + ")");
+            } else {
+                color = "Red";
+                teamList.add(color + " Alliance " + (i - 2) + " (" + getTeamKey(i) + ")");
+
+            }
         }
         //new adapter to store string values
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,
@@ -639,37 +652,36 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
         Boolean okayToContinue = false;
 
         // name has to be entered
-        if (getName().isEmpty())
-        {
+        if (getName().isEmpty()) {
             alertUser("Enter Your Name", "Enter your first name at the top of the screen").show();
-        }
-        else if (getSelectedEvent() == null)
-        {
+        } else if (getSelectedEvent() == null) {
             alertUser("Select Event!", "Select an event from the list").show();
-        }
-        else if(((RadioButton)findViewById(R.id.benchmarking)).isChecked()) // Benchmarking mode
+        } else if (((RadioButton) findViewById(R.id.benchmarking)).isChecked()) // Benchmarking mode
         {
-            if(getSelectedTeam() == null){
+            if (getSelectedTeam() == null) {
                 alertUser("Selection Missing", "Please select a team from the list.");
-            }
-            else{
+            } else {
                 initializeBenchmarking();
                 Intent i = new Intent(this, Benchmarking.class);
                 i.putExtra(TEAM_NAME, getSelectedTeam().getKey());
                 startActivity(i);
-                return;
             }
-        }
-        else // match scouting mode
+        } else if (((RadioButton) findViewById(R.id.dataview)).isChecked()) {
+            if (getSelectedTeam() == null) {
+                alertUser("Selection Missing", "Please select a team from the list.");
+            } else {
+                Intent i = new Intent(this, ViewData.class);
+                i.putExtra(TEAM_NAME, getSelectedTeam().getKey());
+                startActivity(i);
+            }
+        } else // match scouting mode
         {
             // match and team selections are required
             Match match = getSelectedMatch();
             Team team = getSelectedAllianceTeam();
-            if ((match == null) || (team == null))
-            {
+            if ((match == null) || (team == null)) {
                 alertUser("Selection Missing", "Please select a match and team from the lists.").show();
-            }
-            else // okay to scout!
+            } else // okay to scout!
             {
                 Intent i = new Intent(this, MatchScouting.class);
                 convertScouting();
@@ -678,7 +690,8 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
             }
         }
     }
-    private void initializeBenchmarking(){
+
+    private void initializeBenchmarking() {
         Benchmarking.info = new ScoutingInfo();
         ScoutingInfo si = Benchmarking.info;
         si.setNameOfScouter(getName());
@@ -686,4 +699,4 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
         si.setTeamKey(getSelectedTeam().getKey());
     }
 
- }
+}

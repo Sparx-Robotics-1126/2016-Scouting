@@ -36,6 +36,15 @@
         </activity>
         <activity android:name=".Benchmarking" >
         </activity>
+        <activity
+            android:name=".ViewData"
+            android:label="@string/title_activity_view_data"
+            android:parentActivityName=".MainMenu"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sparx1126.scoutingapp2016.MainMenu" />
+        </activity>
     </application>
 
 </manifest>
