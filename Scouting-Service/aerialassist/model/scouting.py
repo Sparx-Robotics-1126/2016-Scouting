@@ -49,7 +49,7 @@ class ScoutingTele(ndb.Model):
 class ScoutingGeneral(ndb.Model): 
       numberOfPenalties = ndb.IntegerProperty()
       commentsOnPenalties = ndb.StringProperty()
-      numberOfTechnicalFouls = ndb.IntegerProperty
+      numberOfTechnicalFouls = ndb.IntegerProperty()
       commentsOnTechnicalFouls = ndb.StringProperty()
       generalComments = ndb.StringProperty()
 

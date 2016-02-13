@@ -516,11 +516,15 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
         //make sure the list has at least 6 spaces
         teamList.ensureCapacity(numTeams);
         for (int i = 0; i < numTeams; i++) {
-            if (i < 3)
+            if (i < 3) {
                 //set color to alliance color
                 color = "Blue";
-            else color = "Red";
-            teamList.add(color + " Alliance " + (i + 1) + " (" + getTeamKey(i) + ")");
+                teamList.add(color + " Alliance " + (i + 1) + " (" + getTeamKey(i) + ")");
+            } else {
+                color = "Red";
+                teamList.add(color + " Alliance " + (i - 2) + " (" + getTeamKey(i) + ")");
+
+            }
         }
         //new adapter to store string values
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,

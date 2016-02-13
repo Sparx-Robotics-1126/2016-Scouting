@@ -121,6 +121,35 @@ public class AutoFragment extends Fragment {
 
         wasCreated = true;
 
+        if(sa != null){
+            portcullisPositionToggleButton.setChecked(sa.getPortcullisCrossed());
+            portcullisPositionSpinner.setSelection(indexOfPositionValue(sa.getPortcullisPosition()));
+            chevalPositionSpinner.setSelection(indexOfPositionValue(sa.getChevalPosition()));
+            moatPositionSpinner.setSelection(indexOfPositionValue(sa.getMoatPosition()));
+            rampartsPositionSpinner.setSelection(indexOfPositionValue(sa.getRampartsPosition()));
+            drawbridgePositionSpinner.setSelection(indexOfPositionValue(sa.getDrawbridgePosition()));
+            sallyportPositionSpinner.setSelection(indexOfPositionValue(sa.getSallyportPosition()));
+            rockwallPositionSpinner.setSelection(indexOfPositionValue(sa.getRockwallPosition()));
+            roughterrainPositionSpinner.setSelection(indexOfPositionValue(sa.getRoughterrainPosition()));
+            portcullisPositionToggleButton.setChecked(sa.getPortcullisCrossed());
+            chevalPositionToggleButton.setChecked(sa.getChevalCrossed());
+            moatPositionToggleButton.setChecked(sa.getMoatCrossed());
+            rampartsPositionToggleButton.setChecked(sa.getRampartsCrossed());
+            drawbridgePositionToggleButton.setChecked(sa.getDrawbridgeCrossed());
+            sallyportPositionToggleButton.setChecked(sa.getSallyportCrossed());
+            rockwallPositionToggleButton.setChecked(sa.getRockwallCrossed());
+            roughterrainPositionToggleButton.setChecked(sa.getRoughterrainCrossed());
+            lowbarPositionToggleButton.setChecked(sa.getLowbarCrossed());
+
+            pickedupboulderToggleButton.setChecked(sa.getBoudlerPickedUp());
+            scoredinhighgoalToggleButton.setChecked(sa.getRobotScoredHigh());
+            scoredinlowgoalToggleButton.setChecked(sa.getRobotScoredLow());
+            endingPositionSpinner.setSelection(indexOfEndingPositionValue(sa.getEndingPosition()));
+            reachachievedToggleButton.setChecked(sa.getReachAchieved());
+            reachwascrossattemptToggleButton.setChecked(sa.getReachWasCrossAttempt());
+            startedasspyToggleButton.setChecked(sa.getStartedAsSpy());
+            startedwithboulderToggleButton.setChecked(sa.getStartedWithBoulder());
+        }
         return result;
     }
 
