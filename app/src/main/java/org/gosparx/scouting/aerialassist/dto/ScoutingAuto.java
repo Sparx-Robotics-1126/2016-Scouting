@@ -27,7 +27,7 @@ public class ScoutingAuto {
     private Boolean roughterrainCrossed = false;
     private Boolean lowbarCrossed = false;
     // whether or not the robot picked up a boulder
-    private Boolean boudlerPickedUp = false;
+    private Boolean boulderPickedUp = false;
     // whether or not the robot scored in the hight goal
     private Boolean robotScoredHigh = false;
     // whether or not the robot scored in the low goal
@@ -177,12 +177,12 @@ public class ScoutingAuto {
         this.lowbarCrossed = lowbarCrossed;
     }
 
-    public Boolean getBoudlerPickedUp() {
-        return boudlerPickedUp;
+    public Boolean getBoulderPickedUp() {
+        return boulderPickedUp;
     }
 
-    public void setBoudlerPickedUp(Boolean boudlerPickedUp) {
-        this.boudlerPickedUp = boudlerPickedUp;
+    public void setBoulderPickedUp(Boolean boudlerPickedUp) {
+        this.boulderPickedUp = boudlerPickedUp;
     }
 
     public Boolean getRobotScoredHigh() {

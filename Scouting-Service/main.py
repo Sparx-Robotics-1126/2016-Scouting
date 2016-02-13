@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 import webapp2
-from aerialassist.scouting_data import GetScoutingData, PostScoutingData
+from aerialassist.scouting_data import GetScoutingData, PostScoutingData, PostBenchmarkingData
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):

@@ -729,7 +729,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             values.put(TABLE_SCOUTING_AUTO_ROCKWALL_CROSSED, scoutingAuto.getRockwallCrossed());
             values.put(TABLE_SCOUTING_AUTO_ROUGHTERRAIN_CROSSED, scoutingAuto.getRoughterrainCrossed());
             values.put(TABLE_SCOUTING_AUTO_LOWBAR_CROSSED, scoutingAuto.getLowbarCrossed());
-            values.put(TABLE_SCOUTING_AUTO_BOULDER_PICKED_UP, scoutingAuto.getBoudlerPickedUp());
+            values.put(TABLE_SCOUTING_AUTO_BOULDER_PICKED_UP, scoutingAuto.getBoulderPickedUp());
             values.put(TABLE_SCOUTING_AUTO_ROBOT_SCORED_HIGH, scoutingAuto.getRobotScoredHigh());
             values.put(TABLE_SCOUTING_AUTO_ROBOT_SCORED_LOW, scoutingAuto.getRobotScoredLow());
             values.put(TABLE_SCOUTING_AUTO_ENDING_POSITION, scoutingAuto.getEndingPosition());
@@ -878,7 +878,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             scoutingAuto.setRockwallCrossed(getBoolean(c, c.getColumnIndex(TABLE_SCOUTING_AUTO_ROCKWALL_CROSSED)));
             scoutingAuto.setRoughterrainCrossed(getBoolean(c, c.getColumnIndex(TABLE_SCOUTING_AUTO_ROUGHTERRAIN_CROSSED)));
             scoutingAuto.setLowbarCrossed(getBoolean(c, c.getColumnIndex(TABLE_SCOUTING_AUTO_LOWBAR_CROSSED)));
-            scoutingAuto.setBoudlerPickedUp(getBoolean(c, c.getColumnIndex(TABLE_SCOUTING_AUTO_BOULDER_PICKED_UP)));
+            scoutingAuto.setBoulderPickedUp(getBoolean(c, c.getColumnIndex(TABLE_SCOUTING_AUTO_BOULDER_PICKED_UP)));
             scoutingAuto.setRobotScoredHigh(getBoolean(c, c.getColumnIndex(TABLE_SCOUTING_AUTO_ROBOT_SCORED_HIGH)));
             scoutingAuto.setRobotScoredLow(getBoolean(c, c.getColumnIndex(TABLE_SCOUTING_AUTO_ROBOT_SCORED_LOW)));
             scoutingAuto.setEndingPosition(c.getString(c.getColumnIndex(TABLE_SCOUTING_AUTO_ENDING_POSITION)));

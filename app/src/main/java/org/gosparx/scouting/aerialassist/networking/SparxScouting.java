@@ -22,11 +22,11 @@ import java.util.List;
  */
 public class SparxScouting {
     private static final String TAG = "SparxScouting";
-    private static final String BASE_URL = "http://sparx-scouting-2015.appspot.com";
-    private static final String POST_SCOUTING = "/api/2015/v1/ScoutingData";
-    private static final String GET_SCOUTING_BY_TEAM = "/api/2015/v1/ScoutingData/{TEAM_KEY}";
-    private static final String GET_SCOUTING_BY_TEAM_EVENT = "/api/2015/v1/ScoutingData/{TEAM_KEY}/{EVENT_KEY}";
-    private static final String GET_SCOUTING_BY_TEAM_EVENT_MATCH = "/api/2015/v1/ScoutingData/{TEAM_KEY}/{EVENT_KEY}/{MATCH_KEY}";
+    private static final String BASE_URL = "http://10.96.38.142:10080";
+    private static final String POST_SCOUTING = "/api/2016/v1/ScoutingData";
+    private static final String GET_SCOUTING_BY_TEAM = "/api/20165/v1/ScoutingData/{TEAM_KEY}";
+    private static final String GET_SCOUTING_BY_TEAM_EVENT = "/api/2016/v1/ScoutingData/{TEAM_KEY}/{EVENT_KEY}";
+    private static final String GET_SCOUTING_BY_TEAM_EVENT_MATCH = "/api/2016/v1/ScoutingData/{TEAM_KEY}/{EVENT_KEY}/{MATCH_KEY}";
 
     private Context context;
     private Ion ion;

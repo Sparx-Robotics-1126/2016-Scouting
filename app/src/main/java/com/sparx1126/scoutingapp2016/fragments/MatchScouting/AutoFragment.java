@@ -148,7 +148,7 @@ public class AutoFragment extends Fragment {
             roughterrainPositionToggleButton.setChecked(sa.getRoughterrainCrossed());
             lowbarPositionToggleButton.setChecked(sa.getLowbarCrossed());
 
-            pickedupboulderToggleButton.setChecked(sa.getBoudlerPickedUp());
+            pickedupboulderToggleButton.setChecked(sa.getBoulderPickedUp());
             scoredinhighgoalToggleButton.setChecked(sa.getRobotScoredHigh());
             scoredinlowgoalToggleButton.setChecked(sa.getRobotScoredLow());
             endingPositionSpinner.setSelection(indexOfEndingPositionValue(sa.getEndingPosition()));
@@ -260,7 +260,7 @@ public class AutoFragment extends Fragment {
             sa.setRoughterrainCrossed(roughterrainPositionToggleButton.isChecked());
             sa.setLowbarCrossed(lowbarPositionToggleButton.isChecked());
 
-            sa.setBoudlerPickedUp(pickedupboulderToggleButton.isChecked());
+            sa.setBoulderPickedUp(pickedupboulderToggleButton.isChecked());
             sa.setRobotScoredHigh(scoredinhighgoalToggleButton.isChecked());
             sa.setRobotScoredLow(scoredinlowgoalToggleButton.isChecked());
             sa.setEndingPosition(endingPositionSpinner.getSelectedItem().toString());

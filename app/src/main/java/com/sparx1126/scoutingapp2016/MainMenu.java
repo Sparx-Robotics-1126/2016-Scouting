@@ -36,6 +36,7 @@ import org.gosparx.scouting.aerialassist.dto.Team;
 import org.gosparx.scouting.aerialassist.networking.BlueAlliance;
 import org.gosparx.scouting.aerialassist.networking.NetworkCallback;
 import org.gosparx.scouting.aerialassist.networking.NetworkHelper;
+import org.gosparx.scouting.aerialassist.networking.SparxScouting;
 
 import java.util.ArrayList;
 
@@ -105,9 +106,30 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
             return true;
         } else if (id == R.id.action_download) {
             downloadEventSpinnerData();
+        } else if (id == R.id.action_upload){
+            uploadScoutingData();
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void uploadScoutingData() {
+        final Dialog alert = createUploadDialog("Please wait while scouting data is uploaded...");
+        alert.show();
+        SparxScouting ss = SparxScouting.getInstance(this);
+        ss.postAllScouting(new NetworkCallback() {
+            @Override
+            public void handleFinishDownload(final boolean success) {
+                MainMenu.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        alert.dismiss();
+                        if (!success)
+                            alertUser("Failure", "Did not successfully upload scouting data!").show();
+                    }
+                });
+            }
+        });
     }
 
     /**
@@ -116,8 +138,26 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
      * @return message about download
      */
     private AlertDialog createDownloadDialog(String message) {
+        return createPleaseWaitDialog(message, R.string.downloading_data);
+    }
+
+    /**
+     * notify the user about data upload
+     *
+     * @return message about upload
+     */
+    private AlertDialog createUploadDialog(String message) {
+        return createPleaseWaitDialog(message, R.string.uploading_data);
+    }
+
+    /**
+     * notify the user about something they have to wait for
+     *
+     * @return message about activity
+     */
+    private AlertDialog createPleaseWaitDialog(String message, int titleID) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.downloading_data);
+        builder.setTitle(titleID);
         builder.setMessage(message);
         builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
             @Override
@@ -128,6 +168,8 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
         });
         return builder.create();
     }
+
+
 
     /**
      * notify the user about something
