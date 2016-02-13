@@ -5,7 +5,7 @@ class ScoutingAuto(ndb.Model):
       chevalPosition = ndb.IntegerProperty()
       moatPosition = ndb.IntegerProperty()
       rampartsPosition = ndb.IntegerProperty()
-      drawbridgePosition = ndb,IntegerProperty()
+      drawbridgePosition = ndb.IntegerProperty()
       sallyportPosition = ndb.IntegerProperty()
       rockwallPosition = ndb.IntegerProperty()
       roughterrainPosition = ndb.IntegerProperty()
