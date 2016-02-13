@@ -45,6 +45,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
     public static final String SCOUTING_INFO = "com.sparx1126.scouting2016.SCOUTING";
     public static final String ALLIANCE_SELECTED = "com.spark1126.scouting2016.ALLIANCE";
     public static final String TEAM_NAME = "com.sparx1126.scouting2016.TEAM";
+    public static final String EVENT_KEY = "com.sparx1126.scoutingapp2016.EVENT";
     private Spinner eventPicker;
     private Spinner matchPicker;
     private Spinner alliancePicker;
@@ -672,6 +673,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
             } else {
                 Intent i = new Intent(this, ViewData.class);
                 i.putExtra(TEAM_NAME, getSelectedTeam().getKey());
+                i.putExtra(EVENT_KEY, getSelectedEvent().getKey());
                 startActivity(i);
             }
         } else // match scouting mode
