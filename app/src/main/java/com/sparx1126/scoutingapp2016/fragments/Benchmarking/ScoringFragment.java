@@ -158,19 +158,19 @@ public class ScoringFragment extends Fragment {
                 si.setAverageHighGoalsPerMatch(Double.parseDouble(avgHigh.getText().toString()));
             }
             catch(Exception e){
-                si.setAverageHighGoalsPerMatch(0.0);
+                si.setAverageHighGoalsPerMatch(-1.0);
             }
             try{
             si.setAverageLowGoalsPerMatch(Double.parseDouble(avgLow.getText().toString()));
             }
             catch(Exception e){
-                si.setAverageLowGoalsPerMatch(0.0);
+                si.setAverageLowGoalsPerMatch(-1.0);
             }
             try {
                 si.setScaleHeightPercent(Double.parseDouble(scalePercent.getText().toString()));
             }
             catch(Exception e){
-                si.setScaleHeightPercent(0.0);
+                si.setScaleHeightPercent(-1.0);
             }
             si.setCanScaleOnLeft(left.isChecked());
             si.setCanScaleOnRight(right.isChecked());
