@@ -627,7 +627,6 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
                 Intent i = new Intent(this, Benchmarking.class);
                 i.putExtra(TEAM_NAME, getSelectedTeam().getKey());
                 startActivity(i);
-                return;
             }
         }
         else if(((RadioButton)findViewById(R.id.dataview)).isChecked()){
@@ -637,6 +636,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
             else{
                 Intent i = new Intent(this, ViewData.class);
                 i.putExtra(TEAM_NAME, getSelectedTeam().getKey());
+                startActivity(i);
             }
         }
         else // match scouting mode
