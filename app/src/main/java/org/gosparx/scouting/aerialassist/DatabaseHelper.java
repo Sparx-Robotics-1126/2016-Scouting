@@ -845,6 +845,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return scouting;
     }
 
+    public List<ScoutingInfo> getBenchmarking(String eventKey, String teamKey){
+        SQLiteDatabase db = getReadableDatabase();
+        String selectStatement = "SELECT * FROM " + TABLE_BENCHMARKING
+                + " WHERE " + TABLE_BENCHMARKING_EVENT_KEY + " = ?"
+                + " AND " + TABLE_BENCHMARKING_TEAM_KEY + " = ?";
+
+        Cursor c = db.rawQuery(selectStatement, new String[]{eventKey, teamKey});
+
+        List<ScoutingInfo> scoutingInfos = new ArrayList<ScoutingInfo>();
+
+        while (c != null && c.moveToNext()){
+            scoutingInfos.add(mapBenchmarking(c));
+        }
+
+        if (c != null) {
+            c.close();
+        }
+        return scoutingInfos;
+    }
+
     private static Scouting mapScouting(Cursor c){
         Scouting data = new Scouting();
 
