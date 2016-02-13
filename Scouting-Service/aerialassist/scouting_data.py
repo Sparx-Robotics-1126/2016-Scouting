@@ -23,6 +23,14 @@ class GetScoutingData(webapp2.RequestHandler):
         
         self.response.content_type = 'application/json'
         self.response.write(json.dumps(scoutingList))
+
+    def getBenchmarkingEventLevel(self, team_key, event_key):
+        scoutingQueryList = ScoutingInfo.query(ScoutingInfo.teamKey == team_key, ScoutingInfo.eventKey == event_key)
+
+        scoutingList = scoutingQueryList.map(self.callback)
+
+        self.response.content_type = 'application/json'
+        self.response.write(json.dumps(scoutingList))
     
     def getTeamLevel(self, team_key):
         scoutingQueryList = Scouting.query(Scouting.teamKey == team_key)
@@ -34,7 +42,6 @@ class GetScoutingData(webapp2.RequestHandler):
     
     def callback(self, scouting):
         return scouting.to_dict()
-        
 
 class PostScoutingData(webapp2.RequestHandler):
     def post(self):

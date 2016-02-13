@@ -36,5 +36,9 @@ app = webapp2.WSGIApplication([
     webapp2.Route(r'/api/2016/v1/ScoutingData/<team_key>/<event_key>/<match_key>',
         GetScoutingData, 
         methods=['GET'],
-        handler_method='getMatchLevel')
+        handler_method='getMatchLevel'),
+    webapp2.Route(r'/api/2016/v1/BenchmarkingData/<team_key>/<event_key>',
+        GetScoutingData,
+        methods=['GET'],
+        handler_method='getBenchmarkingEventLevel')
 ], debug=True)
