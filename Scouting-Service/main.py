@@ -19,20 +19,21 @@ from aerialassist.scouting_data import GetScoutingData, PostScoutingData
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        self.response.write('Sparx 1126 Scouting Service!')
+        self.response.write('2016 Sparx 1126 Scouting Service!')
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
-    webapp2.Route(r'/api/2014/v1/ScoutingData', PostScoutingData, methods=['POST']),
-    webapp2.Route(r'/api/2014/v1/ScoutingData/<team_key>', 
+    webapp2.Route(r'/api/2016/v1/ScoutingData', PostScoutingData, methods=['POST']),
+    webapp2.Route(r'/api/2016/v1/BenchmarkingData', PostBenchmarkingData, methods=['POST']),
+    webapp2.Route(r'/api/2016/v1/ScoutingData/<team_key>',
         GetScoutingData, 
         methods=['GET'], 
         handler_method='getTeamLevel'),
-    webapp2.Route(r'/api/2014/v1/ScoutingData/<team_key>/<event_key>', 
+    webapp2.Route(r'/api/2016/v1/ScoutingData/<team_key>/<event_key>',
         GetScoutingData, 
         methods=['GET'],
         handler_method='getEventLevel'),
-    webapp2.Route(r'/api/2014/v1/ScoutingData/<team_key>/<event_key>/<match_key>', 
+    webapp2.Route(r'/api/2016/v1/ScoutingData/<team_key>/<event_key>/<match_key>',
         GetScoutingData, 
         methods=['GET'],
         handler_method='getMatchLevel')
