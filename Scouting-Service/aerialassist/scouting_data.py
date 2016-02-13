@@ -43,3 +43,13 @@ class PostScoutingData(webapp2.RequestHandler):
         scouting.put()
         
         self.response.status = 200
+
+class PostBenchmarkingData(webapp2.RequestHandler):
+    def post(self):
+        logging.info('%s',self.request.body)
+        jsonRoot = json.loads(self.request.body)
+        scoutinginfo = ScoutingInfo()
+        scoutinginfo.populate(**jsonRoot)
+        scoutinginfo.put()
+
+        self.response.status = 200
