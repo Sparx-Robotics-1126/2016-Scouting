@@ -29,6 +29,7 @@ public class SparxScouting {
     private static final String GET_SCOUTING_BY_TEAM = "/api/20165/v1/ScoutingData/{TEAM_KEY}";
     private static final String GET_SCOUTING_BY_TEAM_EVENT = "/api/2016/v1/ScoutingData/{TEAM_KEY}/{EVENT_KEY}";
     private static final String GET_SCOUTING_BY_TEAM_EVENT_MATCH = "/api/2016/v1/ScoutingData/{TEAM_KEY}/{EVENT_KEY}/{MATCH_KEY}";
+    private static final String GET_BENCHMARKING_BY_TEAM_EVENT = "/api/2016/v1/BenchmarkingData/{TEAM_KEY}/{EVENT_KEY}";
 
     private Context context;
     private Ion ion;
@@ -139,6 +140,37 @@ public class SparxScouting {
                 callback.handleFinishDownload(true);
             }
         });
+    }
+
+    public void getBenchmarking(Team team, Event event){
+        String request = (BASE_URL + GET_BENCHMARKING_BY_TEAM_EVENT)
+                .replace("{TEAM_KEY}", team.getKey())
+                .replace("{EVENT_KEY}", event.getKey());
+        getBenchmarking(request, null);
+    }
+    
+    private void getBenchmarking(String request, final NetworkCallback callback){
+        Ion.with(context)
+                .load(request)
+                .as(new TypeToken<List<ScoutingInfo>>(){})
+                .setCallback(new FutureCallback<List<ScoutingInfo>>() {
+                    @Override
+                    public void onCompleted(Exception e, List<ScoutingInfo> result) {
+                        if (e != null) {
+                            Log.e(TAG, "Issue getting benchmarking data.", e);
+                            callback.handleFinishDownload(false);
+                            return;
+                        }
+
+                        for (ScoutingInfo sd : result) {
+                            if (dbHelper.doesBenchmarkingExist(sd))
+                                dbHelper.updateBenchmarking(sd);
+                            else
+                                dbHelper.createBenchmarking(sd);
+                        }
+                        callback.handleFinishDownload(true);
+                    }
+                });
     }
 
     public void postAllBenchmarking(final NetworkCallback callback) {
