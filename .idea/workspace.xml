@@ -25,15 +25,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b6a472ce-d483-43c5-b5f1-20bdee5d30a4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/fragments/MatchScouting/AutoFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/fragments/MatchScouting/AutoFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/MainMenu.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/MainMenu.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/ViewData.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/ViewData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_view_data.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_view_data.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Scouting-Service/aerialassist/model/scouting.py" afterPath="$PROJECT_DIR$/Scouting-Service/aerialassist/model/scouting.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ScoutingApp2016.iws" />
@@ -65,8 +57,18 @@
       <file leaf-file-name="scouting.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Scouting-Service/aerialassist/model/scouting.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.56369984">
-              <caret line="51" column="52" selection-start-line="51" selection-start-column="52" selection-end-line="51" selection-end-column="52" />
+            <state vertical-scroll-proportion="0.58900523">
+              <caret line="27" column="48" selection-start-line="27" selection-start-column="48" selection-end-line="27" selection-end-column="48" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ScoutingAuto.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/org/gosparx/scouting/aerialassist/dto/ScoutingAuto.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -120,16 +122,6 @@
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Benchmarking.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/Benchmarking.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="172" column="8" selection-start-line="172" selection-start-column="8" selection-end-line="172" selection-end-column="8" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -2113,6 +2105,44 @@
               <option name="myItemId" value="java" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="aerialassist" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ScoutingApp2016" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Scouting-2016" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="aerialassist" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dto" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -2886,7 +2916,13 @@
       <option name="project" value="LOCAL" />
       <updated>1455387004548</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="fixed minor typos and continued work on data view">
+      <created>1455388481286</created>
+      <option name="number" value="00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1455388481286</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TodoView">
@@ -2974,8 +3010,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Scouting is saved successfully" />
-    <MESSAGE value="Need to debug for tele and general" />
     <MESSAGE value="Fixed errors with tele and general fragments" />
     <MESSAGE value="Spinners now only download data if necessary" />
     <MESSAGE value="Error in checking scouting in database - only checks team/event/etc and doesn't update match/auto/general" />
@@ -2999,7 +3033,9 @@
     <MESSAGE value="started creating data view" />
     <MESSAGE value="small error fixed" />
     <MESSAGE value="reformated code" />
-    <option name="LAST_COMMIT_MESSAGE" value="reformated code" />
+    <MESSAGE value="fixed minor typos" />
+    <MESSAGE value="fixed minor typos and continued work on data view" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed minor typos and continued work on data view" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -3220,13 +3256,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/org/gosparx/scouting/aerialassist/dto/ScoutingAuto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/org/gosparx/scouting/aerialassist/dto/ScoutingTele.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3426,14 +3455,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/fragments/MatchScouting/AutoFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="151" column="9" selection-start-line="151" selection-start-column="9" selection-end-line="151" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/fragments/MatchScouting/GeneralFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3442,6 +3463,22 @@
             <element signature="e#5011#5012#0" expanded="true" />
             <element signature="e#5039#5040#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/org/gosparx/scouting/aerialassist/dto/ScoutingAuto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/fragments/MatchScouting/AutoFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="151" column="9" selection-start-line="151" selection-start-column="9" selection-end-line="151" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -3455,8 +3492,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Scouting-Service/aerialassist/model/scouting.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.56369984">
-          <caret line="51" column="52" selection-start-line="51" selection-start-column="52" selection-end-line="51" selection-end-column="52" />
+        <state vertical-scroll-proportion="0.58900523">
+          <caret line="27" column="48" selection-start-line="27" selection-start-column="48" selection-end-line="27" selection-end-column="48" />
           <folding />
         </state>
       </provider>

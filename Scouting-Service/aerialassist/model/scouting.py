@@ -25,6 +25,7 @@ class ScoutingAuto(ndb.Model):
       reachAchieved = ndb.BooleanProperty()
       reachWasCrossAttempt = ndb.BooleanProperty()
       startedAsSpy = ndb.BooleanProperty()
+      startedWithBoulder = ndb.BooleanProperty()
 
 class ScoutingTele(ndb.Model):
      highGoalAttempts = ndb.IntegerProperty() 
