@@ -40,8 +40,9 @@ class PostScoutingData(webapp2.RequestHandler):
         jsonRoot = json.loads(self.request.body)
         scouting = Scouting()
         scouting.populate(**jsonRoot)
+        scouting.key = ndb.Key(Scouting, scouting.teamKey + '-' + scouting.eventKey + '-' + scouting.matchKey + '-' + scouting.nameOfScouter)
         scouting.put()
-        
+
         self.response.status = 200
 
 class PostBenchmarkingData(webapp2.RequestHandler):
@@ -50,6 +51,7 @@ class PostBenchmarkingData(webapp2.RequestHandler):
         jsonRoot = json.loads(self.request.body)
         scoutinginfo = ScoutingInfo()
         scoutinginfo.populate(**jsonRoot)
+        scouting.key = ndb.Key(ScoutingInfo, scoutinginfo.teamKey + '-' + scoutinginfo.eventKey + '-' + scoutinginfo.nameOfScouter)
         scoutinginfo.put()
 
         self.response.status = 200
