@@ -24,6 +24,8 @@ import org.gosparx.scouting.aerialassist.dto.ScoutingInfo;
 
 import java.util.List;
 
+import org.gosparx.scouting.aerialassist.networking.NetworkCallback;
+import org.gosparx.scouting.aerialassist.networking.SparxScouting;
 public class Benchmarking extends FragmentActivity implements DrivesFragment.OnFragmentInteractionListener, SoftwareFragment.OnFragmentInteractionListener,
     AcquisitionFragment.OnFragmentInteractionListener, ScoringFragment.OnFragmentInteractionListener{
 
@@ -170,6 +172,7 @@ public class Benchmarking extends FragmentActivity implements DrivesFragment.OnF
             acquisitionFragment = null;
             softwareFragment = null;
             scoringFragment = null;
+
             this.finish();
         }
         return super.onKeyDown(keyCode, event);
