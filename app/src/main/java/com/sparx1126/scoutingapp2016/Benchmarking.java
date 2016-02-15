@@ -65,7 +65,7 @@ public class Benchmarking extends FragmentActivity implements DrivesFragment.OnF
 
         // set title of activity to the team number
         Toolbar toolbar = ((Toolbar)findViewById(R.id.toolbar));
-        toolbar.setTitle("Benchmarking for: " + info.getTeamKey());
+        toolbar.setTitle("Benchmarking for: " + info.getTeamKey().replace("frc", ""));
     }
 
     @Override

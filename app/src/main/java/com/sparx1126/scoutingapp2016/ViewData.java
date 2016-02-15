@@ -61,8 +61,8 @@ public class ViewData extends AppCompatActivity {
 
         String teamKey = i.getStringExtra(MainMenu.TEAM_NAME);
         String eventKey = i.getStringExtra(MainMenu.EVENT_KEY);
-
-        toolbar.setTitle("Viewing data for: " + teamKey);
+        String teamName = teamKey.replace("frc", ""); // remove frc from the key to only show the team number
+        toolbar.setTitle("Viewing data for Team " + teamName);
         Data data = new Data();
         dbHelper = DatabaseHelper.getInstance(this);
         scoutList = dbHelper.getScouting(eventKey, teamKey);

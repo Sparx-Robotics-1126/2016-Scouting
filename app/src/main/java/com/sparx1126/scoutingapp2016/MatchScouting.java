@@ -79,7 +79,7 @@ public class MatchScouting extends FragmentActivity implements GeneralFragment.O
 
         // set title of activity to the team number
         Toolbar toolbar = ((Toolbar)findViewById(R.id.toolbar));
-        toolbar.setTitle("Scouting for: " + i.getStringExtra(MainMenu.ALLIANCE_SELECTED));
+        toolbar.setTitle("Scouting for " + i.getStringExtra(MainMenu.ALLIANCE_SELECTED));
 
     }
     @Override
