@@ -72,27 +72,6 @@ public class Benchmarking extends FragmentActivity implements DrivesFragment.OnF
     public void onFragmentInteraction(Uri uri){
     }
 
-    private void showFragment(Fragment f)
-    {
-        fm = getFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        if(!drivesFragment.isAdded()){
-            ft.add(R.id.fragContainer, drivesFragment);}
-        ft.hide(drivesFragment);
-        if(!softwareFragment.isAdded()) {
-            ft.add(R.id.fragContainer, drivesFragment);
-        }
-        ft.hide(softwareFragment);
-        if(!acquisitionFragment.isAdded()){
-            ft.add(R.id.fragContainer, acquisitionFragment);
-        }
-        if (!scoringFragment.isAdded()){
-            ft.add(R.id.fragContainer, scoringFragment);
-        }
-        ft.hide(scoringFragment);
-        ft.show(f);
-    }
-
     public void switchFragment(View view){
         fm = getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
