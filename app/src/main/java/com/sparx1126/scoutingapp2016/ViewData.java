@@ -2,34 +2,34 @@ package com.sparx1126.scoutingapp2016;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.TextView;
 
 import org.gosparx.scouting.aerialassist.DatabaseHelper;
 import org.gosparx.scouting.aerialassist.dto.Scouting;
 import org.gosparx.scouting.aerialassist.dto.ScoutingInfo;
 import org.gosparx.scouting.aerialassist.dto.ScoutingTele;
-import org.gosparx.scouting.aerialassist.dto.Team;
-import org.gosparx.scouting.aerialassist.networking.BlueAlliance;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ViewData extends AppCompatActivity {
     private static List<Scouting> scoutList;
+    private static List<ScoutingInfo> benchmarkList;
     private DatabaseHelper dbHelper;
     private TextView low, high, scale, def, portcullis, cheval, moat, ramparts, drawbridge, sallyport,
-            rockwall, roughterrain, lowbar;
+            rockwall, roughterrain, lowbar, highAble, lowAble, boulderSource, portCross, chevCross,
+            moatCross, ramCross, drawCross, salCross, rockCross, roughCross, lowCross;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_data);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         Intent i = getIntent();
+
+        //match fields
+
         low = (TextView) findViewById(R.id.lowAverage);
         high = (TextView) findViewById(R.id.highAverage);
         scale = (TextView) findViewById(R.id.scaleAverage);
@@ -43,17 +43,70 @@ public class ViewData extends AppCompatActivity {
         rockwall = (TextView) findViewById(R.id.rockwallAverage);
         roughterrain = (TextView) findViewById(R.id.roughterrainAverage);
         lowbar = (TextView) findViewById(R.id.lowbarAverage);
+
+        //benchmarking fields
+
+        lowAble = (TextView) findViewById(R.id.canLow);
+        highAble = (TextView) findViewById(R.id.canHigh);
+        boulderSource = (TextView) findViewById(R.id.boulderSource);
+        portCross = (TextView) findViewById(R.id.portcullisAble);
+        chevCross = (TextView) findViewById(R.id.chevalAble);
+        moatCross = (TextView) findViewById(R.id.moatAble);
+        ramCross = (TextView) findViewById(R.id.rampartsAble);
+        drawCross = (TextView) findViewById(R.id.drawbridgeAble);
+        salCross = (TextView) findViewById(R.id.sallyportAble);
+        rockCross = (TextView) findViewById(R.id.rockwallAble);
+        roughCross = (TextView) findViewById(R.id.roughterrainAble);
+        lowCross = (TextView) findViewById(R.id.lowbarAble);
+
         String teamKey = i.getStringExtra(MainMenu.TEAM_NAME);
         String eventKey = i.getStringExtra(MainMenu.EVENT_KEY);
+
         toolbar.setTitle("Viewing data for: " + teamKey);
         Data data = new Data();
         dbHelper = DatabaseHelper.getInstance(this);
         scoutList = dbHelper.getScouting(eventKey, teamKey);
+        benchmarkList = dbHelper.getBenchmarking(eventKey, teamKey);
+        try {
+            ScoutingInfo info = benchmarkList.get(0);
+            setYesNo(lowAble, info.getCanScoreInLowGoal());
+            setYesNo(highAble, info.getCanScoreInHighGoal());
+            setYesNo(portCross, info.getCanCrossPortcullis());
+            setYesNo(chevCross, info.getCanCrossCheval());
+            setYesNo(moatCross, info.getCanCrossMoat());
+            setYesNo(ramCross, info.getCanCrossRamparts());
+            setYesNo(drawCross, info.getCanCrossDrawbridge());
+            setYesNo(salCross, info.getCanCrossSallyport());
+            setYesNo(rockCross, info.getCanCrossRockwall());
+            setYesNo(roughCross, info.getCanCrossRoughterrain());
+            setYesNo(lowCross, info.getCanCrossLowbar());
+            if (info.getAcquiresBouldersFromHumanPlayer()) {
+                if (info.getAcquiresBouldersFromFloor()) {
+                    boulderSource.setText("Human player and floor");
+                } else {
+                    boulderSource.setText("Human player");
+                }
+            }
+        } catch (Exception e) {
+            lowAble.setText("Unknown");
+            highAble.setText("Unknown");
+            portCross.setText("Unknown");
+            chevCross.setText("Unknown");
+            moatCross.setText("Unknown");
+            ramCross.setText("Unknown");
+            drawCross.setText("Unknown");
+            salCross.setText("Unknown");
+            rockCross.setText("Unknown");
+            roughCross.setText("Unknown");
+            lowCross.setText("Unknown");
+            boulderSource.setText("Unknown");
+        }
+
         data.computeAverages();
-        low.setText(String.valueOf((int) data.lowAvg) + " % " + "(" + data.lowComp + " out of " + data.lowAtt + " attempts)");
-        high.setText(String.valueOf((int) data.highAvg) + " % " + "(" + data.highComp + " out of " + data.highAtt + " attempts)");
-        //TODO set scale text
-        def.setText(String.valueOf(data.defAvg) + "% " + "(" + data.defTotal + " out of " + data.defTimes + " matches)");
+        //TODO get scaling info from tele fragment
+        String lowInfo = String.valueOf((int) data.lowAvg) + " % (" + data.lowComp + " out of " + data.lowAtt + " attempts)";
+        String highInfo = String.valueOf((int) data.highAvg) + " % (" + data.highComp + " out of " + data.highAtt + " attempts)";
+        String defInfo = String.valueOf(data.defAvg) + " % (" + data.defTotal + " out of " + data.defTimes + " matches)";
         String pInfo = String.valueOf(data.pAvg) + "(" + data.pCross + " times in " + data.pTimes + " matches)";
         String cInfo = String.valueOf(data.cAvg) + "(" + data.cCross + " times in " + data.cTimes + " matches)";
         String mInfo = String.valueOf(data.mAvg) + "(" + data.mCross + " times in " + data.mTimes + " matches)";
@@ -63,6 +116,10 @@ public class ViewData extends AppCompatActivity {
         String rwInfo = String.valueOf(data.rwAvg) + "(" + data.rwCross + " times in " + data.rwTimes + " matches)";
         String rtInfo = String.valueOf(data.rtAvg) + "(" + data.rtCross + " times in " + data.rtTimes + " matches)";
         String lbInfo = String.valueOf(data.lbAvg) + "(" + data.lbCross + " times in " + data.lbTimes + " matches)";
+
+        low.setText(lowInfo);
+        high.setText(highInfo);
+        def.setText(defInfo);
         portcullis.setText(pInfo);
         cheval.setText(cInfo);
         moat.setText(mInfo);
@@ -72,8 +129,15 @@ public class ViewData extends AppCompatActivity {
         rockwall.setText(rwInfo);
         roughterrain.setText(rtInfo);
         lowbar.setText(lbInfo);
-        List<ScoutingInfo> benchmarkList;
 
+        //TODO set benchmarking data
+
+    }
+
+    private void setYesNo(TextView text, boolean b) {
+        if (b) {
+            text.setText("Yes");
+        } else text.setText("No");
     }
 
     private class Data {

@@ -40,6 +40,8 @@ public class ScoutingAuto {
     private Boolean reachWasCrossAttempt = false;
     // whether or not the robot started in the spy position
     private Boolean startedAsSpy = false;
+    // whether or not the robot started with a boulder
+    private Boolean startedWithBoulder = false;
 
     public int getPortcullisPosition() {
         return portcullisPosition;
@@ -241,7 +243,5 @@ public class ScoutingAuto {
         this.startedWithBoulder = startedWithBoulder;
     }
 
-    // whether or not the robot started with a boulder
-    private Boolean startedWithBoulder = false;
 
 }
