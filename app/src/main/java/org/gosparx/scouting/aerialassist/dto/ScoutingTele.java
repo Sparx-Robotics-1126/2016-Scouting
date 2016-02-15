@@ -29,6 +29,9 @@ public class ScoutingTele {
     // number of boulders received from brattice
     private int bouldersReceivedFromBrattice = 0;
 
+    // what the robot accomplished during the end game
+    private String endGameScale = "no attempt";
+
     public int getHighGoalAttempts() {
         return highGoalAttempts;
     }
@@ -164,4 +167,13 @@ public class ScoutingTele {
     public void setBouldersReceivedFromBrattice(int bouldersReceivedFromBrattice) {
         this.bouldersReceivedFromBrattice = bouldersReceivedFromBrattice;
     }
+
+    public String getEndGameScale() {
+        return endGameScale;
+    }
+
+    public void setEndGameScale(String endGameScale) {
+        this.endGameScale = endGameScale;
+    }
+
 }

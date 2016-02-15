@@ -148,7 +148,7 @@ public class SparxScouting {
                 .replace("{EVENT_KEY}", event.getKey());
         getBenchmarking(request, null);
     }
-    
+
     private void getBenchmarking(String request, final NetworkCallback callback){
         Ion.with(context)
                 .load(request)

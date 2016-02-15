@@ -7,6 +7,7 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Spinner;
 import android.widget.ToggleButton;
 
 import com.sparx1126.scoutingapp2016.R;
@@ -44,6 +45,7 @@ public class TeleFragment extends Fragment {
     private HorizontalNumberPicker bouldersPickedUpPicker;
     private HorizontalNumberPicker bouldersTakenToCourtyardPicker;
     private HorizontalNumberPicker bouldersFromBratticePicker;
+    private Spinner endGameScaleSpinner;
 
     private Boolean wasCreated = false;
     
@@ -97,6 +99,7 @@ public class TeleFragment extends Fragment {
         bouldersFromBratticePicker = (HorizontalNumberPicker)result.findViewById(R.id.teleBouldersReceivedFromBrattice);
         bouldersPickedUpPicker = (HorizontalNumberPicker)result.findViewById(R.id.teleBouldersPickedUp);
         bouldersTakenToCourtyardPicker = (HorizontalNumberPicker)result.findViewById(R.id.teleBouldersTakenToCourtyard);
+        endGameScaleSpinner = (Spinner)result.findViewById(R.id.teleEndGameScale);
 
         if(st != null){
             playsDefenseTogglebutton.setChecked(st.getPlaysDefense());
@@ -116,9 +119,29 @@ public class TeleFragment extends Fragment {
             bouldersFromBratticePicker.setValue(st.getBouldersReceivedFromBrattice());
             bouldersPickedUpPicker.setValue(st.getBouldersPickedUp());
             bouldersTakenToCourtyardPicker.setValue(st.getBouldersTakenToCourtyard());
+            endGameScaleSpinner.setSelection(indexOfEndGameScaleValue(st.getEndGameScale()));
         }
         wasCreated = true;
 
+        return result;
+    }
+
+    private int indexOfEndGameScaleValue(String endingPosition)
+    {
+        String[] endingPositionValues = getResources().getStringArray(R.array.endgamescale_choices);
+        int result = findIndexOfStringInArray(endingPosition, endingPositionValues);
+        return result;
+    }
+
+    private int findIndexOfStringInArray(String strValue, String[] stringArray)
+    {
+        int result = -1;
+        for (int i=0; i<stringArray.length; i++)
+            if (strValue.equals(stringArray[i]))
+            {
+                result = i;
+                break;
+            }
         return result;
     }
 
@@ -144,6 +167,7 @@ public class TeleFragment extends Fragment {
             bouldersFromBratticePicker.setValue(st.getBouldersReceivedFromBrattice());
             bouldersPickedUpPicker.setValue(st.getBouldersPickedUp());
             bouldersTakenToCourtyardPicker.setValue(st.getBouldersTakenToCourtyard());
+            endGameScaleSpinner.setSelection(indexOfEndGameScaleValue(st.getEndGameScale()));
         }
     }
 
@@ -216,6 +240,7 @@ public class TeleFragment extends Fragment {
             st.setBouldersPickedUp(bouldersPickedUpPicker.getValue());
             st.setBouldersTakenToCourtyard(bouldersTakenToCourtyardPicker.getValue());
             st.setBouldersReceivedFromBrattice(bouldersFromBratticePicker.getValue());
+            st.setEndGameScale(endGameScaleSpinner.getSelectedItem().toString());
         }
 
         return st;
