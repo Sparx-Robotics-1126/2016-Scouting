@@ -583,10 +583,10 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
             if (i < 3) {
                 //set color to alliance color
                 color = "Blue";
-                teamList.add(color + " Alliance " + (i + 1) + " (" + getTeamKey(i) + ")");
+                teamList.add(color + " Alliance " + (i + 1) + " (Team " + getTeamKey(i).replace("frc", "") + ")");
             } else {
                 color = "Red";
-                teamList.add(color + " Alliance " + (i - 2) + " (" + getTeamKey(i) + ")");
+                teamList.add(color + " Alliance " + (i - 2) + " (Team " + getTeamKey(i).replace("frc", "") + ")");
 
             }
         }

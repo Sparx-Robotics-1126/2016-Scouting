@@ -339,9 +339,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         + TABLE_BENCHMARKING_SCORING_PLAYS_DEFENSE + " BOOLEAN)";
 
     public static SimpleDateFormat ISO6701_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    public static String getDateTime(){return ISO6701_FORMAT.format(new Date());}
-
     private static DatabaseHelper dbHelper;
+
+    private DatabaseHelper(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
+
+    public static String getDateTime() {
+        return ISO6701_FORMAT.format(new Date());
+    }
 
     public static synchronized DatabaseHelper getInstance(Context context){
         if(dbHelper == null)
@@ -349,8 +355,136 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return dbHelper;
     }
 
-    private DatabaseHelper(Context context){
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    private static Scouting mapScouting(Cursor c) {
+        Scouting data = new Scouting();
+
+        data.setNameOfScouter(c.getString(c.getColumnIndex(TABLE_SCOUTING_NAME)));
+        data.setEventKey(c.getString(c.getColumnIndex(TABLE_SCOUTING_EVENT_KEY)));
+        data.setTeamKey(c.getString(c.getColumnIndex(TABLE_SCOUTING_TEAM_KEY)));
+        data.setMatchKey(c.getString(c.getColumnIndex(TABLE_SCOUTING_MATCH_KEY)));
+
+        ScoutingAuto scoutingAuto = new ScoutingAuto();
+        data.setAuto(scoutingAuto);
+        ScoutingTele scoutingTele = new ScoutingTele();
+        data.setTele(scoutingTele);
+        ScoutingGeneral scoutingGeneral = new ScoutingGeneral();
+        data.setGeneral(scoutingGeneral);
+
+        if (scoutingAuto != null) {
+            scoutingAuto.setPortcullisPosition(c.getInt(c.getColumnIndex(TABLE_SCOUTING_AUTO_PORTCULLIS_POSITION)));
+            scoutingAuto.setChevalPosition(c.getInt(c.getColumnIndex(TABLE_SCOUTING_AUTO_CHEVAL_POSITION)));
+            scoutingAuto.setMoatPosition(c.getInt(c.getColumnIndex(TABLE_SCOUTING_AUTO_MOAT_POSITION)));
+            scoutingAuto.setRampartsPosition(c.getInt(c.getColumnIndex(TABLE_SCOUTING_AUTO_RAMPARTS_POSITION)));
+            scoutingAuto.setDrawbridgePosition(c.getInt(c.getColumnIndex(TABLE_SCOUTING_AUTO_DRAWBRIDGE_POSITION)));
+            scoutingAuto.setSallyportPosition(c.getInt(c.getColumnIndex(TABLE_SCOUTING_AUTO_SALLYPORT_POSITION)));
+            scoutingAuto.setRockwallPosition(c.getInt(c.getColumnIndex(TABLE_SCOUTING_AUTO_ROCKWALL_POSITION)));
+            scoutingAuto.setRoughterrainPosition(c.getInt(c.getColumnIndex(TABLE_SCOUTING_AUTO_ROUGHTERRAIN_POSITION)));
+            scoutingAuto.setPortcullisCrossed(getBoolean(c, c.getColumnIndex(TABLE_SCOUTING_AUTO_PORTCULLIS_CROSSED)));
+            scoutingAuto.setChevalCrossed(getBoolean(c, c.getColumnIndex(TABLE_SCOUTING_AUTO_CHEVAL_CROSSED)));
+            scoutingAuto.setMoatCrossed(getBoolean(c, c.getColumnIndex(TABLE_SCOUTING_AUTO_MOAT_CROSSED)));
+            scoutingAuto.setRampartsCrossed(getBoolean(c, c.getColumnIndex(TABLE_SCOUTING_AUTO_RAMPARTS_CROSSED)));
+            scoutingAuto.setDrawbridgeCrossed(getBoolean(c, c.getColumnIndex(TABLE_SCOUTING_AUTO_DRAWBRIDGE_CROSSED)));
+            scoutingAuto.setSallyportCrossed(getBoolean(c, c.getColumnIndex(TABLE_SCOUTING_AUTO_SALLYPORT_CROSSED)));
+            scoutingAuto.setRockwallCrossed(getBoolean(c, c.getColumnIndex(TABLE_SCOUTING_AUTO_ROCKWALL_CROSSED)));
+            scoutingAuto.setRoughterrainCrossed(getBoolean(c, c.getColumnIndex(TABLE_SCOUTING_AUTO_ROUGHTERRAIN_CROSSED)));
+            scoutingAuto.setLowbarCrossed(getBoolean(c, c.getColumnIndex(TABLE_SCOUTING_AUTO_LOWBAR_CROSSED)));
+            scoutingAuto.setBoulderPickedUp(getBoolean(c, c.getColumnIndex(TABLE_SCOUTING_AUTO_BOULDER_PICKED_UP)));
+            scoutingAuto.setRobotScoredHigh(getBoolean(c, c.getColumnIndex(TABLE_SCOUTING_AUTO_ROBOT_SCORED_HIGH)));
+            scoutingAuto.setRobotScoredLow(getBoolean(c, c.getColumnIndex(TABLE_SCOUTING_AUTO_ROBOT_SCORED_LOW)));
+            scoutingAuto.setEndingPosition(c.getString(c.getColumnIndex(TABLE_SCOUTING_AUTO_ENDING_POSITION)));
+            scoutingAuto.setReachAchieved(getBoolean(c, c.getColumnIndex(TABLE_SCOUTING_AUTO_REACH_ACHIEVED)));
+            scoutingAuto.setReachWasCrossAttempt(getBoolean(c, c.getColumnIndex(TABLE_SCOUTING_AUTO_REACH_WAS_CROSS_ATTEMPT)));
+            scoutingAuto.setStartedAsSpy(getBoolean(c, c.getColumnIndex(TABLE_SCOUTING_AUTO_STARTED_AS_SPY)));
+        }
+
+        if (scoutingTele != null) {
+            scoutingTele.setHighGoalAttempts(c.getInt(c.getColumnIndex(TABLE_SCOUTING_TELE_HIGH_GOAL_ATTEMPTS)));
+            scoutingTele.setHighGoalsScored(c.getInt(c.getColumnIndex(TABLE_SCOUTING_TELE_HIGH_GOALS_SCORED)));
+            scoutingTele.setLowGoalAttempts(c.getInt(c.getColumnIndex(TABLE_SCOUTING_TELE_LOW_GOAL_ATTEMPTS)));
+            scoutingTele.setLowGoalsScored(c.getInt(c.getColumnIndex(TABLE_SCOUTING_TELE_LOW_GOALS_SCORED)));
+            scoutingTele.setPortcullisCrosses(c.getInt(c.getColumnIndex(TABLE_SCOUTING_TELE_PORTCULLIS_CROSSES)));
+            scoutingTele.setChevalCrosses(c.getInt(c.getColumnIndex(TABLE_SCOUTING_TELE_CHEVAL_CROSSES)));
+            scoutingTele.setMoatCrosses(c.getInt(c.getColumnIndex(TABLE_SCOUTING_TELE_MOAT_CROSSES)));
+            scoutingTele.setRampartsCrosses(c.getInt(c.getColumnIndex(TABLE_SCOUTING_TELE_RAMPART_CROSSES)));
+            scoutingTele.setDrawbridgeCrosses(c.getInt(c.getColumnIndex(TABLE_SCOUTING_TELE_DRAWBRIDGE_CROSSES)));
+            scoutingTele.setSallyportCrosses(c.getInt(c.getColumnIndex(TABLE_SCOUTING_TELE_SALLYPORT_CROSSES)));
+            scoutingTele.setRockwallCrosses(c.getInt(c.getColumnIndex(TABLE_SCOUTING_TELE_ROCKWALL_CROSSES)));
+            scoutingTele.setRoughterrainCrosses(c.getInt(c.getColumnIndex(TABLE_SCOUTING_TELE_ROUGHTERRAIN_CROSSES)));
+            scoutingTele.setLowbarCrosses(c.getInt(c.getColumnIndex(TABLE_SCOUTING_TELE_LOWBAR_CROSSES)));
+            scoutingTele.setPlaysDefense(getBoolean(c, c.getColumnIndex(TABLE_SCOUTING_TELE_PLAYS_DEFENSE)));
+            scoutingTele.setBouldersPickedUp(c.getInt(c.getColumnIndex(TABLE_SCOUTING_TELE_BOULDERS_PICKED_UP)));
+            scoutingTele.setBouldersTakenToCourtyard(c.getInt(c.getColumnIndex(TABLE_SCOUTING_TELE_BOULDERS_TAKEN_TO_COURTYARD)));
+            scoutingTele.setBouldersReceivedFromBrattice(c.getInt(c.getColumnIndex(TABLE_SCOUTING_TELE_BOULDERS_RECEIVED_FROM_BRATTICE)));
+        }
+
+        if (scoutingGeneral != null) {
+            scoutingGeneral.setNumberOfPenalties(c.getInt(c.getColumnIndex(TABLE_SCOUTING_GENERAL_NUMBER_OF_PENALTIES)));
+            scoutingGeneral.setCommentsOnPenalties(c.getString(c.getColumnIndex(TABLE_SCOUTING_GENERAL_COMMENTS_PENALTIES)));
+            scoutingGeneral.setNumberOfTechnicalFouls(c.getInt(c.getColumnIndex(TABLE_SCOUTING_GENERAL_NUMBER_OF_TECHNICAL_FOULS)));
+            scoutingGeneral.setCommentsOnTechnicalFouls(c.getString(c.getColumnIndex(TABLE_SCOUTING_GENERAL_COMMENTS_TECHNICAL_FOULS)));
+            scoutingGeneral.setGeneralComments(c.getString(c.getColumnIndex(TABLE_SCOUTING_GENERAL_COMMENTS)));
+        }
+
+        return data;
+    }
+
+    private static Boolean getBoolean(Cursor c, int columnIndex) {
+        if (c.isNull(columnIndex) || c.getShort(columnIndex) == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    // initializes and returns a ScoutingInfo object from a row in the Benchmarking table
+    private static ScoutingInfo mapBenchmarking(Cursor c) {
+        ScoutingInfo data = new ScoutingInfo();
+
+        data.setTeamKey(c.getString(c.getColumnIndex(TABLE_BENCHMARKING_TEAM_KEY)));
+        data.setEventKey(c.getString(c.getColumnIndex(TABLE_BENCHMARKING_EVENT_KEY)));
+        data.setNameOfScouter(c.getString(c.getColumnIndex(TABLE_BENCHMARKING_NAME)));
+
+        data.setDriveSystemDescription(c.getString(c.getColumnIndex(TABLE_BENCHMARKING_DRIVES_DESCRIPTION)));
+        data.setApproxSpeedFeetPerSecond(c.getDouble(c.getColumnIndex(TABLE_BENCHMARKING_DRIVES_APPROX_SPEED)));
+        data.setCanCrossPortcullis(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_DRIVES_CANCROSS_PORTCULLIS)));
+        data.setCanCrossCheval(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_DRIVES_CANCROSS_CHEVAL)));
+        data.setCanCrossMoat(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_DRIVES_CANCROSS_MOAT)));
+        data.setCanCrossRamparts(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_DRIVES_CANCROSS_RAMPARTS)));
+        data.setCanCrossDrawbridge(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_DRIVES_CANCROSS_DRAWBRIDGE)));
+        data.setCanCrossSallyport(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_DRIVES_CANCROSS_SALLYPORT)));
+        data.setCanCrossRockwall(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_DRIVES_CANCROSS_ROCKWALL)));
+        data.setCanCrossRoughterrain(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_DRIVES_CANCROSS_ROUGHTERRAIN)));
+        data.setCanCrossLowbar(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_DRIVES_CANCROSS_LOWBAR)));
+        data.setDoesExtendBeyondTransportConfig(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_DRIVES_EXTENDS_PAST_TRANSPORT)));
+        data.setAutoStartInSpyPosition(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_AUTO_STARTS_AS_SPY)));
+        data.setAutoStartInNeutralZone(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_AUTO_STARTS_IN_NEUTRAL_ZONE)));
+        data.setAutoEndInCourtyard(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_AUTO_ENDS_IN_COURTYARD)));
+        data.setAutoEndInNeutralZone(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_AUTO_ENDS_IN_NEUTRAL_ZONE)));
+        data.setAutoCapabilitiesDescription(c.getString(c.getColumnIndex(TABLE_BENCHMARKING_AUTO_DESCRIPTION)));
+        data.setAcquiresBouldersFromFloor(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_ACQUISITION_FROM_FLOOR)));
+        data.setAcquiresBouldersFromHumanPlayer(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_ACQUISITION_FROM_HUMAN)));
+        data.setPreferredBoulderSource(c.getString(c.getColumnIndex(TABLE_BENCHMARKING_ACQUISITION_PREFERREDSOURCE)));
+        data.setCanCarryBouldersOverPortcullis(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_ACQUISITION_CARRYOVER_PORTCULLIS)));
+        data.setCanCarryBouldersOverCheval(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_ACQUISITION_CARRYOVER_CHEVAL)));
+        data.setCanCarryBouldersOverMoat(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_ACQUISITION_CARRYOVER_MOAT)));
+        data.setCanCarryBouldersOverRamparts(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_ACQUISITION_CARRYOVER_RAMPARTS)));
+        data.setCanCarryBouldersOverDrawbridge(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_ACQUISITION_CARRYOVER_DRAWBRIDGE)));
+        data.setCanCarryBouldersOverSallyport(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_ACQUISITION_CARRYOVER_SALLYPORT)));
+        data.setCanCarryBouldersOverRockwall(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_ACQUISITION_CARRYOVER_ROCKWALL)));
+        data.setCanCarryBouldersOverRoughterrain(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_ACQUISITION_CARRYOVER_ROUGHTERRAIN)));
+        data.setCanCarryBouldersOverLowbar(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_ACQUISITION_CARRYOVER_LOWBAR)));
+        data.setCanScoreInHighGoal(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_SCORING_CAN_SCORE_HIGH)));
+        data.setCanScoreInLowGoal(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_SCORING_CAN_SCORE_LOW)));
+        data.setAverageHighGoalsPerMatch(c.getDouble(c.getColumnIndex(TABLE_BENCHMARKING_SCORING_HIGH_GOALS_PER_MATCH)));
+        data.setAverageLowGoalsPerMatch(c.getDouble(c.getColumnIndex(TABLE_BENCHMARKING_SCORING_LOW_GOALS_PER_MATCH)));
+        data.setCanScaleAtCenter(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_SCORING_CAN_SCALE_AT_CENTER)));
+        data.setCanScaleOnRight(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_SCORING_CAN_SCALE_ON_RIGHT)));
+        data.setCanScaleOnLeft(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_SCORING_CAN_SCALE_ON_LEFT)));
+        data.setScaleHeightPercent(c.getDouble(c.getColumnIndex(TABLE_BENCHMARKING_SCORING_SCALE_HEIGHT_PERCENT)));
+        data.setCycleTime(c.getDouble(c.getColumnIndex(TABLE_BENCHMARKING_SCORING_CYCLE_TIME)));
+        data.setPlaysDefense(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_SCORING_PLAYS_DEFENSE)));
+
+        return data;
     }
 
     @Override
@@ -803,7 +937,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 new String[]{scouting.getTeamKey(), scouting.getMatchKey(), scouting.getNameOfScouter()});
     }
 
-    public List<Scouting> getScouting(String eventKey, String teamKey){
+    public List<Scouting> getScouting(String eventKey, String teamKey) {
         SQLiteDatabase db = getReadableDatabase();
         String selectStatement = "SELECT * FROM " + TABLE_SCOUTING
                 + " WHERE " + TABLE_SCOUTING_EVENT_KEY + " = ?"
@@ -823,7 +957,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return scouting;
     }
 
-    public List<Scouting> getScouting(String eventKey, String teamKey, String matchKey, String scouterName){
+    public List<Scouting> getScouting(String eventKey, String teamKey, String matchKey, String scouterName) {
         SQLiteDatabase db = getReadableDatabase();
         String selectStatement = "SELECT * FROM " + TABLE_SCOUTING
                 + " WHERE " + TABLE_SCOUTING_EVENT_KEY + " = ?"
@@ -835,7 +969,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         List<Scouting> scouting = new ArrayList<Scouting>();
 
-        while (c != null && c.moveToNext()){
+        while (c != null && c.moveToNext()) {
             scouting.add(mapScouting(c));
         }
 
@@ -845,7 +979,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return scouting;
     }
 
-    public List<ScoutingInfo> getBenchmarking(String eventKey, String teamKey){
+    public List<ScoutingInfo> getBenchmarking(String eventKey, String teamKey) {
         SQLiteDatabase db = getReadableDatabase();
         String selectStatement = "SELECT * FROM " + TABLE_BENCHMARKING
                 + " WHERE " + TABLE_BENCHMARKING_EVENT_KEY + " = ?"
@@ -855,7 +989,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         List<ScoutingInfo> scoutingInfos = new ArrayList<ScoutingInfo>();
 
-        while (c != null && c.moveToNext()){
+        while (c != null && c.moveToNext()) {
             scoutingInfos.add(mapBenchmarking(c));
         }
 
@@ -863,87 +997,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             c.close();
         }
         return scoutingInfos;
-    }
-
-    private static Scouting mapScouting(Cursor c){
-        Scouting data = new Scouting();
-
-        data.setNameOfScouter(c.getString(c.getColumnIndex(TABLE_SCOUTING_NAME)));
-        data.setEventKey(c.getString(c.getColumnIndex(TABLE_SCOUTING_EVENT_KEY)));
-        data.setTeamKey(c.getString(c.getColumnIndex(TABLE_SCOUTING_TEAM_KEY)));
-        data.setMatchKey(c.getString(c.getColumnIndex(TABLE_SCOUTING_MATCH_KEY)));
-
-        ScoutingAuto scoutingAuto = new ScoutingAuto();
-        data.setAuto(scoutingAuto);
-        ScoutingTele scoutingTele = new ScoutingTele();
-        data.setTele(scoutingTele);
-        ScoutingGeneral scoutingGeneral = new ScoutingGeneral();
-        data.setGeneral(scoutingGeneral);
-
-        if (scoutingAuto != null) {
-            scoutingAuto.setPortcullisPosition(c.getInt(c.getColumnIndex(TABLE_SCOUTING_AUTO_PORTCULLIS_POSITION)));
-            scoutingAuto.setChevalPosition(c.getInt(c.getColumnIndex(TABLE_SCOUTING_AUTO_CHEVAL_POSITION)));
-            scoutingAuto.setMoatPosition(c.getInt(c.getColumnIndex(TABLE_SCOUTING_AUTO_MOAT_POSITION)));
-            scoutingAuto.setRampartsPosition(c.getInt(c.getColumnIndex(TABLE_SCOUTING_AUTO_RAMPARTS_POSITION)));
-            scoutingAuto.setDrawbridgePosition(c.getInt(c.getColumnIndex(TABLE_SCOUTING_AUTO_DRAWBRIDGE_POSITION)));
-            scoutingAuto.setSallyportPosition(c.getInt(c.getColumnIndex(TABLE_SCOUTING_AUTO_SALLYPORT_POSITION)));
-            scoutingAuto.setRockwallPosition(c.getInt(c.getColumnIndex(TABLE_SCOUTING_AUTO_ROCKWALL_POSITION)));
-            scoutingAuto.setRoughterrainPosition(c.getInt(c.getColumnIndex(TABLE_SCOUTING_AUTO_ROUGHTERRAIN_POSITION)));
-            scoutingAuto.setPortcullisCrossed(getBoolean(c, c.getColumnIndex(TABLE_SCOUTING_AUTO_PORTCULLIS_CROSSED)));
-            scoutingAuto.setChevalCrossed(getBoolean(c, c.getColumnIndex(TABLE_SCOUTING_AUTO_CHEVAL_CROSSED)));
-            scoutingAuto.setMoatCrossed(getBoolean(c, c.getColumnIndex(TABLE_SCOUTING_AUTO_MOAT_CROSSED)));
-            scoutingAuto.setRampartsCrossed(getBoolean(c, c.getColumnIndex(TABLE_SCOUTING_AUTO_RAMPARTS_CROSSED)));
-            scoutingAuto.setDrawbridgeCrossed(getBoolean(c, c.getColumnIndex(TABLE_SCOUTING_AUTO_DRAWBRIDGE_CROSSED)));
-            scoutingAuto.setSallyportCrossed(getBoolean(c, c.getColumnIndex(TABLE_SCOUTING_AUTO_SALLYPORT_CROSSED)));
-            scoutingAuto.setRockwallCrossed(getBoolean(c, c.getColumnIndex(TABLE_SCOUTING_AUTO_ROCKWALL_CROSSED)));
-            scoutingAuto.setRoughterrainCrossed(getBoolean(c, c.getColumnIndex(TABLE_SCOUTING_AUTO_ROUGHTERRAIN_CROSSED)));
-            scoutingAuto.setLowbarCrossed(getBoolean(c, c.getColumnIndex(TABLE_SCOUTING_AUTO_LOWBAR_CROSSED)));
-            scoutingAuto.setBoulderPickedUp(getBoolean(c, c.getColumnIndex(TABLE_SCOUTING_AUTO_BOULDER_PICKED_UP)));
-            scoutingAuto.setRobotScoredHigh(getBoolean(c, c.getColumnIndex(TABLE_SCOUTING_AUTO_ROBOT_SCORED_HIGH)));
-            scoutingAuto.setRobotScoredLow(getBoolean(c, c.getColumnIndex(TABLE_SCOUTING_AUTO_ROBOT_SCORED_LOW)));
-            scoutingAuto.setEndingPosition(c.getString(c.getColumnIndex(TABLE_SCOUTING_AUTO_ENDING_POSITION)));
-            scoutingAuto.setReachAchieved(getBoolean(c, c.getColumnIndex(TABLE_SCOUTING_AUTO_REACH_ACHIEVED)));
-            scoutingAuto.setReachWasCrossAttempt(getBoolean(c, c.getColumnIndex(TABLE_SCOUTING_AUTO_REACH_WAS_CROSS_ATTEMPT)));
-            scoutingAuto.setStartedAsSpy(getBoolean(c, c.getColumnIndex(TABLE_SCOUTING_AUTO_STARTED_AS_SPY)));
-        }
-
-        if (scoutingTele != null) {
-            scoutingTele.setHighGoalAttempts(c.getInt(c.getColumnIndex(TABLE_SCOUTING_TELE_HIGH_GOAL_ATTEMPTS)));
-            scoutingTele.setHighGoalsScored(c.getInt(c.getColumnIndex(TABLE_SCOUTING_TELE_HIGH_GOALS_SCORED)));
-            scoutingTele.setLowGoalAttempts(c.getInt(c.getColumnIndex(TABLE_SCOUTING_TELE_LOW_GOAL_ATTEMPTS)));
-            scoutingTele.setLowGoalsScored(c.getInt(c.getColumnIndex(TABLE_SCOUTING_TELE_LOW_GOALS_SCORED)));
-            scoutingTele.setPortcullisCrosses(c.getInt(c.getColumnIndex(TABLE_SCOUTING_TELE_PORTCULLIS_CROSSES)));
-            scoutingTele.setChevalCrosses(c.getInt(c.getColumnIndex(TABLE_SCOUTING_TELE_CHEVAL_CROSSES)));
-            scoutingTele.setMoatCrosses(c.getInt(c.getColumnIndex(TABLE_SCOUTING_TELE_MOAT_CROSSES)));
-            scoutingTele.setRampartsCrosses(c.getInt(c.getColumnIndex(TABLE_SCOUTING_TELE_RAMPART_CROSSES)));
-            scoutingTele.setDrawbridgeCrosses(c.getInt(c.getColumnIndex(TABLE_SCOUTING_TELE_DRAWBRIDGE_CROSSES)));
-            scoutingTele.setSallyportCrosses(c.getInt(c.getColumnIndex(TABLE_SCOUTING_TELE_SALLYPORT_CROSSES)));
-            scoutingTele.setRockwallCrosses(c.getInt(c.getColumnIndex(TABLE_SCOUTING_TELE_ROCKWALL_CROSSES)));
-            scoutingTele.setRoughterrainCrosses(c.getInt(c.getColumnIndex(TABLE_SCOUTING_TELE_ROUGHTERRAIN_CROSSES)));
-            scoutingTele.setLowbarCrosses(c.getInt(c.getColumnIndex(TABLE_SCOUTING_TELE_LOWBAR_CROSSES)));
-            scoutingTele.setPlaysDefense(getBoolean(c, c.getColumnIndex(TABLE_SCOUTING_TELE_PLAYS_DEFENSE)));
-            scoutingTele.setBouldersPickedUp(c.getInt(c.getColumnIndex(TABLE_SCOUTING_TELE_BOULDERS_PICKED_UP)));
-            scoutingTele.setBouldersTakenToCourtyard(c.getInt(c.getColumnIndex(TABLE_SCOUTING_TELE_BOULDERS_TAKEN_TO_COURTYARD)));
-            scoutingTele.setBouldersReceivedFromBrattice(c.getInt(c.getColumnIndex(TABLE_SCOUTING_TELE_BOULDERS_RECEIVED_FROM_BRATTICE)));
-        }
-
-        if (scoutingGeneral != null) {
-            scoutingGeneral.setNumberOfPenalties(c.getInt(c.getColumnIndex(TABLE_SCOUTING_GENERAL_NUMBER_OF_PENALTIES)));
-            scoutingGeneral.setCommentsOnPenalties(c.getString(c.getColumnIndex(TABLE_SCOUTING_GENERAL_COMMENTS_PENALTIES)));
-            scoutingGeneral.setNumberOfTechnicalFouls(c.getInt(c.getColumnIndex(TABLE_SCOUTING_GENERAL_NUMBER_OF_TECHNICAL_FOULS)));
-            scoutingGeneral.setCommentsOnTechnicalFouls(c.getString(c.getColumnIndex(TABLE_SCOUTING_GENERAL_COMMENTS_TECHNICAL_FOULS)));
-            scoutingGeneral.setGeneralComments(c.getString(c.getColumnIndex(TABLE_SCOUTING_GENERAL_COMMENTS)));
-        }
-        
-        return data;
-    }
-
-    private static Boolean getBoolean(Cursor c, int columnIndex) {
-        if (c.isNull(columnIndex) || c.getShort(columnIndex) == 0) {
-            return false;
-        } else {
-            return true;
-        }
     }
 
     public List<Scouting> getAllScoutingNeedingSyncing(){
@@ -1044,56 +1097,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(TABLE_BENCHMARKING_SCORING_PLAYS_DEFENSE, scouting.getPlaysDefense());
 
         return values;
-    }
-
-    // initializes and returns a ScoutingInfo object from a row in the Benchmarking table
-    private static ScoutingInfo mapBenchmarking(Cursor c){
-        ScoutingInfo data = new ScoutingInfo();
-
-        data.setTeamKey(c.getString(c.getColumnIndex(TABLE_BENCHMARKING_TEAM_KEY)));
-        data.setEventKey(c.getString(c.getColumnIndex(TABLE_BENCHMARKING_EVENT_KEY)));
-        data.setNameOfScouter(c.getString(c.getColumnIndex(TABLE_BENCHMARKING_NAME)));
-        data.setDriveSystemDescription(c.getString(c.getColumnIndex(TABLE_BENCHMARKING_DRIVES_DESCRIPTION)));
-        data.setApproxSpeedFeetPerSecond(c.getDouble(c.getColumnIndex(TABLE_BENCHMARKING_DRIVES_APPROX_SPEED)));
-        data.setCanCrossPortcullis(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_DRIVES_CANCROSS_PORTCULLIS)));
-        data.setCanCrossCheval(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_DRIVES_CANCROSS_CHEVAL)));
-        data.setCanCrossMoat(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_DRIVES_CANCROSS_MOAT)));
-        data.setCanCrossRamparts(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_DRIVES_CANCROSS_RAMPARTS)));
-        data.setCanCrossDrawbridge(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_DRIVES_CANCROSS_DRAWBRIDGE)));
-        data.setCanCrossSallyport(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_DRIVES_CANCROSS_SALLYPORT)));
-        data.setCanCrossRockwall(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_DRIVES_CANCROSS_ROCKWALL)));
-        data.setCanCrossRoughterrain(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_DRIVES_CANCROSS_ROUGHTERRAIN)));
-        data.setCanCrossLowbar(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_DRIVES_CANCROSS_LOWBAR)));
-        data.setDoesExtendBeyondTransportConfig(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_DRIVES_EXTENDS_PAST_TRANSPORT)));
-        data.setAutoStartInSpyPosition(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_AUTO_STARTS_AS_SPY)));
-        data.setAutoStartInNeutralZone(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_AUTO_STARTS_IN_NEUTRAL_ZONE)));
-        data.setAutoEndInCourtyard(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_AUTO_ENDS_IN_COURTYARD)));
-        data.setAutoEndInNeutralZone(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_AUTO_ENDS_IN_NEUTRAL_ZONE)));
-        data.setAutoCapabilitiesDescription(c.getString(c.getColumnIndex(TABLE_BENCHMARKING_AUTO_DESCRIPTION)));
-        data.setAcquiresBouldersFromFloor(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_ACQUISITION_FROM_FLOOR)));
-        data.setAcquiresBouldersFromHumanPlayer(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_ACQUISITION_FROM_HUMAN)));
-        data.setPreferredBoulderSource(c.getString(c.getColumnIndex(TABLE_BENCHMARKING_ACQUISITION_PREFERREDSOURCE)));
-        data.setCanCarryBouldersOverPortcullis(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_ACQUISITION_CARRYOVER_PORTCULLIS)));
-        data.setCanCarryBouldersOverCheval(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_ACQUISITION_CARRYOVER_CHEVAL)));
-        data.setCanCarryBouldersOverMoat(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_ACQUISITION_CARRYOVER_MOAT)));
-        data.setCanCarryBouldersOverRamparts(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_ACQUISITION_CARRYOVER_RAMPARTS)));
-        data.setCanCarryBouldersOverDrawbridge(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_ACQUISITION_CARRYOVER_DRAWBRIDGE)));
-        data.setCanCarryBouldersOverSallyport(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_ACQUISITION_CARRYOVER_SALLYPORT)));
-        data.setCanCarryBouldersOverRockwall(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_ACQUISITION_CARRYOVER_ROCKWALL)));
-        data.setCanCarryBouldersOverRoughterrain(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_ACQUISITION_CARRYOVER_ROUGHTERRAIN)));
-        data.setCanCarryBouldersOverLowbar(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_ACQUISITION_CARRYOVER_LOWBAR)));
-        data.setCanScoreInHighGoal(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_SCORING_CAN_SCORE_HIGH)));
-        data.setCanScoreInLowGoal(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_SCORING_CAN_SCORE_LOW)));
-        data.setAverageHighGoalsPerMatch(c.getDouble(c.getColumnIndex(TABLE_BENCHMARKING_SCORING_HIGH_GOALS_PER_MATCH)));
-        data.setAverageLowGoalsPerMatch(c.getDouble(c.getColumnIndex(TABLE_BENCHMARKING_SCORING_LOW_GOALS_PER_MATCH)));
-        data.setCanScaleAtCenter(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_SCORING_CAN_SCALE_AT_CENTER)));
-        data.setCanScaleOnRight(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_SCORING_CAN_SCALE_ON_RIGHT)));
-        data.setCanScaleOnLeft(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_SCORING_CAN_SCALE_ON_LEFT)));
-        data.setScaleHeightPercent(c.getDouble(c.getColumnIndex(TABLE_BENCHMARKING_SCORING_SCALE_HEIGHT_PERCENT)));
-        data.setCycleTime(c.getDouble(c.getColumnIndex(TABLE_BENCHMARKING_SCORING_CYCLE_TIME)));
-        data.setPlaysDefense(getBoolean(c, c.getColumnIndex(TABLE_BENCHMARKING_SCORING_PLAYS_DEFENSE)));
-        
-        return data;
     }
 
     public void createBenchmarking(ScoutingInfo scoutingInfo){
