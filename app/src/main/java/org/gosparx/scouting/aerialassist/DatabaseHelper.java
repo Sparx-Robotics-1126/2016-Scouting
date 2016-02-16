@@ -120,6 +120,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_SCOUTING_AUTO_ENDING_POSITION = "a_endingPosition";
     private static final String TABLE_SCOUTING_AUTO_REACH_ACHIEVED = "a_reachAchieved";
     private static final String TABLE_SCOUTING_AUTO_REACH_WAS_CROSS_ATTEMPT = "a_reachWasCrossAttempt";
+    private static final String TABLE_SCOUTING_AUTO_STARTED_WITH_BOULDER = "a_startedWithBoulder";
     private static final String TABLE_SCOUTING_AUTO_STARTED_AS_SPY = "a_startedAsSpy";
     private static final String TABLE_SCOUTING_TELE_HIGH_GOAL_ATTEMPTS = "t_highGoalAttempts";
     private static final String TABLE_SCOUTING_TELE_HIGH_GOALS_SCORED = "t_highGoalsScored";
@@ -268,6 +269,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + TABLE_SCOUTING_AUTO_REACH_ACHIEVED + " BOOLEAN, "
             + TABLE_SCOUTING_AUTO_REACH_WAS_CROSS_ATTEMPT + " BOOLEAN, "
             + TABLE_SCOUTING_AUTO_STARTED_AS_SPY + " BOOLEAN, "
+            + TABLE_SCOUTING_AUTO_STARTED_WITH_BOULDER + " BOOLEAN, "
             + TABLE_SCOUTING_TELE_HIGH_GOAL_ATTEMPTS + " INTEGER, "
             + TABLE_SCOUTING_TELE_HIGH_GOALS_SCORED + " INTEGER, "
             + TABLE_SCOUTING_TELE_LOW_GOAL_ATTEMPTS + " INTEGER, "
@@ -395,6 +397,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             scoutingAuto.setReachAchieved(getBoolean(c, c.getColumnIndex(TABLE_SCOUTING_AUTO_REACH_ACHIEVED)));
             scoutingAuto.setReachWasCrossAttempt(getBoolean(c, c.getColumnIndex(TABLE_SCOUTING_AUTO_REACH_WAS_CROSS_ATTEMPT)));
             scoutingAuto.setStartedAsSpy(getBoolean(c, c.getColumnIndex(TABLE_SCOUTING_AUTO_STARTED_AS_SPY)));
+            scoutingAuto.setStartedWithBoulder(getBoolean(c, c.getColumnIndex(TABLE_SCOUTING_AUTO_STARTED_WITH_BOULDER)));
         }
 
         if (scoutingTele != null) {
@@ -870,6 +873,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             values.put(TABLE_SCOUTING_AUTO_REACH_ACHIEVED, scoutingAuto.getReachAchieved());
             values.put(TABLE_SCOUTING_AUTO_REACH_WAS_CROSS_ATTEMPT, scoutingAuto.getReachWasCrossAttempt());
             values.put(TABLE_SCOUTING_AUTO_STARTED_AS_SPY, scoutingAuto.getStartedAsSpy());
+            values.put(TABLE_SCOUTING_AUTO_STARTED_WITH_BOULDER, scoutingAuto.getStartedWithBoulder());
         }
         if (scoutingTele != null) {
             values.put(TABLE_SCOUTING_TELE_HIGH_GOAL_ATTEMPTS, scoutingTele.getHighGoalAttempts());
