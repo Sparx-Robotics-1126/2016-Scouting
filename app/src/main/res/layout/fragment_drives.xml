@@ -2,56 +2,69 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.sparx1126.scoutingapp2016.fragments.Benchmarking.DrivesFragment">
-    <LinearLayout android:layout_height="match_parent"
+
+    <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         >
         <TextView
-            android:layout_gravity="left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="What kind of drives system does this team have?"
-            android:layout_marginTop="15dp"
+            android:layout_gravity="left"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:text="What kind of drives system does this team have?"
             android:textSize="@dimen/body_text_size" />
-        <EditText android:layout_height="wrap_content" android:layout_width="fill_parent"
-            android:id="@+id/drivesSystem"
-            android:inputType="text|textCapSentences|textMultiLine|textAutoCorrect"
-            android:hint="Drives system info" />
 
-        <RelativeLayout android:layout_height="wrap_content"
+        <EditText
+            android:id="@+id/drivesSystem"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="Drives system info"
+            android:inputType="text|textCapSentences|textMultiLine|textAutoCorrect" />
+
+        <RelativeLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@android:drawable/divider_horizontal_bright">
         <TextView
-            android:layout_gravity="left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="What is this team's average speed, in ft/s?"
+            android:layout_gravity="left"
             android:layout_marginLeft="@dimen/horiz_margin"
+            android:text="What is this team's average speed, in ft/s?"
             android:textSize="@dimen/body_text_size" />
-        <EditText android:layout_height="wrap_content"
+
+            <EditText
+                android:id="@+id/speed"
             android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/horiz_margin"
-            android:id="@+id/speed"
-            android:inputType="number|phone"
-            android:hint="Speed" />
+                android:hint="Speed"
+                android:inputType="number|phone" />
         </RelativeLayout>
-        <RelativeLayout android:layout_height="wrap_content"
-            android:layout_width="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
         <TextView
-            android:layout_gravity="left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Does this team extend beyond the transport config?"
-            android:layout_marginTop="15dp"
+            android:layout_gravity="left"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:text="Extends beyond frame perimeter?"
             android:textSize="@dimen/body_text_size" />
-        <ToggleButton android:layout_height="wrap_content" android:layout_width="wrap_content"
-            android:id="@+id/extend"
+
+            <ToggleButton
+                android:id="@+id/extend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/horiz_margin"
             android:textOff="No"
@@ -59,189 +72,228 @@
         </RelativeLayout>
 
         <TextView
-            android:layout_gravity="left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="What defenses can this team cross?"
-            android:layout_marginTop="15dp"
+            android:layout_gravity="left"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:text="What defenses can this team cross?"
             android:textSize="@dimen/body_text_size" />
-        <RelativeLayout android:layout_height="wrap_content"
+
+        <RelativeLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             >
             <TextView
-                android:layout_gravity="left"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Portcullis"
-                android:layout_marginTop="15dp"
+                android:layout_gravity="left"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"
+                android:text="Portcullis"
                 android:textSize="@dimen/body_text_size" />
-            <ToggleButton android:layout_height="wrap_content" android:layout_width="wrap_content"
+
+            <ToggleButton
                 android:id="@+id/portcullis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/horiz_margin"
                 android:textOff="No"
                 android:textOn="Yes" />
         </RelativeLayout>
-        <RelativeLayout android:layout_height="wrap_content"
+
+        <RelativeLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@android:drawable/divider_horizontal_bright"
             >
             <TextView
-                android:layout_gravity="left"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cheval"
-                android:layout_marginTop="15dp"
+                android:layout_gravity="left"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"
+                android:text="Cheval"
                 android:textSize="@dimen/body_text_size" />
-            <ToggleButton android:layout_height="wrap_content" android:layout_width="wrap_content"
+
+            <ToggleButton
                 android:id="@+id/cheval"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/horiz_margin"
                 android:textOff="No"
                 android:textOn="Yes" />
         </RelativeLayout>
-        <RelativeLayout android:layout_height="wrap_content"
+
+        <RelativeLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 
             >
             <TextView
-                android:layout_gravity="left"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Moat"
-                android:layout_marginTop="15dp"
+                android:layout_gravity="left"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"
+                android:text="Moat"
                 android:textSize="@dimen/body_text_size" />
-            <ToggleButton android:layout_height="wrap_content" android:layout_width="wrap_content"
+
+            <ToggleButton
                 android:id="@+id/moat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/horiz_margin"
                 android:textOff="No"
                 android:textOn="Yes" />
         </RelativeLayout>
 
-        <RelativeLayout android:layout_height="wrap_content"
+        <RelativeLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@android:drawable/divider_horizontal_bright"
             android:clickable="true">
             <TextView
-                android:layout_gravity="left"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"
                 android:text="Ramparts"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
                 android:textSize="@dimen/body_text_size" />
-            <ToggleButton android:layout_height="wrap_content" android:layout_width="wrap_content"
+
+            <ToggleButton
                 android:id="@+id/ramparts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/horiz_margin"
                 android:textOff="No"
                 android:textOn="Yes" />
         </RelativeLayout>
 
-        <RelativeLayout android:layout_height="wrap_content"
+        <RelativeLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             >
             <TextView
-                android:layout_gravity="left"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"
                 android:text="Drawbridge"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
                 android:textSize="@dimen/body_text_size" />
-            <ToggleButton android:layout_height="wrap_content" android:layout_width="wrap_content"
+
+            <ToggleButton
                 android:id="@+id/drawbridge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/horiz_margin"
                 android:textOff="No"
                 android:textOn="Yes" />
         </RelativeLayout>
 
-        <RelativeLayout android:layout_height="wrap_content"
+        <RelativeLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@android:drawable/divider_horizontal_bright">
             <TextView
-                android:layout_gravity="left"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"
                 android:text="Sally Port"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
                 android:textSize="@dimen/body_text_size" />
-            <ToggleButton android:layout_height="wrap_content" android:layout_width="wrap_content"
-                android:id="@+id/sallyport"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/horiz_margin"
-                android:textOff="No"
-                android:textOn="Yes" />
-        </RelativeLayout>
 
-        <RelativeLayout android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            >
-            <TextView
-                android:layout_gravity="left"
+            <ToggleButton
+                android:id="@+id/sallyport"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rock Wall"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:textSize="@dimen/body_text_size" />
-            <ToggleButton android:layout_height="wrap_content" android:layout_width="wrap_content"
-                android:id="@+id/rockwall"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/horiz_margin"
                 android:textOff="No"
                 android:textOn="Yes" />
         </RelativeLayout>
 
-        <RelativeLayout android:layout_height="wrap_content"
+        <RelativeLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"
+                android:text="Rock Wall"
+                android:textSize="@dimen/body_text_size" />
+
+            <ToggleButton
+                android:id="@+id/rockwall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/horiz_margin"
+                android:textOff="No"
+                android:textOn="Yes" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@android:drawable/divider_horizontal_bright">
             <TextView
-                android:layout_gravity="left"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rough Terrain"
-                android:layout_marginTop="15dp"
+                android:layout_gravity="left"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"
+                android:text="Rough Terrain"
                 android:textSize="@dimen/body_text_size" />
-            <ToggleButton android:layout_height="wrap_content" android:layout_width="wrap_content"
+
+            <ToggleButton
                 android:id="@+id/roughterrain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/horiz_margin"
                 android:textOff="No"
                 android:textOn="Yes" />
         </RelativeLayout>
 
-        <RelativeLayout android:layout_height="wrap_content"
+        <RelativeLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             >
             <TextView
-                android:layout_gravity="left"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Low Bar"
-                android:layout_marginTop="15dp"
+                android:layout_gravity="left"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"
+                android:text="Low Bar"
                 android:textSize="@dimen/body_text_size" />
-            <ToggleButton android:layout_height="wrap_content" android:layout_width="wrap_content"
+
+            <ToggleButton
                 android:id="@+id/lowbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/horiz_margin"
                 android:textOff="No"

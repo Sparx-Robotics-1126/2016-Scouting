@@ -86,7 +86,7 @@ public class ViewData extends AppCompatActivity {
                 } else {
                     boulderSource.setText("Human player");
                 }
-            }
+            } else boulderSource.setText("Floor");
         } catch (Exception e) {
             lowAble.setText("Unknown");
             highAble.setText("Unknown");

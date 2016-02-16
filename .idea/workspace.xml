@@ -24,14 +24,15 @@
     <option name="TOOL_WINDOW_REGEXP_FILTER" value="false" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b6a472ce-d483-43c5-b5f1-20bdee5d30a4" name="Default" comment="removed old method">
+    <list default="true" id="b6a472ce-d483-43c5-b5f1-20bdee5d30a4" name="Default" comment="auto started with boulder save issue corrected">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/Benchmarking.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/Benchmarking.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/MainMenu.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/MainMenu.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/MatchScouting.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/MatchScouting.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/ViewData.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/ViewData.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_auto.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_auto.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_general.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_general.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_tele.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_tele.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_drives.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_drives.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -65,17 +66,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/ViewData.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="63" column="109" selection-start-line="63" selection-start-column="109" selection-end-line="63" selection-end-column="109" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TeleFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/fragments/MatchScouting/TeleFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="30" column="50" selection-start-line="30" selection-start-column="50" selection-end-line="30" selection-end-column="50" />
+              <caret line="16" column="44" selection-start-line="0" selection-start-column="0" selection-end-line="354" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -85,7 +76,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/Benchmarking.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="150" column="14" selection-start-line="150" selection-start-column="14" selection-end-line="150" selection-end-column="14" />
+              <caret line="129" column="27" selection-start-line="0" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -95,7 +86,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/MatchScouting.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="81" column="38" selection-start-line="81" selection-start-column="38" selection-end-line="81" selection-end-column="38" />
+              <caret line="122" column="41" selection-start-line="0" selection-start-column="0" selection-end-line="149" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -105,8 +96,51 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/MainMenu.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="586" column="20" selection-start-line="586" selection-start-column="20" selection-end-line="586" selection-end-column="20" />
-              <folding />
+              <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+              <folding>
+                <element signature="e#3426#3561#0" expanded="true" />
+                <element signature="e#3560#3561#0" expanded="true" />
+                <element signature="e#4723#5300#0" expanded="true" />
+                <element signature="e#4883#5274#0" expanded="true" />
+                <element signature="e#5273#5274#0" expanded="true" />
+                <element signature="e#5299#5300#0" expanded="true" />
+                <element signature="e#5570#6068#0" expanded="true" />
+                <element signature="e#5730#6042#0" expanded="true" />
+                <element signature="e#6041#6042#0" expanded="true" />
+                <element signature="e#6067#6068#0" expanded="true" />
+                <element signature="e#6292#6317#0" expanded="true" />
+                <element signature="e#6943#6958#0" expanded="true" />
+                <element signature="e#6960#7231#0" expanded="true" />
+                <element signature="e#7230#7231#0" expanded="true" />
+                <element signature="e#7614#7627#0" expanded="true" />
+                <element signature="e#7629#7831#0" expanded="true" />
+                <element signature="e#7830#7831#0" expanded="true" />
+                <element signature="e#9547#10161#0" expanded="true" />
+                <element signature="e#9707#10135#0" expanded="true" />
+                <element signature="e#10134#10135#0" expanded="true" />
+                <element signature="e#10160#10161#0" expanded="true" />
+                <element signature="e#10594#11143#0" expanded="true" />
+                <element signature="e#10754#11117#0" expanded="true" />
+                <element signature="e#11116#11117#0" expanded="true" />
+                <element signature="e#11142#11143#0" expanded="true" />
+                <element signature="e#11549#12097#0" expanded="true" />
+                <element signature="e#11709#12071#0" expanded="true" />
+                <element signature="e#12070#12071#0" expanded="true" />
+                <element signature="e#12096#12097#0" expanded="true" />
+                <element signature="e#12752#13223#0" expanded="true" />
+                <element signature="e#13222#13223#0" expanded="true" />
+                <element signature="e#15688#15711#0" expanded="true" />
+                <element signature="e#16039#16057#0" expanded="true" />
+                <element signature="e#16390#16417#0" expanded="true" />
+                <element signature="e#18571#18572#0" expanded="true" />
+                <element signature="e#18619#18620#0" expanded="true" />
+                <element signature="e#19323#20686#0" expanded="true" />
+                <element signature="e#20685#20686#0" expanded="true" />
+                <element signature="e#21308#21316#0" expanded="true" />
+                <element signature="e#21969#21977#0" expanded="true" />
+                <element signature="e#24466#24971#0" expanded="true" />
+                <element signature="e#24970#24971#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -114,15 +148,15 @@
       <file leaf-file-name="DatabaseHelper.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/org/gosparx/scouting/aerialassist/DatabaseHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.1136365">
-              <caret line="125" column="92" selection-start-line="125" selection-start-column="92" selection-end-line="125" selection-end-column="92" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="1145" column="36" selection-start-line="1145" selection-start-column="36" selection-end-line="1145" selection-end-column="36" />
               <folding>
-                <element signature="e#22768#22769#0" expanded="true" />
-                <element signature="e#22824#22825#0" expanded="true" />
-                <element signature="e#55966#55976#0" expanded="true" />
-                <element signature="e#57477#57491#0" expanded="true" />
-                <element signature="e#58037#58047#0" expanded="true" />
-                <element signature="e#58586#58600#0" expanded="true" />
+                <element signature="e#22937#22938#0" expanded="true" />
+                <element signature="e#22993#22994#0" expanded="true" />
+                <element signature="e#56362#56372#0" expanded="true" />
+                <element signature="e#57873#57887#0" expanded="true" />
+                <element signature="e#58433#58443#0" expanded="true" />
+                <element signature="e#58982#58996#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -132,7 +166,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_auto.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-11.184211">
-              <caret line="17" column="31" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
+              <caret line="17" column="8" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
               <folding>
                 <element signature="e#397#432#0" expanded="true" />
                 <element signature="e#468#503#0" expanded="true" />
@@ -150,8 +184,8 @@
             <state vertical-scroll-proportion="-55.92105">
               <caret line="85" column="49" selection-start-line="85" selection-start-column="49" selection-end-line="85" selection-end-column="49" />
               <folding>
-                <element signature="e#408#443#0" expanded="true" />
                 <element signature="e#478#513#0" expanded="true" />
+                <element signature="e#407#442#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -170,15 +204,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fragment_tele.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="fragment_tele.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_tele.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.548893">
-              <caret line="17" column="75" selection-start-line="17" selection-start-column="75" selection-end-line="17" selection-end-column="75" />
+            <state vertical-scroll-proportion="-15.657895">
+              <caret line="17" column="35" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
               <folding>
-                <element signature="e#15224#15247#0" expanded="true" />
-                <element signature="e#16069#16092#0" expanded="true" />
+                <element signature="e#15228#15251#0" expanded="true" />
+                <element signature="e#16074#16097#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fragment_drives.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_drives.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.13837638">
+              <caret line="47" column="56" selection-start-line="47" selection-start-column="56" selection-end-line="47" selection-end-column="56" />
+              <folding />
             </state>
           </provider>
           <provider editor-type-id="android-designer">
@@ -1684,7 +1731,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_benchmarking.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_scoring.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_acquisition.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_drives.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_software.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/fragments/Benchmarking/SoftwareFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/fragments/Benchmarking/DrivesFragment.java" />
@@ -1703,14 +1749,15 @@
         <option value="$PROJECT_DIR$/app/src/main/java/org/gosparx/scouting/aerialassist/dto/ScoutingTele.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/org/gosparx/scouting/aerialassist/dto/ScoutingAuto.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_view_data.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/ViewData.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/MainMenu.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/MatchScouting.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/Benchmarking.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/org/gosparx/scouting/aerialassist/DatabaseHelper.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_auto.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_general.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_tele.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/org/gosparx/scouting/aerialassist/DatabaseHelper.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/MatchScouting.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/Benchmarking.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/ViewData.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/MainMenu.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_drives.xml" />
       </list>
     </option>
   </component>
@@ -2788,18 +2835,6 @@
       <option name="number" value="Default" />
       <updated>1452455149837</updated>
     </task>
-    <task id="LOCAL-00004" summary="Merged files">
-      <created>1452963348307</created>
-      <option name="number" value="00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1452963348307</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Added permissions to fix crash&#10;">
-      <created>1452965658268</created>
-      <option name="number" value="00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1452965658268</updated>
-    </task>
     <task id="LOCAL-00006" summary="Set up event spinner to be able to get match data">
       <created>1452980997038</created>
       <option name="number" value="00006" />
@@ -3082,7 +3117,19 @@
       <option name="project" value="LOCAL" />
       <updated>1455579198784</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="ui changed in match fragments to reflect rest of app">
+      <created>1455581458983</created>
+      <option name="number" value="00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1455581458983</updated>
+    </task>
+    <task id="LOCAL-00054" summary="auto started with boulder save issue corrected">
+      <created>1455581712483</created>
+      <option name="number" value="00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1455581712483</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TodoView">
@@ -3170,8 +3217,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="changed datatype of end from boolean to Boolean" />
-    <MESSAGE value="acquisitionfragment in correct folder" />
     <MESSAGE value="Scoring fragment done" />
     <MESSAGE value="implemented interfaces for benchmarking fragments" />
     <MESSAGE value="basic layout for benchmarking done -- expand later" />
@@ -3195,7 +3240,9 @@
     <MESSAGE value="added benchmarking to view data" />
     <MESSAGE value="Made toolbars slightly more readable (removed frc from team name)" />
     <MESSAGE value="removed old method" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed old method" />
+    <MESSAGE value="ui changed in match fragments to reflect rest of app" />
+    <MESSAGE value="auto started with boulder save issue corrected" />
+    <option name="LAST_COMMIT_MESSAGE" value="auto started with boulder save issue corrected" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -3204,7 +3251,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="117" />
+      <option name="time" value="118" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -3223,16 +3270,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-16.447369">
           <caret line="63" column="71" selection-start-line="63" selection-start-column="71" selection-end-line="63" selection-end-column="71" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_drives.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.32">
-          <caret line="41" column="47" selection-start-line="41" selection-start-column="47" selection-end-line="41" selection-end-column="47" />
         </state>
       </provider>
       <provider editor-type-id="android-designer">
@@ -3571,57 +3608,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/ViewData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="63" column="109" selection-start-line="63" selection-start-column="109" selection-end-line="63" selection-end-column="109" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/MatchScouting.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="81" column="38" selection-start-line="81" selection-start-column="38" selection-end-line="81" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/MainMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="586" column="20" selection-start-line="586" selection-start-column="20" selection-end-line="586" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/Benchmarking.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="150" column="14" selection-start-line="150" selection-start-column="14" selection-end-line="150" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/org/gosparx/scouting/aerialassist/DatabaseHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.1136365">
-          <caret line="125" column="92" selection-start-line="125" selection-start-column="92" selection-end-line="125" selection-end-column="92" />
-          <folding>
-            <element signature="e#22768#22769#0" expanded="true" />
-            <element signature="e#22824#22825#0" expanded="true" />
-            <element signature="e#55966#55976#0" expanded="true" />
-            <element signature="e#57477#57491#0" expanded="true" />
-            <element signature="e#58037#58047#0" expanded="true" />
-            <element signature="e#58586#58600#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_auto.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-11.184211">
-          <caret line="17" column="31" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
+          <caret line="17" column="8" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
           <folding>
             <element signature="e#397#432#0" expanded="true" />
             <element signature="e#468#503#0" expanded="true" />
@@ -3637,8 +3627,8 @@
         <state vertical-scroll-proportion="-55.92105">
           <caret line="85" column="49" selection-start-line="85" selection-start-column="49" selection-end-line="85" selection-end-column="49" />
           <folding>
-            <element signature="e#408#443#0" expanded="true" />
             <element signature="e#478#513#0" expanded="true" />
+            <element signature="e#407#442#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -3654,14 +3644,115 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/org/gosparx/scouting/aerialassist/DatabaseHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1145" column="36" selection-start-line="1145" selection-start-column="36" selection-end-line="1145" selection-end-column="36" />
+          <folding>
+            <element signature="e#22937#22938#0" expanded="true" />
+            <element signature="e#22993#22994#0" expanded="true" />
+            <element signature="e#56362#56372#0" expanded="true" />
+            <element signature="e#57873#57887#0" expanded="true" />
+            <element signature="e#58433#58443#0" expanded="true" />
+            <element signature="e#58982#58996#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/Benchmarking.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="129" column="27" selection-start-line="0" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/MatchScouting.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="122" column="41" selection-start-line="0" selection-start-column="0" selection-end-line="149" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/ViewData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="44" selection-start-line="0" selection-start-column="0" selection-end-line="354" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/MainMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+          <folding>
+            <element signature="e#3426#3561#0" expanded="true" />
+            <element signature="e#3560#3561#0" expanded="true" />
+            <element signature="e#4723#5300#0" expanded="true" />
+            <element signature="e#4883#5274#0" expanded="true" />
+            <element signature="e#5273#5274#0" expanded="true" />
+            <element signature="e#5299#5300#0" expanded="true" />
+            <element signature="e#5570#6068#0" expanded="true" />
+            <element signature="e#5730#6042#0" expanded="true" />
+            <element signature="e#6041#6042#0" expanded="true" />
+            <element signature="e#6067#6068#0" expanded="true" />
+            <element signature="e#6292#6317#0" expanded="true" />
+            <element signature="e#6943#6958#0" expanded="true" />
+            <element signature="e#6960#7231#0" expanded="true" />
+            <element signature="e#7230#7231#0" expanded="true" />
+            <element signature="e#7614#7627#0" expanded="true" />
+            <element signature="e#7629#7831#0" expanded="true" />
+            <element signature="e#7830#7831#0" expanded="true" />
+            <element signature="e#9547#10161#0" expanded="true" />
+            <element signature="e#9707#10135#0" expanded="true" />
+            <element signature="e#10134#10135#0" expanded="true" />
+            <element signature="e#10160#10161#0" expanded="true" />
+            <element signature="e#10594#11143#0" expanded="true" />
+            <element signature="e#10754#11117#0" expanded="true" />
+            <element signature="e#11116#11117#0" expanded="true" />
+            <element signature="e#11142#11143#0" expanded="true" />
+            <element signature="e#11549#12097#0" expanded="true" />
+            <element signature="e#11709#12071#0" expanded="true" />
+            <element signature="e#12070#12071#0" expanded="true" />
+            <element signature="e#12096#12097#0" expanded="true" />
+            <element signature="e#12752#13223#0" expanded="true" />
+            <element signature="e#13222#13223#0" expanded="true" />
+            <element signature="e#15688#15711#0" expanded="true" />
+            <element signature="e#16039#16057#0" expanded="true" />
+            <element signature="e#16390#16417#0" expanded="true" />
+            <element signature="e#18571#18572#0" expanded="true" />
+            <element signature="e#18619#18620#0" expanded="true" />
+            <element signature="e#19323#20686#0" expanded="true" />
+            <element signature="e#20685#20686#0" expanded="true" />
+            <element signature="e#21308#21316#0" expanded="true" />
+            <element signature="e#21969#21977#0" expanded="true" />
+            <element signature="e#24466#24971#0" expanded="true" />
+            <element signature="e#24970#24971#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_tele.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.548893">
-          <caret line="17" column="75" selection-start-line="17" selection-start-column="75" selection-end-line="17" selection-end-column="75" />
+        <state vertical-scroll-proportion="-15.657895">
+          <caret line="17" column="35" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
           <folding>
-            <element signature="e#15224#15247#0" expanded="true" />
-            <element signature="e#16069#16092#0" expanded="true" />
+            <element signature="e#15228#15251#0" expanded="true" />
+            <element signature="e#16074#16097#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_drives.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13837638">
+          <caret line="47" column="56" selection-start-line="47" selection-start-column="56" selection-end-line="47" selection-end-column="56" />
+          <folding />
         </state>
       </provider>
       <provider editor-type-id="android-designer">
