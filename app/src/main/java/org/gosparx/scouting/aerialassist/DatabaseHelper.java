@@ -139,6 +139,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_SCOUTING_TELE_BOULDERS_PICKED_UP = "t_bouldersPickedUp";
     private static final String TABLE_SCOUTING_TELE_BOULDERS_TAKEN_TO_COURTYARD = "t_bouldersTakenToCourtyard";
     private static final String TABLE_SCOUTING_TELE_BOULDERS_RECEIVED_FROM_BRATTICE = "t_bouldersReceivedFromBrattice";
+    private static final String TABLE_SCOUTING_TELE_END_GAME_SCALE = "t_endGameScale";
     private static final String TABLE_SCOUTING_GENERAL_NUMBER_OF_PENALTIES = "g_numberOfPenalties";
     private static final String TABLE_SCOUTING_GENERAL_COMMENTS_PENALTIES = "g_commentsOnPenalties";
     private static final String TABLE_SCOUTING_GENERAL_NUMBER_OF_TECHNICAL_FOULS = "g_numberOfTechnicalFouls";
@@ -287,6 +288,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + TABLE_SCOUTING_TELE_BOULDERS_PICKED_UP + " INTEGER, "
             + TABLE_SCOUTING_TELE_BOULDERS_TAKEN_TO_COURTYARD + " INTEGER, "
             + TABLE_SCOUTING_TELE_BOULDERS_RECEIVED_FROM_BRATTICE + " INTEGER, "
+            + TABLE_SCOUTING_TELE_END_GAME_SCALE + " TEXT, "
             + TABLE_SCOUTING_GENERAL_NUMBER_OF_PENALTIES + " INTEGER, "
             + TABLE_SCOUTING_GENERAL_COMMENTS_PENALTIES + " TEXT, "
             + TABLE_SCOUTING_GENERAL_NUMBER_OF_TECHNICAL_FOULS + " INTEGER, "
@@ -418,6 +420,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             scoutingTele.setBouldersPickedUp(c.getInt(c.getColumnIndex(TABLE_SCOUTING_TELE_BOULDERS_PICKED_UP)));
             scoutingTele.setBouldersTakenToCourtyard(c.getInt(c.getColumnIndex(TABLE_SCOUTING_TELE_BOULDERS_TAKEN_TO_COURTYARD)));
             scoutingTele.setBouldersReceivedFromBrattice(c.getInt(c.getColumnIndex(TABLE_SCOUTING_TELE_BOULDERS_RECEIVED_FROM_BRATTICE)));
+            scoutingTele.setEndGameScale(c.getString(c.getColumnIndex(TABLE_SCOUTING_TELE_END_GAME_SCALE)));
         }
 
         if (scoutingGeneral != null) {
@@ -893,6 +896,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             values.put(TABLE_SCOUTING_TELE_BOULDERS_PICKED_UP, scoutingTele.getBouldersPickedUp());
             values.put(TABLE_SCOUTING_TELE_BOULDERS_TAKEN_TO_COURTYARD, scoutingTele.getBouldersTakenToCourtyard());
             values.put(TABLE_SCOUTING_TELE_BOULDERS_RECEIVED_FROM_BRATTICE, scoutingTele.getBouldersReceivedFromBrattice());
+            values.put(TABLE_SCOUTING_TELE_END_GAME_SCALE, scoutingTele.getEndGameScale());
         }
         if (scoutingGeneral != null) {
             values.put(TABLE_SCOUTING_GENERAL_NUMBER_OF_PENALTIES, scoutingGeneral.getNumberOfPenalties());

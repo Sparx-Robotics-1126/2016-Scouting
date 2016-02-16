@@ -105,7 +105,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
             return true;
         } else if (id == R.id.action_download) {
             downloadEventSpinnerData();
-        } else if (id == R.id.action_upload){
+        } else if (id == R.id.action_upload) {
             uploadScoutingData();
         }
 
@@ -188,7 +188,6 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
         });
         return builder.create();
     }
-
 
 
     /**
@@ -654,7 +653,8 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
         cursorAdapterTeams.setViewBinder(new SimpleCursorAdapter.ViewBinder() {
             @Override
             public boolean setViewValue(View view, Cursor cursor, int i) {
-                String teamString = cursor.getString(cursor.getColumnIndex("team_number")) + " (" + cursor.getString(cursor.getColumnIndex("nickname")) + ")";
+                String teamString = cursor.getString(cursor.getColumnIndex("team_number")) + " (" +
+                        cursor.getString(cursor.getColumnIndex("nickname")) + ")";
 
                 ((TextView) view).setText(teamString);
                 view.setTag(cursor.getString(cursor.getColumnIndex("team")));
