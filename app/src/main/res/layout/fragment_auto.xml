@@ -6,6 +6,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
     android:orientation="vertical"
     tools:context="com.sparx1126.scoutingapp2016.fragments.MatchScouting.AutoFragment">
 
@@ -13,11 +15,9 @@
         android:id="@+id/textViewAutoDefensesTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="    Defenses"
-        android:textSize="@dimen/title_text_size"
-        android:textColor="#ffffff"
-        android:background="#000000" />
+        android:background="@android:drawable/divider_horizontal_bright"
+        android:text="Defenses"
+        android:textSize="25sp" />
 
     <GridLayout
         android:id="@+id/autoDefensesGrid"
@@ -25,501 +25,496 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/textViewAutoDefensesTitle"
         android:columnCount="3"
-        android:rowCount="10"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp">
+        android:rowCount="10">
 
         <TextView
-            android:layout_gravity="center_horizontal"
-            android:layout_row="0"
-            android:layout_column="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_gravity="center_horizontal"
+            android:layout_row="0"
             android:text="Position"
             android:textSize="@dimen/body_text_size" />
         <TextView
-            android:layout_gravity="center_horizontal"
-            android:layout_row="0"
-            android:layout_column="2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_column="2"
+            android:layout_gravity="center_horizontal"
+            android:layout_row="0"
             android:text="Crossed"
             android:textSize="@dimen/body_text_size" />
 
         <TextView
-            android:layout_gravity="center_vertical"
-            android:layout_row="1"
-            android:layout_column="0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_gravity="center_vertical"
+            android:layout_row="1"
             android:text="Portcullis"
             android:textSize="@dimen/body_text_size" />
         <Spinner
-            android:layout_gravity="center"
-            android:layout_row="1"
-            android:layout_column="1"
             android:id="@+id/auto_portcullis_position"
             android:layout_width="@dimen/position_spinner_width"
             android:layout_height="50dp"
-            android:background="@android:drawable/btn_dropdown"
-            android:entries="@array/defense_positions"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="10dp"/>
-        <ToggleButton
+            android:layout_column="1"
             android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
             android:layout_row="1"
-            android:layout_column="2"
+            android:background="@android:drawable/btn_dropdown"
+            android:entries="@array/defense_positions" />
+        <ToggleButton
             android:id="@+id/auto_portcullis_crossed"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:textOn="Yes"
-            android:textOff="No"
-            android:checked="false"
+            android:layout_column="2"
+            android:layout_gravity="center"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            android:layout_row="1"
+            android:checked="false"
+            android:textOff="No"
+            android:textOn="Yes" />
 
         <TextView
-            android:layout_gravity="center_vertical"
-            android:layout_row="2"
-            android:layout_column="0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_gravity="center_vertical"
+            android:layout_row="2"
             android:text="Cheval"
             android:textSize="@dimen/body_text_size" />
         <Spinner
-            android:layout_gravity="center"
-            android:layout_row="2"
-            android:layout_column="1"
             android:id="@+id/auto_cheval_position"
             android:layout_width="@dimen/position_spinner_width"
             android:layout_height="50dp"
-            android:background="@android:drawable/btn_dropdown"
-            android:entries="@array/defense_positions"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="10dp"/>
-        <ToggleButton
+            android:layout_column="1"
             android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
             android:layout_row="2"
-            android:layout_column="2"
+            android:background="@android:drawable/btn_dropdown"
+            android:entries="@array/defense_positions" />
+        <ToggleButton
             android:id="@+id/auto_cheval_crossed"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:textOn="Yes"
-            android:textOff="No"
-            android:checked="false"
+            android:layout_column="2"
+            android:layout_gravity="center"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            android:layout_row="2"
+            android:checked="false"
+            android:textOff="No"
+            android:textOn="Yes" />
 
         <TextView
-            android:layout_gravity="center_vertical"
-            android:layout_row="3"
-            android:layout_column="0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_gravity="center_vertical"
+            android:layout_row="3"
             android:text="Moat"
             android:textSize="@dimen/body_text_size" />
         <Spinner
-            android:layout_gravity="center"
-            android:layout_row="3"
-            android:layout_column="1"
             android:id="@+id/auto_moat_position"
             android:layout_width="@dimen/position_spinner_width"
             android:layout_height="50dp"
-            android:background="@android:drawable/btn_dropdown"
-            android:entries="@array/defense_positions"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="10dp"/>
-        <ToggleButton
+            android:layout_column="1"
             android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
             android:layout_row="3"
-            android:layout_column="2"
+            android:background="@android:drawable/btn_dropdown"
+            android:entries="@array/defense_positions" />
+        <ToggleButton
             android:id="@+id/auto_moat_crossed"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:textOn="Yes"
-            android:textOff="No"
-            android:checked="false"
+            android:layout_column="2"
+            android:layout_gravity="center"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            android:layout_row="3"
+            android:checked="false"
+            android:textOff="No"
+            android:textOn="Yes" />
 
         <TextView
-            android:layout_gravity="center_vertical"
-            android:layout_row="4"
-            android:layout_column="0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_gravity="center_vertical"
+            android:layout_row="4"
             android:text="Ramparts"
             android:textSize="@dimen/body_text_size" />
         <Spinner
-            android:layout_gravity="center"
-            android:layout_row="4"
-            android:layout_column="1"
             android:id="@+id/auto_ramparts_position"
             android:layout_width="@dimen/position_spinner_width"
             android:layout_height="50dp"
-            android:background="@android:drawable/btn_dropdown"
-            android:entries="@array/defense_positions"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="10dp"/>
-        <ToggleButton
+            android:layout_column="1"
             android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
             android:layout_row="4"
-            android:layout_column="2"
+            android:background="@android:drawable/btn_dropdown"
+            android:entries="@array/defense_positions" />
+        <ToggleButton
             android:id="@+id/auto_ramparts_crossed"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:textOn="Yes"
-            android:textOff="No"
-            android:checked="false"
+            android:layout_column="2"
+            android:layout_gravity="center"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            android:layout_row="4"
+            android:checked="false"
+            android:textOff="No"
+            android:textOn="Yes" />
 
         <TextView
-            android:layout_gravity="center_vertical"
-            android:layout_row="5"
-            android:layout_column="0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_gravity="center_vertical"
+            android:layout_row="5"
             android:text="Drawbridge"
             android:textSize="@dimen/body_text_size" />
         <Spinner
-            android:layout_gravity="center"
-            android:layout_row="5"
-            android:layout_column="1"
             android:id="@+id/auto_drawbridge_position"
             android:layout_width="@dimen/position_spinner_width"
             android:layout_height="50dp"
-            android:background="@android:drawable/btn_dropdown"
-            android:entries="@array/defense_positions"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="10dp"/>
-        <ToggleButton
+            android:layout_column="1"
             android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
             android:layout_row="5"
-            android:layout_column="2"
+            android:background="@android:drawable/btn_dropdown"
+            android:entries="@array/defense_positions" />
+        <ToggleButton
             android:id="@+id/auto_drawbridge_crossed"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:textOn="Yes"
-            android:textOff="No"
-            android:checked="false"
+            android:layout_column="2"
+            android:layout_gravity="center"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            android:layout_row="5"
+            android:checked="false"
+            android:textOff="No"
+            android:textOn="Yes" />
 
         <TextView
-            android:layout_gravity="center_vertical"
-            android:layout_row="6"
-            android:layout_column="0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_gravity="center_vertical"
+            android:layout_row="6"
             android:text="Sally Port"
             android:textSize="@dimen/body_text_size" />
         <Spinner
-            android:layout_gravity="center"
-            android:layout_row="6"
-            android:layout_column="1"
             android:id="@+id/auto_sallyport_position"
             android:layout_width="@dimen/position_spinner_width"
             android:layout_height="50dp"
-            android:background="@android:drawable/btn_dropdown"
-            android:entries="@array/defense_positions"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="10dp"/>
-        <ToggleButton
+            android:layout_column="1"
             android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
             android:layout_row="6"
-            android:layout_column="2"
+            android:background="@android:drawable/btn_dropdown"
+            android:entries="@array/defense_positions" />
+        <ToggleButton
             android:id="@+id/auto_sallyport_crossed"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:textOn="Yes"
-            android:textOff="No"
-            android:checked="false"
+            android:layout_column="2"
+            android:layout_gravity="center"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            android:layout_row="6"
+            android:checked="false"
+            android:textOff="No"
+            android:textOn="Yes" />
 
         <TextView
-            android:layout_gravity="center_vertical"
-            android:layout_row="7"
-            android:layout_column="0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_gravity="center_vertical"
+            android:layout_row="7"
             android:text="Rock Wall"
             android:textSize="@dimen/body_text_size" />
         <Spinner
-            android:layout_gravity="center"
-            android:layout_row="7"
-            android:layout_column="1"
             android:id="@+id/auto_rockwall_position"
             android:layout_width="@dimen/position_spinner_width"
             android:layout_height="50dp"
-            android:background="@android:drawable/btn_dropdown"
-            android:entries="@array/defense_positions"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="10dp"/>
-        <ToggleButton
+            android:layout_column="1"
             android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
             android:layout_row="7"
-            android:layout_column="2"
+            android:background="@android:drawable/btn_dropdown"
+            android:entries="@array/defense_positions" />
+        <ToggleButton
             android:id="@+id/auto_rockwall_crossed"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:textOn="Yes"
-            android:textOff="No"
-            android:checked="false"
+            android:layout_column="2"
+            android:layout_gravity="center"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            android:layout_row="7"
+            android:checked="false"
+            android:textOff="No"
+            android:textOn="Yes" />
 
         <TextView
-            android:layout_gravity="center_vertical"
-            android:layout_row="8"
-            android:layout_column="0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_gravity="center_vertical"
+            android:layout_row="8"
             android:text="Rough Terrain"
             android:textSize="@dimen/body_text_size" />
         <Spinner
-            android:layout_gravity="center"
-            android:layout_row="8"
-            android:layout_column="1"
             android:id="@+id/auto_roughterrain_position"
             android:layout_width="@dimen/position_spinner_width"
             android:layout_height="50dp"
-            android:background="@android:drawable/btn_dropdown"
-            android:entries="@array/defense_positions"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="10dp"/>
-        <ToggleButton
+            android:layout_column="1"
             android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
             android:layout_row="8"
-            android:layout_column="2"
+            android:background="@android:drawable/btn_dropdown"
+            android:entries="@array/defense_positions" />
+        <ToggleButton
             android:id="@+id/auto_rouchterrain_crossed"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:textOn="Yes"
-            android:textOff="No"
-            android:checked="false"
+            android:layout_column="2"
+            android:layout_gravity="center"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            android:layout_row="8"
+            android:checked="false"
+            android:textOff="No"
+            android:textOn="Yes" />
 
         <TextView
-            android:layout_gravity="center_vertical"
-            android:layout_row="9"
-            android:layout_column="0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_gravity="center_vertical"
+            android:layout_row="9"
             android:text="Low Bar"
             android:textSize="@dimen/body_text_size" />
         <TextView
-            android:layout_gravity="center"
-            android:layout_row="9"
-            android:layout_column="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_gravity="center"
+            android:layout_row="9"
             android:text="1"
             android:textSize="@dimen/body_text_size" />
         <ToggleButton
-            android:layout_gravity="center"
-            android:layout_row="9"
-            android:layout_column="2"
             android:id="@+id/auto_lowbar_crossed"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:textOn="Yes"
-            android:textOff="No"
-            android:checked="false"
+            android:layout_column="2"
+            android:layout_gravity="center"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            android:layout_row="9"
+            android:checked="false"
+            android:textOff="No"
+            android:textOn="Yes" />
     </GridLayout>
 
         <TextView
             android:id="@+id/autoOtherCapsTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="    Other Capabilities"
-            android:textSize="@dimen/title_text_size"
             android:layout_below="@id/autoDefensesGrid"
-            android:layout_marginTop="10dp"
-            android:textColor="#ffffff"
-            android:background="#000000" />
+            android:background="@android:drawable/divider_horizontal_bright"
+            android:text="Other Capabilities"
+            android:textSize="25sp" />
         <GridLayout
             android:id="@+id/autoOtherCapsGrid"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/autoOtherCapsTitle"
-            android:columnCount="2"
-            android:rowCount="8"
-            android:layout_marginTop="15dp"
             android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp">
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:columnCount="2"
+            android:rowCount="8">
 
             <TextView
-                android:layout_gravity="center_vertical"
-                android:layout_row="0"
-                android:layout_column="0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_gravity="center_vertical"
+                android:layout_row="0"
                 android:text="Picked up a boulder"
                 android:textSize="@dimen/body_text_size" />
             <ToggleButton
-                android:layout_gravity="center_vertical|left"
-                android:layout_row="0"
-                android:layout_column="1"
                 android:id="@+id/autoPickedUpBoulder"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:textOn="Yes"
-                android:textOff="No"
-                android:checked="false"
+                android:layout_column="1"
+                android:layout_gravity="center_vertical|left"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"/>
+                android:layout_marginRight="10dp"
+                android:layout_row="0"
+                android:checked="false"
+                android:textOff="No"
+                android:textOn="Yes" />
 
             <TextView
-                android:layout_gravity="center_vertical"
-                android:layout_row="1"
-                android:layout_column="0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_gravity="center_vertical"
+                android:layout_row="1"
                 android:text="Scored in High Goal"
                 android:textSize="@dimen/body_text_size" />
             <ToggleButton
-                android:layout_gravity="center_vertical|left"
-                android:layout_row="1"
-                android:layout_column="1"
                 android:id="@+id/autoScoredInHighGoal"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:textOn="Yes"
-                android:textOff="No"
-                android:checked="false"
+                android:layout_column="1"
+                android:layout_gravity="center_vertical|left"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"/>
+                android:layout_marginRight="10dp"
+                android:layout_row="1"
+                android:checked="false"
+                android:textOff="No"
+                android:textOn="Yes" />
 
             <TextView
-                android:layout_gravity="center_vertical"
-                android:layout_row="2"
-                android:layout_column="0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_gravity="center_vertical"
+                android:layout_row="2"
                 android:text="Scored in Low Goal"
                 android:textSize="@dimen/body_text_size" />
             <ToggleButton
-                android:layout_gravity="center_vertical|left"
-                android:layout_row="2"
-                android:layout_column="1"
                 android:id="@+id/autoScoredInLowGoal"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:textOn="Yes"
-                android:textOff="No"
-                android:checked="false"
+                android:layout_column="1"
+                android:layout_gravity="center_vertical|left"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"/>
+                android:layout_marginRight="10dp"
+                android:layout_row="2"
+                android:checked="false"
+                android:textOff="No"
+                android:textOn="Yes" />
 
             <TextView
-                android:layout_gravity="center_vertical"
-                android:layout_row="3"
-                android:layout_column="0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_gravity="center_vertical"
+                android:layout_row="3"
                 android:text="Ending Position"
                 android:textSize="@dimen/body_text_size" />
             <Spinner
-                android:layout_gravity="center_vertical|left"
-                android:layout_row="3"
-                android:layout_column="1"
                 android:id="@+id/autoEndingPosition"
                 android:layout_width="150dp"
                 android:layout_height="50dp"
-                android:background="@android:drawable/btn_dropdown"
-                android:entries="@array/ending_positions"
+                android:layout_column="1"
+                android:layout_gravity="center_vertical|left"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"/>
+                android:layout_marginRight="10dp"
+                android:layout_row="3"
+                android:background="@android:drawable/btn_dropdown"
+                android:entries="@array/ending_positions" />
 
             <TextView
-                android:layout_gravity="center_vertical"
-                android:layout_row="4"
-                android:layout_column="0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_gravity="center_vertical"
+                android:layout_row="4"
                 android:text="Reach Achieved"
                 android:textSize="@dimen/body_text_size" />
             <ToggleButton
-                android:layout_gravity="center_vertical|left"
-                android:layout_row="4"
-                android:layout_column="1"
                 android:id="@+id/autoReachAchieved"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:textOn="Yes"
-                android:textOff="No"
-                android:checked="false"
+                android:layout_column="1"
+                android:layout_gravity="center_vertical|left"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"/>
+                android:layout_marginRight="10dp"
+                android:layout_row="4"
+                android:checked="false"
+                android:textOff="No"
+                android:textOn="Yes" />
 
             <TextView
-                android:layout_gravity="center_vertical"
-                android:layout_row="5"
-                android:layout_column="0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_gravity="center_vertical"
+                android:layout_row="5"
                 android:text="Reach was cross attempt"
                 android:textSize="@dimen/body_text_size" />
             <ToggleButton
-                android:layout_gravity="center_vertical|left"
-                android:layout_row="5"
-                android:layout_column="1"
                 android:id="@+id/autoReachWasCrossAttempt"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:textOn="Yes"
-                android:textOff="No"
-                android:checked="false"
+                android:layout_column="1"
+                android:layout_gravity="center_vertical|left"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"/>
+                android:layout_marginRight="10dp"
+                android:layout_row="5"
+                android:checked="false"
+                android:textOff="No"
+                android:textOn="Yes" />
 
             <TextView
-                android:layout_gravity="center_vertical"
-                android:layout_row="6"
-                android:layout_column="0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_gravity="center_vertical"
+                android:layout_row="6"
                 android:text="Started as spy"
                 android:textSize="@dimen/body_text_size" />
             <ToggleButton
-                android:layout_gravity="center_vertical|left"
-                android:layout_row="6"
-                android:layout_column="1"
                 android:id="@+id/autoStartedAsSpy"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:textOn="Yes"
-                android:textOff="No"
-                android:checked="false"
+                android:layout_column="1"
+                android:layout_gravity="center_vertical|left"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"/>
+                android:layout_marginRight="10dp"
+                android:layout_row="6"
+                android:checked="false"
+                android:textOff="No"
+                android:textOn="Yes" />
 
             <TextView
-                android:layout_gravity="center_vertical"
-                android:layout_row="7"
-                android:layout_column="0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_gravity="center_vertical"
+                android:layout_row="7"
                 android:text="Started with boulder"
                 android:textSize="@dimen/body_text_size" />
             <ToggleButton
-                android:layout_gravity="center_vertical|left"
-                android:layout_row="7"
-                android:layout_column="1"
                 android:id="@+id/autoStartedWithBoulder"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:textOn="Yes"
-                android:textOff="No"
-                android:checked="false"
+                android:layout_column="1"
+                android:layout_gravity="center_vertical|left"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"/>
+                android:layout_marginRight="10dp"
+                android:layout_row="7"
+                android:checked="false"
+                android:textOff="No"
+                android:textOn="Yes" />
             </GridLayout>
 </RelativeLayout>
 </ScrollView>

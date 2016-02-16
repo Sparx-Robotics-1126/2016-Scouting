@@ -57,7 +57,7 @@ public class Benchmarking extends FragmentActivity implements DrivesFragment.OnF
             // no benchmarking record exists in the database for this (event + team + scouter name) so create one.
             dbHelper.createBenchmarking(info);
         }
-
+        //instantiate fragments
         drivesFragment = DrivesFragment.newInstance(info);
         softwareFragment = SoftwareFragment.newInstance(info);
         acquisitionFragment = AcquisitionFragment.newInstance(info);
@@ -68,10 +68,16 @@ public class Benchmarking extends FragmentActivity implements DrivesFragment.OnF
         toolbar.setTitle("Benchmarking for: " + info.getTeamKey().replace("frc", ""));
     }
 
+    //necessary inclusion for all fragments
     @Override
     public void onFragmentInteraction(Uri uri){
     }
 
+    /**
+     * changes which fragment is showing depending on which button was clicked
+     *
+     * @param view the view that was clicked
+     */
     public void switchFragment(View view){
         fm = getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
@@ -138,6 +144,13 @@ public class Benchmarking extends FragmentActivity implements DrivesFragment.OnF
                 ft.show(scoringFragment);}
         ft.commit();
     }
+
+    /**
+     * save data whenever we exit the activity
+     * @param keyCode the code of this key
+     * @param event the event to process
+     * @return
+     */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event){
         if(keyCode == KeyEvent.KEYCODE_BACK){

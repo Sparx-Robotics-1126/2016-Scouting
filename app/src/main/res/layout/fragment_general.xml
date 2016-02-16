@@ -6,6 +6,8 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:orientation="vertical"
         tools:context="com.sparx1126.scoutingapp2016.fragments.MatchScouting.GeneralFragment">
 
@@ -13,131 +15,100 @@
             android:id="@+id/genPenaltiesTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="     Penalties"
-            android:textSize="@dimen/title_text_size"
-            android:textColor="#ffffff"
-            android:background="#000000" />
+            android:background="@android:drawable/divider_horizontal_bright"
+            android:text="Penalties"
+            android:textSize="25sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
             android:orientation="horizontal">
         <TextView
             android:id="@+id/genPenaltiesLabel"
-            android:layout_gravity="left|center_vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="left|center_vertical"
             android:text="Penalties"
             android:textSize="@dimen/body_text_size" />
         <com.sparx1126.scoutingapp2016.controls.HorizontalNumberPicker
-            android:layout_gravity="left"
             android:id="@+id/genPenatlies"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"/>
+            android:layout_gravity="left" />
         </LinearLayout>
 
         <TextView
-            android:layout_gravity="left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="left"
             android:text="Penalty Comments:"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
             android:textSize="@dimen/body_text_size" />
         <EditText
             android:id="@+id/genPenaltyComments"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:inputType="text|textCapSentences|textMultiLine|textAutoCorrect"
-            android:hint="Tap to edit"/>
+            android:hint="Tap to edit"
+            android:inputType="text|textCapSentences|textMultiLine|textAutoCorrect" />
 
         <TextView
             android:id="@+id/genFoulsTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="     Technical Fouls"
-            android:textSize="@dimen/title_text_size"
-            android:textColor="#ffffff"
-            android:background="#000000" />
+            android:background="@android:drawable/divider_horizontal_bright"
+            android:text="Technical Fouls"
+            android:textSize="25sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
             android:orientation="horizontal">
             <TextView
                 android:id="@+id/genTechFoulsLabel"
-                android:layout_gravity="left|center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="left|center_vertical"
                 android:text="Technical Fouls"
                 android:textSize="@dimen/body_text_size" />
             <com.sparx1126.scoutingapp2016.controls.HorizontalNumberPicker
-                android:layout_gravity="left"
                 android:id="@+id/genTechnicalFouls"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"/>
+                android:layout_gravity="left" />
         </LinearLayout>
 
         <TextView
-            android:layout_gravity="left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="left"
             android:text="Technical Foul Comments:"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
             android:textSize="@dimen/body_text_size" />
         <EditText
             android:id="@+id/genTechFoulComments"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:inputType="text|textCapSentences|textMultiLine|textAutoCorrect"
-            android:hint="Tap to edit"/>
+            android:hint="Tap to edit"
+            android:inputType="text|textCapSentences|textMultiLine|textAutoCorrect" />
 
         <TextView
             android:id="@+id/genGeneralTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="     General"
-            android:textSize="@dimen/title_text_size"
-            android:textColor="#ffffff"
-            android:background="#000000" />
+            android:background="@android:drawable/divider_horizontal_bright"
+            android:text="General"
+            android:textSize="25sp" />
 
         <TextView
-            android:layout_gravity="left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="left"
             android:text="General Comments:"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
             android:textSize="@dimen/body_text_size" />
         <EditText
             android:id="@+id/genComments"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:inputType="text|textCapSentences|textMultiLine|textAutoCorrect"
-            android:hint="Tap to edit"/>
+            android:hint="Tap to edit"
+            android:inputType="text|textCapSentences|textMultiLine|textAutoCorrect" />
 
     </LinearLayout>
 </ScrollView>

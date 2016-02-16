@@ -13,11 +13,9 @@
             android:id="@+id/textViewTeleGoalsTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:background="@android:drawable/divider_horizontal_bright"
             android:text="Goals"
-            android:textSize="@dimen/title_text_size"
-            android:textColor="#ffffff"
-            android:background="#000000" />
+            android:textSize="25sp" />
 
         <GridLayout
             android:id="@+id/teleGoalsGrid"
@@ -25,103 +23,90 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/textViewTeleGoalsTitle"
             android:columnCount="3"
-            android:rowCount="5"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp">
+            android:rowCount="5">
 
             <TextView
-                android:layout_gravity="center_vertical"
-                android:layout_row="0"
-                android:layout_column="0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_gravity="center_vertical"
+                android:layout_row="0"
                 android:text="Plays Defense"
                 android:textSize="@dimen/body_text_size" />
             <ToggleButton
-                android:layout_gravity="center_vertical|left"
-                android:layout_row="0"
-                android:layout_column="1"
                 android:id="@+id/telePlaysDefense"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:textOn="Yes"
-                android:textOff="No"
+                android:layout_column="1"
+                android:layout_gravity="center_vertical|left"
+                android:layout_row="0"
                 android:checked="false"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"/>
+                android:textOff="No"
+                android:textOn="Yes" />
 
             <TextView
-                android:layout_gravity="center_vertical"
-                android:layout_row="1"
-                android:layout_column="0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_gravity="center_vertical"
+                android:layout_row="1"
                 android:text="High Goal Attempts"
                 android:textSize="@dimen/body_text_size" />
             <com.sparx1126.scoutingapp2016.controls.HorizontalNumberPicker
-                android:layout_gravity="center"
-                android:layout_row="1"
-                android:layout_column="1"
                 android:id="@+id/teleHighGoalAttempts"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"/>
+                android:layout_column="1"
+                android:layout_gravity="center"
+                android:layout_row="1" />
 
             <TextView
-                android:layout_gravity="center_vertical"
-                android:layout_row="2"
-                android:layout_column="0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_gravity="center_vertical"
+                android:layout_row="2"
                 android:text="High Goals Scored"
                 android:textSize="@dimen/body_text_size" />
             <com.sparx1126.scoutingapp2016.controls.HorizontalNumberPicker
-                android:layout_gravity="center"
-                android:layout_row="2"
-                android:layout_column="1"
                 android:id="@+id/teleHighGoalsScored"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"/>
+                android:layout_column="1"
+                android:layout_gravity="center"
+                android:layout_row="2" />
 
             <TextView
-                android:layout_gravity="center_vertical"
-                android:layout_row="3"
-                android:layout_column="0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_gravity="center_vertical"
+                android:layout_row="3"
                 android:text="Low Goal Attempts"
                 android:textSize="@dimen/body_text_size" />
             <com.sparx1126.scoutingapp2016.controls.HorizontalNumberPicker
-                android:layout_gravity="center"
-                android:layout_row="3"
-                android:layout_column="1"
                 android:id="@+id/teleLowGoalAttempts"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"/>
+                android:layout_column="1"
+                android:layout_gravity="center"
+                android:layout_row="3" />
 
             <TextView
-                android:layout_gravity="center_vertical"
-                android:layout_row="4"
-                android:layout_column="0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_gravity="center_vertical"
+                android:layout_row="4"
                 android:text="Low Goals Scored"
                 android:textSize="@dimen/body_text_size" />
             <com.sparx1126.scoutingapp2016.controls.HorizontalNumberPicker
-                android:layout_gravity="center"
-                android:layout_row="4"
-                android:layout_column="1"
                 android:id="@+id/teleLowGoalsScored"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"/>
+                android:layout_column="1"
+                android:layout_gravity="center"
+                android:layout_row="4" />
 
         </GridLayout>
 
@@ -131,183 +116,182 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/teleGoalsGrid"
             android:layout_marginTop="15dp"
+            android:background="@android:drawable/divider_horizontal_bright"
             android:text="Defense Crossings"
-            android:textSize="@dimen/title_text_size"
-            android:textColor="#ffffff"
-            android:background="#000000" />
+            android:textSize="25sp" />
 
         <GridLayout
             android:id="@+id/teleDefensesGrid"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/textViewTeleDefensesTitle"
-            android:columnCount="3"
-            android:rowCount="9"
-            android:layout_marginTop="15dp"
             android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp">
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:columnCount="3"
+            android:rowCount="9">
 
             <TextView
-                android:layout_gravity="center_vertical"
-                android:layout_row="0"
-                android:layout_column="0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_gravity="center_vertical"
+                android:layout_row="0"
                 android:text="Portcullis"
                 android:textSize="@dimen/body_text_size" />
             <com.sparx1126.scoutingapp2016.controls.HorizontalNumberPicker
-                android:layout_gravity="center"
-                android:layout_row="0"
-                android:layout_column="1"
                 android:id="@+id/telePortcullisCrossings"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
+                android:layout_column="1"
+                android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"/>
+                android:layout_marginRight="10dp"
+                android:layout_row="0" />
 
             <TextView
-                android:layout_gravity="center_vertical"
-                android:layout_row="1"
-                android:layout_column="0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_gravity="center_vertical"
+                android:layout_row="1"
                 android:text="Cheval"
                 android:textSize="@dimen/body_text_size" />
             <com.sparx1126.scoutingapp2016.controls.HorizontalNumberPicker
-                android:layout_gravity="center"
-                android:layout_row="1"
-                android:layout_column="1"
                 android:id="@+id/teleChevalCrossings"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
+                android:layout_column="1"
+                android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"/>
+                android:layout_marginRight="10dp"
+                android:layout_row="1" />
 
             <TextView
-                android:layout_gravity="center_vertical"
-                android:layout_row="2"
-                android:layout_column="0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_gravity="center_vertical"
+                android:layout_row="2"
                 android:text="Moat"
                 android:textSize="@dimen/body_text_size" />
             <com.sparx1126.scoutingapp2016.controls.HorizontalNumberPicker
-                android:layout_gravity="center"
-                android:layout_row="2"
-                android:layout_column="1"
                 android:id="@+id/teleMoatCrossings"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
+                android:layout_column="1"
+                android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"/>
+                android:layout_marginRight="10dp"
+                android:layout_row="2" />
 
             <TextView
-                android:layout_gravity="center_vertical"
-                android:layout_row="3"
-                android:layout_column="0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_gravity="center_vertical"
+                android:layout_row="3"
                 android:text="Ramparts"
                 android:textSize="@dimen/body_text_size" />
             <com.sparx1126.scoutingapp2016.controls.HorizontalNumberPicker
-                android:layout_gravity="center"
-                android:layout_row="3"
-                android:layout_column="1"
                 android:id="@+id/teleRampartCrossings"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
+                android:layout_column="1"
+                android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"/>
+                android:layout_marginRight="10dp"
+                android:layout_row="3" />
 
             <TextView
-                android:layout_gravity="center_vertical"
-                android:layout_row="4"
-                android:layout_column="0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_gravity="center_vertical"
+                android:layout_row="4"
                 android:text="Drawbridge"
                 android:textSize="@dimen/body_text_size" />
             <com.sparx1126.scoutingapp2016.controls.HorizontalNumberPicker
-                android:layout_gravity="center"
-                android:layout_row="4"
-                android:layout_column="1"
                 android:id="@+id/teleDrawbridgeCrossings"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
+                android:layout_column="1"
+                android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"/>
+                android:layout_marginRight="10dp"
+                android:layout_row="4" />
 
             <TextView
-                android:layout_gravity="center_vertical"
-                android:layout_row="5"
-                android:layout_column="0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_gravity="center_vertical"
+                android:layout_row="5"
                 android:text="Sally Port"
                 android:textSize="@dimen/body_text_size" />
             <com.sparx1126.scoutingapp2016.controls.HorizontalNumberPicker
-                android:layout_gravity="center"
-                android:layout_row="5"
-                android:layout_column="1"
                 android:id="@+id/teleSallyPortCrossings"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
+                android:layout_column="1"
+                android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"/>
+                android:layout_marginRight="10dp"
+                android:layout_row="5" />
 
             <TextView
-                android:layout_gravity="center_vertical"
-                android:layout_row="6"
-                android:layout_column="0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_gravity="center_vertical"
+                android:layout_row="6"
                 android:text="Rock Wall"
                 android:textSize="@dimen/body_text_size" />
             <com.sparx1126.scoutingapp2016.controls.HorizontalNumberPicker
-                android:layout_gravity="center"
-                android:layout_row="6"
-                android:layout_column="1"
                 android:id="@+id/teleRockWallCrossings"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
+                android:layout_column="1"
+                android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"/>
+                android:layout_marginRight="10dp"
+                android:layout_row="6" />
 
             <TextView
-                android:layout_gravity="center_vertical"
-                android:layout_row="7"
-                android:layout_column="0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_gravity="center_vertical"
+                android:layout_row="7"
                 android:text="Rough Terrain"
                 android:textSize="@dimen/body_text_size" />
             <com.sparx1126.scoutingapp2016.controls.HorizontalNumberPicker
-                android:layout_gravity="center"
-                android:layout_row="7"
-                android:layout_column="1"
                 android:id="@+id/teleRoughTerrainCrossings"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
+                android:layout_column="1"
+                android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"/>
+                android:layout_marginRight="10dp"
+                android:layout_row="7" />
 
             <TextView
-                android:layout_gravity="center_vertical"
-                android:layout_row="8"
-                android:layout_column="0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_gravity="center_vertical"
+                android:layout_row="8"
                 android:text="Low Bar"
                 android:textSize="@dimen/body_text_size" />
             <com.sparx1126.scoutingapp2016.controls.HorizontalNumberPicker
-                android:layout_gravity="center"
-                android:layout_row="8"
-                android:layout_column="1"
                 android:id="@+id/teleLowBarCrossings"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
+                android:layout_column="1"
+                android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"/>
+                android:layout_marginRight="10dp"
+                android:layout_row="8" />
 
         </GridLayout>
 
@@ -317,109 +301,106 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/teleDefensesGrid"
             android:layout_marginTop="15dp"
+            android:background="@android:drawable/divider_horizontal_bright"
             android:text="Boulders"
-            android:textSize="@dimen/title_text_size"
-            android:textColor="#ffffff"
-            android:background="#000000" />
-
+            android:textSize="25sp" />
         <GridLayout
             android:id="@+id/teleBoudlersGrid"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/textViewTeleBouldersTitle"
-            android:columnCount="3"
-            android:rowCount="3"
-            android:layout_marginTop="15dp"
             android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp">
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:columnCount="3"
+            android:rowCount="3">
 
             <TextView
-                android:layout_gravity="center_vertical"
-                android:layout_row="0"
-                android:layout_column="0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_gravity="center_vertical"
+                android:layout_row="0"
                 android:text="Picked Up"
                 android:textSize="@dimen/body_text_size" />
             <com.sparx1126.scoutingapp2016.controls.HorizontalNumberPicker
-                android:layout_gravity="center"
-                android:layout_row="0"
-                android:layout_column="1"
                 android:id="@+id/teleBouldersPickedUp"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
+                android:layout_column="1"
+                android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"/>
+                android:layout_marginRight="10dp"
+                android:layout_row="0" />
 
             <TextView
-                android:layout_gravity="center_vertical"
-                android:layout_row="1"
-                android:layout_column="0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_gravity="center_vertical"
+                android:layout_row="1"
                 android:text="Taken to Courtyard"
                 android:textSize="@dimen/body_text_size" />
             <com.sparx1126.scoutingapp2016.controls.HorizontalNumberPicker
-                android:layout_gravity="center"
-                android:layout_row="1"
-                android:layout_column="1"
                 android:id="@+id/teleBouldersTakenToCourtyard"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
+                android:layout_column="1"
+                android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"/>
+                android:layout_marginRight="10dp"
+                android:layout_row="1" />
 
             <TextView
-                android:layout_gravity="center_vertical"
-                android:layout_row="2"
-                android:layout_column="0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_gravity="center_vertical"
+                android:layout_row="2"
                 android:text="Received from Brattice"
                 android:textSize="@dimen/body_text_size" />
             <com.sparx1126.scoutingapp2016.controls.HorizontalNumberPicker
-                android:layout_gravity="center"
-                android:layout_row="2"
-                android:layout_column="1"
                 android:id="@+id/teleBouldersReceivedFromBrattice"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
+                android:layout_column="1"
+                android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"/>
+                android:layout_marginRight="10dp"
+                android:layout_row="2" />
         </GridLayout>
 
         <TextView
             android:id="@+id/textViewTeleEndGameTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
             android:layout_below="@id/teleBoudlersGrid"
+            android:layout_marginTop="15dp"
+            android:background="@android:drawable/divider_horizontal_bright"
             android:text="End Game"
-            android:textSize="@dimen/title_text_size"
-            android:textColor="#ffffff"
-            android:background="#000000" />
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/textViewTeleScaleTitle"
-            android:layout_gravity="center_vertical"
-            android:layout_below="@id/textViewTeleEndGameTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tower scaling"
+            android:layout_below="@id/textViewTeleEndGameTitle"
+            android:layout_gravity="center_vertical"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="25dp"
+            android:text="Tower scaling"
             android:textSize="@dimen/body_text_size" />
         <Spinner
             android:id="@+id/teleEndGameScale"
-            android:layout_toRightOf="@id/textViewTeleScaleTitle"
-            android:layout_below="@id/textViewTeleEndGameTitle"
             android:layout_width="250dp"
             android:layout_height="50dp"
-            android:layout_marginTop="10dp"
-            android:background="@android:drawable/btn_dropdown"
-            android:entries="@array/endgamescale_choices"
+            android:layout_below="@id/textViewTeleEndGameTitle"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/textViewTeleScaleTitle"
+            android:background="@android:drawable/btn_dropdown"
+            android:entries="@array/endgamescale_choices" />
 
     </RelativeLayout>
 </ScrollView>
