@@ -44,8 +44,8 @@ class ScoutingTele(ndb.Model):
      playsDefense = ndb.BooleanProperty()
      bouldersPickedUp = ndb.IntegerProperty() 
      bouldersTakenToCourtyard = ndb.IntegerProperty() 
-     bouldersReceivedFromBrattice = ndb.IntegerProperty() 
-   
+     bouldersReceivedFromBrattice = ndb.IntegerProperty()
+     endGameScale = ndb.StringProperty()
       
 class ScoutingGeneral(ndb.Model): 
       numberOfPenalties = ndb.IntegerProperty()

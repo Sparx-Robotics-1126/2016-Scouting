@@ -142,11 +142,11 @@ public class SparxScouting {
         });
     }
 
-    public void getBenchmarking(Team team, Event event){
+    public void getBenchmarking(Team team, Event event, final NetworkCallback callback){
         String request = (BASE_URL + GET_BENCHMARKING_BY_TEAM_EVENT)
                 .replace("{TEAM_KEY}", team.getKey())
                 .replace("{EVENT_KEY}", event.getKey());
-        getBenchmarking(request, null);
+        getBenchmarking(request, callback);
     }
 
     private void getBenchmarking(String request, final NetworkCallback callback){
