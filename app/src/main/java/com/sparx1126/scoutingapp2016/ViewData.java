@@ -4,22 +4,29 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.gosparx.scouting.aerialassist.DatabaseHelper;
 import org.gosparx.scouting.aerialassist.dto.Scouting;
 import org.gosparx.scouting.aerialassist.dto.ScoutingInfo;
 import org.gosparx.scouting.aerialassist.dto.ScoutingTele;
+import org.gosparx.scouting.aerialassist.networking.NetworkCallback;
+import org.gosparx.scouting.aerialassist.networking.SparxScouting;
 
 import java.util.List;
 
 public class ViewData extends AppCompatActivity {
     private static List<Scouting> scoutList;
     private static List<ScoutingInfo> benchmarkList;
+    private String name;
     private DatabaseHelper dbHelper;
     private TextView low, high, scale, def, portcullis, cheval, moat, ramparts, drawbridge, sallyport,
             rockwall, roughterrain, lowbar, highAble, lowAble, boulderSource, portCross, chevCross,
             moatCross, ramCross, drawCross, salCross, rockCross, roughCross, lowCross;
+    private LinearLayout benchmarkData;
+    private TextView benchmarkNoData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +36,6 @@ public class ViewData extends AppCompatActivity {
         Intent i = getIntent();
 
         //match fields
-
         low = (TextView) findViewById(R.id.lowAverage);
         high = (TextView) findViewById(R.id.highAverage);
         scale = (TextView) findViewById(R.id.scaleAverage);
@@ -46,6 +52,8 @@ public class ViewData extends AppCompatActivity {
 
         //benchmarking fields
 
+        benchmarkData = (LinearLayout) findViewById(R.id.benchmarkData);
+        benchmarkNoData = (TextView) findViewById(R.id.benchmarkNoData);
         lowAble = (TextView) findViewById(R.id.canLow);
         highAble = (TextView) findViewById(R.id.canHigh);
         boulderSource = (TextView) findViewById(R.id.boulderSource);
@@ -59,16 +67,57 @@ public class ViewData extends AppCompatActivity {
         roughCross = (TextView) findViewById(R.id.roughterrainAble);
         lowCross = (TextView) findViewById(R.id.lowbarAble);
 
-        String teamKey = i.getStringExtra(MainMenu.TEAM_NAME);
-        String eventKey = i.getStringExtra(MainMenu.EVENT_KEY);
+        benchmarkNoData.setVisibility(View.GONE);
+
+        final String teamKey = i.getStringExtra(MainMenu.TEAM_NAME);
+        final String eventKey = i.getStringExtra(MainMenu.EVENT_KEY);
         String teamName = teamKey.replace("frc", ""); // remove frc from the key to only show the team number
+
+        name = i.getStringExtra(MainMenu.NAME);
+
         toolbar.setTitle("Viewing data for Team " + teamName);
-        Data data = new Data();
+        SparxScouting s = SparxScouting.getInstance(this);
+
+
         dbHelper = DatabaseHelper.getInstance(this);
         scoutList = dbHelper.getScouting(eventKey, teamKey);
-        benchmarkList = dbHelper.getBenchmarking(eventKey, teamKey);
+        //TODO find a way to get scouting data from online database without causing errors
+        final ScoutingInfo in = new ScoutingInfo();
+        in.setEventKey(eventKey);
+        in.setTeamKey(teamKey);
+        in.setNameOfScouter(name);
+        if (dbHelper.doesBenchmarkingExist(in)) {
+            benchmarkList = dbHelper.getBenchmarking(eventKey, teamKey);
+            initFromBenchmarkList(benchmarkList);
+        } else {
+            s.getBenchmarking(dbHelper.getTeam(teamKey), dbHelper.getEvent(eventKey), new NetworkCallback() {
+                @Override
+                public void handleFinishDownload(boolean success) {
+                    if (success) {
+
+                        if (dbHelper.doesBenchmarkingExist(in)) {
+                            benchmarkList = dbHelper.getBenchmarking(eventKey, teamKey);
+
+                        }
+                    }
+                    initFromBenchmarkList(benchmarkList);
+                }
+            });
+        }
+    }
+
+    private void setYesNo(TextView text, boolean b) {
+        if (b) {
+            text.setText("Yes");
+        } else text.setText("No");
+    }
+
+    private void initFromBenchmarkList(List<ScoutingInfo> benckmarkList) {
+        Data data = new Data();
         try {
             ScoutingInfo info = benchmarkList.get(0);
+            benchmarkData.setVisibility(View.VISIBLE);
+            benchmarkNoData.setVisibility(View.GONE);
             setYesNo(lowAble, info.getCanScoreInLowGoal());
             setYesNo(highAble, info.getCanScoreInHighGoal());
             setYesNo(portCross, info.getCanCrossPortcullis());
@@ -88,18 +137,7 @@ public class ViewData extends AppCompatActivity {
                 }
             } else boulderSource.setText("Floor");
         } catch (Exception e) {
-            lowAble.setText("Unknown");
-            highAble.setText("Unknown");
-            portCross.setText("Unknown");
-            chevCross.setText("Unknown");
-            moatCross.setText("Unknown");
-            ramCross.setText("Unknown");
-            drawCross.setText("Unknown");
-            salCross.setText("Unknown");
-            rockCross.setText("Unknown");
-            roughCross.setText("Unknown");
-            lowCross.setText("Unknown");
-            boulderSource.setText("Unknown");
+            setNoDataBenchmarking();
         }
 
         data.computeAverages();
@@ -130,14 +168,11 @@ public class ViewData extends AppCompatActivity {
         roughterrain.setText(rtInfo);
         lowbar.setText(lbInfo);
 
-        //TODO set benchmarking data
-
     }
 
-    private void setYesNo(TextView text, boolean b) {
-        if (b) {
-            text.setText("Yes");
-        } else text.setText("No");
+    private void setNoDataBenchmarking() {
+        benchmarkData.setVisibility(View.GONE);
+        benchmarkNoData.setVisibility(View.VISIBLE);
     }
 
     private class Data {
@@ -183,6 +218,7 @@ public class ViewData extends AppCompatActivity {
         public int defTimes;
         public int defTotal;
         public double defAvg;
+        public boolean foundScouting;
 
         public Data() {
 
@@ -227,14 +263,17 @@ public class ViewData extends AppCompatActivity {
             lbAvg = 0;
             defTimes = 0;
             defAvg = 0;
+            foundScouting = false;
 
         }
 
         public void computeAverages() {
+
             for (int i = 0; i < scoutList.size(); i++) {
 
                 Scouting sc = scoutList.get(i);
-                if (!dbHelper.doesScoutingExist(sc)) {
+                if (dbHelper.doesScoutingExist(sc)) {
+                    foundScouting = true;
                     ScoutingTele scout = sc.getTele();
 
                     if (scout.getHighGoalAttempts() != -1) {
@@ -349,6 +388,7 @@ public class ViewData extends AppCompatActivity {
                     lbAvg = Math.round(lbAvg);
                 }
             }
+
         }
     }
 }

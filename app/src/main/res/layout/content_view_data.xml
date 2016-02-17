@@ -315,11 +315,20 @@
                 android:textAlignment="center"
                 android:textSize="30sp" />
 
+            <TextView
+                android:id="@+id/benchmarkNoData"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="NO DATA"
+                android:textAlignment="center"
+                android:textSize="60sp" />
+
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <LinearLayout
+                    android:id="@+id/benchmarkData"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">

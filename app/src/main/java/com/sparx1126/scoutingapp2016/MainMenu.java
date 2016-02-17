@@ -46,6 +46,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
     public static final String ALLIANCE_SELECTED = "com.spark1126.scouting2016.ALLIANCE";
     public static final String TEAM_NAME = "com.sparx1126.scouting2016.TEAM";
     public static final String EVENT_KEY = "com.sparx1126.scoutingapp2016.EVENT";
+    public static final String NAME = "com.sparx1126.scoutingapp2016.NAME";
     private Spinner eventPicker;
     private Spinner matchPicker;
     private Spinner alliancePicker;
@@ -65,6 +66,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
+        System.setProperty("http.keepAlive", "false");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
@@ -195,7 +197,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
      *
      * @return message about download
      */
-    private AlertDialog alertUser(String title, String message) {
+    public AlertDialog alertUser(String title, String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(title);
         builder.setMessage(message);
@@ -249,7 +251,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
         final Dialog alert = createDownloadDialog("Please wait while Event data is downloaded...");
         alert.show();
         blueAlliance = BlueAlliance.getInstance(this);
-        //TODO change to 2015 when ready to use
+        //TODO change to 2016 when ready to use
         blueAlliance.loadEventList(2015, new NetworkCallback() {
             @Override
             public void handleFinishDownload(final boolean success) {
@@ -452,7 +454,6 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
     public Match getSelectedMatch() {
         Match match = null;
         if (matchPicker != null && matchPicker.getSelectedView() != null) {
-            Object o = matchPicker.getSelectedView();
             match = dbHelper.getMatch((String) matchPicker.getSelectedView().getTag());
         }
         return match;
@@ -695,6 +696,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
                 Intent i = new Intent(this, ViewData.class);
                 i.putExtra(TEAM_NAME, getSelectedTeam().getKey());
                 i.putExtra(EVENT_KEY, getSelectedEvent().getKey());
+                i.putExtra(NAME, getName());
                 startActivity(i);
             }
         } else // match scouting mode
