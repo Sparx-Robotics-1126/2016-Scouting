@@ -24,11 +24,9 @@
     <option name="TOOL_WINDOW_REGEXP_FILTER" value="false" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b6a472ce-d483-43c5-b5f1-20bdee5d30a4" name="Default" comment="tele end game scaling saved properly">
+    <list default="true" id="b6a472ce-d483-43c5-b5f1-20bdee5d30a4" name="Default" comment="benchmarking now shows &quot;no data&quot; instead of &quot;unknown&quot;">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/MainMenu.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/MainMenu.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/ViewData.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/ViewData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/content_view_data.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/content_view_data.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" />
@@ -63,12 +61,24 @@
       <file leaf-file-name="ViewData.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/ViewData.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5713012">
-              <caret line="387" column="40" selection-start-line="387" selection-start-column="40" selection-end-line="387" selection-end-column="40" />
+            <state vertical-scroll-proportion="0.56060606">
+              <caret line="137" column="57" selection-start-line="137" selection-start-column="57" selection-end-line="137" selection-end-column="57" />
               <folding>
-                <element signature="e#4416#4863#0" expanded="true" />
-                <element signature="e#4862#4863#0" expanded="true" />
+                <element signature="e#4447#5141#0" expanded="true" />
+                <element signature="e#4619#5107#0" expanded="true" />
+                <element signature="e#5106#5107#0" expanded="true" />
+                <element signature="e#5140#5141#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ActivityTransitionState.java" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-23/android/app/ActivityTransitionState.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="131" column="0" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -110,31 +120,31 @@
                 <element signature="e#13693#13716#0" expanded="true" />
                 <element signature="e#13992#14027#0" expanded="true" />
                 <element signature="e#14067#14102#0" expanded="true" />
-                <element signature="e#15657#15680#0" expanded="true" />
-                <element signature="e#16014#16037#0" expanded="true" />
-                <element signature="e#16565#16588#0" expanded="true" />
-                <element signature="e#16921#16944#0" expanded="true" />
-                <element signature="e#17469#17492#0" expanded="true" />
-                <element signature="e#17832#17855#0" expanded="true" />
-                <element signature="e#18141#18164#0" expanded="true" />
-                <element signature="e#18692#18715#0" expanded="true" />
-                <element signature="e#19056#19079#0" expanded="true" />
-                <element signature="e#19592#19615#0" expanded="true" />
-                <element signature="e#19952#19975#0" expanded="true" />
-                <element signature="e#20486#20509#0" expanded="true" />
-                <element signature="e#20844#20867#0" expanded="true" />
-                <element signature="e#21382#21405#0" expanded="true" />
-                <element signature="e#21744#21767#0" expanded="true" />
-                <element signature="e#22284#22307#0" expanded="true" />
-                <element signature="e#22648#22671#0" expanded="true" />
-                <element signature="e#23189#23212#0" expanded="true" />
-                <element signature="e#23552#23575#0" expanded="true" />
-                <element signature="e#24091#24114#0" expanded="true" />
-                <element signature="e#24453#24476#0" expanded="true" />
-                <element signature="e#24996#25019#0" expanded="true" />
-                <element signature="e#25362#25385#0" expanded="true" />
-                <element signature="e#25900#25923#0" expanded="true" />
-                <element signature="e#26260#26283#0" expanded="true" />
+                <element signature="e#15673#15696#0" expanded="true" />
+                <element signature="e#16030#16053#0" expanded="true" />
+                <element signature="e#16581#16604#0" expanded="true" />
+                <element signature="e#16937#16960#0" expanded="true" />
+                <element signature="e#17485#17508#0" expanded="true" />
+                <element signature="e#17848#17871#0" expanded="true" />
+                <element signature="e#18157#18180#0" expanded="true" />
+                <element signature="e#18708#18731#0" expanded="true" />
+                <element signature="e#19072#19095#0" expanded="true" />
+                <element signature="e#19608#19631#0" expanded="true" />
+                <element signature="e#19968#19991#0" expanded="true" />
+                <element signature="e#20502#20525#0" expanded="true" />
+                <element signature="e#20860#20883#0" expanded="true" />
+                <element signature="e#21398#21421#0" expanded="true" />
+                <element signature="e#21760#21783#0" expanded="true" />
+                <element signature="e#22300#22323#0" expanded="true" />
+                <element signature="e#22664#22687#0" expanded="true" />
+                <element signature="e#23205#23228#0" expanded="true" />
+                <element signature="e#23568#23591#0" expanded="true" />
+                <element signature="e#24107#24130#0" expanded="true" />
+                <element signature="e#24469#24492#0" expanded="true" />
+                <element signature="e#25012#25035#0" expanded="true" />
+                <element signature="e#25378#25401#0" expanded="true" />
+                <element signature="e#25916#25939#0" expanded="true" />
+                <element signature="e#26276#26299#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -157,7 +167,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/MatchScouting.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="53" column="46" selection-start-line="53" selection-start-column="46" selection-end-line="53" selection-end-column="46" />
+              <caret line="128" column="0" selection-start-line="128" selection-start-column="0" selection-end-line="143" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -230,7 +240,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/org/gosparx/scouting/aerialassist/DatabaseHelper.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="1134" column="5" selection-start-line="1134" selection-start-column="5" selection-end-line="1134" selection-end-column="5" />
+              <caret line="1125" column="34" selection-start-line="1125" selection-start-column="34" selection-end-line="1125" selection-end-column="34" />
               <folding>
                 <element signature="e#23085#23086#0" expanded="true" />
                 <element signature="e#23141#23142#0" expanded="true" />
@@ -2211,6 +2221,46 @@
               <option name="myItemId" value="java" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="aerialassist" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ScoutingApp2016" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="aerialassist" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="networking" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ScoutingApp2016" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -2807,12 +2857,6 @@
       <option name="number" value="Default" />
       <updated>1452455149837</updated>
     </task>
-    <task id="LOCAL-00008" summary="Began implementing Parcelable">
-      <created>1453251607749</created>
-      <option name="number" value="00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1453251607749</updated>
-    </task>
     <task id="LOCAL-00009" summary="Radio Buttons and main menu changes">
       <created>1453579624159</created>
       <option name="number" value="00009" />
@@ -3101,7 +3145,13 @@
       <option name="project" value="LOCAL" />
       <updated>1455582888994</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="benchmarking now shows &quot;no data&quot; instead of &quot;unknown&quot;">
+      <created>1455748274996</created>
+      <option name="number" value="00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1455748274996</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TodoView">
@@ -3189,7 +3239,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="basic layout for benchmarking done -- expand later" />
     <MESSAGE value="Benchmarking screen working -- need to clean up ui and test for database saves" />
     <MESSAGE value="Cleaned up UI; still need to work out saving issues" />
     <MESSAGE value="drives fragment getscoutinginfo method update" />
@@ -3214,7 +3263,8 @@
     <MESSAGE value="auto started with boulder save issue corrected" />
     <MESSAGE value="reformatted code; clarified transport config" />
     <MESSAGE value="tele end game scaling saved properly" />
-    <option name="LAST_COMMIT_MESSAGE" value="tele end game scaling saved properly" />
+    <MESSAGE value="benchmarking now shows &quot;no data&quot; instead of &quot;unknown&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="benchmarking now shows &quot;no data&quot; instead of &quot;unknown&quot;" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -3223,18 +3273,11 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="119" />
+      <option name="time" value="122" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/fragments/Benchmarking/SoftwareFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="146" column="0" selection-start-line="146" selection-start-column="0" selection-end-line="146" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-23/android/app/Activity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3588,29 +3631,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/org/gosparx/scouting/aerialassist/DatabaseHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1134" column="5" selection-start-line="1134" selection-start-column="5" selection-end-line="1134" selection-end-column="5" />
-          <folding>
-            <element signature="e#23085#23086#0" expanded="true" />
-            <element signature="e#23141#23142#0" expanded="true" />
-            <element signature="e#56711#56721#0" expanded="true" />
-            <element signature="e#58222#58236#0" expanded="true" />
-            <element signature="e#58782#58792#0" expanded="true" />
-            <element signature="e#59331#59345#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/MatchScouting.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="53" column="46" selection-start-line="53" selection-start-column="46" selection-end-line="53" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/Benchmarking.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3679,31 +3699,31 @@
             <element signature="e#13693#13716#0" expanded="true" />
             <element signature="e#13992#14027#0" expanded="true" />
             <element signature="e#14067#14102#0" expanded="true" />
-            <element signature="e#15657#15680#0" expanded="true" />
-            <element signature="e#16014#16037#0" expanded="true" />
-            <element signature="e#16565#16588#0" expanded="true" />
-            <element signature="e#16921#16944#0" expanded="true" />
-            <element signature="e#17469#17492#0" expanded="true" />
-            <element signature="e#17832#17855#0" expanded="true" />
-            <element signature="e#18141#18164#0" expanded="true" />
-            <element signature="e#18692#18715#0" expanded="true" />
-            <element signature="e#19056#19079#0" expanded="true" />
-            <element signature="e#19592#19615#0" expanded="true" />
-            <element signature="e#19952#19975#0" expanded="true" />
-            <element signature="e#20486#20509#0" expanded="true" />
-            <element signature="e#20844#20867#0" expanded="true" />
-            <element signature="e#21382#21405#0" expanded="true" />
-            <element signature="e#21744#21767#0" expanded="true" />
-            <element signature="e#22284#22307#0" expanded="true" />
-            <element signature="e#22648#22671#0" expanded="true" />
-            <element signature="e#23189#23212#0" expanded="true" />
-            <element signature="e#23552#23575#0" expanded="true" />
-            <element signature="e#24091#24114#0" expanded="true" />
-            <element signature="e#24453#24476#0" expanded="true" />
-            <element signature="e#24996#25019#0" expanded="true" />
-            <element signature="e#25362#25385#0" expanded="true" />
-            <element signature="e#25900#25923#0" expanded="true" />
-            <element signature="e#26260#26283#0" expanded="true" />
+            <element signature="e#15673#15696#0" expanded="true" />
+            <element signature="e#16030#16053#0" expanded="true" />
+            <element signature="e#16581#16604#0" expanded="true" />
+            <element signature="e#16937#16960#0" expanded="true" />
+            <element signature="e#17485#17508#0" expanded="true" />
+            <element signature="e#17848#17871#0" expanded="true" />
+            <element signature="e#18157#18180#0" expanded="true" />
+            <element signature="e#18708#18731#0" expanded="true" />
+            <element signature="e#19072#19095#0" expanded="true" />
+            <element signature="e#19608#19631#0" expanded="true" />
+            <element signature="e#19968#19991#0" expanded="true" />
+            <element signature="e#20502#20525#0" expanded="true" />
+            <element signature="e#20860#20883#0" expanded="true" />
+            <element signature="e#21398#21421#0" expanded="true" />
+            <element signature="e#21760#21783#0" expanded="true" />
+            <element signature="e#22300#22323#0" expanded="true" />
+            <element signature="e#22664#22687#0" expanded="true" />
+            <element signature="e#23205#23228#0" expanded="true" />
+            <element signature="e#23568#23591#0" expanded="true" />
+            <element signature="e#24107#24130#0" expanded="true" />
+            <element signature="e#24469#24492#0" expanded="true" />
+            <element signature="e#25012#25035#0" expanded="true" />
+            <element signature="e#25378#25401#0" expanded="true" />
+            <element signature="e#25916#25939#0" expanded="true" />
+            <element signature="e#26276#26299#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -3775,13 +3795,46 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-23/android/app/ActivityTransitionState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="131" column="0" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/MatchScouting.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="128" column="0" selection-start-line="128" selection-start-column="0" selection-end-line="143" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/org/gosparx/scouting/aerialassist/DatabaseHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1125" column="34" selection-start-line="1125" selection-start-column="34" selection-end-line="1125" selection-end-column="34" />
+          <folding>
+            <element signature="e#23085#23086#0" expanded="true" />
+            <element signature="e#23141#23142#0" expanded="true" />
+            <element signature="e#56711#56721#0" expanded="true" />
+            <element signature="e#58222#58236#0" expanded="true" />
+            <element signature="e#58782#58792#0" expanded="true" />
+            <element signature="e#59331#59345#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/ViewData.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5713012">
-          <caret line="387" column="40" selection-start-line="387" selection-start-column="40" selection-end-line="387" selection-end-column="40" />
+        <state vertical-scroll-proportion="0.56060606">
+          <caret line="137" column="57" selection-start-line="137" selection-start-column="57" selection-end-line="137" selection-end-column="57" />
           <folding>
-            <element signature="e#4416#4863#0" expanded="true" />
-            <element signature="e#4862#4863#0" expanded="true" />
+            <element signature="e#4447#5141#0" expanded="true" />
+            <element signature="e#4619#5107#0" expanded="true" />
+            <element signature="e#5106#5107#0" expanded="true" />
+            <element signature="e#5140#5141#0" expanded="true" />
           </folding>
         </state>
       </provider>

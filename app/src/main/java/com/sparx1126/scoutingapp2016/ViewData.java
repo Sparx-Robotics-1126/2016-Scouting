@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -36,6 +37,7 @@ public class ViewData extends AppCompatActivity {
         Intent i = getIntent();
 
         //match fields
+
         low = (TextView) findViewById(R.id.lowAverage);
         high = (TextView) findViewById(R.id.highAverage);
         scale = (TextView) findViewById(R.id.scaleAverage);
@@ -92,15 +94,20 @@ public class ViewData extends AppCompatActivity {
         } else {
             s.getBenchmarking(dbHelper.getTeam(teamKey), dbHelper.getEvent(eventKey), new NetworkCallback() {
                 @Override
-                public void handleFinishDownload(boolean success) {
-                    if (success) {
+                public void handleFinishDownload(final boolean success) {
+                    ViewData.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (success) {
 
-                        if (dbHelper.doesBenchmarkingExist(in)) {
-                            benchmarkList = dbHelper.getBenchmarking(eventKey, teamKey);
+                                if (dbHelper.doesBenchmarkingExist(in)) {
+                                    benchmarkList = dbHelper.getBenchmarking(eventKey, teamKey);
 
+                                }
+                            }
+                            initFromBenchmarkList(benchmarkList);
                         }
-                    }
-                    initFromBenchmarkList(benchmarkList);
+                    });
                 }
             });
         }
@@ -175,49 +182,73 @@ public class ViewData extends AppCompatActivity {
         benchmarkNoData.setVisibility(View.VISIBLE);
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            scoutList = null;
+            benchmarkList = null;
+            this.finish();
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
     private class Data {
         public double highAvg;
         public int highComp;
         public int highAtt;
         public int highTimes;
+
         public double lowAvg;
         public int lowComp;
         public int lowAtt;
         public int lowTimes;
+
         public double bouldersAcqFloor;
         public int floorTimes;
+
         public double bouldersAcqHuman;
         public int humanTimes;
+
         public int pCross;
         public int pTimes;
         public double pAvg;
+
         public int cCross;
         public int cTimes;
         public double cAvg;
+
         public int mCross;
         public int mTimes;
         public double mAvg;
+
         public int rCross;
         public int rTimes;
         public double rAvg;
+
         public int dCross;
         public int dTimes;
         public double dAvg;
+
         public int spCross;
         public int spTimes;
         public double spAvg;
+
         public int rwCross;
         public int rwTimes;
         public double rwAvg;
+
         public int rtCross;
         public int rtTimes;
         public double rtAvg;
+
         public int lbCross;
         public int lbTimes;
         public double lbAvg;
+
         public int defTimes;
         public int defTotal;
         public double defAvg;
+
         public boolean foundScouting;
 
         public Data() {
