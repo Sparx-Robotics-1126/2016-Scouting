@@ -94,20 +94,15 @@ public class ViewData extends AppCompatActivity {
         } else {
             s.getBenchmarking(dbHelper.getTeam(teamKey), dbHelper.getEvent(eventKey), new NetworkCallback() {
                 @Override
-                public void handleFinishDownload(final boolean success) {
-                    ViewData.this.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (success) {
+                public void handleFinishDownload(boolean success) {
+                    if (success) {
 
-                                if (dbHelper.doesBenchmarkingExist(in)) {
-                                    benchmarkList = dbHelper.getBenchmarking(eventKey, teamKey);
+                        if (dbHelper.doesBenchmarkingExist(in)) {
+                            benchmarkList = dbHelper.getBenchmarking(eventKey, teamKey);
 
-                                }
-                            }
-                            initFromBenchmarkList(benchmarkList);
                         }
-                    });
+                    }
+                    initFromBenchmarkList(benchmarkList);
                 }
             });
         }
@@ -119,10 +114,10 @@ public class ViewData extends AppCompatActivity {
         } else text.setText("No");
     }
 
-    private void initFromBenchmarkList(List<ScoutingInfo> benckmarkList) {
+    private void initFromBenchmarkList(List<ScoutingInfo> benchmarkList) {
         Data data = new Data();
         try {
-            ScoutingInfo info = benchmarkList.get(0);
+            ScoutingInfo info = benchmarkList.get(benchmarkList.size() - 1); // get the most recent benchmarking data
             benchmarkData.setVisibility(View.VISIBLE);
             benchmarkNoData.setVisibility(View.GONE);
             setYesNo(lowAble, info.getCanScoreInLowGoal());
