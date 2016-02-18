@@ -23,32 +23,31 @@ import java.util.List;
  */
 public class SparxScouting {
     private static final String TAG = "SparxScouting";
-    private static final String BASE_URL = "http://10.96.38.142:10080";
+    private static final String BASE_URL = "http://10.96.46.78:8080";
     private static final String POST_SCOUTING = "/api/2016/v1/ScoutingData";
     private static final String POST_BENCHMARKING = "/api/2016/v1/BenchmarkingData";
     private static final String GET_SCOUTING_BY_TEAM = "/api/20165/v1/ScoutingData/{TEAM_KEY}";
     private static final String GET_SCOUTING_BY_TEAM_EVENT = "/api/2016/v1/ScoutingData/{TEAM_KEY}/{EVENT_KEY}";
     private static final String GET_SCOUTING_BY_TEAM_EVENT_MATCH = "/api/2016/v1/ScoutingData/{TEAM_KEY}/{EVENT_KEY}/{MATCH_KEY}";
     private static final String GET_BENCHMARKING_BY_TEAM_EVENT = "/api/2016/v1/BenchmarkingData/{TEAM_KEY}/{EVENT_KEY}";
-
+    public static SparxScouting sparxScouting;
     private Context context;
     private Ion ion;
     private DatabaseHelper dbHelper;
 
-    public static SparxScouting sparxScouting;
-    public static synchronized SparxScouting getInstance(Context context){
-        if(sparxScouting == null)
-            sparxScouting = new SparxScouting(context);
-        return sparxScouting;
-    }
-
-    private SparxScouting(Context context){
+    private SparxScouting(Context context) {
         this.context = context;
         ion = Ion.getInstance(context, TAG);
         ion.configure().setLogging(TAG, Log.DEBUG);
         Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
         ion.configure().setGson(gson);
         dbHelper = DatabaseHelper.getInstance(context);
+    }
+
+    public static synchronized SparxScouting getInstance(Context context){
+        if(sparxScouting == null)
+            sparxScouting = new SparxScouting(context);
+        return sparxScouting;
     }
 
     public void postAllScouting(final NetworkCallback callback) {
