@@ -935,6 +935,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return retVal;
     }
 
+    public boolean doesScoutingExistNoNameOrMatch(Scouting scouting) {
+        boolean retVal = false;
+        SQLiteDatabase db = getReadableDatabase();
+
+        Cursor c = db.query(TABLE_SCOUTING,
+                new String[]{"COUNT(*)"},
+                TABLE_SCOUTING_TEAM_KEY + " = ? AND " + TABLE_SCOUTING_EVENT_KEY + " = ?",
+                new String[]{scouting.getTeamKey(), scouting.getEventKey()},
+                null, null, null);
+
+        if (c != null && c.moveToNext())
+            retVal = c.getInt(0) > 0;
+
+        if (c != null) {
+            c.close();
+        }
+        return retVal;
+    }
+
     public void updateScouting(Scouting scouting){
         SQLiteDatabase db = getWritableDatabase();
 

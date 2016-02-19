@@ -21,13 +21,15 @@ import java.util.List;
 public class ViewData extends AppCompatActivity {
     private static List<Scouting> scoutList;
     private static List<ScoutingInfo> benchmarkList;
-    private String name;
-    private DatabaseHelper dbHelper;
-    private TextView low, high, scale, def, portcullis, cheval, moat, ramparts, drawbridge, sallyport,
+    private static TextView low, high, scale, def, portcullis, cheval, moat, ramparts, drawbridge, sallyport,
             rockwall, roughterrain, lowbar, highAble, lowAble, boulderSource, portCross, chevCross,
             moatCross, ramCross, drawCross, salCross, rockCross, roughCross, lowCross;
-    private LinearLayout benchmarkData;
-    private TextView benchmarkNoData;
+    private static LinearLayout benchmarkData;
+    private static LinearLayout scoutData;
+    private static TextView benchmarkNoData, scoutNoData;
+    private static TextView benchmarkLoad, scoutLoad;
+    private String name;
+    private DatabaseHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +39,9 @@ public class ViewData extends AppCompatActivity {
         Intent i = getIntent();
 
         //match fields
-
+        scoutNoData = (TextView) findViewById(R.id.scoutingNoData);
+        scoutData = (LinearLayout) findViewById(R.id.scoutingData);
+        scoutLoad = (TextView) findViewById(R.id.scoutingLoading);
         low = (TextView) findViewById(R.id.lowAverage);
         high = (TextView) findViewById(R.id.highAverage);
         scale = (TextView) findViewById(R.id.scaleAverage);
@@ -52,10 +56,16 @@ public class ViewData extends AppCompatActivity {
         roughterrain = (TextView) findViewById(R.id.roughterrainAverage);
         lowbar = (TextView) findViewById(R.id.lowbarAverage);
 
+        //visibility
+        scoutLoad.setVisibility(View.VISIBLE);
+        scoutData.setVisibility(View.GONE);
+        scoutNoData.setVisibility(View.GONE);
+
         //benchmarking fields
 
         benchmarkData = (LinearLayout) findViewById(R.id.benchmarkData);
         benchmarkNoData = (TextView) findViewById(R.id.benchmarkNoData);
+        benchmarkLoad = (TextView) findViewById(R.id.benchmarkLoading);
         lowAble = (TextView) findViewById(R.id.canLow);
         highAble = (TextView) findViewById(R.id.canHigh);
         boulderSource = (TextView) findViewById(R.id.boulderSource);
@@ -69,6 +79,9 @@ public class ViewData extends AppCompatActivity {
         roughCross = (TextView) findViewById(R.id.roughterrainAble);
         lowCross = (TextView) findViewById(R.id.lowbarAble);
 
+        //visibility
+        benchmarkLoad.setVisibility(View.VISIBLE);
+        benchmarkData.setVisibility(View.GONE);
         benchmarkNoData.setVisibility(View.GONE);
 
         final String teamKey = i.getStringExtra(MainMenu.TEAM_NAME);
@@ -79,11 +92,14 @@ public class ViewData extends AppCompatActivity {
 
         toolbar.setTitle("Viewing data for Team " + teamName);
         SparxScouting s = SparxScouting.getInstance(this);
-
-
         dbHelper = DatabaseHelper.getInstance(this);
+        s.getScouting(dbHelper.getTeam(teamKey), dbHelper.getEvent(eventKey), new NetworkCallback() {
+            @Override
+            public void handleFinishDownload(boolean success) {
+
+            }
+        });
         scoutList = dbHelper.getScouting(eventKey, teamKey);
-        //TODO find a way to get scouting data from online database without causing errors
         final ScoutingInfo in = new ScoutingInfo();
         in.setEventKey(eventKey);
         in.setTeamKey(teamKey);
@@ -120,6 +136,7 @@ public class ViewData extends AppCompatActivity {
             ScoutingInfo info = benchmarkList.get(benchmarkList.size() - 1); // get the most recent benchmarking data
             benchmarkData.setVisibility(View.VISIBLE);
             benchmarkNoData.setVisibility(View.GONE);
+            benchmarkLoad.setVisibility(View.GONE);
             setYesNo(lowAble, info.getCanScoreInLowGoal());
             setYesNo(highAble, info.getCanScoreInHighGoal());
             setYesNo(portCross, info.getCanCrossPortcullis());
@@ -142,38 +159,97 @@ public class ViewData extends AppCompatActivity {
             setNoDataBenchmarking();
         }
 
-        data.computeAverages();
-        //TODO get scaling info from tele fragment
-        String lowInfo = String.valueOf((int) data.lowAvg) + " % (" + data.lowComp + " out of " + data.lowAtt + " attempts)";
-        String highInfo = String.valueOf((int) data.highAvg) + " % (" + data.highComp + " out of " + data.highAtt + " attempts)";
-        String defInfo = String.valueOf(data.defAvg) + " % (" + data.defTotal + " out of " + data.defTimes + " matches)";
-        String pInfo = String.valueOf(data.pAvg) + "(" + data.pCross + " times in " + data.pTimes + " matches)";
-        String cInfo = String.valueOf(data.cAvg) + "(" + data.cCross + " times in " + data.cTimes + " matches)";
-        String mInfo = String.valueOf(data.mAvg) + "(" + data.mCross + " times in " + data.mTimes + " matches)";
-        String rInfo = String.valueOf(data.rAvg) + "(" + data.rCross + " times  in " + data.rTimes + " matches)";
-        String dInfo = String.valueOf(data.dAvg) + "(" + data.dCross + " times in " + data.dTimes + " matches)";
-        String spInfo = String.valueOf(data.spAvg) + "(" + data.spCross + " times in " + data.spTimes + " matches)";
-        String rwInfo = String.valueOf(data.rwAvg) + "(" + data.rwCross + " times in " + data.rwTimes + " matches)";
-        String rtInfo = String.valueOf(data.rtAvg) + "(" + data.rtCross + " times in " + data.rtTimes + " matches)";
-        String lbInfo = String.valueOf(data.lbAvg) + "(" + data.lbCross + " times in " + data.lbTimes + " matches)";
+        if (data.computeAverages()) {
+            //TODO get scaling info from tele fragment
+            String lowInfo = String.valueOf((int) data.lowAvg) + " % (" + data.lowComp + " out of " + data.lowAtt + " attempts)";
+            String highInfo = String.valueOf((int) data.highAvg) + " % (" + data.highComp + " out of " + data.highAtt + " attempts)";
+            String defInfo = String.valueOf(data.defAvg) + " % (" + data.defTotal + " out of " + data.defTimes + " matches)";
+            String pInfo = String.valueOf(data.pAvg) + "(" + data.pCross + " times in " + data.pTimes + " matches)";
+            String cInfo = String.valueOf(data.cAvg) + "(" + data.cCross + " times in " + data.cTimes + " matches)";
+            String mInfo = String.valueOf(data.mAvg) + "(" + data.mCross + " times in " + data.mTimes + " matches)";
+            String rInfo = String.valueOf(data.rAvg) + "(" + data.rCross + " times  in " + data.rTimes + " matches)";
+            String dInfo = String.valueOf(data.dAvg) + "(" + data.dCross + " times in " + data.dTimes + " matches)";
+            String spInfo = String.valueOf(data.spAvg) + "(" + data.spCross + " times in " + data.spTimes + " matches)";
+            String rwInfo = String.valueOf(data.rwAvg) + "(" + data.rwCross + " times in " + data.rwTimes + " matches)";
+            String rtInfo = String.valueOf(data.rtAvg) + "(" + data.rtCross + " times in " + data.rtTimes + " matches)";
+            String lbInfo = String.valueOf(data.lbAvg) + "(" + data.lbCross + " times in " + data.lbTimes + " matches)";
 
-        low.setText(lowInfo);
-        high.setText(highInfo);
-        def.setText(defInfo);
-        portcullis.setText(pInfo);
-        cheval.setText(cInfo);
-        moat.setText(mInfo);
-        ramparts.setText(rInfo);
-        drawbridge.setText(dInfo);
-        sallyport.setText(spInfo);
-        rockwall.setText(rwInfo);
-        roughterrain.setText(rtInfo);
-        lowbar.setText(lbInfo);
+            if (data.lowTimes == 0) {
+                low.setText("No data collected");
+            } else {
+                low.setText(lowInfo);
+            }
+            if (data.highTimes == 0) {
+                high.setText("No data collected");
+            } else {
+                high.setText(highInfo);
+            }
+            if (data.defTimes == (int) Math.round(data.defAvg)) {
+                if (data.defTimes == 0) {
+                    def.setText("never");
+                } else def.setText("always");
+            } else {
+                def.setText(defInfo);
+            }
+            if (data.pTimes == 0) {
+                portcullis.setText("No data collected");
+            } else {
+                portcullis.setText(pInfo);
+            }
+            if (data.cTimes == 0) {
+                cheval.setText("No data collected");
+            } else {
+                cheval.setText(cInfo);
+            }
+            if (data.mTimes == 0) {
+                moat.setText("No data collected");
+            } else {
+                moat.setText(mInfo);
+            }
+            if (data.rTimes == 0) {
+                ramparts.setText("No data collected");
+            } else {
+                ramparts.setText(rInfo);
+            }
+            if (data.dTimes == 0) {
+                drawbridge.setText("No data collected");
+            } else {
+                drawbridge.setText(dInfo);
+            }
+            if (data.spTimes == 0) {
+                sallyport.setText(spInfo);
+            } else {
+                sallyport.setText(spInfo);
+            }
+            if (data.rwTimes == 0) {
+                rockwall.setText("No data collected");
+            } else {
+                rockwall.setText(rwInfo);
+            }
+            if (data.rtTimes == 0) {
+                roughterrain.setText("No data collected");
+            } else {
+                roughterrain.setText(rtInfo);
+            }
+            if (data.lbCross == 0) {
+                lowbar.setText("No data collected");
+            } else {
+                lowbar.setText(lbInfo);
+            }
+            scoutNoData.setVisibility(View.GONE);
+            scoutLoad.setVisibility(View.GONE);
+            scoutData.setVisibility(View.VISIBLE);
+        } else {
+            scoutData.setVisibility(View.GONE);
+            scoutLoad.setVisibility(View.GONE);
+            scoutNoData.setVisibility(View.VISIBLE);
+        }
 
     }
 
     private void setNoDataBenchmarking() {
         benchmarkData.setVisibility(View.GONE);
+        benchmarkLoad.setVisibility(View.GONE);
         benchmarkNoData.setVisibility(View.VISIBLE);
     }
 
@@ -244,7 +320,6 @@ public class ViewData extends AppCompatActivity {
         public int defTotal;
         public double defAvg;
 
-        public boolean foundScouting;
 
         public Data() {
 
@@ -289,132 +364,134 @@ public class ViewData extends AppCompatActivity {
             lbAvg = 0;
             defTimes = 0;
             defAvg = 0;
-            foundScouting = false;
 
         }
 
-        public void computeAverages() {
+        public boolean computeAverages() {
+            if (scoutList == null || scoutList.isEmpty()) {
 
-            for (int i = 0; i < scoutList.size(); i++) {
+                return false;
+            } else {
+                for (int i = 0; i < scoutList.size(); i++) {
 
-                Scouting sc = scoutList.get(i);
-                if (dbHelper.doesScoutingExist(sc)) {
-                    foundScouting = true;
-                    ScoutingTele scout = sc.getTele();
+                    Scouting sc = scoutList.get(i);
+                    if (dbHelper.doesScoutingExist(sc)) {
+                        ScoutingTele scout = sc.getTele();
 
-                    if (scout.getHighGoalAttempts() != -1) {
-                        if (scout.getHighGoalAttempts() != 0) {
-                            highComp += scout.getHighGoalsScored();
-                            highAtt += scout.getHighGoalAttempts();
-                            highAvg += (double) highComp / highAtt;
+                        if (scout.getHighGoalAttempts() != -1) {
+                            if (scout.getHighGoalAttempts() != 0) {
+                                highComp += scout.getHighGoalsScored();
+                                highAtt += scout.getHighGoalAttempts();
+                                highAvg += (double) highComp / highAtt;
+                            }
+                            highTimes++;
                         }
-                        highTimes++;
-                    }
 
-                    if (scout.getLowGoalAttempts() != -1) {
+                        if (scout.getLowGoalAttempts() != -1) {
 
-                        if (scout.getLowGoalAttempts() != 0) {
-                            lowComp += scout.getLowGoalsScored();
-                            lowAtt += scout.getLowGoalAttempts();
-                            lowAvg += (double) lowComp / lowAtt;
+                            if (scout.getLowGoalAttempts() != 0) {
+                                lowComp += scout.getLowGoalsScored();
+                                lowAtt += scout.getLowGoalAttempts();
+                                lowAvg += (double) lowComp / lowAtt;
 
+                            }
+                            lowTimes++;
                         }
-                        lowTimes++;
+                        if (scout.getPlaysDefense()) {
+                            defTotal++;
+                        }
+                        defTimes++;
+                        if (scout.getPortcullisCrosses() != -1) {
+                            pCross += scout.getPortcullisCrosses();
+                            pTimes++;
+                        }
+                        if (scout.getChevalCrosses() != -1) {
+                            cCross += scout.getPortcullisCrosses();
+                            cTimes++;
+                        }
+                        if (scout.getMoatCrosses() != -1) {
+                            mCross += scout.getMoatCrosses();
+                            mTimes++;
+                        }
+                        if (scout.getRampartsCrosses() != -1) {
+                            rCross += scout.getRampartsCrosses();
+                            rTimes++;
+                        }
+                        if (scout.getDrawbridgeCrosses() != -1) {
+                            dCross += scout.getDrawbridgeCrosses();
+                            dTimes++;
+                        }
+                        if (scout.getSallyportCrosses() != -1) {
+                            spCross += scout.getSallyportCrosses();
+                            spTimes++;
+                        }
+                        if (scout.getRockwallCrosses() != -1) {
+                            rwCross += scout.getRockwallCrosses();
+                            rwTimes++;
+                        }
+                        if (scout.getRoughterrainCrosses() != -1) {
+                            rtCross += scout.getRoughterrainCrosses();
+                            rtTimes++;
+                        }
+                        if (scout.getLowbarCrosses() != -1) {
+                            lbCross += scout.getLowbarCrosses();
+                            lbTimes++;
+                        }
                     }
-                    if (scout.getPlaysDefense()) {
-                        defTotal++;
+                    if (highTimes != 0) {
+                        highAvg /= highTimes;
+                        highAvg *= 100;
+                        highAvg = Math.round(highAvg);
+                    } else highAvg = 0;
+                    if (lowTimes != 0) {
+                        lowAvg /= lowTimes;
+                        lowAvg *= 100;
+                        lowAvg = Math.round(lowAvg);
+                    } else lowAvg = 0;
+                    if (defTotal != 0) {
+                        defAvg = (double) defTotal / defTimes;
+                        defAvg *= 100;
+                        defAvg = Math.round(defAvg);
+                    } else defAvg = 0;
+                    if (pTimes != 0) {
+                        pAvg = (double) pCross / pTimes;
+                        pAvg = Math.round(pAvg);
                     }
-                    defTimes++;
-                    if (scout.getPortcullisCrosses() != -1) {
-                        pCross += scout.getPortcullisCrosses();
-                        pTimes++;
+                    if (cTimes != 0) {
+                        cAvg = cCross / cTimes;
+                        cAvg = Math.round(cAvg);
                     }
-                    if (scout.getChevalCrosses() != -1) {
-                        cCross += scout.getPortcullisCrosses();
-                        cTimes++;
+                    if (mTimes != 0) {
+                        mAvg = mCross / mTimes;
+                        mAvg = Math.round(mAvg);
                     }
-                    if (scout.getMoatCrosses() != -1) {
-                        mCross += scout.getMoatCrosses();
-                        mTimes++;
+                    if (rTimes != 0) {
+                        rAvg = rCross / rTimes;
+                        rAvg = Math.round(rAvg);
                     }
-                    if (scout.getRampartsCrosses() != -1) {
-                        rCross += scout.getRampartsCrosses();
-                        rTimes++;
+                    if (dTimes != 0) {
+                        dAvg = dCross / dTimes;
+                        dAvg = Math.round(dAvg);
                     }
-                    if (scout.getDrawbridgeCrosses() != -1) {
-                        dCross += scout.getDrawbridgeCrosses();
-                        dTimes++;
+                    if (spTimes != 0) {
+                        spAvg = spCross / spTimes;
+                        spAvg = Math.round(spAvg);
                     }
-                    if (scout.getSallyportCrosses() != -1) {
-                        spCross += scout.getSallyportCrosses();
-                        spTimes++;
+                    if (rwTimes != 0) {
+                        rwAvg = rwCross / rwTimes;
+                        rwAvg = Math.round(rwAvg);
                     }
-                    if (scout.getRockwallCrosses() != -1) {
-                        rwCross += scout.getRockwallCrosses();
-                        rwTimes++;
+                    if (rtTimes != 0) {
+                        rtAvg = rtCross / rtTimes;
+                        rtAvg = Math.round(rtAvg);
                     }
-                    if (scout.getRoughterrainCrosses() != -1) {
-                        rtCross += scout.getRoughterrainCrosses();
-                        rtTimes++;
+                    if (lbTimes != 0) {
+                        lbAvg = lbCross / lbTimes;
+                        lbAvg = Math.round(lbAvg);
                     }
-                    if (scout.getLowbarCrosses() != -1) {
-                        lbCross += scout.getLowbarCrosses();
-                        lbTimes++;
-                    }
-                }
-                if (highTimes != 0) {
-                    highAvg /= highTimes;
-                    highAvg *= 100;
-                    highAvg = Math.round(highAvg);
-                } else highAvg = 0;
-                if (lowTimes != 0) {
-                    lowAvg /= lowTimes;
-                    lowAvg *= 100;
-                    lowAvg = Math.round(lowAvg);
-                } else lowAvg = 0;
-                if (defTotal != 0) {
-                    defAvg = (double) defTotal / defTimes;
-                    defAvg *= 100;
-                    defAvg = Math.round(defAvg);
-                } else defAvg = 0;
-                if (pTimes != 0) {
-                    pAvg = (double) pCross / pTimes;
-                    pAvg = Math.round(pAvg);
-                }
-                if (cTimes != 0) {
-                    cAvg = cCross / cTimes;
-                    cAvg = Math.round(cAvg);
-                }
-                if (mTimes != 0) {
-                    mAvg = mCross / mTimes;
-                    mAvg = Math.round(mAvg);
-                }
-                if (rTimes != 0) {
-                    rAvg = rCross / rTimes;
-                    rAvg = Math.round(rAvg);
-                }
-                if (dTimes != 0) {
-                    dAvg = dCross / dTimes;
-                    dAvg = Math.round(dAvg);
-                }
-                if (spTimes != 0) {
-                    spAvg = spCross / spTimes;
-                    spAvg = Math.round(spAvg);
-                }
-                if (rwTimes != 0) {
-                    rwAvg = rwCross / rwTimes;
-                    rwAvg = Math.round(rwAvg);
-                }
-                if (rtTimes != 0) {
-                    rtAvg = rtCross / rtTimes;
-                    rtAvg = Math.round(rtAvg);
-                }
-                if (lbTimes != 0) {
-                    lbAvg = lbCross / lbTimes;
-                    lbAvg = Math.round(lbAvg);
                 }
             }
-
+            return true;
         }
     }
 }

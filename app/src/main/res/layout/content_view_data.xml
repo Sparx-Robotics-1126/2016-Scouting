@@ -22,10 +22,26 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:text="Match Data"
                 android:textAlignment="center"
                 android:textSize="@dimen/data_text_size" />
+
+            <TextView
+                android:id="@+id/scoutingNoData"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="NO DATA"
+                android:textAlignment="center"
+                android:textSize="60sp" />
+
+            <TextView
+                android:id="@+id/scoutingLoading"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="LOADING..."
+                android:textAlignment="center"
+                android:textSize="60sp" />
 
             <ScrollView
                 android:layout_width="match_parent"
@@ -35,6 +51,7 @@
                 android:scrollbars="vertical">
 
                 <LinearLayout
+                    android:id="@+id/scoutingData"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
@@ -320,6 +337,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="NO DATA"
+                android:textAlignment="center"
+                android:textSize="60sp" />
+
+            <TextView
+                android:id="@+id/benchmarkLoading"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="LOADING..."
                 android:textAlignment="center"
                 android:textSize="60sp" />
 
