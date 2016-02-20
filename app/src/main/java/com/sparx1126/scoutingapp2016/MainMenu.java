@@ -74,6 +74,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         downloadEventSpinnerDataIfNecessary();
+        //hook up UI elements
         blueAlliance = BlueAlliance.getInstance(this);
         matchScout = (LinearLayout) findViewById(R.id.matchScoutLayout);
         matchScout.setVisibility(View.GONE);
@@ -153,6 +154,10 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
         blueAlliance = BlueAlliance.getInstance(this);
         dbHelper = DatabaseHelper.getInstance(this);
     }
+
+    /**
+     * uploads scouting data to the server
+     */
     private void uploadScoutingData() {
         final Dialog alert = createUploadDialog("Please wait while scouting data is uploaded...");
         alert.show();
@@ -174,6 +179,9 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
         });
     }
 
+    /**
+     * uploads benchmarking data to the server
+     */
     private void uploadBenchmarkingData() {
         final Dialog alert = createUploadDialog("Please wait while benchmarking data is uploaded...");
         alert.show();
@@ -260,6 +268,9 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
         }
     }
 
+    /**
+     * checks if match data needs to be downloaded for an event
+     */
     private void downloadMatchSpinnerDataIfNecessary() {
         // see if we have any matches for the selected event
         Event selectedEvent = this.getSelectedEvent();
@@ -272,6 +283,9 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
         }
     }
 
+    /**
+     * checks if team data needs to be downloaded for an event
+     */
     private void downloadTeamDataIfNecessary() {
         Event selectedEvent = this.getSelectedEvent();
         if (selectedEvent != null) {
@@ -550,6 +564,11 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
         return result;
     }
 
+    /**
+     * gets the name of scouter out of the text field at the top of screen
+     *
+     * @return the name of the scouter
+     */
     private String getName() {
         return name.getText().toString();
     }
@@ -715,6 +734,18 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
 
         SavePreferences();
 
+        //make sure data view comes first
+        if (((RadioButton) findViewById(R.id.dataview)).isChecked()) {
+            if (getSelectedTeam() == null) {
+                alertUser("Selection Missing", "Please select a team from the list.");
+            } else {
+                Intent i = new Intent(this, ViewData.class);
+                i.putExtra(TEAM_NAME, getSelectedTeam().getKey());
+                i.putExtra(EVENT_KEY, getSelectedEvent().getKey());
+                i.putExtra(NAME, getName());
+                startActivity(i);
+            }
+        }
         // name has to be entered
         if (getName().isEmpty()) {
             alertUser("Enter Your Name", "Enter your first name at the top of the screen").show();
@@ -728,16 +759,6 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
                 initializeBenchmarking();
                 Intent i = new Intent(this, Benchmarking.class);
                 i.putExtra(TEAM_NAME, getSelectedTeam().getKey());
-                startActivity(i);
-            }
-        } else if (((RadioButton) findViewById(R.id.dataview)).isChecked()) {
-            if (getSelectedTeam() == null) {
-                alertUser("Selection Missing", "Please select a team from the list.");
-            } else {
-                Intent i = new Intent(this, ViewData.class);
-                i.putExtra(TEAM_NAME, getSelectedTeam().getKey());
-                i.putExtra(EVENT_KEY, getSelectedEvent().getKey());
-                i.putExtra(NAME, getName());
                 startActivity(i);
             }
         } else // match scouting mode
@@ -757,6 +778,9 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
         }
     }
 
+    /**
+     * initializes benchmarking data with info from spinners
+     */
     private void initializeBenchmarking() {
         Benchmarking.info = new ScoutingInfo();
         ScoutingInfo si = Benchmarking.info;

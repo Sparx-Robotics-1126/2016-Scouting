@@ -98,6 +98,7 @@ public class ViewData extends AppCompatActivity {
         s = SparxScouting.getInstance(this);
         dbHelper = DatabaseHelper.getInstance(this);
         s.getScouting(dbHelper.getTeam(teamKey), dbHelper.getEvent(eventKey), new NetworkCallback() {
+            //need to get scouting from online database in case we don't have all the data
             @Override
             public void handleFinishDownload(boolean success) {
 
@@ -109,25 +110,35 @@ public class ViewData extends AppCompatActivity {
         in.setTeamKey(teamKey);
         in.setNameOfScouter(name);
         if (dbHelper.doesBenchmarkingExist(in)) {
+            //benchmarking exists, so don't need to check online
             benchmarkList = dbHelper.getBenchmarking(eventKey, teamKey);
             initFromBenchmarkList(benchmarkList);
         } else {
+            //no benchmarking found, so check online for one
             s.getBenchmarking(dbHelper.getTeam(teamKey), dbHelper.getEvent(eventKey), new NetworkCallback() {
                 @Override
                 public void handleFinishDownload(boolean success) {
                     if (success) {
-
+                        //check if one was found online
                         if (dbHelper.doesBenchmarkingExist(in)) {
+                            //found, so set benchmarklist to it
                             benchmarkList = dbHelper.getBenchmarking(eventKey, teamKey);
 
                         }
                     }
+                    //initialize the data
                     initFromBenchmarkList(benchmarkList);
                 }
             });
         }
     }
 
+    /**
+     * sets the text of this to yes if b is true or no if b is false
+     *
+     * @param text the TextView to change
+     * @param b    the boolean to check
+     */
     private void setYesNo(TextView text, boolean b) {
         if (b) {
             text.setText("Yes");
@@ -162,9 +173,8 @@ public class ViewData extends AppCompatActivity {
         } catch (Exception e) {
             setNoDataBenchmarking();
         }
-
         if (data.computeAverages()) {
-            //TODO get scaling info from tele fragment
+            //info was found, so show the data
             String lowInfo = String.valueOf((int) data.lowAvg) + " % (" + data.lowComp + " out of " + data.lowAtt + " attempts)";
             String highInfo = String.valueOf((int) data.highAvg) + " % (" + data.highComp + " out of " + data.highAtt + " attempts)";
             String defInfo = String.valueOf(data.defAvg) + " % (" + data.defTotal + " out of " + data.defTimes + " matches)";
@@ -177,12 +187,11 @@ public class ViewData extends AppCompatActivity {
             String rwInfo = String.valueOf(data.rwAvg) + "(" + data.rwCross + " times in " + data.rwTimes + " matches)";
             String rtInfo = String.valueOf(data.rtAvg) + "(" + data.rtCross + " times in " + data.rtTimes + " matches)";
             String lbInfo = String.valueOf(data.lbAvg) + "(" + data.lbCross + " times in " + data.lbTimes + " matches)";
-            String scaleInfo = String.valueOf(data.scaleAvg) + "(Out of " + data.scaleTimes + " matches)";
-            String failInfo = String.valueOf(data.failAvg) + " (Out of " + data.scaleTimes + " matches)";
-            String nAInfo = String.valueOf(data.naAvg) + " (Out of " + data.scaleTimes + " matches)";
-            String chalInfo = String.valueOf(data.chalAvg) + " (Out of " + data.scaleTimes + " matches)";
-            //TODO set text for fail, na, chal
-
+            String scaleInfo = String.valueOf(data.scaleAvg) + " % (Out of " + data.scaleTimes + " matches)";
+            String failInfo = String.valueOf(data.failAvg) + " % (Out of " + data.scaleTimes + " matches)";
+            String nAInfo = String.valueOf(data.naAvg) + " % (Out of " + data.scaleTimes + " matches)";
+            String chalInfo = String.valueOf(data.chalAvg) + " % (Out of " + data.scaleTimes + " matches)";
+            //if there isn't any data to show
             if (data.lowTimes == 0) {
                 low.setText("No data collected");
             } else {
@@ -220,7 +229,7 @@ public class ViewData extends AppCompatActivity {
                 drawbridge.setText(dInfo);
             }
             if (data.spTimes == 0) {
-                sallyport.setText(spInfo);
+                sallyport.setText("No data collected");
             } else {
                 sallyport.setText(spInfo);
             }
@@ -246,6 +255,9 @@ public class ViewData extends AppCompatActivity {
                 chal.setText("No data collected");
             } else {
                 scale.setText(scaleInfo);
+                fail.setText(failInfo);
+                chal.setText(chalInfo);
+                nA.setText(nAInfo);
             }
             scoutNoData.setVisibility(View.GONE);
             scoutLoad.setVisibility(View.GONE);
@@ -258,6 +270,9 @@ public class ViewData extends AppCompatActivity {
 
     }
 
+    /**
+     * shows only the "NO DATA" text field for benchmarking
+     */
     private void setNoDataBenchmarking() {
         benchmarkData.setVisibility(View.GONE);
         benchmarkLoad.setVisibility(View.GONE);
@@ -381,11 +396,17 @@ public class ViewData extends AppCompatActivity {
 
         }
 
+        /**
+         * computes the averages of data found in a scouting object
+         * @return true if successful, false otherwise
+         */
         public boolean computeAverages() {
+            //can't do anything if there isn't a scouting object to read
             if (scoutList == null || scoutList.isEmpty()) {
 
                 return false;
             } else {
+                //gather data
                 for (int i = 0; i < scoutList.size(); i++) {
 
                     Scouting sc = scoutList.get(i);
@@ -396,7 +417,6 @@ public class ViewData extends AppCompatActivity {
                             if (scout.getHighGoalAttempts() != 0) {
                                 highComp += scout.getHighGoalsScored();
                                 highAtt += scout.getHighGoalAttempts();
-                                highAvg += (double) highComp / highAtt;
                             }
                             highTimes++;
                         }
@@ -406,7 +426,6 @@ public class ViewData extends AppCompatActivity {
                             if (scout.getLowGoalAttempts() != 0) {
                                 lowComp += scout.getLowGoalsScored();
                                 lowAtt += scout.getLowGoalAttempts();
-                                lowAvg += (double) lowComp / lowAtt;
 
                             }
                             lowTimes++;
@@ -468,13 +487,15 @@ public class ViewData extends AppCompatActivity {
                             scaleTimes++;
                         }
                     }
+                }
+                //do the actual computations
                     if (highTimes != 0) {
-                        highAvg /= highTimes;
+                        highAvg = (double) highComp / highAtt;
                         highAvg *= 100;
                         highAvg = Math.round(highAvg);
                     } else highAvg = 0;
                     if (lowTimes != 0) {
-                        lowAvg /= lowTimes;
+                        lowAvg = (double) lowComp / lowAtt;
                         lowAvg *= 100;
                         lowAvg = Math.round(lowAvg);
                     } else lowAvg = 0;
@@ -521,16 +542,19 @@ public class ViewData extends AppCompatActivity {
                     }
                     if (scaleTimes != 0) {
                         scaleAvg /= scaleTimes;
+                        scaleAvg *= 100;
                         scaleAvg = Math.round(scaleAvg);
                         failAvg /= scaleTimes;
+                        failAvg *= 100;
                         failAvg = Math.round(failAvg);
                         naAvg /= scaleTimes;
+                        naAvg *= 100;
                         naAvg = Math.round(naAvg);
                         chalAvg /= scaleTimes;
+                        chalAvg *= 100;
                         chalAvg = Math.round(chalAvg);
                     }
                 }
-            }
             return true;
         }
     }

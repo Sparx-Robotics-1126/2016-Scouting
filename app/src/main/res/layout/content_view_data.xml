@@ -159,7 +159,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="left"
-                            android:text="Made no attempt: "
+                            android:text="No attempt: "
                             android:textSize="@dimen/data_text_size" />
 
                         <TextView
