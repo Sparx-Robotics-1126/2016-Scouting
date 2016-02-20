@@ -155,12 +155,9 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
      * uploads scouting data to the server
      */
     private void uploadScoutingData() {
-        if (!isNetworkAvailable(this))
-        {
+        if (!isNetworkAvailable(this)) {
             alertUser("No Network", "The upload function is not available. Connect to a network and try again.").show();
-        }
-        else
-        {
+        } else {
             final Dialog alert = createUploadDialog("Please wait while scouting data is uploaded...");
             alert.show();
             SparxScouting ss = SparxScouting.getInstance(this);
