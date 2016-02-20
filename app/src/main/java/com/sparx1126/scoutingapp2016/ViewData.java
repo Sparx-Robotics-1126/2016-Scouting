@@ -177,10 +177,10 @@ public class ViewData extends AppCompatActivity {
             String rwInfo = String.valueOf(data.rwAvg) + "(" + data.rwCross + " times in " + data.rwTimes + " matches)";
             String rtInfo = String.valueOf(data.rtAvg) + "(" + data.rtCross + " times in " + data.rtTimes + " matches)";
             String lbInfo = String.valueOf(data.lbAvg) + "(" + data.lbCross + " times in " + data.lbTimes + " matches)";
-            String scaleInfo = String.valueOf(data.scaleAvg) + "(Out of " + data.scaleTimes + " matches)";
-            String failInfo = String.valueOf(data.failAvg) + " (Out of " + data.scaleTimes + " matches)";
-            String nAInfo = String.valueOf(data.naAvg) + " (Out of " + data.scaleTimes + " matches)";
-            String chalInfo = String.valueOf(data.chalAvg) + " (Out of " + data.scaleTimes + " matches)";
+            String scaleInfo = String.valueOf(data.scaleAvg) + " % (Out of " + data.scaleTimes + " matches)";
+            String failInfo = String.valueOf(data.failAvg) + " % (Out of " + data.scaleTimes + " matches)";
+            String nAInfo = String.valueOf(data.naAvg) + " % (Out of " + data.scaleTimes + " matches)";
+            String chalInfo = String.valueOf(data.chalAvg) + " % (Out of " + data.scaleTimes + " matches)";
             //TODO set text for fail, na, chal
 
             if (data.lowTimes == 0) {
@@ -399,7 +399,6 @@ public class ViewData extends AppCompatActivity {
                             if (scout.getHighGoalAttempts() != 0) {
                                 highComp += scout.getHighGoalsScored();
                                 highAtt += scout.getHighGoalAttempts();
-                                highAvg += (double) highComp / highAtt;
                             }
                             highTimes++;
                         }
@@ -409,7 +408,6 @@ public class ViewData extends AppCompatActivity {
                             if (scout.getLowGoalAttempts() != 0) {
                                 lowComp += scout.getLowGoalsScored();
                                 lowAtt += scout.getLowGoalAttempts();
-                                lowAvg += (double) lowComp / lowAtt;
 
                             }
                             lowTimes++;
@@ -473,12 +471,12 @@ public class ViewData extends AppCompatActivity {
                     }
                 }
                     if (highTimes != 0) {
-                        highAvg /= highTimes;
+                        highAvg = (double) highComp / highAtt;
                         highAvg *= 100;
                         highAvg = Math.round(highAvg);
                     } else highAvg = 0;
                     if (lowTimes != 0) {
-                        lowAvg /= lowTimes;
+                        lowAvg = (double) lowComp / lowAtt;
                         lowAvg *= 100;
                         lowAvg = Math.round(lowAvg);
                     } else lowAvg = 0;
@@ -525,12 +523,16 @@ public class ViewData extends AppCompatActivity {
                     }
                     if (scaleTimes != 0) {
                         scaleAvg /= scaleTimes;
+                        scaleAvg *= 100;
                         scaleAvg = Math.round(scaleAvg);
                         failAvg /= scaleTimes;
+                        failAvg *= 100;
                         failAvg = Math.round(failAvg);
                         naAvg /= scaleTimes;
+                        naAvg *= 100;
                         naAvg = Math.round(naAvg);
                         chalAvg /= scaleTimes;
+                        chalAvg *= 100;
                         chalAvg = Math.round(chalAvg);
                     }
                 }

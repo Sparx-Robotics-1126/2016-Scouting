@@ -127,6 +127,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
         blueAlliance = BlueAlliance.getInstance(this);
         dbHelper = DatabaseHelper.getInstance(this);
     }
+
     private void uploadScoutingData() {
         final Dialog alert = createUploadDialog("Please wait while scouting data is uploaded...");
         alert.show();
@@ -687,6 +688,18 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
         // make sure all the required selections have been made
         Boolean okayToContinue = false;
 
+        //make sure data view comes first
+        if (((RadioButton) findViewById(R.id.dataview)).isChecked()) {
+            if (getSelectedTeam() == null) {
+                alertUser("Selection Missing", "Please select a team from the list.");
+            } else {
+                Intent i = new Intent(this, ViewData.class);
+                i.putExtra(TEAM_NAME, getSelectedTeam().getKey());
+                i.putExtra(EVENT_KEY, getSelectedEvent().getKey());
+                i.putExtra(NAME, getName());
+                startActivity(i);
+            }
+        }
         // name has to be entered
         if (getName().isEmpty()) {
             alertUser("Enter Your Name", "Enter your first name at the top of the screen").show();
@@ -700,16 +713,6 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
                 initializeBenchmarking();
                 Intent i = new Intent(this, Benchmarking.class);
                 i.putExtra(TEAM_NAME, getSelectedTeam().getKey());
-                startActivity(i);
-            }
-        } else if (((RadioButton) findViewById(R.id.dataview)).isChecked()) {
-            if (getSelectedTeam() == null) {
-                alertUser("Selection Missing", "Please select a team from the list.");
-            } else {
-                Intent i = new Intent(this, ViewData.class);
-                i.putExtra(TEAM_NAME, getSelectedTeam().getKey());
-                i.putExtra(EVENT_KEY, getSelectedEvent().getKey());
-                i.putExtra(NAME, getName());
                 startActivity(i);
             }
         } else // match scouting mode
