@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -86,6 +87,31 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
                 beginScouting(view);
             }
         });
+
+        RestorePreferences();
+    }
+
+
+    public static final String PREFS_NAME = "sparx-prefs";
+    public static final String PREFS_SCOUTER = "scoutername";
+
+    private void RestorePreferences()
+    {
+        // Restore preferences
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        String scouterName = settings.getString(PREFS_SCOUTER, "");
+        if (scouterName != null)
+            name.setText(scouterName);
+    }
+
+    private void SavePreferences()
+    {
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        String scouterName = getName();
+        if (scouterName != null)
+            editor.putString(PREFS_SCOUTER, scouterName);
+        editor.commit();
     }
 
     @Override
@@ -686,6 +712,8 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
     public void beginScouting(View view) {
         // make sure all the required selections have been made
         Boolean okayToContinue = false;
+
+        SavePreferences();
 
         // name has to be entered
         if (getName().isEmpty()) {
