@@ -220,7 +220,7 @@ public class ViewData extends AppCompatActivity {
                 drawbridge.setText(dInfo);
             }
             if (data.spTimes == 0) {
-                sallyport.setText(spInfo);
+                sallyport.setText("No data collected");
             } else {
                 sallyport.setText(spInfo);
             }
@@ -246,6 +246,9 @@ public class ViewData extends AppCompatActivity {
                 chal.setText("No data collected");
             } else {
                 scale.setText(scaleInfo);
+                fail.setText(failInfo);
+                chal.setText(chalInfo);
+                nA.setText(nAInfo);
             }
             scoutNoData.setVisibility(View.GONE);
             scoutLoad.setVisibility(View.GONE);
@@ -468,6 +471,7 @@ public class ViewData extends AppCompatActivity {
                             scaleTimes++;
                         }
                     }
+                }
                     if (highTimes != 0) {
                         highAvg /= highTimes;
                         highAvg *= 100;
@@ -530,7 +534,6 @@ public class ViewData extends AppCompatActivity {
                         chalAvg = Math.round(chalAvg);
                     }
                 }
-            }
             return true;
         }
     }
