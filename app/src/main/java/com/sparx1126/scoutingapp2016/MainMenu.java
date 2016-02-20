@@ -155,24 +155,31 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
      * uploads scouting data to the server
      */
     private void uploadScoutingData() {
-        final Dialog alert = createUploadDialog("Please wait while scouting data is uploaded...");
-        alert.show();
-        SparxScouting ss = SparxScouting.getInstance(this);
-        ss.postAllScouting(new NetworkCallback() {
-            @Override
-            public void handleFinishDownload(final boolean success) {
-                MainMenu.this.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        alert.dismiss();
-                        if (!success)
-                            alertUser("Failure", "Did not successfully upload scouting data!").show();
-                        else
-                            uploadBenchmarkingData();
-                    }
-                });
-            }
-        });
+        if (!isNetworkAvailable(this))
+        {
+            alertUser("No Network", "The upload function is not available. Connect to a network and try again.").show();
+        }
+        else
+        {
+            final Dialog alert = createUploadDialog("Please wait while scouting data is uploaded...");
+            alert.show();
+            SparxScouting ss = SparxScouting.getInstance(this);
+            ss.postAllScouting(new NetworkCallback() {
+                @Override
+                public void handleFinishDownload(final boolean success) {
+                    MainMenu.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            alert.dismiss();
+                            if (!success)
+                                alertUser("Failure", "Did not successfully upload scouting data!").show();
+                            else
+                                uploadBenchmarkingData();
+                        }
+                    });
+                }
+            });
+        }
     }
 
     /**
@@ -732,7 +739,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
         //make sure data view comes first
         if (((RadioButton) findViewById(R.id.dataview)).isChecked()) {
             if (getSelectedTeam() == null) {
-                alertUser("Selection Missing", "Please select a team from the list.");
+                alertUser("Selection Missing", "Please select a team from the list.").show();
             } else {
                 Intent i = new Intent(this, ViewData.class);
                 i.putExtra(TEAM_NAME, getSelectedTeam().getKey());
@@ -749,7 +756,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
         } else if (((RadioButton) findViewById(R.id.benchmarking)).isChecked()) // Benchmarking mode
         {
             if (getSelectedTeam() == null) {
-                alertUser("Selection Missing", "Please select a team from the list.");
+                alertUser("Selection Missing", "Please select a team from the list.").show();
             } else {
                 initializeBenchmarking();
                 Intent i = new Intent(this, Benchmarking.class);
