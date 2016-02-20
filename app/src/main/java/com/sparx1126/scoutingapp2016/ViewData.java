@@ -98,6 +98,7 @@ public class ViewData extends AppCompatActivity {
         s = SparxScouting.getInstance(this);
         dbHelper = DatabaseHelper.getInstance(this);
         s.getScouting(dbHelper.getTeam(teamKey), dbHelper.getEvent(eventKey), new NetworkCallback() {
+            //need to get scouting from online database in case we don't have all the data
             @Override
             public void handleFinishDownload(boolean success) {
 
@@ -109,25 +110,35 @@ public class ViewData extends AppCompatActivity {
         in.setTeamKey(teamKey);
         in.setNameOfScouter(name);
         if (dbHelper.doesBenchmarkingExist(in)) {
+            //benchmarking exists, so don't need to check online
             benchmarkList = dbHelper.getBenchmarking(eventKey, teamKey);
             initFromBenchmarkList(benchmarkList);
         } else {
+            //no benchmarking found, so check online for one
             s.getBenchmarking(dbHelper.getTeam(teamKey), dbHelper.getEvent(eventKey), new NetworkCallback() {
                 @Override
                 public void handleFinishDownload(boolean success) {
                     if (success) {
-
+                        //check if one was found online
                         if (dbHelper.doesBenchmarkingExist(in)) {
+                            //found, so set benchmarklist to it
                             benchmarkList = dbHelper.getBenchmarking(eventKey, teamKey);
 
                         }
                     }
+                    //initialize the data
                     initFromBenchmarkList(benchmarkList);
                 }
             });
         }
     }
 
+    /**
+     * sets the text of this to yes if b is true or no if b is false
+     *
+     * @param text the TextView to change
+     * @param b    the boolean to check
+     */
     private void setYesNo(TextView text, boolean b) {
         if (b) {
             text.setText("Yes");
@@ -162,9 +173,8 @@ public class ViewData extends AppCompatActivity {
         } catch (Exception e) {
             setNoDataBenchmarking();
         }
-
         if (data.computeAverages()) {
-            //TODO get scaling info from tele fragment
+            //info was found, so show the data
             String lowInfo = String.valueOf((int) data.lowAvg) + " % (" + data.lowComp + " out of " + data.lowAtt + " attempts)";
             String highInfo = String.valueOf((int) data.highAvg) + " % (" + data.highComp + " out of " + data.highAtt + " attempts)";
             String defInfo = String.valueOf(data.defAvg) + " % (" + data.defTotal + " out of " + data.defTimes + " matches)";
@@ -181,8 +191,7 @@ public class ViewData extends AppCompatActivity {
             String failInfo = String.valueOf(data.failAvg) + " % (Out of " + data.scaleTimes + " matches)";
             String nAInfo = String.valueOf(data.naAvg) + " % (Out of " + data.scaleTimes + " matches)";
             String chalInfo = String.valueOf(data.chalAvg) + " % (Out of " + data.scaleTimes + " matches)";
-            //TODO set text for fail, na, chal
-
+            //if there isn't any data to show
             if (data.lowTimes == 0) {
                 low.setText("No data collected");
             } else {
@@ -261,6 +270,9 @@ public class ViewData extends AppCompatActivity {
 
     }
 
+    /**
+     * shows only the "NO DATA" text field for benchmarking
+     */
     private void setNoDataBenchmarking() {
         benchmarkData.setVisibility(View.GONE);
         benchmarkLoad.setVisibility(View.GONE);
@@ -384,11 +396,17 @@ public class ViewData extends AppCompatActivity {
 
         }
 
+        /**
+         * computes the averages of data found in a scouting object
+         * @return true if successful, false otherwise
+         */
         public boolean computeAverages() {
+            //can't do anything if there isn't a scouting object to read
             if (scoutList == null || scoutList.isEmpty()) {
 
                 return false;
             } else {
+                //gather data
                 for (int i = 0; i < scoutList.size(); i++) {
 
                     Scouting sc = scoutList.get(i);
@@ -470,6 +488,7 @@ public class ViewData extends AppCompatActivity {
                         }
                     }
                 }
+                //do the actual computations
                     if (highTimes != 0) {
                         highAvg = (double) highComp / highAtt;
                         highAvg *= 100;

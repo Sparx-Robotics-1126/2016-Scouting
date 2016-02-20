@@ -52,7 +52,7 @@ public class MatchScouting extends FragmentActivity implements GeneralFragment.O
                     scout.getNameOfScouter());
             scout = scoutList.get(0);
         } else dbHelper.createScouting(scout);
-
+        //set up fragments
         if (scout.getAuto() == null)
             scout.setAuto(new ScoutingAuto());
 
@@ -75,12 +75,18 @@ public class MatchScouting extends FragmentActivity implements GeneralFragment.O
 
     }
 
+    //necessary for interfaces
     @Override
     public void onFragmentInteraction(Uri uri) {
         {
         }
     }
 
+    /**
+     * hides all fragments except the one indicated by the button clicked, then shows that fragment
+     *
+     * @param view the object that was clicked
+     */
     public void switchFragment(View view) {
         fm = getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
@@ -127,6 +133,12 @@ public class MatchScouting extends FragmentActivity implements GeneralFragment.O
         ft.commit();
     }
 
+    /**
+     * finishes this activity
+     * @param keyCode the keycode of a key
+     * @param event this event
+     * @return super's implementation of onKeyDown
+     */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
