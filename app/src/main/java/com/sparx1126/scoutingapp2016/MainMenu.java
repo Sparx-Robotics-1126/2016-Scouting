@@ -94,8 +94,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
         RestorePreferences();
     }
 
-    private void RestorePreferences()
-    {
+    private void RestorePreferences() {
         // Restore preferences
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
         String scouterName = settings.getString(PREFS_SCOUTER, "");
@@ -103,8 +102,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
             name.setText(scouterName);
     }
 
-    private void SavePreferences()
-    {
+    private void SavePreferences() {
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
         SharedPreferences.Editor editor = settings.edit();
         String scouterName = getName();
@@ -744,7 +742,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
             }
         }
         // name has to be entered
-        if (getName().isEmpty()) {
+        else if (getName().isEmpty()) {
             alertUser("Enter Your Name", "Enter your first name at the top of the screen").show();
         } else if (getSelectedEvent() == null) {
             alertUser("Select Event!", "Select an event from the list").show();
