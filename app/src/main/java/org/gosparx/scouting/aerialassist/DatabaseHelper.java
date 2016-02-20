@@ -1153,6 +1153,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return retVal;
     }
 
+    public boolean doesBenchmarkingExist(String eventKey, String teamKey){
+        boolean retVal = false;
+        SQLiteDatabase db = getReadableDatabase();
+
+        Cursor c = db.query(TABLE_BENCHMARKING,
+                new String[]{"COUNT(*)"},
+                TABLE_BENCHMARKING_TEAM_KEY + " = ? AND "
+                        + TABLE_BENCHMARKING_EVENT_KEY + " = ?",
+                new String[]{teamKey, eventKey},
+                null, null, null);
+
+        if(c != null && c.moveToNext())
+            retVal = c.getInt(0) > 0;
+
+        if (c != null) {
+            c.close();
+        }
+        return retVal;
+    }
+
+
     public void updateBenchmarking(ScoutingInfo scoutingInfo){
         SQLiteDatabase db = getWritableDatabase();
 

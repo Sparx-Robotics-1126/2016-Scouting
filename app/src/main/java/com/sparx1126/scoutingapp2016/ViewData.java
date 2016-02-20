@@ -101,36 +101,34 @@ public class ViewData extends AppCompatActivity {
             //need to get scouting from online database in case we don't have all the data
             @Override
             public void handleFinishDownload(boolean success) {
-
+                scoutList = dbHelper.getScouting(eventKey, teamKey);
+                final ScoutingInfo in = new ScoutingInfo();
+                in.setEventKey(eventKey);
+                in.setTeamKey(teamKey);
+                in.setNameOfScouter(name);
+                if (dbHelper.doesBenchmarkingExist(in.getEventKey(), in.getTeamKey())) {
+                    //benchmarking exists, so don't need to check online
+                    benchmarkList = dbHelper.getBenchmarking(eventKey, teamKey);
+                    initFromBenchmarkList(benchmarkList);
+                } else {
+                    //no benchmarking found, so check online for one
+                    s.getBenchmarking(dbHelper.getTeam(teamKey), dbHelper.getEvent(eventKey), new NetworkCallback() {
+                        @Override
+                        public void handleFinishDownload(boolean success) {
+                            if (success) {
+                                //check if one was found online
+                                if (dbHelper.doesBenchmarkingExist(in.getEventKey(), in.getTeamKey())) {
+                                    //found, so set benchmarklist to it
+                                    benchmarkList = dbHelper.getBenchmarking(eventKey, teamKey);
+                                }
+                            }
+                            //initialize the data
+                            initFromBenchmarkList(benchmarkList);
+                        }
+                    });
+                }
             }
         });
-        scoutList = dbHelper.getScouting(eventKey, teamKey);
-        final ScoutingInfo in = new ScoutingInfo();
-        in.setEventKey(eventKey);
-        in.setTeamKey(teamKey);
-        in.setNameOfScouter(name);
-        if (dbHelper.doesBenchmarkingExist(in)) {
-            //benchmarking exists, so don't need to check online
-            benchmarkList = dbHelper.getBenchmarking(eventKey, teamKey);
-            initFromBenchmarkList(benchmarkList);
-        } else {
-            //no benchmarking found, so check online for one
-            s.getBenchmarking(dbHelper.getTeam(teamKey), dbHelper.getEvent(eventKey), new NetworkCallback() {
-                @Override
-                public void handleFinishDownload(boolean success) {
-                    if (success) {
-                        //check if one was found online
-                        if (dbHelper.doesBenchmarkingExist(in)) {
-                            //found, so set benchmarklist to it
-                            benchmarkList = dbHelper.getBenchmarking(eventKey, teamKey);
-
-                        }
-                    }
-                    //initialize the data
-                    initFromBenchmarkList(benchmarkList);
-                }
-            });
-        }
     }
 
     /**
