@@ -48,6 +48,8 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
     public static final String TEAM_NAME = "com.sparx1126.scouting2016.TEAM";
     public static final String EVENT_KEY = "com.sparx1126.scoutingapp2016.EVENT";
     public static final String NAME = "com.sparx1126.scoutingapp2016.NAME";
+    public static final String PREFS_NAME = "sparx-prefs";
+    public static final String PREFS_SCOUTER = "scoutername";
     private Spinner eventPicker;
     private Spinner matchPicker;
     private Spinner alliancePicker;
@@ -91,10 +93,6 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
 
         RestorePreferences();
     }
-
-
-    public static final String PREFS_NAME = "sparx-prefs";
-    public static final String PREFS_SCOUTER = "scoutername";
 
     private void RestorePreferences()
     {
@@ -730,7 +728,6 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
      */
     public void beginScouting(View view) {
         // make sure all the required selections have been made
-        Boolean okayToContinue = false;
 
         SavePreferences();
 
