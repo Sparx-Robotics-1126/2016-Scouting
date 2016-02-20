@@ -114,6 +114,19 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        blueAlliance = null;
+        dbHelper = null;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        blueAlliance = BlueAlliance.getInstance(this);
+        dbHelper = DatabaseHelper.getInstance(this);
+    }
     private void uploadScoutingData() {
         final Dialog alert = createUploadDialog("Please wait while scouting data is uploaded...");
         alert.show();

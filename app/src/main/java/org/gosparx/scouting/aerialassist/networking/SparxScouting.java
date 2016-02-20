@@ -47,6 +47,7 @@ public class SparxScouting {
     public static synchronized SparxScouting getInstance(Context context){
         if(sparxScouting == null)
             sparxScouting = new SparxScouting(context);
+        sparxScouting.context = context;
         return sparxScouting;
     }
 

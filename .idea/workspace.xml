@@ -24,9 +24,9 @@
     <option name="TOOL_WINDOW_REGEXP_FILTER" value="false" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b6a472ce-d483-43c5-b5f1-20bdee5d30a4" name="Default" comment="benchmarking now changes correctly">
+    <list default="true" id="b6a472ce-d483-43c5-b5f1-20bdee5d30a4" name="Default" comment="data saved into objects properly; some visibility issues with data view for matches">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/gosparx/scouting/aerialassist/DatabaseHelper.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/gosparx/scouting/aerialassist/DatabaseHelper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/MainMenu.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/MainMenu.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/org/gosparx/scouting/aerialassist/networking/SparxScouting.java" afterPath="$PROJECT_DIR$/app/src/main/java/org/gosparx/scouting/aerialassist/networking/SparxScouting.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/ViewData.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/ViewData.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/content_view_data.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/content_view_data.xml" />
@@ -64,22 +64,85 @@
       <file leaf-file-name="ViewData.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/ViewData.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.557041">
-              <caret line="101" column="60" selection-start-line="101" selection-start-column="60" selection-end-line="101" selection-end-column="60" />
+            <state vertical-scroll-proportion="0.75490195">
+              <caret line="183" column="46" selection-start-line="183" selection-start-column="46" selection-end-line="183" selection-end-column="46" />
               <folding>
-                <element signature="e#5253#5700#0" expanded="true" />
-                <element signature="e#5699#5700#0" expanded="true" />
+                <element signature="e#5455#5902#0" expanded="true" />
+                <element signature="e#5901#5902#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="activity_view_data.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_view_data.xml">
+      <file leaf-file-name="content_view_data.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_view_data.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.868421">
-              <caret line="15" column="49" selection-start-line="15" selection-start-column="49" selection-end-line="15" selection-end-column="49" />
-              <folding />
+            <state vertical-scroll-proportion="-6.890244">
+              <caret line="163" column="47" selection-start-line="163" selection-start-column="47" selection-end-line="163" selection-end-column="47" />
+              <folding>
+                <element signature="e#326#366#0" expanded="true" />
+                <element signature="e#1142#1165#0" expanded="true" />
+                <element signature="e#1957#1992#0" expanded="true" />
+                <element signature="e#2036#2071#0" expanded="true" />
+                <element signature="e#2847#2870#0" expanded="true" />
+                <element signature="e#3737#3760#0" expanded="true" />
+                <element signature="e#4617#4640#0" expanded="true" />
+                <element signature="e#4979#5002#0" expanded="true" />
+                <element signature="e#5519#5542#0" expanded="true" />
+                <element signature="e#5880#5903#0" expanded="true" />
+                <element signature="e#6415#6438#0" expanded="true" />
+                <element signature="e#6776#6799#0" expanded="true" />
+                <element signature="e#7320#7343#0" expanded="true" />
+                <element signature="e#7679#7702#0" expanded="true" />
+                <element signature="e#8218#8241#0" expanded="true" />
+                <element signature="e#8582#8605#0" expanded="true" />
+                <element signature="e#8899#8922#0" expanded="true" />
+                <element signature="e#9450#9473#0" expanded="true" />
+                <element signature="e#9817#9840#0" expanded="true" />
+                <element signature="e#10353#10376#0" expanded="true" />
+                <element signature="e#10716#10739#0" expanded="true" />
+                <element signature="e#11250#11273#0" expanded="true" />
+                <element signature="e#11611#11634#0" expanded="true" />
+                <element signature="e#12149#12172#0" expanded="true" />
+                <element signature="e#12514#12537#0" expanded="true" />
+                <element signature="e#13054#13077#0" expanded="true" />
+                <element signature="e#13421#13444#0" expanded="true" />
+                <element signature="e#13962#13985#0" expanded="true" />
+                <element signature="e#14328#14351#0" expanded="true" />
+                <element signature="e#14867#14890#0" expanded="true" />
+                <element signature="e#15232#15255#0" expanded="true" />
+                <element signature="e#15775#15798#0" expanded="true" />
+                <element signature="e#16144#16167#0" expanded="true" />
+                <element signature="e#16681#16704#0" expanded="true" />
+                <element signature="e#17044#17067#0" expanded="true" />
+                <element signature="e#17343#17378#0" expanded="true" />
+                <element signature="e#17418#17453#0" expanded="true" />
+                <element signature="e#19335#19358#0" expanded="true" />
+                <element signature="e#19692#19715#0" expanded="true" />
+                <element signature="e#20243#20266#0" expanded="true" />
+                <element signature="e#20599#20622#0" expanded="true" />
+                <element signature="e#21147#21170#0" expanded="true" />
+                <element signature="e#21510#21533#0" expanded="true" />
+                <element signature="e#21819#21842#0" expanded="true" />
+                <element signature="e#22370#22393#0" expanded="true" />
+                <element signature="e#22734#22757#0" expanded="true" />
+                <element signature="e#23270#23293#0" expanded="true" />
+                <element signature="e#23630#23653#0" expanded="true" />
+                <element signature="e#24164#24187#0" expanded="true" />
+                <element signature="e#24522#24545#0" expanded="true" />
+                <element signature="e#25060#25083#0" expanded="true" />
+                <element signature="e#25422#25445#0" expanded="true" />
+                <element signature="e#25962#25985#0" expanded="true" />
+                <element signature="e#26326#26349#0" expanded="true" />
+                <element signature="e#26867#26890#0" expanded="true" />
+                <element signature="e#27230#27253#0" expanded="true" />
+                <element signature="e#27769#27792#0" expanded="true" />
+                <element signature="e#28131#28154#0" expanded="true" />
+                <element signature="e#28674#28697#0" expanded="true" />
+                <element signature="e#29040#29063#0" expanded="true" />
+                <element signature="e#29578#29601#0" expanded="true" />
+                <element signature="e#29938#29961#0" expanded="true" />
+              </folding>
             </state>
           </provider>
           <provider editor-type-id="android-designer">
@@ -90,14 +153,87 @@
       <file leaf-file-name="DatabaseHelper.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/org/gosparx/scouting/aerialassist/DatabaseHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="961" column="54" selection-start-line="961" selection-start-column="54" selection-end-line="961" selection-end-column="54" />
+            <state vertical-scroll-proportion="-3.9772727">
+              <caret line="29" column="54" selection-start-line="29" selection-start-column="54" selection-end-line="29" selection-end-column="54" />
               <folding>
-                <element signature="e#57321#57331#0" expanded="true" />
-                <element signature="e#58832#58846#0" expanded="true" />
-                <element signature="e#59392#59402#0" expanded="true" />
-                <element signature="e#59941#59955#0" expanded="true" />
+                <element signature="e#57324#57334#0" expanded="true" />
+                <element signature="e#58835#58849#0" expanded="true" />
+                <element signature="e#59395#59405#0" expanded="true" />
+                <element signature="e#59944#59958#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NetworkHelper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/org/gosparx/scouting/aerialassist/networking/NetworkHelper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MatchScouting.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/MatchScouting.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="140" column="26" selection-start-line="140" selection-start-column="26" selection-end-line="140" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SparxScouting.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/org/gosparx/scouting/aerialassist/networking/SparxScouting.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="121" column="24" selection-start-line="121" selection-start-column="24" selection-end-line="121" selection-end-column="24" />
+              <folding>
+                <element signature="e#9551#10332#0" expanded="true" />
+                <element signature="e#10331#10332#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Ion.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.koushikdutta.ion/ion/2.1.6/c4a16b8d88c08bffed81265c5b5709ce94e4bc18/ion-2.1.6-sources.jar!/com/koushikdutta/ion/Ion.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="113" column="67" selection-start-line="113" selection-start-column="67" selection-end-line="113" selection-end-column="67" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainMenu.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/MainMenu.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="340" column="19" selection-start-line="340" selection-start-column="19" selection-end-line="340" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NetworkCallback.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/org/gosparx/scouting/aerialassist/networking/NetworkCallback.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="6" column="27" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BlueAlliance.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/org/gosparx/scouting/aerialassist/networking/BlueAlliance.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="64" column="64" selection-start-line="64" selection-start-column="64" selection-end-line="64" selection-end-column="64" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -1624,8 +1760,8 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/Benchmarking.java" />
         <option value="$PROJECT_DIR$/captures/SystemInfo_2016.02.17_16.31.56.txt" />
         <option value="$PROJECT_DIR$/captures/SystemInfo_2016.02.17_16.32.22.txt" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/MainMenu.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/org/gosparx/scouting/aerialassist/DatabaseHelper.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/MainMenu.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/org/gosparx/scouting/aerialassist/networking/SparxScouting.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_view_data.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/ViewData.java" />
@@ -2540,12 +2676,6 @@
       <option name="number" value="Default" />
       <updated>1452455149837</updated>
     </task>
-    <task id="LOCAL-00012" summary="Benchmarking spinner working">
-      <created>1453764062871</created>
-      <option name="number" value="00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1453764062871</updated>
-    </task>
     <task id="LOCAL-00013" summary="Push for testing team tag code">
       <created>1453771060499</created>
       <option name="number" value="00013" />
@@ -2834,7 +2964,13 @@
       <option name="project" value="LOCAL" />
       <updated>1455756027074</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="data saved into objects properly; some visibility issues with data view for matches">
+      <created>1455922134703</created>
+      <option name="number" value="00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1455922134704</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TodoView">
@@ -2922,7 +3058,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="updated saving/loading in benchmarking fragments" />
     <MESSAGE value="2/4 fragments save -- need to fix&#10;" />
     <MESSAGE value="Every fragment except acquisition is saving as intended" />
     <MESSAGE value="modified scouting.py to current year" />
@@ -2947,7 +3082,8 @@
     <MESSAGE value="reformatted code" />
     <MESSAGE value="changes server location to Dan's laptop" />
     <MESSAGE value="benchmarking now changes correctly" />
-    <option name="LAST_COMMIT_MESSAGE" value="benchmarking now changes correctly" />
+    <MESSAGE value="data saved into objects properly; some visibility issues with data view for matches" />
+    <option name="LAST_COMMIT_MESSAGE" value="data saved into objects properly; some visibility issues with data view for matches" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -2956,25 +3092,11 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="127" />
+      <option name="time" value="128" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/fragments/Benchmarking/AcquisitionFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="142" column="0" selection-start-line="142" selection-start-column="0" selection-end-line="142" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/fragments/Benchmarking/ScoringFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="185" column="18" selection-start-line="185" selection-start-column="18" selection-end-line="185" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/fragments/Benchmarking/DrivesFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3036,13 +3158,6 @@
       </provider>
       <provider editor-type-id="android-designer">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/org/gosparx/scouting/aerialassist/networking/NetworkHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/control_horizontal_number_picker.xml">
@@ -3224,14 +3339,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/org/gosparx/scouting/aerialassist/networking/NetworkCallback.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="27" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/captures/SystemInfo_2016.02.17_16.31.56.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3250,17 +3357,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/MainMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="455" column="75" selection-start-line="0" selection-start-column="0" selection-end-line="727" selection-end-column="0" />
-          <folding>
-            <element signature="e#18647#18648#0" expanded="false" />
-            <element signature="e#18695#18696#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3382,48 +3478,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/MatchScouting.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.4705882">
-          <caret line="88" column="27" selection-start-line="88" selection-start-column="27" selection-end-line="88" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/org/gosparx/scouting/aerialassist/networking/SparxScouting.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5543672">
-          <caret line="232" column="86" selection-start-line="232" selection-start-column="86" selection-end-line="232" selection-end-column="86" />
-          <folding>
-            <element signature="e#3342#4110#0" expanded="true" />
-            <element signature="e#4109#4110#0" expanded="true" />
-            <element signature="e#5197#5863#0" expanded="true" />
-            <element signature="e#5862#5863#0" expanded="true" />
-            <element signature="e#6104#6911#0" expanded="true" />
-            <element signature="e#6910#6911#0" expanded="true" />
-            <element signature="e#7469#8291#0" expanded="true" />
-            <element signature="e#8290#8291#0" expanded="true" />
-            <element signature="e#9489#10270#0" expanded="true" />
-            <element signature="e#10269#10270#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_tele.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33302584">
           <caret line="382" column="8" selection-start-line="382" selection-start-column="8" selection-end-line="382" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_view_data.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3326923">
-          <caret line="34" column="28" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="28" />
           <folding />
         </state>
       </provider>
@@ -3453,26 +3511,159 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/org/gosparx/scouting/aerialassist/DatabaseHelper.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/org/gosparx/scouting/aerialassist/networking/NetworkHelper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="961" column="54" selection-start-line="961" selection-start-column="54" selection-end-line="961" selection-end-column="54" />
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/org/gosparx/scouting/aerialassist/networking/NetworkCallback.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="27" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/org/gosparx/scouting/aerialassist/networking/BlueAlliance.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="64" column="64" selection-start-line="64" selection-start-column="64" selection-end-line="64" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/org/gosparx/scouting/aerialassist/DatabaseHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.9772727">
+          <caret line="29" column="54" selection-start-line="29" selection-start-column="54" selection-end-line="29" selection-end-column="54" />
           <folding>
-            <element signature="e#57321#57331#0" expanded="true" />
-            <element signature="e#58832#58846#0" expanded="true" />
-            <element signature="e#59392#59402#0" expanded="true" />
-            <element signature="e#59941#59955#0" expanded="true" />
+            <element signature="e#57324#57334#0" expanded="true" />
+            <element signature="e#58835#58849#0" expanded="true" />
+            <element signature="e#59395#59405#0" expanded="true" />
+            <element signature="e#59944#59958#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/MatchScouting.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="140" column="26" selection-start-line="140" selection-start-column="26" selection-end-line="140" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.koushikdutta.ion/ion/2.1.6/c4a16b8d88c08bffed81265c5b5709ce94e4bc18/ion-2.1.6-sources.jar!/com/koushikdutta/ion/Ion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="113" column="67" selection-start-line="113" selection-start-column="67" selection-end-line="113" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/org/gosparx/scouting/aerialassist/networking/SparxScouting.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="121" column="24" selection-start-line="121" selection-start-column="24" selection-end-line="121" selection-end-column="24" />
+          <folding>
+            <element signature="e#9551#10332#0" expanded="true" />
+            <element signature="e#10331#10332#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/MainMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="340" column="19" selection-start-line="340" selection-start-column="19" selection-end-line="340" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_view_data.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.890244">
+          <caret line="163" column="47" selection-start-line="163" selection-start-column="47" selection-end-line="163" selection-end-column="47" />
+          <folding>
+            <element signature="e#326#366#0" expanded="true" />
+            <element signature="e#1142#1165#0" expanded="true" />
+            <element signature="e#1957#1992#0" expanded="true" />
+            <element signature="e#2036#2071#0" expanded="true" />
+            <element signature="e#2847#2870#0" expanded="true" />
+            <element signature="e#3737#3760#0" expanded="true" />
+            <element signature="e#4617#4640#0" expanded="true" />
+            <element signature="e#4979#5002#0" expanded="true" />
+            <element signature="e#5519#5542#0" expanded="true" />
+            <element signature="e#5880#5903#0" expanded="true" />
+            <element signature="e#6415#6438#0" expanded="true" />
+            <element signature="e#6776#6799#0" expanded="true" />
+            <element signature="e#7320#7343#0" expanded="true" />
+            <element signature="e#7679#7702#0" expanded="true" />
+            <element signature="e#8218#8241#0" expanded="true" />
+            <element signature="e#8582#8605#0" expanded="true" />
+            <element signature="e#8899#8922#0" expanded="true" />
+            <element signature="e#9450#9473#0" expanded="true" />
+            <element signature="e#9817#9840#0" expanded="true" />
+            <element signature="e#10353#10376#0" expanded="true" />
+            <element signature="e#10716#10739#0" expanded="true" />
+            <element signature="e#11250#11273#0" expanded="true" />
+            <element signature="e#11611#11634#0" expanded="true" />
+            <element signature="e#12149#12172#0" expanded="true" />
+            <element signature="e#12514#12537#0" expanded="true" />
+            <element signature="e#13054#13077#0" expanded="true" />
+            <element signature="e#13421#13444#0" expanded="true" />
+            <element signature="e#13962#13985#0" expanded="true" />
+            <element signature="e#14328#14351#0" expanded="true" />
+            <element signature="e#14867#14890#0" expanded="true" />
+            <element signature="e#15232#15255#0" expanded="true" />
+            <element signature="e#15775#15798#0" expanded="true" />
+            <element signature="e#16144#16167#0" expanded="true" />
+            <element signature="e#16681#16704#0" expanded="true" />
+            <element signature="e#17044#17067#0" expanded="true" />
+            <element signature="e#17343#17378#0" expanded="true" />
+            <element signature="e#17418#17453#0" expanded="true" />
+            <element signature="e#19335#19358#0" expanded="true" />
+            <element signature="e#19692#19715#0" expanded="true" />
+            <element signature="e#20243#20266#0" expanded="true" />
+            <element signature="e#20599#20622#0" expanded="true" />
+            <element signature="e#21147#21170#0" expanded="true" />
+            <element signature="e#21510#21533#0" expanded="true" />
+            <element signature="e#21819#21842#0" expanded="true" />
+            <element signature="e#22370#22393#0" expanded="true" />
+            <element signature="e#22734#22757#0" expanded="true" />
+            <element signature="e#23270#23293#0" expanded="true" />
+            <element signature="e#23630#23653#0" expanded="true" />
+            <element signature="e#24164#24187#0" expanded="true" />
+            <element signature="e#24522#24545#0" expanded="true" />
+            <element signature="e#25060#25083#0" expanded="true" />
+            <element signature="e#25422#25445#0" expanded="true" />
+            <element signature="e#25962#25985#0" expanded="true" />
+            <element signature="e#26326#26349#0" expanded="true" />
+            <element signature="e#26867#26890#0" expanded="true" />
+            <element signature="e#27230#27253#0" expanded="true" />
+            <element signature="e#27769#27792#0" expanded="true" />
+            <element signature="e#28131#28154#0" expanded="true" />
+            <element signature="e#28674#28697#0" expanded="true" />
+            <element signature="e#29040#29063#0" expanded="true" />
+            <element signature="e#29578#29601#0" expanded="true" />
+            <element signature="e#29938#29961#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sparx1126/scoutingapp2016/ViewData.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.557041">
-          <caret line="101" column="60" selection-start-line="101" selection-start-column="60" selection-end-line="101" selection-end-column="60" />
+        <state vertical-scroll-proportion="0.75490195">
+          <caret line="183" column="46" selection-start-line="183" selection-start-column="46" selection-end-line="183" selection-end-column="46" />
           <folding>
-            <element signature="e#5253#5700#0" expanded="true" />
-            <element signature="e#5699#5700#0" expanded="true" />
+            <element signature="e#5455#5902#0" expanded="true" />
+            <element signature="e#5901#5902#0" expanded="true" />
           </folding>
         </state>
       </provider>

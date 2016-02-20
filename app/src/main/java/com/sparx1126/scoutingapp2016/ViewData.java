@@ -21,7 +21,7 @@ import java.util.List;
 public class ViewData extends AppCompatActivity {
     private static List<Scouting> scoutList;
     private static List<ScoutingInfo> benchmarkList;
-    private static TextView low, high, scale, def, portcullis, cheval, moat, ramparts, drawbridge, sallyport,
+    private static TextView low, high, scale, chal, fail, nA, def, portcullis, cheval, moat, ramparts, drawbridge, sallyport,
             rockwall, roughterrain, lowbar, highAble, lowAble, boulderSource, portCross, chevCross,
             moatCross, ramCross, drawCross, salCross, rockCross, roughCross, lowCross;
     private static LinearLayout benchmarkData;
@@ -29,6 +29,7 @@ public class ViewData extends AppCompatActivity {
     private static TextView benchmarkNoData, scoutNoData;
     private static TextView benchmarkLoad, scoutLoad;
     private String name;
+    private SparxScouting s;
     private DatabaseHelper dbHelper;
 
     @Override
@@ -45,6 +46,9 @@ public class ViewData extends AppCompatActivity {
         low = (TextView) findViewById(R.id.lowAverage);
         high = (TextView) findViewById(R.id.highAverage);
         scale = (TextView) findViewById(R.id.scaleAverage);
+        chal = (TextView) findViewById(R.id.chalAverage);
+        fail = (TextView) findViewById(R.id.failAverage);
+        nA = (TextView) findViewById(R.id.naAverage);
         def = (TextView) findViewById(R.id.defenseAverage);
         portcullis = (TextView) findViewById(R.id.portcullisAverage);
         cheval = (TextView) findViewById(R.id.chevalAverage);
@@ -91,7 +95,7 @@ public class ViewData extends AppCompatActivity {
         name = i.getStringExtra(MainMenu.NAME);
 
         toolbar.setTitle("Viewing data for Team " + teamName);
-        SparxScouting s = SparxScouting.getInstance(this);
+        s = SparxScouting.getInstance(this);
         dbHelper = DatabaseHelper.getInstance(this);
         s.getScouting(dbHelper.getTeam(teamKey), dbHelper.getEvent(eventKey), new NetworkCallback() {
             @Override
@@ -167,12 +171,17 @@ public class ViewData extends AppCompatActivity {
             String pInfo = String.valueOf(data.pAvg) + "(" + data.pCross + " times in " + data.pTimes + " matches)";
             String cInfo = String.valueOf(data.cAvg) + "(" + data.cCross + " times in " + data.cTimes + " matches)";
             String mInfo = String.valueOf(data.mAvg) + "(" + data.mCross + " times in " + data.mTimes + " matches)";
-            String rInfo = String.valueOf(data.rAvg) + "(" + data.rCross + " times  in " + data.rTimes + " matches)";
+            String rInfo = String.valueOf(data.rAvg) + "(" + data.rCross + " times in " + data.rTimes + " matches)";
             String dInfo = String.valueOf(data.dAvg) + "(" + data.dCross + " times in " + data.dTimes + " matches)";
             String spInfo = String.valueOf(data.spAvg) + "(" + data.spCross + " times in " + data.spTimes + " matches)";
             String rwInfo = String.valueOf(data.rwAvg) + "(" + data.rwCross + " times in " + data.rwTimes + " matches)";
             String rtInfo = String.valueOf(data.rtAvg) + "(" + data.rtCross + " times in " + data.rtTimes + " matches)";
             String lbInfo = String.valueOf(data.lbAvg) + "(" + data.lbCross + " times in " + data.lbTimes + " matches)";
+            String scaleInfo = String.valueOf(data.scaleAvg) + "(Out of " + data.scaleTimes + " matches)";
+            String failInfo = String.valueOf(data.failAvg) + " (Out of " + data.scaleTimes + " matches)";
+            String nAInfo = String.valueOf(data.naAvg) + " (Out of " + data.scaleTimes + " matches)";
+            String chalInfo = String.valueOf(data.chalAvg) + " (Out of " + data.scaleTimes + " matches)";
+            //TODO set text for fail, na, chal
 
             if (data.lowTimes == 0) {
                 low.setText("No data collected");
@@ -184,13 +193,7 @@ public class ViewData extends AppCompatActivity {
             } else {
                 high.setText(highInfo);
             }
-            if (data.defTimes == (int) Math.round(data.defAvg)) {
-                if (data.defTimes == 0) {
-                    def.setText("never");
-                } else def.setText("always");
-            } else {
-                def.setText(defInfo);
-            }
+            def.setText(defInfo);
             if (data.pTimes == 0) {
                 portcullis.setText("No data collected");
             } else {
@@ -236,6 +239,14 @@ public class ViewData extends AppCompatActivity {
             } else {
                 lowbar.setText(lbInfo);
             }
+            if (data.scaleTimes == 0) {
+                scale.setText("No data collected");
+                fail.setText("No data collected");
+                nA.setText("No data collected");
+                chal.setText("No data collected");
+            } else {
+                scale.setText(scaleInfo);
+            }
             scoutNoData.setVisibility(View.GONE);
             scoutLoad.setVisibility(View.GONE);
             scoutData.setVisibility(View.VISIBLE);
@@ -251,16 +262,6 @@ public class ViewData extends AppCompatActivity {
         benchmarkData.setVisibility(View.GONE);
         benchmarkLoad.setVisibility(View.GONE);
         benchmarkNoData.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            scoutList = null;
-            benchmarkList = null;
-            this.finish();
-        }
-        return super.onKeyDown(keyCode, event);
     }
 
     private class Data {
@@ -320,6 +321,12 @@ public class ViewData extends AppCompatActivity {
         public int defTotal;
         public double defAvg;
 
+        public int scaleTimes;
+        public double scaleAvg;
+        public double chalAvg;
+        public double failAvg;
+        public double naAvg;
+
 
         public Data() {
 
@@ -363,7 +370,14 @@ public class ViewData extends AppCompatActivity {
             lbTimes = 0;
             lbAvg = 0;
             defTimes = 0;
+            defTotal = 0;
             defAvg = 0;
+            scaleTimes = 0;
+            scaleAvg = 0;
+            chalAvg = 0;
+            failAvg = 0;
+            naAvg = 0;
+
 
         }
 
@@ -437,6 +451,22 @@ public class ViewData extends AppCompatActivity {
                             lbCross += scout.getLowbarCrosses();
                             lbTimes++;
                         }
+                        if (scout.getEndGameScale() != null) {
+                            switch (scout.getEndGameScale()) {
+                                case "no attempt":
+                                    naAvg++;
+                                    break;
+                                case "failed":
+                                    failAvg++;
+                                    break;
+                                case "challenged":
+                                    chalAvg++;
+                                    break;
+                                case "scaled":
+                                    scaleAvg++;
+                            }
+                            scaleTimes++;
+                        }
                     }
                     if (highTimes != 0) {
                         highAvg /= highTimes;
@@ -488,6 +518,16 @@ public class ViewData extends AppCompatActivity {
                     if (lbTimes != 0) {
                         lbAvg = lbCross / lbTimes;
                         lbAvg = Math.round(lbAvg);
+                    }
+                    if (scaleTimes != 0) {
+                        scaleAvg /= scaleTimes;
+                        scaleAvg = Math.round(scaleAvg);
+                        failAvg /= scaleTimes;
+                        failAvg = Math.round(failAvg);
+                        naAvg /= scaleTimes;
+                        naAvg = Math.round(naAvg);
+                        chalAvg /= scaleTimes;
+                        chalAvg = Math.round(chalAvg);
                     }
                 }
             }
