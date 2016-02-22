@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">2016 SparX Scouting</string>
-    <string name="action_settings">Settings</string>
+    <string name="app_name">Stronghold</string>
     <string name="action_download">Download Events</string>
     <string name="action_upload">Upload Scouting</string>
     <string name="edit_message">Enter a message</string>
