@@ -33,6 +33,10 @@ public class DrivesFragment extends Fragment {
     private ToggleButton crossPortcullis, crossCheval, crossMoat, crossRamparts, crossDrawBridge,
             crossSallyPort, crossRockWall, crossRoughTerrain, crossLowBar;
 
+    public DrivesFragment() {
+        // Required empty public constructor
+    }
+
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -45,10 +49,6 @@ public class DrivesFragment extends Fragment {
         fragment.setArguments(args);
         fragment.setScoutingInfo(si);
         return fragment;
-    }
-
-    public DrivesFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -136,22 +136,6 @@ public class DrivesFragment extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        public void onFragmentInteraction(Uri uri);
-    }
-    public void setScoutingInfo(ScoutingInfo si){this.si = si;}
-
     public ScoutingInfo getScoutingInfo(){
         if(si == null){
             si = new ScoutingInfo();
@@ -172,5 +156,24 @@ public class DrivesFragment extends Fragment {
             si.setCanCrossLowbar(crossLowBar.isChecked());
         }
         return si;
+    }
+
+    public void setScoutingInfo(ScoutingInfo si) {
+        this.si = si;
+    }
+
+    /**
+     * This interface must be implemented by activities that contain this
+     * fragment to allow an interaction in this fragment to be communicated
+     * to the activity and potentially other fragments contained in that
+     * activity.
+     * <p/>
+     * See the Android Training lesson <a href=
+     * "http://developer.android.com/training/basics/fragments/communicating.html"
+     * >Communicating with Other Fragments</a> for more information.
+     */
+    public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void onFragmentInteraction(Uri uri);
     }
 }

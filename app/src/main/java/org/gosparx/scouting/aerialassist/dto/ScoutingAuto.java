@@ -28,13 +28,13 @@ public class ScoutingAuto {
     private Boolean lowbarCrossed = false;
     // whether or not the robot picked up a boulder
     private Boolean boulderPickedUp = false;
-    // whether or not the robot scored in the hight goal
+    // whether or not the robot scored in the high goal
     private Boolean robotScoredHigh = false;
     // whether or not the robot scored in the low goal
     private Boolean robotScoredLow = false;
     // which zone the robot ended in (courtyard/neutral)
     private String endingPosition = "unknown";
-    // whether or not the robot achieived a reach
+    // whether or not the robot achieved a reach
     private Boolean reachAchieved = false;
     // whether or not a reach was part of a cross attempt
     private Boolean reachWasCrossAttempt = false;

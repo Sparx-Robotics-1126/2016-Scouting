@@ -37,6 +37,11 @@ public class AcquisitionFragment extends Fragment {
     private ToggleButton roughterrainBoulder;
     private ToggleButton lowbarBoulder;
     private boolean wasCreated;
+
+    public AcquisitionFragment() {
+        // Required empty public constructor
+    }
+
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -48,10 +53,6 @@ public class AcquisitionFragment extends Fragment {
         fragment.setScoutingInfo(si);
         fragment.setArguments(args);
         return fragment;
-    }
-
-    public AcquisitionFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -121,26 +122,11 @@ public class AcquisitionFragment extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        public void onFragmentInteraction(Uri uri);
-    }
-    private void setScoutingInfo(ScoutingInfo si){this.si = si;}
     public ScoutingInfo getScoutingInfo() {
         if (si == null) {
             si = new ScoutingInfo();
         }
-        if(wasCreated){
+        if (wasCreated) {
             si.setAcquiresBouldersFromHumanPlayer(humanAcq.isChecked());
             si.setAcquiresBouldersFromFloor(floorAcq.isChecked());
             si.setPreferredBoulderSource(prefAcq.getText().toString());
@@ -156,6 +142,9 @@ public class AcquisitionFragment extends Fragment {
         }
         return si;
     }
+
+    private void setScoutingInfo(ScoutingInfo si){this.si = si;}
+
     public void onResume(){
         super.onResume();
         if(si != null){
@@ -173,6 +162,21 @@ public class AcquisitionFragment extends Fragment {
             lowbarBoulder.setChecked(si.getCanCarryBouldersOverLowbar());
         }
 
+    }
+
+    /**
+     * This interface must be implemented by activities that contain this
+     * fragment to allow an interaction in this fragment to be communicated
+     * to the activity and potentially other fragments contained in that
+     * activity.
+     * <p/>
+     * See the Android Training lesson <a href=
+     * "http://developer.android.com/training/basics/fragments/communicating.html"
+     * >Communicating with Other Fragments</a> for more information.
+     */
+    public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void onFragmentInteraction(Uri uri);
     }
 
 }

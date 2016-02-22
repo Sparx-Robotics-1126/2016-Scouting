@@ -76,9 +76,9 @@ public class Scouting {
             return false;
         }
         Scouting scouting = (Scouting)obj;
-        return (this.getEventKey() == scouting.getEventKey()
-                && this.getMatchKey() == scouting.getMatchKey()
-                && this.getNameOfScouter() == scouting.getNameOfScouter()
-                && this.getTeamKey() == scouting.getTeamKey());
+        return (this.getEventKey().equals(scouting.getEventKey())
+                && this.getMatchKey().equals(scouting.getMatchKey())
+                && this.getNameOfScouter().equals(scouting.getNameOfScouter())
+                && this.getTeamKey().equals(scouting.getTeamKey()));
     }
 }

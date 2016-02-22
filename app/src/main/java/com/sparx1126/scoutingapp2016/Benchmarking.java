@@ -37,7 +37,6 @@ public class Benchmarking extends FragmentActivity implements DrivesFragment.OnF
         super.onCreate(savedInstanceState);
         dbHelper = DatabaseHelper.getInstance(this);
         setContentView(R.layout.activity_benchmarking);
-        Intent i = getIntent();
 
         fm = getFragmentManager();
         if (dbHelper.doesBenchmarkingExist(info)) {

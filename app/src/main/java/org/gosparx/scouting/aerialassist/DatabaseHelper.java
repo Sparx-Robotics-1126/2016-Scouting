@@ -160,7 +160,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_BENCHMARKING_DRIVES_CANCROSS_MOAT = "d_canCrossMoat";
     private static final String TABLE_BENCHMARKING_DRIVES_CANCROSS_RAMPARTS = "d_canCrossRamparts";
     private static final String TABLE_BENCHMARKING_DRIVES_CANCROSS_DRAWBRIDGE = "d_canCrossDrawbridge";
-    private static final String TABLE_BENCHMARKING_DRIVES_CANCROSS_SALLYPORT = "d_canCrosSsallyport";
+    private static final String TABLE_BENCHMARKING_DRIVES_CANCROSS_SALLYPORT = "d_canCrossSallyport";
     private static final String TABLE_BENCHMARKING_DRIVES_CANCROSS_ROCKWALL = "d_canCrossRockwall";
     private static final String TABLE_BENCHMARKING_DRIVES_CANCROSS_ROUGHTERRAIN = "d_canCrossRoughterrain";
     private static final String TABLE_BENCHMARKING_DRIVES_CANCROSS_LOWBAR = "d_canCrossLowbar";
@@ -435,11 +435,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     private static Boolean getBoolean(Cursor c, int columnIndex) {
-        if (c.isNull(columnIndex) || c.getShort(columnIndex) == 0) {
-            return false;
-        } else {
-            return true;
-        }
+        return !(c.isNull(columnIndex) || c.getShort(columnIndex) == 0);
     }
 
     // initializes and returns a ScoutingInfo object from a row in the Benchmarking table

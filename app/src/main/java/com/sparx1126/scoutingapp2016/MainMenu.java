@@ -43,13 +43,12 @@ import static org.gosparx.scouting.aerialassist.networking.NetworkHelper.isNetwo
 
 public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    public static final String SCOUTING_INFO = "com.sparx1126.scouting2016.SCOUTING";
     public static final String ALLIANCE_SELECTED = "com.spark1126.scouting2016.ALLIANCE";
     public static final String TEAM_NAME = "com.sparx1126.scouting2016.TEAM";
     public static final String EVENT_KEY = "com.sparx1126.scoutingapp2016.EVENT";
     public static final String NAME = "com.sparx1126.scoutingapp2016.NAME";
     public static final String PREFS_NAME = "sparx-prefs";
-    public static final String PREFS_SCOUTER = "scoutername";
+    public static final String PREFS_SCOUTER = "scouterName";
     private Spinner eventPicker;
     private Spinner matchPicker;
     private Spinner alliancePicker;
@@ -62,7 +61,6 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
     private SimpleCursorAdapter cursorAdapterTeams;
     private Button scout;
     private BlueAlliance blueAlliance;
-    private String nameOfScouter;
     private Scouting scouting;
     private DatabaseHelper dbHelper;
 
@@ -98,17 +96,15 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
         // Restore preferences
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
         String scouterName = settings.getString(PREFS_SCOUTER, "");
-        if (scouterName != null)
-            name.setText(scouterName);
+        name.setText(scouterName);
     }
 
     private void SavePreferences() {
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
         SharedPreferences.Editor editor = settings.edit();
         String scouterName = getName();
-        if (scouterName != null)
-            editor.putString(PREFS_SCOUTER, scouterName);
-        editor.commit();
+        editor.putString(PREFS_SCOUTER, scouterName);
+        editor.apply();
     }
 
     @Override
@@ -126,9 +122,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        } else if (id == R.id.action_download) {
+        if (id == R.id.action_download) {
             downloadEventSpinnerData();
         } else if (id == R.id.action_upload) {
             uploadScoutingData();
@@ -183,11 +177,9 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
      * uploads benchmarking data to the server
      */
     private void uploadBenchmarkingData() {
-        if (!isNetworkAvailable(this))
-        {
+        if (!isNetworkAvailable(this)) {
             alertUser("No Network", "The upload function is not available. Connect to a network and try again.").show();
-        }
-        else {
+        } else {
             final Dialog alert = createUploadDialog("Please wait while benchmarking data is uploaded...");
             alert.show();
             SparxScouting ss = SparxScouting.getInstance(this);
@@ -556,18 +548,16 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
      * @return the team's key
      */
     private String getTeamKey(int i) {
-        String result = null;
+        String team = "";
         Match match = getSelectedMatch();
         if (match != null) {
             Alliances a = match.getAlliances();
-            String team;
             if (i < 3)
                 team = a.getBlue().getTeams().get(i);
             else
                 team = a.getRed().getTeams().get(i - 3);
-            return team;
         }
-        return result;
+        return team;
     }
 
     /**
@@ -585,8 +575,6 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
      * @param event the event to get matches for; event != null
      */
     public void setupMatchSpinner(Event event) {
-
-        dbHelper = DatabaseHelper.getInstance(this);
 
         matchPicker = (Spinner) findViewById(R.id.matchPicker);
         cursorAdapterMatches = new SimpleCursorAdapter(this,
@@ -634,13 +622,12 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
      * give alliancePicker its values
      */
     public void setupAllianceSpinner() {
-        //number of teams in both alliances; I don't really feel like making this a constant so yeah
         int numTeams = 6;
         alliancePicker = (Spinner) findViewById(R.id.alliancePicker);
         /**alliance color - red/blue
          */
         String color;
-        ArrayList<String> teamList = new ArrayList<String>();
+        ArrayList<String> teamList = new ArrayList<>();
         //make sure the list has at least 6 spaces
         teamList.ensureCapacity(numTeams);
         for (int i = 0; i < numTeams; i++) {
@@ -655,7 +642,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
             }
         }
         //new adapter to store string values
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,
                 teamList);
         // set alliancePicker's adapter to the string adapter that was just created
         alliancePicker.setAdapter(adapter);
@@ -663,11 +650,9 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
     }
 
     /**
-     * coverts a new scouting object to a JSON string to pass to subactivities that need it
-     *
-     * @return a new String that contains data to create a scouting object in subactivities
+     * initializes a new scouting object and MatchScouting's scouting object
      */
-    private void convertScouting() {
+    private void initScouting() {
 
         scouting = new Scouting();
         //get a match up here; don't really want to keep calling getSelectedMatch()
@@ -707,7 +692,6 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
      * @param e the event to get teams for
      */
     private void setupTeamSpinner(Event e) {
-        dbHelper = dbHelper.getInstance(this);
         teamPicker = (Spinner) findViewById(R.id.teamPicker);
         cursorAdapterTeams = new SimpleCursorAdapter(this,
                 android.R.layout.simple_spinner_item,
@@ -730,7 +714,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
     }
 
     /**
-     * start subactivities if there is enough valid data depending on which type is selected
+     * start sub-activities if there is enough valid data depending on which type is selected
      *
      * @param view the view to call this on -- should only be called on begin scouting button
      */
@@ -776,7 +760,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
             } else // okay to scout!
             {
                 Intent i = new Intent(this, MatchScouting.class);
-                convertScouting();
+                initScouting();
                 i.putExtra(ALLIANCE_SELECTED, (String) alliancePicker.getSelectedItem());
                 startActivity(i);
             }

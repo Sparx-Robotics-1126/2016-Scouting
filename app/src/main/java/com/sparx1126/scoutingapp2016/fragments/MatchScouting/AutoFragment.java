@@ -59,6 +59,10 @@ public class AutoFragment extends Fragment {
 
     private Boolean wasCreated = false;
 
+    public AutoFragment() {
+        // Required empty public constructor
+    }
+
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -71,10 +75,6 @@ public class AutoFragment extends Fragment {
         fragment.setScoutingAuto(sa);
         fragment.setArguments(args);
         return fragment;
-    }
-
-    public AutoFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -190,7 +190,7 @@ public class AutoFragment extends Fragment {
 
     private int indexOfPositionValue(int positionValue)
     {
-        String positionString = "";
+        String positionString;
         if (positionValue == 0)
             positionString = "Not Present";
         else
@@ -236,28 +236,8 @@ public class AutoFragment extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        public void onFragmentInteraction(Uri uri);
-    }
-
-    public void setScoutingAuto(ScoutingAuto sa){
-        this.sa = sa;
-    }
-
-    private int positionValueFromSpinnerString(String positionString)
-    {
-        int result = 0;
+    private int positionValueFromSpinnerString(String positionString) {
+        int result;
         if (positionString.equals("Not Present"))
             result = 0;
         else
@@ -265,12 +245,11 @@ public class AutoFragment extends Fragment {
         return result;
     }
 
-    public ScoutingAuto getScoutingAuto(){
-        if(sa == null)
+    public ScoutingAuto getScoutingAuto() {
+        if (sa == null)
             sa = new ScoutingAuto();
 
-        if (wasCreated)
-        {
+        if (wasCreated) {
             sa.setPortcullisPosition(positionValueFromSpinnerString(portcullisPositionSpinner.getSelectedItem().toString()));
             sa.setChevalPosition(positionValueFromSpinnerString(chevalPositionSpinner.getSelectedItem().toString()));
             sa.setMoatPosition(positionValueFromSpinnerString(moatPositionSpinner.getSelectedItem().toString()));
@@ -300,6 +279,25 @@ public class AutoFragment extends Fragment {
         }
 
         return sa;
+    }
+
+    public void setScoutingAuto(ScoutingAuto sa){
+        this.sa = sa;
+    }
+
+    /**
+     * This interface must be implemented by activities that contain this
+     * fragment to allow an interaction in this fragment to be communicated
+     * to the activity and potentially other fragments contained in that
+     * activity.
+     * <p/>
+     * See the Android Training lesson <a href=
+     * "http://developer.android.com/training/basics/fragments/communicating.html"
+     * >Communicating with Other Fragments</a> for more information.
+     */
+    public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void onFragmentInteraction(Uri uri);
     }
 
 }
