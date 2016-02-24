@@ -39,7 +39,24 @@ class GetScoutingData(webapp2.RequestHandler):
         
         self.response.content_type = 'application/json'
         self.response.write(json.dumps(scoutingList))
-    
+
+    def getAll(self):
+        scoutingQueryList = Scouting.query()
+
+        scoutingList = scoutingQueryList.map(self.callback)
+
+        self.response.content_type = 'application/json'
+        self.response.write(json.dumps(scoutingList))
+
+    def getBenchmarkingAll(self):
+        scoutingQueryList = ScoutingInfo.query()
+
+        scoutingList = scoutingQueryList.map(self.callback)
+
+        self.response.content_type = 'application/json'
+        self.response.write(json.dumps(scoutingList))
+
+
     def callback(self, scouting):
         return scouting.to_dict()
 

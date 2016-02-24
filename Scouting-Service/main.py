@@ -23,6 +23,14 @@ class MainHandler(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
+    webapp2.Route(r'/api/2016/v1/ScoutingData/all',
+        GetScoutingData,
+        methods=['GET'],
+        handler_method='getAll'),
+    webapp2.Route(r'/api/2016/v1/BenchmarkingData/all',
+        GetScoutingData,
+        methods=['GET'],
+        handler_method='getBenchmarkingAll'),
     webapp2.Route(r'/api/2016/v1/ScoutingData', PostScoutingData, methods=['POST']),
     webapp2.Route(r'/api/2016/v1/BenchmarkingData', PostBenchmarkingData, methods=['POST']),
     webapp2.Route(r'/api/2016/v1/ScoutingData/<team_key>',
