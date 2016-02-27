@@ -42,9 +42,11 @@
     </string-array>
     <string-array name="endgamescale_choices">
         <item>no attempt</item>
-        <item>failed</item>
         <item>challenged</item>
+        <item>challenged (scale attempt)</item>
         <item>scaled</item>
+        <item>failed challenge</item>
+        <item>failed scale, no challenge</item>
     </string-array>
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
