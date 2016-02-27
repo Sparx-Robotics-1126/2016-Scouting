@@ -302,8 +302,8 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
         final Dialog alert = createDownloadDialog("Please wait while Event data is downloaded...");
         alert.show();
         blueAlliance = BlueAlliance.getInstance(this);
-        //TODO change to 2016 when ready to use
-        blueAlliance.loadEventList(2015, new NetworkCallback() {
+        
+        blueAlliance.loadEventList(2016, new NetworkCallback() {
             @Override
             public void handleFinishDownload(final boolean success) {
                 MainMenu.this.runOnUiThread(new Runnable() {
