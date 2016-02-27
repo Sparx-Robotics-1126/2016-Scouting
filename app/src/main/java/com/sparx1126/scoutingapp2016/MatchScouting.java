@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.sparx1126.scoutingapp2016.fragments.MatchScouting.AutoFragment;
@@ -73,6 +74,8 @@ public class MatchScouting extends FragmentActivity implements GeneralFragment.O
         Toolbar toolbar = ((Toolbar) findViewById(R.id.toolbar));
         toolbar.setTitle("Scouting for " + i.getStringExtra(MainMenu.ALLIANCE_SELECTED));
 
+        // auto-select the Auto Fragment
+        switchFragment(findViewById(R.id.auto));
     }
 
     //necessary for interfaces
@@ -91,6 +94,7 @@ public class MatchScouting extends FragmentActivity implements GeneralFragment.O
         fm = getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
 
+        HighlightButton(view.getId());
         switch (view.getId()) {
             case R.id.auto:
                 if (generalFragment.isAdded()) {
@@ -131,6 +135,16 @@ public class MatchScouting extends FragmentActivity implements GeneralFragment.O
             default:
         }
         ft.commit();
+    }
+
+    private void HighlightButton(int buttonId)
+    {
+        Button auto = (Button)findViewById(R.id.auto);
+        Button general = (Button)findViewById(R.id.general);
+        Button tele = (Button)findViewById(R.id.tele);
+        auto.setTextColor(buttonId == R.id.auto ? 0xffff0000 : 0xff000000);
+        general.setTextColor(buttonId == R.id.general ? 0xffff0000 : 0xff000000);
+        tele.setTextColor(buttonId == R.id.tele ? 0xffff0000 : 0xff000000);
     }
 
     /**

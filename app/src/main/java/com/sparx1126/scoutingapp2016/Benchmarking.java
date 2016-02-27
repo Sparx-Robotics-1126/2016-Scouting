@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.sparx1126.scoutingapp2016.fragments.Benchmarking.AcquisitionFragment;
@@ -57,6 +58,9 @@ public class Benchmarking extends FragmentActivity implements DrivesFragment.OnF
         // set title of activity to the team number
         Toolbar toolbar = ((Toolbar) findViewById(R.id.toolbar));
         toolbar.setTitle("Benchmarking for: " + info.getTeamKey().replace("frc", ""));
+
+        // auto-select the Drives Fragment
+        switchFragment(findViewById(R.id.bench_drives));
     }
 
     //necessary inclusion for all fragments
@@ -72,6 +76,8 @@ public class Benchmarking extends FragmentActivity implements DrivesFragment.OnF
     public void switchFragment(View view) {
         fm = getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
+
+        HighlightButton(view.getId());
 
         switch (view.getId()) {
             case R.id.bench_drives:
@@ -135,6 +141,18 @@ public class Benchmarking extends FragmentActivity implements DrivesFragment.OnF
                 ft.show(scoringFragment);
         }
         ft.commit();
+    }
+
+    private void HighlightButton(int buttonId)
+    {
+        Button drives = (Button)findViewById(R.id.bench_drives);
+        Button sw = (Button)findViewById(R.id.bench_sw_elec);
+        Button acq = (Button)findViewById(R.id.bench_acq);
+        Button scoring = (Button)findViewById(R.id.bench_scoring);
+        drives.setTextColor(buttonId == R.id.bench_drives ? 0xffff0000 : 0xff000000);
+        sw.setTextColor(buttonId == R.id.bench_sw_elec ? 0xffff0000 : 0xff000000);
+        acq.setTextColor(buttonId == R.id.bench_acq ? 0xffff0000 : 0xff000000);
+        scoring.setTextColor(buttonId == R.id.bench_scoring ? 0xffff0000 : 0xff000000);
     }
 
     /**
