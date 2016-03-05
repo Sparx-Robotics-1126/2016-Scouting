@@ -49,6 +49,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
     public static final String NAME = "com.sparx1126.scoutingapp2016.NAME";
     public static final String PREFS_NAME = "sparx-prefs";
     public static final String PREFS_SCOUTER = "scouterName";
+    public static final String ALLIANCE_COLOR = "com.sparx1126.scouting2016.COLOR";
     private Spinner eventPicker;
     private Spinner matchPicker;
     private Spinner alliancePicker;
@@ -63,13 +64,13 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
     private BlueAlliance blueAlliance;
     private Scouting scouting;
     private DatabaseHelper dbHelper;
+    private String color;
 
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
-        System.setProperty("http.keepAlive", "false");
-
         super.onCreate(savedInstanceState);
+        System.setProperty("http.keepAlive", "false");
         setContentView(R.layout.activity_main_menu);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -88,6 +89,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
                 beginScouting(view);
             }
         });
+
 
         RestorePreferences();
     }
@@ -465,6 +467,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
      * @param view the view that was clicked
      */
     public void setScoutType(View view) {
+        view.setKeepScreenOn(true);
         if (scout.getVisibility() != View.VISIBLE) {
             scout.setVisibility(View.VISIBLE);
         }
@@ -519,6 +522,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
         Team result = null;
         if (alliancePicker != null) {
             int teamIndex = alliancePicker.getSelectedItemPosition();
+            color = ((String) alliancePicker.getSelectedItem()).substring(0, ((String) alliancePicker.getSelectedItem()).indexOf(" "));
             String teamKey = getTeamKey(teamIndex);
             result = dbHelper.getTeam(teamKey);
         }
@@ -762,6 +766,7 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
                 Intent i = new Intent(this, MatchScouting.class);
                 initScouting();
                 i.putExtra(ALLIANCE_SELECTED, (String) alliancePicker.getSelectedItem());
+                i.putExtra(ALLIANCE_COLOR, color);
                 startActivity(i);
             }
         }

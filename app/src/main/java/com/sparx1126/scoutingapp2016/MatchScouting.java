@@ -3,6 +3,7 @@ package com.sparx1126.scoutingapp2016;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -30,22 +31,19 @@ public class MatchScouting extends FragmentActivity implements GeneralFragment.O
 
 
     public static Scouting scout;
-    private BlueAlliance blueAlliance;
     private DatabaseHelper dbHelper;
     private FragmentManager fm;
     private AutoFragment autoFragment;
     private GeneralFragment generalFragment;
     private TeleFragment teleFragment;
+    private String color;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        blueAlliance = BlueAlliance.getInstance(this);
         dbHelper = DatabaseHelper.getInstance(this);
         setContentView(R.layout.activity_match_scouting);
         Intent i = getIntent();
-
-
         fm = getFragmentManager();
         if (dbHelper.doesScoutingExist(scout)) {
 
@@ -69,10 +67,14 @@ public class MatchScouting extends FragmentActivity implements GeneralFragment.O
 
         generalFragment = GeneralFragment.newInstance(scout.getGeneral());
 
-
+        color = i.getStringExtra(MainMenu.ALLIANCE_COLOR);
         // set title of activity to the team number
         Toolbar toolbar = ((Toolbar) findViewById(R.id.toolbar));
+        if (color.equals("Blue")) {
+            toolbar.setBackgroundColor(Color.BLUE);
+        } else toolbar.setBackgroundColor(Color.RED);
         toolbar.setTitle("Scouting for " + i.getStringExtra(MainMenu.ALLIANCE_SELECTED));
+
 
         // auto-select the Auto Fragment
         switchFragment(findViewById(R.id.auto));
@@ -91,6 +93,7 @@ public class MatchScouting extends FragmentActivity implements GeneralFragment.O
      * @param view the object that was clicked
      */
     public void switchFragment(View view) {
+        view.setKeepScreenOn(true);
         fm = getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
 
