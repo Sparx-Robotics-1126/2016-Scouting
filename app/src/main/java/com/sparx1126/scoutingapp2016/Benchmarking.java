@@ -58,6 +58,14 @@ public class Benchmarking extends FragmentActivity implements DrivesFragment.OnF
         // set title of activity to the team number
         Toolbar toolbar = ((Toolbar) findViewById(R.id.toolbar));
         toolbar.setTitle("Benchmarking for: Team " + info.getTeamKey().replace("frc", ""));
+        //create fragment views
+        FragmentManager fm = this.getFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.add(R.id.fragContainer, drivesFragment);
+        ft.add(R.id.fragContainer, softwareFragment);
+        ft.add(R.id.fragContainer, acquisitionFragment);
+        ft.add(R.id.fragContainer, drivesFragment);
+        ft.commit();
 
         // auto-select the Drives Fragment
         switchFragment(findViewById(R.id.bench_drives));

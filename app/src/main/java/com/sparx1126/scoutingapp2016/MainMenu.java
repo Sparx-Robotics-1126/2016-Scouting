@@ -776,11 +776,11 @@ public class MainMenu extends AppCompatActivity implements AdapterView.OnItemSel
      * initializes benchmarking data with info from spinners
      */
     private void initializeBenchmarking() {
-        Benchmarking.info = new ScoutingInfo();
-        ScoutingInfo si = Benchmarking.info;
+        ScoutingInfo si = new ScoutingInfo();
         si.setNameOfScouter(getName());
         si.setEventKey(getSelectedEvent().getKey());
         si.setTeamKey(getSelectedTeam().getKey());
+        Benchmarking.info = si;
     }
 
 }

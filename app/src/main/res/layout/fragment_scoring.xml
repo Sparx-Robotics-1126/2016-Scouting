@@ -4,251 +4,269 @@
     tools:context="com.sparx1126.scoutingapp2016.fragments.Benchmarking.ScoringFragment">
 
 
-    <LinearLayout android:layout_height="match_parent"
+    <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <RelativeLayout android:layout_height="wrap_content"
+        <RelativeLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@android:drawable/divider_horizontal_bright">
     <TextView
-        android:layout_gravity="left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Can this team score in the high goal?"
-        android:layout_marginTop="15dp"
+        android:layout_gravity="left"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:text="Can this team score in the high goal?"
         android:textSize="@dimen/body_text_size" />
     <ToggleButton
+        android:id="@+id/highGoal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_marginRight="@dimen/horiz_margin"
-        android:id="@+id/highGoal"
-        android:textOn="Yes"
-        android:textOff="No"/>
+        android:textOff="No"
+        android:textOn="Yes" />
         </RelativeLayout>
 
 
-        <RelativeLayout android:layout_height="wrap_content"
-            android:layout_width="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
     <TextView
-        android:layout_gravity="left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Can this team score in the low goal?"
-        android:layout_marginTop="15dp"
+        android:layout_gravity="left"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:text="Can this team score in the low goal?"
         android:textSize="@dimen/body_text_size" />
-    <ToggleButton android:layout_width="wrap_content"
+
+            <ToggleButton
+                android:id="@+id/lowGoal"
+                android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_marginRight="@dimen/horiz_margin"
-        android:id="@+id/lowGoal"
-        android:textOn="Yes"
-        android:textOff="No"/>
+                android:textOff="No"
+                android:textOn="Yes" />
         </RelativeLayout>
 
-        <RelativeLayout android:layout_height="wrap_content"
+        <RelativeLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@android:drawable/divider_horizontal_bright">
     <TextView
-        android:layout_gravity="left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
         android:text="Average amount of high goals per match?"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
         android:textSize="@dimen/body_text_size" />
-    <EditText android:layout_height="wrap_content"
+
+            <EditText
+                android:id="@+id/avgHigh"
         android:layout_width="wrap_content"
-        android:hint="average"
+                android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_marginRight="@dimen/horiz_margin"
-        android:inputType="number|phone"
-        android:id="@+id/avgHigh"/>
+                android:hint="average"
+                android:inputType="number|phone" />
         </RelativeLayout>
 
-        <RelativeLayout android:layout_height="wrap_content"
-            android:layout_width="match_parent" >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
     <TextView
-        android:layout_gravity="left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Average amount of low goals per match?"
-        android:layout_marginTop="15dp"
+        android:layout_gravity="left"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:text="Average amount of low goals per match?"
         android:textSize="@dimen/body_text_size" />
-    <EditText android:layout_height="wrap_content"
+
+            <EditText
+                android:id="@+id/avgLow"
         android:layout_width="wrap_content"
-        android:hint="average"
+                android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_marginRight="@dimen/horiz_margin"
-        android:inputType="number|phone"
-        android:id="@+id/avgLow"/>
+                android:hint="average"
+                android:inputType="number|phone" />
         </RelativeLayout>
 
 
-        <RelativeLayout android:layout_height="wrap_content"
+        <RelativeLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@android:drawable/divider_horizontal_bright">
             <TextView
-        android:layout_gravity="left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="What is this team's average scaling height (percent)?"
-        android:layout_marginTop="15dp"
+                android:layout_gravity="left"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"
+                android:text="What is this team's average scaling height (percent)?"
         android:textSize="@dimen/body_text_size" />
 
     <EditText
+        android:id="@+id/scalingHeight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_marginRight="40dp"
         android:hint="average"
-        android:inputType="number|phone"
-        android:id="@+id/scalingHeight"/>
+        android:inputType="number|phone" />
         <TextView
-            android:layout_gravity="left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="%"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="15dp"
+            android:layout_gravity="left"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:text="%"
             android:textSize="@dimen/body_text_size" />
         </RelativeLayout>
 
     <TextView
-        android:layout_gravity="left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Where can this team scale?"
-        android:layout_marginTop="15dp"
+        android:layout_gravity="left"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:text="Where can this team scale?"
         android:textSize="@dimen/body_text_size" />
 
-    <RelativeLayout android:layout_height="wrap_content"
-        android:layout_width="match_parent"
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
         android:background="@android:drawable/divider_horizontal_bright">
         <TextView
-            android:layout_gravity="left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
             android:text="Left Side"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
             android:textSize="@dimen/body_text_size" />
         <ToggleButton
+            android:id="@+id/scaleLeft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/horiz_margin"
-            android:textOn="Yes"
             android:textOff="No"
-            android:id="@+id/scaleLeft"/>
+            android:textOn="Yes" />
     </RelativeLayout>
 
-    <RelativeLayout android:layout_height="wrap_content"
-        android:layout_width="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
         <TextView
-            android:layout_gravity="left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Center"
-            android:layout_marginTop="15dp"
+            android:layout_gravity="left"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:text="Center"
             android:textSize="@dimen/body_text_size" />
         <ToggleButton
+            android:id="@+id/scaleCenter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/horiz_margin"
-            android:textOn="Yes"
             android:textOff="No"
-            android:id="@+id/scaleCenter"/>
+            android:textOn="Yes" />
     </RelativeLayout>
 
-    <RelativeLayout android:layout_height="wrap_content"
-        android:layout_width="match_parent"
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
         android:background="@android:drawable/divider_horizontal_bright">
         <TextView
-            android:layout_gravity="left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Right Side"
-            android:layout_marginTop="15dp"
+            android:layout_gravity="left"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:text="Right Side"
             android:textSize="@dimen/body_text_size" />
         <ToggleButton
+            android:id="@+id/scaleRight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/horiz_margin"
-            android:textOn="Yes"
             android:textOff="No"
-            android:id="@+id/scaleRight"/>
+            android:textOn="Yes" />
     </RelativeLayout>
 
 
-    <RelativeLayout android:layout_height="wrap_content"
-        android:layout_width="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
     <TextView
-        android:layout_gravity="left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Average cycle time?"
-        android:layout_marginTop="15dp"
+        android:layout_gravity="left"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:text="Average cycle time?"
         android:textSize="@dimen/body_text_size" />
     <EditText
+        android:id="@+id/cycleTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_marginRight="100dp"
-        android:id="@+id/cycleTime"
-        android:hint="average"/>
+        android:hint="average"
+        android:inputType="number|phone" />
 
         <TextView
-            android:layout_gravity="left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="second(s)"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="15dp"
+            android:layout_gravity="left"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:text="second(s)"
             android:textSize="@dimen/body_text_size" />
     </RelativeLayout>
 
 
-    <RelativeLayout android:layout_height="wrap_content"
-        android:layout_width="match_parent"
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
         android:background="@android:drawable/divider_horizontal_bright">
     <TextView
-        android:layout_gravity="left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Does this team block or play defense?"
+        android:layout_gravity="left"
         android:layout_marginLeft="@dimen/horiz_margin"
+        android:text="Does this team block or play defense?"
         android:textSize="@dimen/body_text_size" />
 
     <ToggleButton
+        android:id="@+id/playsDefense"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/playsDefense"
         android:layout_alignParentRight="true"
         android:layout_marginRight="@dimen/horiz_margin"
         android:textOff="No"
