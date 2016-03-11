@@ -178,7 +178,18 @@ public class Benchmarking extends FragmentActivity implements DrivesFragment.OnF
             acquisitionFragment.getScoutingInfo();
             scoringFragment.getScoutingInfo();
             softwareFragment.getScoutingInfo();
-            dbHelper.updateBenchmarking(info);
+            //check if benchmarking is empty to see if it needs to be stored
+            //...HELP ME
+            if (info.getAcquiresBouldersFromFloor() || info.getCanScoreInLowGoal() || info.getCanCrossMoat() || info.getAutoEndInCourtyard() || info.getAutoEndInNeutralZone() || info.getAutoStartInNeutralZone()
+                    || info.getAutoStartInSpyPosition() || info.getCanCarryBouldersOverCheval() || info.getCanCarryBouldersOverDrawbridge() || info.getCanCarryBouldersOverLowbar() || info.getCanCarryBouldersOverMoat()
+                    || info.getCanCarryBouldersOverPortcullis() || info.getCanCarryBouldersOverRamparts() || info.getCanCarryBouldersOverRockwall() || info.getCanCarryBouldersOverRoughterrain() || info.getCanCarryBouldersOverSallyport()
+                    || info.getCanCrossCheval() || info.getCanCrossDrawbridge() || info.getCanCrossLowbar() || info.getCanCrossPortcullis() || info.getCanCrossPortcullis() || info.getCanCrossRamparts()
+                    || info.getCanCrossRockwall() || info.getCanCrossRoughterrain() || info.getCanCrossSallyport() || info.getCanCrossSallyport() || info.getCanScaleAtCenter()
+                    || info.getCanScaleOnLeft() || info.getCanScaleOnRight() || info.getCanScoreInHighGoal() || info.getCanScoreInLowGoal() || info.getDoesExtendBeyondTransportConfig()
+                    || info.getPlaysDefense() || info.getApproxSpeedFeetPerSecond() != 0 || !info.getAutoCapabilitiesDescription().equals("") || info.getAverageHighGoalsPerMatch() != 0
+                    || info.getAverageLowGoalsPerMatch() != 0 || info.getCycleTime() != 0 || !info.getDriveSystemDescription().equals("") || info.getScaleHeightPercent() != 0) {
+                dbHelper.updateBenchmarking(info);
+            }
             drivesFragment = null;
             acquisitionFragment = null;
             softwareFragment = null;
