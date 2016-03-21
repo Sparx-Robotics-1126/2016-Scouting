@@ -61,10 +61,12 @@ public class Benchmarking extends FragmentActivity implements DrivesFragment.OnF
         //create fragment views
         FragmentManager fm = this.getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        ft.add(R.id.fragContainer, drivesFragment);
         ft.add(R.id.fragContainer, softwareFragment);
         ft.add(R.id.fragContainer, acquisitionFragment);
-        ft.add(R.id.fragContainer, drivesFragment);
+        ft.add(R.id.fragContainer, scoringFragment);
+        ft.hide(softwareFragment);
+        ft.hide(acquisitionFragment);
+        ft.hide(scoringFragment);
         ft.commit();
 
         // auto-select the Drives Fragment
@@ -178,7 +180,7 @@ public class Benchmarking extends FragmentActivity implements DrivesFragment.OnF
             acquisitionFragment.getScoutingInfo();
             scoringFragment.getScoutingInfo();
             softwareFragment.getScoutingInfo();
-            //check if benchmarking is empty to see if it needs to be stored
+            //check if benchmarking has all default values to see if it needs to be stored
             //...HELP ME
             if (info.getAcquiresBouldersFromFloor() || info.getCanScoreInLowGoal() || info.getCanCrossMoat() || info.getAutoEndInCourtyard() || info.getAutoEndInNeutralZone() || info.getAutoStartInNeutralZone()
                     || info.getAutoStartInSpyPosition() || info.getCanCarryBouldersOverCheval() || info.getCanCarryBouldersOverDrawbridge() || info.getCanCarryBouldersOverLowbar() || info.getCanCarryBouldersOverMoat()
@@ -190,6 +192,7 @@ public class Benchmarking extends FragmentActivity implements DrivesFragment.OnF
                     || info.getAverageLowGoalsPerMatch() != 0 || info.getCycleTime() != 0 || !info.getDriveSystemDescription().equals("") || info.getScaleHeightPercent() != 0) {
                 dbHelper.updateBenchmarking(info);
             }
+
             drivesFragment = null;
             acquisitionFragment = null;
             softwareFragment = null;

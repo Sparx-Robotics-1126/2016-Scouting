@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -101,171 +102,175 @@ public class ViewData extends AppCompatActivity {
             //need to get scouting from online database in case we don't have all the data
             @Override
             public void handleFinishDownload(boolean success) {
-                scoutList = dbHelper.getScouting(eventKey, teamKey);
-                final ScoutingInfo in = new ScoutingInfo();
-                in.setEventKey(eventKey);
-                in.setTeamKey(teamKey);
-                in.setNameOfScouter(name);
-                if (dbHelper.doesBenchmarkingExist(in.getEventKey(), in.getTeamKey())) {
-                    //benchmarking exists, so don't need to check online
-                    benchmarkList = dbHelper.getBenchmarking(eventKey, teamKey);
-                    initFromBenchmarkList(benchmarkList);
-                } else {
-                    //no benchmarking found, so check online for one
-                    s.getBenchmarking(dbHelper.getTeam(teamKey), dbHelper.getEvent(eventKey), new NetworkCallback() {
-                        @Override
-                        public void handleFinishDownload(boolean success) {
-                            if (success) {
-                                //check if one was found online
-                                if (dbHelper.doesBenchmarkingExist(in.getEventKey(), in.getTeamKey())) {
-                                    //found, so set benchmarklist to it
-                                    benchmarkList = dbHelper.getBenchmarking(eventKey, teamKey);
+                if (success) {
+                    scoutList = dbHelper.getScouting(eventKey, teamKey);
+                    final ScoutingInfo in = new ScoutingInfo();
+                    in.setEventKey(eventKey);
+                    in.setTeamKey(teamKey);
+                    in.setNameOfScouter(name);
+                    if (dbHelper.doesBenchmarkingExist(in.getEventKey(), in.getTeamKey())) {
+                        //benchmarking exists, so don't need to check online
+                        benchmarkList = dbHelper.getBenchmarking(eventKey, teamKey);
+                        initFromBenchmarkList(benchmarkList);
+                    } else {
+                        //no benchmarking found, so check online for one
+                        s.getBenchmarking(dbHelper.getTeam(teamKey), dbHelper.getEvent(eventKey), new NetworkCallback() {
+                            @Override
+                            public void handleFinishDownload(boolean success) {
+                                if (success) {
+                                    //check if one was found online
+                                    if (dbHelper.doesBenchmarkingExist(in.getEventKey(), in.getTeamKey())) {
+                                        //found, so set benchmarklist to it
+                                        benchmarkList = dbHelper.getBenchmarking(eventKey, teamKey);
+                                    }
                                 }
+                                //initialize the data
+                                initFromBenchmarkList(benchmarkList);
                             }
-                            //initialize the data
-                            initFromBenchmarkList(benchmarkList);
-                        }
-                    });
+                        });
+                    }
+                } else {
+                    Log.e("", "ERROR");
                 }
+            }
+
+            /**
+             * sets the text of this to yes if b is true or no if b is false
+             *
+             * @param text the TextView to change
+             * @param b    the boolean to check
+             */
+            private void setYesNo(TextView text, boolean b) {
+                if (b) {
+                    text.setText("Yes");
+                } else text.setText("No");
+            }
+
+            private void initFromBenchmarkList(List<ScoutingInfo> benchmarkList) {
+                Data data = new Data();
+                try {
+                    ScoutingInfo info = benchmarkList.get(benchmarkList.size() - 1); // get the most recent benchmarking data
+                    benchmarkData.setVisibility(View.VISIBLE);
+                    benchmarkNoData.setVisibility(View.GONE);
+                    benchmarkLoad.setVisibility(View.GONE);
+                    setYesNo(lowAble, info.getCanScoreInLowGoal());
+                    setYesNo(highAble, info.getCanScoreInHighGoal());
+                    setYesNo(portCross, info.getCanCrossPortcullis());
+                    setYesNo(chevCross, info.getCanCrossCheval());
+                    setYesNo(moatCross, info.getCanCrossMoat());
+                    setYesNo(ramCross, info.getCanCrossRamparts());
+                    setYesNo(drawCross, info.getCanCrossDrawbridge());
+                    setYesNo(salCross, info.getCanCrossSallyport());
+                    setYesNo(rockCross, info.getCanCrossRockwall());
+                    setYesNo(roughCross, info.getCanCrossRoughterrain());
+                    setYesNo(lowCross, info.getCanCrossLowbar());
+                    if (info.getAcquiresBouldersFromHumanPlayer()) {
+                        if (info.getAcquiresBouldersFromFloor()) {
+                            boulderSource.setText("Human player and floor");
+                        } else {
+                            boulderSource.setText("Human player");
+                        }
+                    } else boulderSource.setText("Floor");
+                } catch (Exception e) {
+                    setNoDataBenchmarking();
+                }
+                if (data.computeAverages()) {
+                    //info was found, so show the data
+                    String lowInfo = String.valueOf((int) data.lowAvg) + " % (" + data.lowComp + " out of " + data.lowAtt + " attempts)";
+                    String highInfo = String.valueOf((int) data.highAvg) + " % (" + data.highComp + " out of " + data.highAtt + " attempts)";
+                    String defInfo = String.valueOf(data.defAvg) + " % (" + data.defTotal + " out of " + data.defTimes + " matches)";
+                    String pInfo = String.valueOf(data.pAvg) + "(" + data.pCross + " times in " + data.pTimes + " matches)";
+                    String cInfo = String.valueOf(data.cAvg) + "(" + data.cCross + " times in " + data.cTimes + " matches)";
+                    String mInfo = String.valueOf(data.mAvg) + "(" + data.mCross + " times in " + data.mTimes + " matches)";
+                    String rInfo = String.valueOf(data.rAvg) + "(" + data.rCross + " times in " + data.rTimes + " matches)";
+                    String dInfo = String.valueOf(data.dAvg) + "(" + data.dCross + " times in " + data.dTimes + " matches)";
+                    String spInfo = String.valueOf(data.spAvg) + "(" + data.spCross + " times in " + data.spTimes + " matches)";
+                    String rwInfo = String.valueOf(data.rwAvg) + "(" + data.rwCross + " times in " + data.rwTimes + " matches)";
+                    String rtInfo = String.valueOf(data.rtAvg) + "(" + data.rtCross + " times in " + data.rtTimes + " matches)";
+                    String lbInfo = String.valueOf(data.lbAvg) + "(" + data.lbCross + " times in " + data.lbTimes + " matches)";
+                    String scaleInfo = String.valueOf(data.scaleAvg) + " % (Out of " + data.scaleTimes + " matches)";
+                    String failInfo = String.valueOf(data.failAvg) + " % (Out of " + data.scaleTimes + " matches)";
+                    String nAInfo = String.valueOf(data.naAvg) + " % (Out of " + data.scaleTimes + " matches)";
+                    String chalInfo = String.valueOf(data.chalAvg) + " % (Out of " + data.scaleTimes + " matches)";
+                    //if there isn't any data to show
+                    if (data.lowTimes == 0) {
+                        low.setText("No data collected");
+                    } else {
+                        low.setText(lowInfo);
+                    }
+                    if (data.highTimes == 0) {
+                        high.setText("No data collected");
+                    } else {
+                        high.setText(highInfo);
+                    }
+                    def.setText(defInfo);
+                    if (data.pTimes == 0) {
+                        portcullis.setText("No data collected");
+                    } else {
+                        portcullis.setText(pInfo);
+                    }
+                    if (data.cTimes == 0) {
+                        cheval.setText("No data collected");
+                    } else {
+                        cheval.setText(cInfo);
+                    }
+                    if (data.mTimes == 0) {
+                        moat.setText("No data collected");
+                    } else {
+                        moat.setText(mInfo);
+                    }
+                    if (data.rTimes == 0) {
+                        ramparts.setText("No data collected");
+                    } else {
+                        ramparts.setText(rInfo);
+                    }
+                    if (data.dTimes == 0) {
+                        drawbridge.setText("No data collected");
+                    } else {
+                        drawbridge.setText(dInfo);
+                    }
+                    if (data.spTimes == 0) {
+                        sallyport.setText("No data collected");
+                    } else {
+                        sallyport.setText(spInfo);
+                    }
+                    if (data.rwTimes == 0) {
+                        rockwall.setText("No data collected");
+                    } else {
+                        rockwall.setText(rwInfo);
+                    }
+                    if (data.rtTimes == 0) {
+                        roughterrain.setText("No data collected");
+                    } else {
+                        roughterrain.setText(rtInfo);
+                    }
+                    if (data.lbCross == 0) {
+                        lowbar.setText("No data collected");
+                    } else {
+                        lowbar.setText(lbInfo);
+                    }
+                    if (data.scaleTimes == 0) {
+                        scale.setText("No data collected");
+                        fail.setText("No data collected");
+                        nA.setText("No data collected");
+                        chal.setText("No data collected");
+                    } else {
+                        scale.setText(scaleInfo);
+                        fail.setText(failInfo);
+                        chal.setText(chalInfo);
+                        nA.setText(nAInfo);
+                    }
+                    scoutNoData.setVisibility(View.GONE);
+                    scoutLoad.setVisibility(View.GONE);
+                    scoutData.setVisibility(View.VISIBLE);
+                } else {
+                    scoutData.setVisibility(View.GONE);
+                    scoutLoad.setVisibility(View.GONE);
+                    scoutNoData.setVisibility(View.VISIBLE);
+                }
+
             }
         });
-    }
-
-    /**
-     * sets the text of this to yes if b is true or no if b is false
-     *
-     * @param text the TextView to change
-     * @param b    the boolean to check
-     */
-    private void setYesNo(TextView text, boolean b) {
-        if (b) {
-            text.setText("Yes");
-        } else text.setText("No");
-    }
-
-    private void initFromBenchmarkList(List<ScoutingInfo> benchmarkList) {
-        Data data = new Data();
-        try {
-            ScoutingInfo info = benchmarkList.get(benchmarkList.size() - 1); // get the most recent benchmarking data
-            benchmarkData.setVisibility(View.VISIBLE);
-            benchmarkNoData.setVisibility(View.GONE);
-            benchmarkLoad.setVisibility(View.GONE);
-            setYesNo(lowAble, info.getCanScoreInLowGoal());
-            setYesNo(highAble, info.getCanScoreInHighGoal());
-            setYesNo(portCross, info.getCanCrossPortcullis());
-            setYesNo(chevCross, info.getCanCrossCheval());
-            setYesNo(moatCross, info.getCanCrossMoat());
-            setYesNo(ramCross, info.getCanCrossRamparts());
-            setYesNo(drawCross, info.getCanCrossDrawbridge());
-            setYesNo(salCross, info.getCanCrossSallyport());
-            setYesNo(rockCross, info.getCanCrossRockwall());
-            setYesNo(roughCross, info.getCanCrossRoughterrain());
-            setYesNo(lowCross, info.getCanCrossLowbar());
-            if (info.getAcquiresBouldersFromHumanPlayer()) {
-                if (info.getAcquiresBouldersFromFloor()) {
-                    boulderSource.setText("Human player and floor");
-                } else {
-                    boulderSource.setText("Human player");
-                }
-            } else boulderSource.setText("Floor");
-        } catch (Exception e) {
-            setNoDataBenchmarking();
-        }
-        if (data.computeAverages()) {
-            //info was found, so show the data
-            String lowInfo = String.valueOf((int) data.lowAvg) + " % (" + data.lowComp + " out of " + data.lowAtt + " attempts)";
-            String highInfo = String.valueOf((int) data.highAvg) + " % (" + data.highComp + " out of " + data.highAtt + " attempts)";
-            String defInfo = String.valueOf(data.defAvg) + " % (" + data.defTotal + " out of " + data.defTimes + " matches)";
-            String pInfo = String.valueOf(data.pAvg) + "(" + data.pCross + " times in " + data.pTimes + " matches)";
-            String cInfo = String.valueOf(data.cAvg) + "(" + data.cCross + " times in " + data.cTimes + " matches)";
-            String mInfo = String.valueOf(data.mAvg) + "(" + data.mCross + " times in " + data.mTimes + " matches)";
-            String rInfo = String.valueOf(data.rAvg) + "(" + data.rCross + " times in " + data.rTimes + " matches)";
-            String dInfo = String.valueOf(data.dAvg) + "(" + data.dCross + " times in " + data.dTimes + " matches)";
-            String spInfo = String.valueOf(data.spAvg) + "(" + data.spCross + " times in " + data.spTimes + " matches)";
-            String rwInfo = String.valueOf(data.rwAvg) + "(" + data.rwCross + " times in " + data.rwTimes + " matches)";
-            String rtInfo = String.valueOf(data.rtAvg) + "(" + data.rtCross + " times in " + data.rtTimes + " matches)";
-            String lbInfo = String.valueOf(data.lbAvg) + "(" + data.lbCross + " times in " + data.lbTimes + " matches)";
-            String scaleInfo = String.valueOf(data.scaleAvg) + " % (Out of " + data.scaleTimes + " matches)";
-            String failInfo = String.valueOf(data.failAvg) + " % (Out of " + data.scaleTimes + " matches)";
-            String nAInfo = String.valueOf(data.naAvg) + " % (Out of " + data.scaleTimes + " matches)";
-            String chalInfo = String.valueOf(data.chalAvg) + " % (Out of " + data.scaleTimes + " matches)";
-            //if there isn't any data to show
-            if (data.lowTimes == 0) {
-                low.setText("No data collected");
-            } else {
-                low.setText(lowInfo);
-            }
-            if (data.highTimes == 0) {
-                high.setText("No data collected");
-            } else {
-                high.setText(highInfo);
-            }
-            def.setText(defInfo);
-            if (data.pTimes == 0) {
-                portcullis.setText("No data collected");
-            } else {
-                portcullis.setText(pInfo);
-            }
-            if (data.cTimes == 0) {
-                cheval.setText("No data collected");
-            } else {
-                cheval.setText(cInfo);
-            }
-            if (data.mTimes == 0) {
-                moat.setText("No data collected");
-            } else {
-                moat.setText(mInfo);
-            }
-            if (data.rTimes == 0) {
-                ramparts.setText("No data collected");
-            } else {
-                ramparts.setText(rInfo);
-            }
-            if (data.dTimes == 0) {
-                drawbridge.setText("No data collected");
-            } else {
-                drawbridge.setText(dInfo);
-            }
-            if (data.spTimes == 0) {
-                sallyport.setText("No data collected");
-            } else {
-                sallyport.setText(spInfo);
-            }
-            if (data.rwTimes == 0) {
-                rockwall.setText("No data collected");
-            } else {
-                rockwall.setText(rwInfo);
-            }
-            if (data.rtTimes == 0) {
-                roughterrain.setText("No data collected");
-            } else {
-                roughterrain.setText(rtInfo);
-            }
-            if (data.lbCross == 0) {
-                lowbar.setText("No data collected");
-            } else {
-                lowbar.setText(lbInfo);
-            }
-            if (data.scaleTimes == 0) {
-                scale.setText("No data collected");
-                fail.setText("No data collected");
-                nA.setText("No data collected");
-                chal.setText("No data collected");
-            } else {
-                scale.setText(scaleInfo);
-                fail.setText(failInfo);
-                chal.setText(chalInfo);
-                nA.setText(nAInfo);
-            }
-            scoutNoData.setVisibility(View.GONE);
-            scoutLoad.setVisibility(View.GONE);
-            scoutData.setVisibility(View.VISIBLE);
-        } else {
-            scoutData.setVisibility(View.GONE);
-            scoutLoad.setVisibility(View.GONE);
-            scoutNoData.setVisibility(View.VISIBLE);
-        }
-
     }
 
     /**
