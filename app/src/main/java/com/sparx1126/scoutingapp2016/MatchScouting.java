@@ -12,6 +12,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.sparx1126.scoutingapp2016.fragments.MatchScouting.AutoFragment;
 import com.sparx1126.scoutingapp2016.fragments.MatchScouting.GeneralFragment;
@@ -160,6 +161,7 @@ public class MatchScouting extends FragmentActivity implements GeneralFragment.O
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             Toast.makeText(this, "Saving...", Toast.LENGTH_SHORT).show();
+            scout.setMatchScouted(((ToggleButton) (findViewById(R.id.matchScouted))).isChecked());
             scout.setAuto(autoFragment.getScoutingAuto());
             scout.setTele(teleFragment.getScoutingTele());
             scout.setGeneral(generalFragment.getScoutingGeneral());

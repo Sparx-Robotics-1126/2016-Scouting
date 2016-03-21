@@ -19,6 +19,9 @@ import org.gosparx.scouting.aerialassist.networking.SparxScouting;
 
 import java.util.List;
 
+/**
+ * @author Dan Martin
+ */
 public class ViewData extends AppCompatActivity {
     private static List<Scouting> scoutList;
     private static List<ScoutingInfo> benchmarkList;
@@ -416,63 +419,45 @@ public class ViewData extends AppCompatActivity {
                     if (dbHelper.doesScoutingExist(sc)) {
                         ScoutingTele scout = sc.getTele();
 
-                        if (scout.getHighGoalAttempts() != -1) {
-                            if (scout.getHighGoalAttempts() != 0) {
-                                highComp += scout.getHighGoalsScored();
-                                highAtt += scout.getHighGoalAttempts();
-                            }
-                            highTimes++;
-                        }
+                        highComp += scout.getHighGoalsScored();
+                        highAtt += scout.getHighGoalAttempts();
+                        highTimes++;
 
-                        if (scout.getLowGoalAttempts() != -1) {
-
-                            if (scout.getLowGoalAttempts() != 0) {
                                 lowComp += scout.getLowGoalsScored();
                                 lowAtt += scout.getLowGoalAttempts();
 
-                            }
                             lowTimes++;
-                        }
                         if (scout.getPlaysDefense()) {
                             defTotal++;
                         }
                         defTimes++;
-                        if (scout.getPortcullisCrosses() != -1) {
                             pCross += scout.getPortcullisCrosses();
                             pTimes++;
-                        }
-                        if (scout.getChevalCrosses() != -1) {
+
                             cCross += scout.getPortcullisCrosses();
                             cTimes++;
-                        }
-                        if (scout.getMoatCrosses() != -1) {
+
                             mCross += scout.getMoatCrosses();
                             mTimes++;
-                        }
-                        if (scout.getRampartsCrosses() != -1) {
-                            rCross += scout.getRampartsCrosses();
+
+                        rCross += scout.getRampartsCrosses();
                             rTimes++;
-                        }
-                        if (scout.getDrawbridgeCrosses() != -1) {
-                            dCross += scout.getDrawbridgeCrosses();
+
+                        dCross += scout.getDrawbridgeCrosses();
                             dTimes++;
-                        }
-                        if (scout.getSallyportCrosses() != -1) {
-                            spCross += scout.getSallyportCrosses();
+
+                        spCross += scout.getSallyportCrosses();
                             spTimes++;
-                        }
-                        if (scout.getRockwallCrosses() != -1) {
-                            rwCross += scout.getRockwallCrosses();
+
+                        rwCross += scout.getRockwallCrosses();
                             rwTimes++;
-                        }
-                        if (scout.getRoughterrainCrosses() != -1) {
-                            rtCross += scout.getRoughterrainCrosses();
+
+                        rtCross += scout.getRoughterrainCrosses();
                             rtTimes++;
-                        }
-                        if (scout.getLowbarCrosses() != -1) {
-                            lbCross += scout.getLowbarCrosses();
+
+                        lbCross += scout.getLowbarCrosses();
                             lbTimes++;
-                        }
+
                         if (scout.getEndGameScale() != null) {
                             switch (scout.getEndGameScale()) {
                                 case "no attempt":
@@ -492,12 +477,12 @@ public class ViewData extends AppCompatActivity {
                     }
                 }
                 //do the actual computations
-                    if (highTimes != 0) {
+                if (highAtt != 0) {
                         highAvg = (double) highComp / highAtt;
                         highAvg *= 100;
                         highAvg = Math.round(highAvg);
                     } else highAvg = 0;
-                    if (lowTimes != 0) {
+                if (lowAtt != 0) {
                         lowAvg = (double) lowComp / lowAtt;
                         lowAvg *= 100;
                         lowAvg = Math.round(lowAvg);

@@ -6,20 +6,20 @@ package org.gosparx.scouting.aerialassist.dto;
 public class ScoutingTele {
 
     // goal attempts and successes
-    private int highGoalAttempts = -1;
-    private int highGoalsScored = -1;
-    private int lowGoalAttempts = -1;
-    private int lowGoalsScored = -1;
+    private int highGoalAttempts = 0;
+    private int highGoalsScored = 0;
+    private int lowGoalAttempts = 0;
+    private int lowGoalsScored = 0;
     // count of defense crosses
-    private int portcullisCrosses = -1;
-    private int chevalCrosses = -1;
-    private int moatCrosses = -1;
-    private int rampartsCrosses = -1;
-    private int drawbridgeCrosses = -1;
-    private int sallyportCrosses = -1;
-    private int rockwallCrosses = -1;
-    private int roughterrainCrosses = -1;
-    private int lowbarCrosses = -1;
+    private int portcullisCrosses = 0;
+    private int chevalCrosses = 0;
+    private int moatCrosses = 0;
+    private int rampartsCrosses = 0;
+    private int drawbridgeCrosses = 0;
+    private int sallyportCrosses = 0;
+    private int rockwallCrosses = 0;
+    private int roughterrainCrosses = 0;
+    private int lowbarCrosses = 0;
     // whether or not this robot plays defense
     private Boolean playsDefense = false;
     // number of boulders picked up from floor

@@ -97,6 +97,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_SCOUTING_EVENT_KEY = "event_key";
     private static final String TABLE_SCOUTING_MATCH_KEY = "match_key";
     private static final String TABLE_SCOUTING_NAME = "scouter_name";
+    private static final String TABLE_SCOUTING_MATCHSCOUTED = "match_scouted";
     private static final String TABLE_SCOUTING_AUTO_PORTCULLIS_POSITION = "a_portcullisPosition";
     private static final String TABLE_SCOUTING_AUTO_CHEVAL_POSITION = "a_chevalPosition";
     private static final String TABLE_SCOUTING_AUTO_MOAT_POSITION = "a_moatPosition";
@@ -246,6 +247,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + TABLE_SCOUTING_EVENT_KEY + " TEXT, "
             + TABLE_SCOUTING_MATCH_KEY + " TEXT, "
             + TABLE_SCOUTING_NAME + " TEXT, "
+            + TABLE_SCOUTING_MATCHSCOUTED + " BOOLEAN, "
             + TABLE_SCOUTING_AUTO_PORTCULLIS_POSITION + " INTEGER, "
             + TABLE_SCOUTING_AUTO_CHEVAL_POSITION + " INTEGER, "
             + TABLE_SCOUTING_AUTO_MOAT_POSITION + " INTEGER, "
@@ -366,6 +368,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         data.setEventKey(c.getString(c.getColumnIndex(TABLE_SCOUTING_EVENT_KEY)));
         data.setTeamKey(c.getString(c.getColumnIndex(TABLE_SCOUTING_TEAM_KEY)));
         data.setMatchKey(c.getString(c.getColumnIndex(TABLE_SCOUTING_MATCH_KEY)));
+        data.setMatchScouted(getBoolean(c, c.getColumnIndex(TABLE_SCOUTING_MATCHSCOUTED)));
 
         ScoutingAuto scoutingAuto = new ScoutingAuto();
         data.setAuto(scoutingAuto);
@@ -846,6 +849,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(TABLE_SCOUTING_EVENT_KEY, scouting.getEventKey());
         values.put(TABLE_SCOUTING_MATCH_KEY, scouting.getMatchKey());
         values.put(TABLE_SCOUTING_NAME, scouting.getNameOfScouter());
+        values.put(TABLE_SCOUTING_MATCHSCOUTED, scouting.isMatchScouted());
 
         if (scoutingAuto != null) {
             values.put(TABLE_SCOUTING_AUTO_PORTCULLIS_POSITION, scoutingAuto.getPortcullisPosition());

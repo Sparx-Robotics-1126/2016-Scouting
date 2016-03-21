@@ -11,6 +11,9 @@ public class Scouting {
     private String matchKey;
     private String teamKey;
 
+
+    private boolean matchScouted;
+
     private ScoutingAuto auto;
     private ScoutingTele tele;
     private ScoutingGeneral general;
@@ -69,6 +72,15 @@ public class Scouting {
 
     public void setGeneral(ScoutingGeneral general) {
         this.general = general;
+    }
+
+
+    public boolean isMatchScouted() {
+        return matchScouted;
+    }
+
+    public void setMatchScouted(boolean matchScouted) {
+        this.matchScouted = matchScouted;
     }
 
     public boolean equals(Object obj){
