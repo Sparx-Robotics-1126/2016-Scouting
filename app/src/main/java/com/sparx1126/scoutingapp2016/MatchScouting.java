@@ -162,13 +162,38 @@ public class MatchScouting extends FragmentActivity implements GeneralFragment.O
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             Toast.makeText(this, "Saving...", Toast.LENGTH_SHORT).show();
             scout.setMatchScouted(((ToggleButton) (findViewById(R.id.matchScouted))).isChecked());
-            scout.setAuto(autoFragment.getScoutingAuto());
-            scout.setTele(teleFragment.getScoutingTele());
-            scout.setGeneral(generalFragment.getScoutingGeneral());
-            dbHelper.updateScouting(scout);
+            ScoutingAuto auto = autoFragment.getScoutingAuto();
+            scout.setAuto(auto);
+            ScoutingTele tele = teleFragment.getScoutingTele();
+            scout.setTele(tele);
+            ScoutingGeneral general = generalFragment.getScoutingGeneral();
+            scout.setGeneral(general);
+            if (auto.getBoulderPickedUp() || auto.getChevalCrossed() || auto.getDrawbridgeCrossed()
+                    || auto.getLowbarCrossed() || auto.getMoatCrossed() || auto.getPortcullisCrossed()
+                    || auto.getRampartsCrossed() || auto.getReachAchieved() || auto.getReachWasCrossAttempt()
+                    || auto.getRobotScoredHigh() || auto.getRobotScoredLow() || auto.getRockwallCrossed()
+                    || auto.getRoughterrainCrossed() || auto.getSallyportCrossed() || auto.getStartedAsSpy()
+                    || auto.getStartedWithBoulder() || auto.getChevalPosition() != 0 || auto.getDrawbridgePosition() != 0
+                    || auto.getMoatPosition() != 0 || auto.getPortcullisPosition() != 0 || auto.getRampartsPosition() != 0
+                    || auto.getRockwallPosition() != 0 || auto.getRoughterrainPosition() != 0
+                    || auto.getSallyportPosition() != 0 || tele.getPlaysDefense() || tele.getLowGoalAttempts() != 0
+                    || tele.getHighGoalAttempts() != 0 || tele.getLowGoalsScored() != 0 || tele.getHighGoalsScored() != 0
+                    || tele.getBouldersPickedUp() != 0 || tele.getBouldersReceivedFromBrattice() != 0
+                    || tele.getBouldersTakenToCourtyard() != 0 || tele.getChevalCrosses() != 0 || tele.getDrawbridgeCrosses() != 0
+                    || tele.getLowbarCrosses() != 0 || tele.getMoatCrosses() != 0 || tele.getPortcullisCrosses() != 0
+                    || tele.getRampartsCrosses() != 0 || tele.getRockwallCrosses() != 0 || tele.getRoughterrainCrosses() != 0
+                    || tele.getSallyportCrosses() != 0 || (general.getCommentsOnPenalties() != null
+                    && !general.getCommentsOnPenalties().trim().equals(""))
+                    || (general.getCommentsOnTechnicalFouls() != null && !general.getCommentsOnTechnicalFouls().trim().equals(""))
+                    || (general.getGeneralComments() != null && !general.getGeneralComments().trim().equals(""))
+                    || general.getNumberOfPenalties() != 0 || general.getNumberOfTechnicalFouls() != 0) {
+
+                dbHelper.updateScouting(scout);
+            }
             teleFragment = null;
             generalFragment = null;
             autoFragment = null;
+            scout = null;
             this.finish();
         }
         return super.onKeyDown(keyCode, event);
