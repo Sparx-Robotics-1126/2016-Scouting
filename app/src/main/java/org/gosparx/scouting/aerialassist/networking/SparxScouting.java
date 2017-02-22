@@ -23,7 +23,7 @@ import java.util.List;
  */
 public class SparxScouting {
     private static final String TAG = "SparxScouting";
-    private static final String BASE_URL = "http://scouting-2016.appspot.com";
+    private static final String BASE_URL = "http://172.20.10.6:8080";
     private static final String POST_SCOUTING = "/api/2016/v1/ScoutingData";
     private static final String POST_BENCHMARKING = "/api/2016/v1/BenchmarkingData";
     private static final String GET_SCOUTING_BY_TEAM = "/api/20165/v1/ScoutingData/{TEAM_KEY}";
