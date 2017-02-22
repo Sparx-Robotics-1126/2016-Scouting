@@ -60,6 +60,7 @@ class Scouting(ndb.Model):
     teamKey = ndb.StringProperty()
     eventKey = ndb.StringProperty()
     matchKey = ndb.StringProperty()
+    matchScouted = ndb.BooleanProperty()
 
     auto = ndb.StructuredProperty(ScoutingAuto, repeated=False)
     tele = ndb.StructuredProperty(ScoutingTele, repeated=False)
